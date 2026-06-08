@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiCar-X Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <h1>PiCar-X Dashboard</h1>
+    <div class="header-right">
+        <span id="session-status" class="session-inactive">SESSION ○</span>
+        <span id="rec-status" class="rec-inactive">REC ○</span>
+        <span id="mode-badge" class="mode-badge mode-gentle">GENTLE</span>
+        <span id="state-badge" class="state-badge">STANDBY</span>
+        <span id="conn-status" class="status-disconnected">Connecting…</span>
+    </div>
+</header>
+
+<main>
+    <section class="camera-section">
+        <img id="cam-feed" alt="Camera stream connecting…">
+    </section>
+
+    <aside class="controls-section">
+        <div class="control-group">
+            <label>Speed <span id="speed-value">50%</span></label>
+            <input type="range" id="speed-slider" min="10" max="100" value="50" step="5">
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">Motors (PWM duty cycle)</div>
+            <div class="motor-row">
+                <span class="motor-label">L</span>
+                <div class="bar-track"><div id="motor-l-bar" class="bar-fill bar-motor" style="width:0%"></div></div>
+                <span id="motor-l-pct" class="motor-pct">0%</span>
+                <span id="motor-l-dir" class="motor-dir"></span>
+            </div>
+            <div class="motor-row">
+                <span class="motor-label">R</span>
+                <div class="bar-track"><div id="motor-r-bar" class="bar-fill bar-motor" style="width:0%"></div></div>
+                <span id="motor-r-pct" class="motor-pct">0%</span>
+                <span id="motor-r-dir" class="motor-dir"></span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">Drive (WASD)</div>
+            <div class="key-grid">
+                <div></div>
+                <div id="key-w" class="key">W</div>
+                <div></div>
+                <div id="key-a" class="key">A</div>
+                <div id="key-s" class="key">S</div>
+                <div id="key-d" class="key">D</div>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">Camera (IJKL)</div>
+            <div class="key-grid">
+                <div></div>
+                <div id="key-i" class="key">I</div>
+                <div></div>
+                <div id="key-j" class="key">J</div>
+                <div id="key-k" class="key">K</div>
+                <div id="key-l" class="key">L</div>
+            </div>
+        </div>
+
+        <div class="control-group btn-group">
+            <button id="photo-btn" class="btn">Take Photo</button>
+            <button id="rec-btn" class="btn">Record Video</button>
+            <button id="session-btn" class="btn">Start Session</button>
+        </div>
+    </aside>
+</main>
+
+<div class="touch-controls">
+    <div class="joystick-wrap">
+        <div class="dpad-label">Drive</div>
+        <div id="joy-drive" class="joystick-base">
+            <div id="joy-drive-thumb" class="joystick-thumb"></div>
+        </div>
+    </div>
+    <div class="joystick-wrap">
+        <div class="dpad-label">Camera</div>
+        <div id="joy-cam" class="joystick-base">
+            <div id="joy-cam-thumb" class="joystick-thumb"></div>
+        </div>
+    </div>
+</div>
+
+<div class="touch-actions">
+    <button id="t-photo-btn"   class="btn t-btn">Photo</button>
+    <button id="t-detect-btn"  class="btn t-btn">Detect OFF</button>
+    <button id="t-mode-btn"    class="btn t-btn">Gentle</button>
+    <button id="t-session-btn" class="btn t-btn">Session</button>
+</div>
+
+<section class="sensors" style="grid-template-columns: 1fr 1fr 1fr">
+    <div class="sensor-panel">
+        <h3>Ultrasonic <span id="us-signal" class="signal-badge signal-no">○</span></h3>
+        <div id="distance-val" class="sensor-value out-of-range">Out of range</div>
+        <div class="bar-track">
+            <div id="distance-bar" class="bar-fill bar-ok" style="width:0%"></div>
+        </div>
+        <div class="bar-labels"><span>0</span><span>100 cm</span></div>
+        <div class="sensor-hint">Range: 2–400 cm · D2/D3 pins</div>
+    </div>
+
+    <div class="sensor-panel">
+        <h3>Grayscale</h3>
+        <div class="gs-row">
+            <span class="gs-label">L</span>
+            <div class="bar-track"><div id="gs-l-bar" class="bar-fill bar-gs" style="width:0%"></div></div>
+            <span id="gs-l-val" class="gs-val">0</span>
+        </div>
+        <div class="gs-row">
+            <span class="gs-label">M</span>
+            <div class="bar-track"><div id="gs-m-bar" class="bar-fill bar-gs" style="width:0%"></div></div>
+            <span id="gs-m-val" class="gs-val">0</span>
+        </div>
+        <div class="gs-row">
+            <span class="gs-label">R</span>
+            <div class="bar-track"><div id="gs-r-bar" class="bar-fill bar-gs" style="width:0%"></div></div>
+            <span id="gs-r-val" class="gs-val">0</span>
+        </div>
+        <div class="sensor-hint">0 = dark (line) · 4096 = light</div>
+    </div>
+
+    <div class="sensor-panel">
+        <h3>Battery</h3>
+        <div id="battery-val" class="sensor-value out-of-range">-- V</div>
+        <div class="bar-track">
+            <div id="battery-bar" class="bar-fill bar-ok" style="width:0%"></div>
+        </div>
+        <div class="bar-labels"><span>6.0 V</span><span>8.4 V</span></div>
+        <div class="sensor-hint">2S LiPo · 6.0 V empty · 8.4 V full</div>
+    </div>
+</section>
+
+<section class="servo-gauges">
+    <div class="gauge-panel">
+        <h3>Steer</h3>
+        <svg id="gauge-steer" class="gauge-svg" viewBox="0 0 120 75"></svg>
+        <div class="sensor-hint">&#8722;30&#176; &larr; 0&#176; &rarr; +30&#176;</div>
+    </div>
+    <div class="gauge-panel">
+        <h3>Pan</h3>
+        <svg id="gauge-pan" class="gauge-svg" viewBox="0 0 120 75"></svg>
+        <div class="sensor-hint">&#8722;90&#176; &larr; 0&#176; &rarr; +90&#176;</div>
+    </div>
+    <div class="gauge-panel">
+        <h3>Tilt</h3>
+        <svg id="gauge-tilt" class="gauge-svg" viewBox="0 0 120 75"></svg>
+        <div class="sensor-hint">&#8722;35&#176; &larr; 0&#176; &rarr; +65&#176;</div>
+    </div>
+</section>
+
+<footer>
+    <span id="notif" class="notif"></span>
+</footer>
+
+<div id="kill-bar">
+    <button id="kill-btn">KILL</button>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

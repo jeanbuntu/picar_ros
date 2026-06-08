@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+
+# Install on Pi with:
+# pip3 install fastapi "uvicorn[standard]" --break-system-packages
