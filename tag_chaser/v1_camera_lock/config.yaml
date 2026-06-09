@@ -1,0 +1,19 @@
+# Tag Chaser v1 — Camera Lock configuration
+# All values here are loaded at runtime; edit and restart to apply.
+
+pid:
+  kp: 15.0     # degrees per normalized offset unit (error range -1 to 1)
+  ki: 0.5
+  kd: 2.0
+
+chase:
+  stop_distance_cm: 10.0       # stop when tag is this close
+  steer_limit_deg: 20          # softer cap than hardware max (30 deg)
+  tag_lost_timeout_s: 0.5      # hold last steer for this long before stopping
+  tag_id: 1                    # AprilTag ID to track
+  countdown_s: 3               # "Starting 3 2 1" delay before driving
+
+camera:
+  width: 640
+  height: 480
+  tag_size_m: 0.05             # physical tag side length in metres

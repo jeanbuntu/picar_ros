@@ -1,13 +1,16 @@
 import asyncio
+import json
 import logging
 import os
 import signal
 import subprocess
+import sys
 import threading
 import time
 from datetime import datetime
 
 import uvicorn
+import yaml
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -21,17 +24,30 @@ try:
 except Exception:
     _battery_available = False
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Allow importing tag_chaser from the project root
+_PROJ_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _PROJ_ROOT not in sys.path:
+    sys.path.insert(0, _PROJ_ROOT)
+
+from tag_chaser.v1_camera_lock.chaser import TagChaser
+
+BASE_DIR         = os.path.dirname(os.path.abspath(__file__))
 WATCHDOG_TIMEOUT = 5.0
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 
 px: Picarx = None
-_sensor = {"distance": -1.0, "grayscale": [0, 0, 0], "battery": None}
+chaser: TagChaser = None
+
+_sensor      = {"distance": -1.0, "grayscale": [0, 0, 0], "battery": None}
 _sensor_lock = threading.Lock()
-_rec_state = "stopped"
+_rec_state   = "stopped"
 _rec_last_video = ""
+
+# WebSocket client tracking for chaser broadcasts
+_ws_clients: set = set()
+_loop: asyncio.AbstractEventLoop = None
 
 try:
     _username = os.getlogin()
@@ -47,16 +63,42 @@ UBUNTU_LOG_DEST = "jeano@192.168.1.250:/home/jeano/picar_ros/dashboard/sessionlo
 _logger = logging.getLogger("picarx")
 
 
+# ── Chaser broadcast ──────────────────────────────────────────────────────────
+
+async def _broadcast_coro(msg: dict):
+    data = json.dumps(msg)
+    dead = set()
+    for client in list(_ws_clients):
+        try:
+            await client.send_text(data)
+        except Exception:
+            dead.add(client)
+    _ws_clients -= dead
+
+
+def broadcast_chase(msg: dict):
+    """Thread-safe broadcast from the chaser thread to all WS clients."""
+    if _loop and not _loop.is_closed():
+        asyncio.run_coroutine_threadsafe(_broadcast_coro(msg), _loop)
+
+
+@app.on_event("startup")
+async def _on_startup():
+    global _loop
+    _loop = asyncio.get_running_loop()
+
+
+# ── Sensor loop ───────────────────────────────────────────────────────────────
+
 def _sensor_loop():
     _batt_tick = 24
     while True:
         try:
             dist = px.get_distance()
-            gs = px.get_grayscale_data()
+            gs   = px.get_grayscale_data()
             with _sensor_lock:
-                _sensor["distance"] = round(float(dist), 1)
+                _sensor["distance"]  = round(float(dist), 1)
                 _sensor["grayscale"] = [int(v) for v in gs]
-            _logger.debug("sensor distance=%.1f grayscale=%s", _sensor["distance"], _sensor["grayscale"])
         except Exception as e:
             _logger.error("sensor_loop error: %s", e)
         _batt_tick += 1
@@ -66,7 +108,6 @@ def _sensor_loop():
                 v = round(_battery_adc.read_voltage() * 3, 2)
                 with _sensor_lock:
                     _sensor["battery"] = v
-                _logger.debug("battery %.2fV", v)
             except Exception:
                 pass
         time.sleep(0.2)
@@ -99,6 +140,8 @@ async def dl_video(filename: str):
 
 async def _graceful_shutdown():
     _logger.info("Graceful shutdown initiated — stopping hardware")
+    if chaser and chaser.is_running():
+        chaser.stop()
     try:
         px.stop()
         px.set_dir_servo_angle(0)
@@ -114,9 +157,7 @@ async def _graceful_shutdown():
     try:
         result = subprocess.run(
             ["scp", "-r", LOG_DIR + "/", UBUNTU_LOG_DEST],
-            timeout=30,
-            capture_output=True,
-            text=True,
+            timeout=30, capture_output=True, text=True,
         )
         if result.returncode == 0:
             _logger.info("Log transfer complete")
@@ -138,8 +179,17 @@ async def _graceful_shutdown():
 async def websocket_endpoint(ws: WebSocket):
     global _rec_state, _rec_last_video
     await ws.accept()
+    _ws_clients.add(ws)
     client_ip = ws.client.host if ws.client else "unknown"
     _logger.info("WebSocket connected from %s", client_ip)
+
+    # Send current chase state immediately so UI is in sync
+    chase_active = chaser.is_running() if chaser else False
+    await ws.send_json({
+        "type":   "chase_status",
+        "active": chase_active,
+        "state":  "chasing" if chase_active else "idle",
+    })
 
     async def _recv():
         global _rec_state, _rec_last_video
@@ -149,8 +199,10 @@ async def websocket_endpoint(ws: WebSocket):
                 cmd = msg.get("cmd")
 
                 if cmd == "drive":
+                    if chaser and chaser.is_running():
+                        continue   # chaser owns the motors
                     direction = msg.get("direction", "stop")
-                    speed = max(0, min(100, int(msg.get("speed", 50))))
+                    speed     = max(0, min(100, int(msg.get("speed", 50))))
                     _logger.info("drive direction=%s speed=%d", direction, speed)
                     if direction == "forward":
                         await asyncio.to_thread(px.forward, speed)
@@ -160,12 +212,16 @@ async def websocket_endpoint(ws: WebSocket):
                         await asyncio.to_thread(px.stop)
 
                 elif cmd == "steer":
+                    if chaser and chaser.is_running():
+                        continue   # chaser owns steering
                     angle = max(-30, min(30, int(msg.get("angle", 0))))
                     _logger.info("steer angle=%d", angle)
                     await asyncio.to_thread(px.set_dir_servo_angle, angle)
 
                 elif cmd == "gimbal":
-                    axis = msg.get("axis", "pan")
+                    if chaser and chaser.is_running():
+                        continue   # camera locked during chase
+                    axis  = msg.get("axis", "pan")
                     angle = int(msg.get("angle", 0))
                     _logger.info("gimbal axis=%s angle=%d", axis, angle)
                     if axis == "pan":
@@ -175,8 +231,20 @@ async def websocket_endpoint(ws: WebSocket):
                         angle = max(-35, min(65, angle))
                         await asyncio.to_thread(px.set_cam_tilt_angle, angle)
 
+                elif cmd == "tag_chase":
+                    action = msg.get("action", "stop")
+                    if action == "start":
+                        speed = max(0, min(100, int(msg.get("speed", 30))))
+                        _logger.info("tag_chase start speed=%d", speed)
+                        if chaser:
+                            await asyncio.to_thread(chaser.start, speed)
+                    elif action == "stop":
+                        _logger.info("tag_chase stop")
+                        if chaser:
+                            await asyncio.to_thread(chaser.stop)
+
                 elif cmd == "photo":
-                    ts = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+                    ts   = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
                     name = f"photo_{ts}"
                     os.makedirs(PHOTO_DIR, exist_ok=True)
                     Vilib.take_photo(name, PHOTO_DIR + "/")
@@ -186,7 +254,7 @@ async def websocket_endpoint(ws: WebSocket):
 
                 elif cmd == "rec_toggle":
                     if _rec_state == "stopped":
-                        ts = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+                        ts    = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
                         vname = f"video_{ts}"
                         os.makedirs(VIDEO_DIR, exist_ok=True)
                         Vilib.rec_video_set["name"] = vname
@@ -194,7 +262,7 @@ async def websocket_endpoint(ws: WebSocket):
                         await asyncio.to_thread(Vilib.rec_video_run)
                         await asyncio.sleep(0.5)
                         await asyncio.to_thread(Vilib.rec_video_start)
-                        _rec_state = "recording"
+                        _rec_state     = "recording"
                         _rec_last_video = vname + ".avi"
                         _logger.info("rec_start file=%s", _rec_last_video)
                         await ws.send_json({"type": "rec_state", "state": "recording"})
@@ -202,11 +270,13 @@ async def websocket_endpoint(ws: WebSocket):
                         await asyncio.to_thread(Vilib.rec_video_stop)
                         _rec_state = "stopped"
                         _logger.info("rec_stop file=%s", _rec_last_video)
-                        await ws.send_json({"type": "rec_state", "state": "stopped"})
-                        await ws.send_json({"type": "rec_stopped", "filename": _rec_last_video})
+                        await ws.send_json({"type": "rec_state",    "state": "stopped"})
+                        await ws.send_json({"type": "rec_stopped",  "filename": _rec_last_video})
 
                 elif cmd == "kill":
                     _logger.info("kill command from %s", client_ip)
+                    if chaser and chaser.is_running():
+                        await asyncio.to_thread(chaser.stop)
                     await asyncio.to_thread(px.stop)
                     await asyncio.to_thread(px.set_dir_servo_angle, 0)
                     await ws.send_json({"type": "kill_confirmed"})
@@ -229,10 +299,10 @@ async def websocket_endpoint(ws: WebSocket):
                 with _sensor_lock:
                     data = dict(_sensor)
                 await ws.send_json({
-                    "type": "sensors",
-                    "distance": data["distance"],
-                    "grayscale": data["grayscale"],
-                    "battery": data["battery"],
+                    "type":         "sensors",
+                    "distance":     data["distance"],
+                    "grayscale":    data["grayscale"],
+                    "battery":      data["battery"],
                     "battery_warn": data["battery"] is not None and data["battery"] < 6.5,
                 })
                 await asyncio.sleep(0.2)
@@ -247,7 +317,9 @@ async def websocket_endpoint(ws: WebSocket):
             await asyncio.sleep(1)
             if time.monotonic() - _last_hb[0] > WATCHDOG_TIMEOUT:
                 if not _fired:
-                    _logger.warning("Watchdog fired — no heartbeat for %.1fs, stopping motors", WATCHDOG_TIMEOUT)
+                    _logger.warning(
+                        "Watchdog fired — no heartbeat for %.1fs, stopping motors",
+                        WATCHDOG_TIMEOUT)
                     _fired = True
                 px.stop()
             else:
@@ -266,18 +338,19 @@ async def websocket_endpoint(ws: WebSocket):
         for t in (recv_task, send_task, watchdog_task):
             t.cancel()
     finally:
+        _ws_clients.discard(ws)
         _logger.info("WebSocket disconnected from %s", client_ip)
-        px.stop()
+        if not (chaser and chaser.is_running()):
+            px.stop()
 
 
 # ── Startup ───────────────────────────────────────────────────────────────────
 
 def main():
-    global px
+    global px, chaser
 
-    # File logger — always on from server start
     os.makedirs(LOG_DIR, exist_ok=True)
-    log_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
     log_path = os.path.join(LOG_DIR, f"server_{log_ts}.log")
 
     _logger.setLevel(logging.DEBUG)
@@ -292,6 +365,14 @@ def main():
 
     px = Picarx()
     _logger.info("Picarx initialized")
+
+    # Load tag chaser config and create chaser instance (not started yet)
+    _chase_config_path = os.path.join(
+        _PROJ_ROOT, 'tag_chaser', 'v1_camera_lock', 'config.yaml')
+    with open(_chase_config_path) as f:
+        _chase_config = yaml.safe_load(f)
+    chaser = TagChaser(px, _chase_config, broadcast_fn=broadcast_chase)
+    _logger.info("TagChaser initialized (not running)")
 
     Vilib.camera_start(vflip=False, hflip=False)
     Vilib.display(local=False, web=True)

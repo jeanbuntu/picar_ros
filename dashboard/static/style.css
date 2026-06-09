@@ -80,6 +80,47 @@ main {
     border-right: 1px solid var(--border);
     min-height: 0;
     overflow: hidden;
+    position: relative;
+}
+
+/* ── Chase overlay canvas ─────────────────────────────── */
+#chase-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    display: none;
+}
+
+/* ── Chase status bar ─────────────────────────────────── */
+#chase-statusbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 300;
+    background: #b45309;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 0 16px;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.2s ease, padding 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chase-statusbar.chase-bar-visible {
+    height: 36px;
+}
+
+.btn-chase-active {
+    background: #b45309;
+    border-color: #b45309;
+    color: #fff;
 }
 
 #cam-feed {

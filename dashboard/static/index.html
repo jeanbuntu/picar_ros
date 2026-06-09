@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<div id="chase-statusbar"></div>
+
 <header>
     <h1>PiCar-X Dashboard</h1>
     <div class="header-right">
@@ -22,6 +24,7 @@
 <main>
     <section class="camera-section">
         <img id="cam-feed" alt="Camera stream connecting…">
+        <canvas id="chase-overlay"></canvas>
     </section>
 
     <aside class="controls-section">
@@ -89,6 +92,7 @@
         </div>
 
         <div class="control-group btn-group">
+            <button id="chase-btn" class="btn">Tag Chase OFF</button>
             <button id="photo-btn" class="btn">Take Photo</button>
             <button id="rec-btn" class="btn">Record Video</button>
             <button id="session-btn" class="btn">Stop Session</button>
@@ -113,7 +117,7 @@
 
 <div class="touch-actions">
     <button id="t-photo-btn"   class="btn t-btn">Photo</button>
-    <button id="t-detect-btn"  class="btn t-btn">Detect OFF</button>
+    <button id="t-chase-btn"   class="btn t-btn">Chase</button>
     <button id="t-mode-btn"    class="btn t-btn">Gentle</button>
     <button id="t-session-btn" class="btn t-btn">Stop</button>
 </div>

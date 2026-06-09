@@ -24,6 +24,9 @@ let modeState = 'gentle';
 let detectOn = false;
 let _battWarnShown = false;
 
+// Tag chase state
+let chaseActive = false;
+
 // Motor display state
 const motorState = { leftPct: 0, rightPct: 0, dir: 'stop' };
 
@@ -43,6 +46,9 @@ let notifTimer = null;
 // New DOM refs
 let killBtn, modeBadge, stateBadge;
 let tPhotoBtn, tDetectBtn, tModeBtn, tSessionBtn;
+
+// Chase DOM refs
+let chaseBtn, tChaseBtn, chaseStatusbar, chaseCanvas, chaseCtx;
 
 // Servo gauges
 let gaugeSteer = null, gaugePan = null, gaugeTilt = null;
@@ -81,6 +87,10 @@ function connect() {
             const bar = document.getElementById('kill-bar');
             bar.classList.add('kill-confirmed');
             setTimeout(() => bar.classList.remove('kill-confirmed'), 800);
+        } else if (msg.type === 'chase_status') {
+            updateChaseStatus(msg);
+        } else if (msg.type === 'chase_detection') {
+            drawTagOverlay(msg);
         }
     };
 
@@ -310,6 +320,96 @@ function toggleDetect() {
         tDetectBtn.textContent = detectOn ? 'Detect ON' : 'Detect OFF';
         tDetectBtn.classList.toggle('btn-detect-active', detectOn);
     }
+}
+
+function toggleChase() {
+    const action = chaseActive ? 'stop' : 'start';
+    send({ cmd: 'tag_chase', action, speed: getSpeed() });
+}
+
+function updateChaseStatus(msg) {
+    chaseActive = msg.active;
+
+    const on = msg.active;
+    if (chaseCanvas) chaseCanvas.style.display = on ? 'block' : 'none';
+    if (!on && chaseCtx) chaseCtx.clearRect(0, 0, chaseCanvas.width, chaseCanvas.height);
+
+    const label = on ? 'Tag Chase ON' : 'Tag Chase OFF';
+    if (chaseBtn)   { chaseBtn.textContent = label;   chaseBtn.classList.toggle('btn-chase-active', on); }
+    if (tChaseBtn)  { tChaseBtn.textContent = on ? 'Chase ON' : 'Chase';
+                      tChaseBtn.classList.toggle('btn-chase-active', on); }
+
+    if (!chaseStatusbar) return;
+    if (!on) {
+        chaseStatusbar.classList.remove('chase-bar-visible');
+        chaseStatusbar.textContent = '';
+        return;
+    }
+    chaseStatusbar.classList.add('chase-bar-visible');
+    const state = msg.state || 'idle';
+    let text = '';
+    if (state === 'starting') {
+        text = `Starting… ${msg.countdown}`;
+    } else if (state === 'chasing') {
+        text = msg.distance_cm != null ? `Chasing — ${msg.distance_cm} cm` : 'Chasing';
+    } else if (state === 'stopping') {
+        text = msg.distance_cm != null ? `Stopping — ${msg.distance_cm} cm` : 'Stopping';
+    } else if (state === 'searching') {
+        text = 'Searching…';
+    } else {
+        text = state.charAt(0).toUpperCase() + state.slice(1);
+    }
+    chaseStatusbar.textContent = text;
+}
+
+function drawTagOverlay(msg) {
+    if (!chaseCanvas || !chaseCtx || !chaseActive) return;
+    const camEl = document.getElementById('cam-feed');
+    if (!camEl) return;
+    const rect = camEl.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+
+    chaseCanvas.width  = rect.width;
+    chaseCanvas.height = rect.height;
+    chaseCtx.clearRect(0, 0, rect.width, rect.height);
+
+    if (!msg.found) return;
+
+    // Map frame coords to canvas coords accounting for object-fit:contain letterboxing
+    const fW = msg.frame_w, fH = msg.frame_h;
+    const imgAspect = fW / fH;
+    const boxAspect = rect.width / rect.height;
+    let rW, rH, oX, oY;
+    if (imgAspect > boxAspect) {
+        rW = rect.width;
+        rH = rect.width / imgAspect;
+        oX = 0;
+        oY = (rect.height - rH) / 2;
+    } else {
+        rH = rect.height;
+        rW = rect.height * imgAspect;
+        oX = (rect.width - rW) / 2;
+        oY = 0;
+    }
+    const sX = rW / fW, sY = rH / fH;
+
+    const corners = msg.corners;
+    chaseCtx.strokeStyle = '#f59e0b';
+    chaseCtx.lineWidth = 2.5;
+    chaseCtx.beginPath();
+    chaseCtx.moveTo(oX + corners[0][0] * sX, oY + corners[0][1] * sY);
+    for (let i = 1; i < corners.length; i++) {
+        chaseCtx.lineTo(oX + corners[i][0] * sX, oY + corners[i][1] * sY);
+    }
+    chaseCtx.closePath();
+    chaseCtx.stroke();
+
+    const cx = oX + msg.center[0] * sX;
+    const cy = oY + msg.center[1] * sY;
+    chaseCtx.fillStyle = '#f59e0b';
+    chaseCtx.beginPath();
+    chaseCtx.arc(cx, cy, 5, 0, Math.PI * 2);
+    chaseCtx.fill();
 }
 
 function updateModeBadge() {
@@ -644,6 +744,12 @@ window.addEventListener('DOMContentLoaded', () => {
     tModeBtn    = document.getElementById('t-mode-btn');
     tSessionBtn = document.getElementById('t-session-btn');
 
+    chaseBtn       = document.getElementById('chase-btn');
+    tChaseBtn      = document.getElementById('t-chase-btn');
+    chaseStatusbar = document.getElementById('chase-statusbar');
+    chaseCanvas    = document.getElementById('chase-overlay');
+    chaseCtx       = chaseCanvas ? chaseCanvas.getContext('2d') : null;
+
     document.getElementById('cam-feed').src = VIDEO_SRC;
 
     speedSlider.addEventListener('input', () => {
@@ -663,6 +769,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (tPhotoBtn)   tPhotoBtn.addEventListener('click', () => send({ cmd: 'photo' }));
     if (tDetectBtn)  tDetectBtn.addEventListener('click', toggleDetect);
     if (tModeBtn)    tModeBtn.addEventListener('click', toggleMode);
+    if (chaseBtn)    chaseBtn.addEventListener('click', toggleChase);
+    if (tChaseBtn)   tChaseBtn.addEventListener('click', toggleChase);
     if (tSessionBtn) tSessionBtn.addEventListener('click', () => {
         send({ cmd: 'shutdown' });
         sessionBtn.disabled = true;
