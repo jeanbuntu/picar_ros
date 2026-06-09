@@ -11,7 +11,7 @@
 <header>
     <h1>PiCar-X Dashboard</h1>
     <div class="header-right">
-        <span id="session-status" class="session-inactive">SESSION ○</span>
+        <span id="session-status" class="session-inactive">LOG ○</span>
         <span id="rec-status" class="rec-inactive">REC ○</span>
         <span id="mode-badge" class="mode-badge mode-gentle">GENTLE</span>
         <span id="state-badge" class="state-badge">STANDBY</span>
@@ -26,8 +26,8 @@
 
     <aside class="controls-section">
         <div class="control-group">
-            <label>Speed <span id="speed-value">50%</span></label>
-            <input type="range" id="speed-slider" min="10" max="100" value="50" step="5">
+            <label>Speed <span id="speed-value">75%</span></label>
+            <input type="range" id="speed-slider" min="10" max="100" value="75" step="5">
         </div>
 
         <div class="control-group">
@@ -70,10 +70,28 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <div class="key-label">Servos</div>
+            <div class="gauge-row">
+                <div class="gauge-panel">
+                    <h3>Steer</h3>
+                    <svg id="gauge-steer" class="gauge-svg" viewBox="0 0 120 75"></svg>
+                </div>
+                <div class="gauge-panel">
+                    <h3>Pan</h3>
+                    <svg id="gauge-pan" class="gauge-svg" viewBox="0 0 120 75"></svg>
+                </div>
+                <div class="gauge-panel">
+                    <h3>Tilt</h3>
+                    <svg id="gauge-tilt" class="gauge-svg" viewBox="0 0 120 75"></svg>
+                </div>
+            </div>
+        </div>
+
         <div class="control-group btn-group">
             <button id="photo-btn" class="btn">Take Photo</button>
             <button id="rec-btn" class="btn">Record Video</button>
-            <button id="session-btn" class="btn">Start Session</button>
+            <button id="session-btn" class="btn">Stop Session</button>
         </div>
     </aside>
 </main>
@@ -97,7 +115,7 @@
     <button id="t-photo-btn"   class="btn t-btn">Photo</button>
     <button id="t-detect-btn"  class="btn t-btn">Detect OFF</button>
     <button id="t-mode-btn"    class="btn t-btn">Gentle</button>
-    <button id="t-session-btn" class="btn t-btn">Session</button>
+    <button id="t-session-btn" class="btn t-btn">Stop</button>
 </div>
 
 <section class="sensors" style="grid-template-columns: 1fr 1fr 1fr">
@@ -139,24 +157,6 @@
         </div>
         <div class="bar-labels"><span>6.0 V</span><span>8.4 V</span></div>
         <div class="sensor-hint">2S LiPo · 6.0 V empty · 8.4 V full</div>
-    </div>
-</section>
-
-<section class="servo-gauges">
-    <div class="gauge-panel">
-        <h3>Steer</h3>
-        <svg id="gauge-steer" class="gauge-svg" viewBox="0 0 120 75"></svg>
-        <div class="sensor-hint">&#8722;30&#176; &larr; 0&#176; &rarr; +30&#176;</div>
-    </div>
-    <div class="gauge-panel">
-        <h3>Pan</h3>
-        <svg id="gauge-pan" class="gauge-svg" viewBox="0 0 120 75"></svg>
-        <div class="sensor-hint">&#8722;90&#176; &larr; 0&#176; &rarr; +90&#176;</div>
-    </div>
-    <div class="gauge-panel">
-        <h3>Tilt</h3>
-        <svg id="gauge-tilt" class="gauge-svg" viewBox="0 0 120 75"></svg>
-        <div class="sensor-hint">&#8722;35&#176; &larr; 0&#176; &rarr; +65&#176;</div>
     </div>
 </section>
 

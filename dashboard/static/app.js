@@ -11,14 +11,15 @@ const heldKeys = new Set();
 // Gimbal state
 const gimbalAngles = { pan: 0, tilt: 0 };
 const gimbalIntervals = {};
+const driveIntervals  = {};
+const DRIVE_REPEAT_MS = 100;
 const GIMBAL_STEP = 5;
 const GIMBAL_MS = 80;
 
 // Servo state
 let steerAngle = 0;
 
-// Session / mode / detect state
-let sessionActive = false;
+// Mode / detect state
 let modeState = 'gentle';
 let detectOn = false;
 let _battWarnShown = false;
@@ -54,6 +55,7 @@ function connect() {
     ws.onopen = () => {
         connStatus.textContent = 'Connected';
         connStatus.className = 'status-connected';
+        if (sessionStatus) { sessionStatus.textContent = 'LOG ●'; sessionStatus.className = 'session-active'; }
         _battWarnShown = false;
     };
 
@@ -71,8 +73,10 @@ function connect() {
         } else if (msg.type === 'photo_saved') {
             const f = msg.filename;
             showNotif(`Photo saved · <a href="/download/photo/${f}" target="_blank">Download</a>`);
-        } else if (msg.type === 'session_state') {
-            updateSessionState(msg.state, msg.filename);
+        } else if (msg.type === 'shutdown_ack') {
+            sessionBtn.disabled = true;
+            if (tSessionBtn) tSessionBtn.disabled = true;
+            showNotif('Server shutting down…');
         } else if (msg.type === 'kill_confirmed') {
             const bar = document.getElementById('kill-bar');
             bar.classList.add('kill-confirmed');
@@ -83,6 +87,7 @@ function connect() {
     ws.onclose = () => {
         connStatus.textContent = 'Disconnected — reconnecting…';
         connStatus.className = 'status-disconnected';
+        if (sessionStatus) { sessionStatus.textContent = 'LOG ○'; sessionStatus.className = 'session-inactive'; }
         emergencyStop();
         setTimeout(connect, 2000);
     };
@@ -233,6 +238,10 @@ function sendDriveState() {
 }
 
 function emergencyStop() {
+    for (const k of Object.keys(driveIntervals)) {
+        clearInterval(driveIntervals[k]);
+        delete driveIntervals[k];
+    }
     for (const k of Object.keys(gimbalIntervals)) {
         clearInterval(gimbalIntervals[k]);
         delete gimbalIntervals[k];
@@ -450,6 +459,9 @@ document.addEventListener('keydown', (e) => {
         heldKeys.add(key);
         updateKeyDisplay();
         sendDriveState();
+        if (!driveIntervals[key]) {
+            driveIntervals[key] = setInterval(sendDriveState, DRIVE_REPEAT_MS);
+        }
     } else if (GIMBAL_KEYS.has(key)) {
         heldKeys.add(key);
         updateKeyDisplay();
@@ -462,7 +474,7 @@ document.addEventListener('keydown', (e) => {
         toggleDetect();
     } else if (key === 'enter') {
         if (document.activeElement && document.activeElement.tagName === 'BUTTON') return;
-        send({ cmd: sessionActive ? 'session_stop' : 'session_start' });
+        send({ cmd: 'shutdown' });
     } else if (key === ' ') {
         e.preventDefault();
         doKill();
@@ -473,6 +485,8 @@ document.addEventListener('keyup', (e) => {
     const key = e.key.toLowerCase();
 
     if (DRIVE_KEYS.has(key)) {
+        clearInterval(driveIntervals[key]);
+        delete driveIntervals[key];
         heldKeys.delete(key);
         updateKeyDisplay();
         sendDriveState();
@@ -581,22 +595,6 @@ function updateRecState(state) {
     recStatus.className   = active ? 'rec-active' : 'rec-inactive';
 }
 
-// ── UI: session ────────────────────────────────────────────────────────────
-
-function updateSessionState(state, filename) {
-    sessionActive = state === 'active';
-    const label = sessionActive ? 'Stop Session' : 'Start Session';
-    sessionBtn.textContent = label;
-    sessionBtn.classList.toggle('btn-session-active', sessionActive);
-    sessionStatus.textContent = sessionActive ? 'SESSION ●' : 'SESSION ○';
-    sessionStatus.className   = sessionActive ? 'session-active' : 'session-inactive';
-    if (tSessionBtn) tSessionBtn.textContent = sessionActive ? 'End Session' : 'Session';
-
-    if (state === 'idle' && filename) {
-        showNotif(`Session saved · <a href="/download/session/${filename}" target="_blank">Download log</a>`);
-    }
-}
-
 // ── UI: notifications ──────────────────────────────────────────────────────
 
 function showNotif(html) {
@@ -616,7 +614,7 @@ window.addEventListener('DOMContentLoaded', () => {
     sessionBtn   = document.getElementById('session-btn');
     connStatus   = document.getElementById('conn-status');
     recStatus    = document.getElementById('rec-status');
-    sessionStatus = document.getElementById('session-status');
+    sessionStatus = document.getElementById('session-status');  // LOG ●/○ badge
     notifEl      = document.getElementById('notif');
 
     distanceVal  = document.getElementById('distance-val');
@@ -656,7 +654,9 @@ window.addEventListener('DOMContentLoaded', () => {
     photoBtn.addEventListener('click',   () => send({ cmd: 'photo' }));
     recBtn.addEventListener('click',     () => send({ cmd: 'rec_toggle' }));
     sessionBtn.addEventListener('click', () => {
-        send({ cmd: sessionActive ? 'session_stop' : 'session_start' });
+        send({ cmd: 'shutdown' });
+        sessionBtn.disabled = true;
+        if (tSessionBtn) tSessionBtn.disabled = true;
     });
 
     if (killBtn)     killBtn.addEventListener('click', doKill);
@@ -664,7 +664,9 @@ window.addEventListener('DOMContentLoaded', () => {
     if (tDetectBtn)  tDetectBtn.addEventListener('click', toggleDetect);
     if (tModeBtn)    tModeBtn.addEventListener('click', toggleMode);
     if (tSessionBtn) tSessionBtn.addEventListener('click', () => {
-        send({ cmd: sessionActive ? 'session_stop' : 'session_start' });
+        send({ cmd: 'shutdown' });
+        sessionBtn.disabled = true;
+        if (tSessionBtn) tSessionBtn.disabled = true;
     });
 
     gaugeSteer = makeGauge('gauge-steer', -30,  30, '#4f8ef7');

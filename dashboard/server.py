@@ -1,6 +1,8 @@
 import asyncio
-import json
+import logging
 import os
+import signal
+import subprocess
 import threading
 import time
 from datetime import datetime
@@ -20,7 +22,7 @@ except Exception:
     _battery_available = False
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-WATCHDOG_TIMEOUT = 3.0
+WATCHDOG_TIMEOUT = 5.0
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
@@ -29,32 +31,20 @@ px: Picarx = None
 _sensor = {"distance": -1.0, "grayscale": [0, 0, 0], "battery": None}
 _sensor_lock = threading.Lock()
 _rec_state = "stopped"
+_rec_last_video = ""
 
 try:
     _username = os.getlogin()
 except Exception:
     _username = "jvpicar"
 
-PHOTO_DIR   = f"/home/{_username}/Pictures/picar-x"
-VIDEO_DIR   = f"/home/{_username}/Videos/picar-x"
-SESSION_DIR = f"/home/{_username}/Documents/picar-x"
+PHOTO_DIR = f"/home/{_username}/Pictures/picar-x"
+VIDEO_DIR = f"/home/{_username}/Videos/picar-x"
+LOG_DIR   = f"/home/{_username}/picar-x/logs"
 
-# Session state (mutable dict — no global declarations needed in nested funcs)
-_session = {
-    "active": False,
-    "log": [],
-    "last_sensor_ts": 0.0,
-    "last_video": "",
-}
+UBUNTU_LOG_DEST = "jeano@192.168.1.250:/home/jeano/picar_ros/dashboard/sessionlogs/"
 
-
-def _log(entry: dict):
-    if not _session["active"]:
-        return
-    _session["log"].append({
-        "ts": datetime.now().isoformat(timespec="milliseconds"),
-        **entry,
-    })
+_logger = logging.getLogger("picarx")
 
 
 def _sensor_loop():
@@ -66,9 +56,9 @@ def _sensor_loop():
             with _sensor_lock:
                 _sensor["distance"] = round(float(dist), 1)
                 _sensor["grayscale"] = [int(v) for v in gs]
-        except Exception:
-            pass
-        # Battery is slow to change — read every 5 s (every 25 loops at 200 ms)
+            _logger.debug("sensor distance=%.1f grayscale=%s", _sensor["distance"], _sensor["grayscale"])
+        except Exception as e:
+            _logger.error("sensor_loop error: %s", e)
         _batt_tick += 1
         if _battery_available and _batt_tick >= 25:
             _batt_tick = 0
@@ -76,6 +66,7 @@ def _sensor_loop():
                 v = round(_battery_adc.read_voltage() * 3, 2)
                 with _sensor_lock:
                     _sensor["battery"] = v
+                _logger.debug("battery %.2fV", v)
             except Exception:
                 pass
         time.sleep(0.2)
@@ -104,23 +95,54 @@ async def dl_video(filename: str):
     return FileResponse(path, media_type="video/x-msvideo", filename=filename)
 
 
-@app.get("/download/session/{filename}")
-async def dl_session(filename: str):
-    path = os.path.join(SESSION_DIR, filename)
-    if not os.path.isfile(path):
-        raise HTTPException(status_code=404, detail="Not found")
-    return FileResponse(path, media_type="application/json", filename=filename)
+# ── Graceful shutdown ─────────────────────────────────────────────────────────
+
+async def _graceful_shutdown():
+    _logger.info("Graceful shutdown initiated — stopping hardware")
+    try:
+        px.stop()
+        px.set_dir_servo_angle(0)
+        px.set_cam_pan_angle(0)
+        px.set_cam_tilt_angle(0)
+    except Exception as e:
+        _logger.error("Hardware stop error: %s", e)
+
+    _logger.info("Transferring logs to Ubuntu: %s", UBUNTU_LOG_DEST)
+    for h in _logger.handlers:
+        h.flush()
+
+    try:
+        result = subprocess.run(
+            ["scp", "-r", LOG_DIR + "/", UBUNTU_LOG_DEST],
+            timeout=30,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode == 0:
+            _logger.info("Log transfer complete")
+        else:
+            _logger.error("SCP failed (rc=%d): %s", result.returncode, result.stderr.strip())
+    except Exception as e:
+        _logger.error("SCP exception: %s", e)
+
+    for h in list(_logger.handlers):
+        h.flush()
+        h.close()
+
+    os.kill(os.getpid(), signal.SIGTERM)
 
 
 # ── WebSocket ─────────────────────────────────────────────────────────────────
 
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
-    global _rec_state
+    global _rec_state, _rec_last_video
     await ws.accept()
+    client_ip = ws.client.host if ws.client else "unknown"
+    _logger.info("WebSocket connected from %s", client_ip)
 
     async def _recv():
-        global _rec_state
+        global _rec_state, _rec_last_video
         try:
             while True:
                 msg = await ws.receive_json()
@@ -129,7 +151,7 @@ async def websocket_endpoint(ws: WebSocket):
                 if cmd == "drive":
                     direction = msg.get("direction", "stop")
                     speed = max(0, min(100, int(msg.get("speed", 50))))
-                    _log({"event": "drive", "direction": direction, "speed": speed})
+                    _logger.info("drive direction=%s speed=%d", direction, speed)
                     if direction == "forward":
                         await asyncio.to_thread(px.forward, speed)
                     elif direction == "backward":
@@ -139,13 +161,13 @@ async def websocket_endpoint(ws: WebSocket):
 
                 elif cmd == "steer":
                     angle = max(-30, min(30, int(msg.get("angle", 0))))
-                    _log({"event": "steer", "angle": angle})
+                    _logger.info("steer angle=%d", angle)
                     await asyncio.to_thread(px.set_dir_servo_angle, angle)
 
                 elif cmd == "gimbal":
                     axis = msg.get("axis", "pan")
                     angle = int(msg.get("angle", 0))
-                    _log({"event": "gimbal", "axis": axis, "angle": angle})
+                    _logger.info("gimbal axis=%s angle=%d", axis, angle)
                     if axis == "pan":
                         angle = max(-90, min(90, angle))
                         await asyncio.to_thread(px.set_cam_pan_angle, angle)
@@ -159,7 +181,7 @@ async def websocket_endpoint(ws: WebSocket):
                     os.makedirs(PHOTO_DIR, exist_ok=True)
                     Vilib.take_photo(name, PHOTO_DIR + "/")
                     fname = f"{name}.jpg"
-                    _log({"event": "photo", "file": fname})
+                    _logger.info("photo saved file=%s", fname)
                     await ws.send_json({"type": "photo_saved", "filename": fname})
 
                 elif cmd == "rec_toggle":
@@ -173,46 +195,30 @@ async def websocket_endpoint(ws: WebSocket):
                         await asyncio.sleep(0.5)
                         await asyncio.to_thread(Vilib.rec_video_start)
                         _rec_state = "recording"
-                        _session["last_video"] = vname + ".avi"
-                        _log({"event": "rec_start", "file": _session["last_video"]})
+                        _rec_last_video = vname + ".avi"
+                        _logger.info("rec_start file=%s", _rec_last_video)
                         await ws.send_json({"type": "rec_state", "state": "recording"})
                     else:
                         await asyncio.to_thread(Vilib.rec_video_stop)
                         _rec_state = "stopped"
-                        _log({"event": "rec_stop", "file": _session["last_video"]})
+                        _logger.info("rec_stop file=%s", _rec_last_video)
                         await ws.send_json({"type": "rec_state", "state": "stopped"})
-                        await ws.send_json({"type": "rec_stopped", "filename": _session["last_video"]})
-
-                elif cmd == "session_start":
-                    _session["active"] = True
-                    _session["log"] = []
-                    _session["last_sensor_ts"] = 0.0
-                    _log({"event": "session_start"})
-                    await ws.send_json({"type": "session_state", "state": "active"})
-
-                elif cmd == "session_stop":
-                    _log({"event": "session_end"})
-                    _session["active"] = False
-                    ts = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-                    sfname = f"session_{ts}.json"
-                    os.makedirs(SESSION_DIR, exist_ok=True)
-                    with open(os.path.join(SESSION_DIR, sfname), "w") as f:
-                        json.dump(_session["log"], f, indent=2)
-                    _session["log"] = []
-                    await ws.send_json({
-                        "type": "session_state",
-                        "state": "idle",
-                        "filename": sfname,
-                    })
+                        await ws.send_json({"type": "rec_stopped", "filename": _rec_last_video})
 
                 elif cmd == "kill":
-                    _log({"event": "kill"})
+                    _logger.info("kill command from %s", client_ip)
                     await asyncio.to_thread(px.stop)
                     await asyncio.to_thread(px.set_dir_servo_angle, 0)
                     await ws.send_json({"type": "kill_confirmed"})
 
                 elif cmd == "heartbeat":
+                    _logger.debug("heartbeat from %s", client_ip)
                     _last_hb[0] = time.monotonic()
+
+                elif cmd == "shutdown":
+                    _logger.info("shutdown command from %s", client_ip)
+                    await ws.send_json({"type": "shutdown_ack"})
+                    asyncio.create_task(_graceful_shutdown())
 
         except (WebSocketDisconnect, RuntimeError):
             pass
@@ -229,14 +235,6 @@ async def websocket_endpoint(ws: WebSocket):
                     "battery": data["battery"],
                     "battery_warn": data["battery"] is not None and data["battery"] < 6.5,
                 })
-                now = time.monotonic()
-                if _session["active"] and (now - _session["last_sensor_ts"]) >= 5.0:
-                    _log({
-                        "event": "sensor",
-                        "distance": data["distance"],
-                        "grayscale": data["grayscale"],
-                    })
-                    _session["last_sensor_ts"] = now
                 await asyncio.sleep(0.2)
         except Exception:
             pass
@@ -244,10 +242,18 @@ async def websocket_endpoint(ws: WebSocket):
     _last_hb = [time.monotonic()]
 
     async def _watchdog():
+        _fired = False
         while True:
             await asyncio.sleep(1)
             if time.monotonic() - _last_hb[0] > WATCHDOG_TIMEOUT:
+                if not _fired:
+                    _logger.warning("Watchdog fired — no heartbeat for %.1fs, stopping motors", WATCHDOG_TIMEOUT)
+                    _fired = True
                 px.stop()
+            else:
+                if _fired:
+                    _logger.info("Watchdog reset — heartbeat restored from %s", client_ip)
+                    _fired = False
 
     recv_task     = asyncio.create_task(_recv())
     send_task     = asyncio.create_task(_send())
@@ -260,6 +266,7 @@ async def websocket_endpoint(ws: WebSocket):
         for t in (recv_task, send_task, watchdog_task):
             t.cancel()
     finally:
+        _logger.info("WebSocket disconnected from %s", client_ip)
         px.stop()
 
 
@@ -268,12 +275,28 @@ async def websocket_endpoint(ws: WebSocket):
 def main():
     global px
 
+    # File logger — always on from server start
+    os.makedirs(LOG_DIR, exist_ok=True)
+    log_ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_path = os.path.join(LOG_DIR, f"server_{log_ts}.log")
+
+    _logger.setLevel(logging.DEBUG)
+    fh = logging.FileHandler(log_path)
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(logging.Formatter(
+        "%(asctime)s.%(msecs)03d  %(levelname)-7s  %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+    ))
+    _logger.addHandler(fh)
+    _logger.info("Server starting | log=%s", log_path)
+
     px = Picarx()
+    _logger.info("Picarx initialized")
 
     Vilib.camera_start(vflip=False, hflip=False)
     Vilib.display(local=False, web=True)
+    _logger.info("Camera starting...")
 
-    print("Waiting for camera stream...")
     deadline = time.time() + 5.0
     while time.time() < deadline:
         try:
@@ -283,13 +306,16 @@ def main():
             time.sleep(1.0)
             break
         time.sleep(0.05)
+    _logger.info("Camera stream ready at :9000")
     print("Camera stream ready at :9000")
 
-    for d in (PHOTO_DIR, VIDEO_DIR, SESSION_DIR):
+    for d in (PHOTO_DIR, VIDEO_DIR, LOG_DIR):
         os.makedirs(d, exist_ok=True)
 
     threading.Thread(target=_sensor_loop, daemon=True).start()
+    _logger.info("Sensor loop started")
 
+    _logger.info("Dashboard listening at http://0.0.0.0:8000")
     print("Dashboard at http://0.0.0.0:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="warning")
 
