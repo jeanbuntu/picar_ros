@@ -1,8 +1,11 @@
 import asyncio
+import cv2
+import http.server
 import json
 import logging
 import os
 import signal
+import socketserver
 import subprocess
 import sys
 import threading
@@ -16,7 +19,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from picarx import Picarx
-from vilib import Vilib
+
 try:
     from robot_hat import ADC as _ADC
     _battery_adc = _ADC("A4")
@@ -24,7 +27,6 @@ try:
 except Exception:
     _battery_available = False
 
-# Allow importing tag_chaser from the project root
 _PROJ_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJ_ROOT not in sys.path:
     sys.path.insert(0, _PROJ_ROOT)
@@ -33,51 +35,140 @@ from tag_chaser.v1_camera_lock.chaser import TagChaser
 
 BASE_DIR         = os.path.dirname(os.path.abspath(__file__))
 WATCHDOG_TIMEOUT = 5.0
+_CAM_W, _CAM_H   = 640, 480
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 
-px: Picarx = None
-chaser: TagChaser = None
+px:      Picarx    = None
+chaser:  TagChaser = None
+_picam2            = None
 
 _sensor      = {"distance": -1.0, "grayscale": [0, 0, 0], "battery": None}
 _sensor_lock = threading.Lock()
-_rec_state   = "stopped"
+_rec_state      = "stopped"
 _rec_last_video = ""
 
-# WebSocket client tracking for chaser broadcasts
-_ws_clients: set = set()
+# MJPEG frame buffer
+_frame_lock  = threading.Lock()
+_frame_bytes = b''
+
+# Video writer
+_rec_writer      = None
+_rec_writer_lock = threading.Lock()
+
+_chaser_frame_log_t  = 0.0
+_frame_diag_logged   = False
+
+# Per-connection send queues — broadcasts go here instead of directly to ws
+_ws_queues: dict = {}   # ws → asyncio.Queue
 _loop: asyncio.AbstractEventLoop = None
 
-try:
-    _username = os.getlogin()
-except Exception:
-    _username = "jvpicar"
-
-PHOTO_DIR = f"/home/{_username}/Pictures/picar-x"
-VIDEO_DIR = f"/home/{_username}/Videos/picar-x"
-LOG_DIR   = f"/home/{_username}/picar-x/logs"
+PHOTO_DIR = "/home/jvpicar/Pictures/picar-x"
+VIDEO_DIR = "/home/jvpicar/Videos/picar-x"
+LOG_DIR   = "/home/jvpicar/picar_ros/logs"
 
 UBUNTU_LOG_DEST = "jeano@192.168.1.250:/home/jeano/picar_ros/dashboard/sessionlogs/"
 
 _logger = logging.getLogger("picarx")
 
 
+# ── MJPEG server ──────────────────────────────────────────────────────────────
+
+def _set_frame(data: bytes):
+    global _frame_bytes
+    with _frame_lock:
+        _frame_bytes = data
+
+
+class _MJPEGHandler(http.server.BaseHTTPRequestHandler):
+    def log_message(self, *args):
+        pass
+
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-Type',
+                         'multipart/x-mixed-replace; boundary=frame')
+        self.end_headers()
+        try:
+            while True:
+                with _frame_lock:
+                    data = _frame_bytes
+                if data:
+                    self.wfile.write(
+                        b'--frame\r\n'
+                        b'Content-Type: image/jpeg\r\n'
+                        b'Content-Length: ' + str(len(data)).encode() + b'\r\n'
+                        b'\r\n' + data + b'\r\n'
+                    )
+                time.sleep(0.033)
+        except (BrokenPipeError, ConnectionResetError, OSError):
+            pass
+
+
+class _ReuseAddrServer(socketserver.ThreadingTCPServer):
+    allow_reuse_address = True
+
+
+def _start_mjpeg_server(port: int = 9000):
+    server = _ReuseAddrServer(('', port), _MJPEGHandler)
+    server.daemon_threads = True
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    _logger.info("MJPEG stream at :%d", port)
+
+
+# ── Camera capture loop ───────────────────────────────────────────────────────
+
+def _capture_loop():
+    while True:
+        try:
+            raw   = _picam2.capture_array()
+            frame = raw
+
+            global _frame_diag_logged
+            if not _frame_diag_logged:
+                _frame_diag_logged = True
+                _logger.info("frame_diag shape=%s dtype=%s ch0_mean=%.1f ch1_mean=%.1f ch2_mean=%.1f",
+                             raw.shape, raw.dtype,
+                             float(raw[:, :, 0].mean()),
+                             float(raw[:, :, 1].mean()),
+                             float(raw[:, :, 2].mean()))
+
+            ok, buf = cv2.imencode('.jpg', frame)
+            if ok:
+                _set_frame(buf.tobytes())
+
+            with _rec_writer_lock:
+                if _rec_writer is not None:
+                    _rec_writer.write(frame)
+
+            if chaser is not None and chaser.is_running():
+                global _chaser_frame_log_t
+                _now_mt = time.monotonic()
+                if _now_mt - _chaser_frame_log_t >= 30.0:
+                    _logger.debug("capture->chaser active")
+                    _chaser_frame_log_t = _now_mt
+                chaser.process_frame(frame)
+
+        except Exception as e:
+            _logger.error("capture_loop error: %s", e)
+            time.sleep(0.1)
+
+
 # ── Chaser broadcast ──────────────────────────────────────────────────────────
 
 async def _broadcast_coro(msg: dict):
-    data = json.dumps(msg)
     dead = set()
-    for client in list(_ws_clients):
+    for ws_obj, q in list(_ws_queues.items()):
         try:
-            await client.send_text(data)
+            q.put_nowait(msg)
         except Exception:
-            dead.add(client)
-    _ws_clients -= dead
+            dead.add(ws_obj)
+    for ws_obj in dead:
+        _ws_queues.pop(ws_obj, None)
 
 
 def broadcast_chase(msg: dict):
-    """Thread-safe broadcast from the chaser thread to all WS clients."""
     if _loop and not _loop.is_closed():
         asyncio.run_coroutine_threadsafe(_broadcast_coro(msg), _loop)
 
@@ -150,6 +241,15 @@ async def _graceful_shutdown():
     except Exception as e:
         _logger.error("Hardware stop error: %s", e)
 
+    with _rec_writer_lock:
+        if _rec_writer is not None:
+            _rec_writer.release()
+
+    try:
+        _picam2.stop()
+    except Exception:
+        pass
+
     _logger.info("Transferring logs to Ubuntu: %s", UBUNTU_LOG_DEST)
     for h in _logger.handlers:
         h.flush()
@@ -177,22 +277,27 @@ async def _graceful_shutdown():
 
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
-    global _rec_state, _rec_last_video
+    global _rec_state, _rec_last_video, _rec_writer, _loop
+    if _loop is None or _loop.is_closed():
+        _loop = asyncio.get_running_loop()
+
     await ws.accept()
-    _ws_clients.add(ws)
+
+    out_q: asyncio.Queue = asyncio.Queue()
+    _ws_queues[ws] = out_q
+
     client_ip = ws.client.host if ws.client else "unknown"
     _logger.info("WebSocket connected from %s", client_ip)
 
-    # Send current chase state immediately so UI is in sync
     chase_active = chaser.is_running() if chaser else False
-    await ws.send_json({
+    out_q.put_nowait({
         "type":   "chase_status",
         "active": chase_active,
         "state":  "chasing" if chase_active else "idle",
     })
 
     async def _recv():
-        global _rec_state, _rec_last_video
+        global _rec_state, _rec_last_video, _rec_writer
         try:
             while True:
                 msg = await ws.receive_json()
@@ -200,7 +305,7 @@ async def websocket_endpoint(ws: WebSocket):
 
                 if cmd == "drive":
                     if chaser and chaser.is_running():
-                        continue   # chaser owns the motors
+                        continue
                     direction = msg.get("direction", "stop")
                     speed     = max(0, min(100, int(msg.get("speed", 50))))
                     _logger.info("drive direction=%s speed=%d", direction, speed)
@@ -213,14 +318,14 @@ async def websocket_endpoint(ws: WebSocket):
 
                 elif cmd == "steer":
                     if chaser and chaser.is_running():
-                        continue   # chaser owns steering
+                        continue
                     angle = max(-30, min(30, int(msg.get("angle", 0))))
                     _logger.info("steer angle=%d", angle)
                     await asyncio.to_thread(px.set_dir_servo_angle, angle)
 
                 elif cmd == "gimbal":
                     if chaser and chaser.is_running():
-                        continue   # camera locked during chase
+                        continue
                     axis  = msg.get("axis", "pan")
                     angle = int(msg.get("angle", 0))
                     _logger.info("gimbal axis=%s angle=%d", axis, angle)
@@ -242,36 +347,44 @@ async def websocket_endpoint(ws: WebSocket):
                         _logger.info("tag_chase stop")
                         if chaser:
                             await asyncio.to_thread(chaser.stop)
+                        await asyncio.to_thread(px.stop)
+                        await asyncio.to_thread(px.set_dir_servo_angle, 0)
 
                 elif cmd == "photo":
-                    ts   = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-                    name = f"photo_{ts}"
+                    ts    = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+                    fname = f"photo_{ts}.jpg"
                     os.makedirs(PHOTO_DIR, exist_ok=True)
-                    Vilib.take_photo(name, PHOTO_DIR + "/")
-                    fname = f"{name}.jpg"
+                    path = os.path.join(PHOTO_DIR, fname)
+                    with _frame_lock:
+                        data = _frame_bytes
+                    if data:
+                        with open(path, 'wb') as f:
+                            f.write(data)
                     _logger.info("photo saved file=%s", fname)
-                    await ws.send_json({"type": "photo_saved", "filename": fname})
+                    out_q.put_nowait({"type": "photo_saved", "filename": fname})
 
                 elif cmd == "rec_toggle":
                     if _rec_state == "stopped":
                         ts    = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-                        vname = f"video_{ts}"
+                        vname = f"video_{ts}.avi"
                         os.makedirs(VIDEO_DIR, exist_ok=True)
-                        Vilib.rec_video_set["name"] = vname
-                        Vilib.rec_video_set["path"] = VIDEO_DIR + "/"
-                        await asyncio.to_thread(Vilib.rec_video_run)
-                        await asyncio.sleep(0.5)
-                        await asyncio.to_thread(Vilib.rec_video_start)
-                        _rec_state     = "recording"
-                        _rec_last_video = vname + ".avi"
-                        _logger.info("rec_start file=%s", _rec_last_video)
-                        await ws.send_json({"type": "rec_state", "state": "recording"})
+                        path   = os.path.join(VIDEO_DIR, vname)
+                        fourcc = cv2.VideoWriter_fourcc(*'XVID')
+                        with _rec_writer_lock:
+                            _rec_writer = cv2.VideoWriter(path, fourcc, 30, (_CAM_W, _CAM_H))
+                        _rec_state      = "recording"
+                        _rec_last_video = vname
+                        _logger.info("rec_start file=%s", vname)
+                        out_q.put_nowait({"type": "rec_state", "state": "recording"})
                     else:
-                        await asyncio.to_thread(Vilib.rec_video_stop)
+                        with _rec_writer_lock:
+                            if _rec_writer is not None:
+                                _rec_writer.release()
+                                _rec_writer = None
                         _rec_state = "stopped"
                         _logger.info("rec_stop file=%s", _rec_last_video)
-                        await ws.send_json({"type": "rec_state",    "state": "stopped"})
-                        await ws.send_json({"type": "rec_stopped",  "filename": _rec_last_video})
+                        out_q.put_nowait({"type": "rec_state",   "state": "stopped"})
+                        out_q.put_nowait({"type": "rec_stopped", "filename": _rec_last_video})
 
                 elif cmd == "kill":
                     _logger.info("kill command from %s", client_ip)
@@ -279,7 +392,7 @@ async def websocket_endpoint(ws: WebSocket):
                         await asyncio.to_thread(chaser.stop)
                     await asyncio.to_thread(px.stop)
                     await asyncio.to_thread(px.set_dir_servo_angle, 0)
-                    await ws.send_json({"type": "kill_confirmed"})
+                    out_q.put_nowait({"type": "kill_confirmed"})
 
                 elif cmd == "heartbeat":
                     _logger.debug("heartbeat from %s", client_ip)
@@ -287,8 +400,17 @@ async def websocket_endpoint(ws: WebSocket):
 
                 elif cmd == "shutdown":
                     _logger.info("shutdown command from %s", client_ip)
-                    await ws.send_json({"type": "shutdown_ack"})
+                    out_q.put_nowait({"type": "shutdown_ack"})
                     asyncio.create_task(_graceful_shutdown())
+
+                elif cmd == "mode":
+                    _logger.info("mode value=%s from %s", msg.get("value"), client_ip)
+
+                elif cmd == "detect":
+                    _logger.info("detect_toggle value=%s from %s", msg.get("value"), client_ip)
+
+                elif cmd:
+                    _logger.warning("unhandled cmd=%s from %s", cmd, client_ip)
 
         except (WebSocketDisconnect, RuntimeError):
             pass
@@ -296,9 +418,22 @@ async def websocket_endpoint(ws: WebSocket):
     async def _send():
         try:
             while True:
+                msg = await out_q.get()
+                try:
+                    await ws.send_json(msg)
+                except WebSocketDisconnect:
+                    return
+                except Exception as e:
+                    _logger.debug("ws send error (discarding msg): %s", e)
+        except Exception:
+            pass
+
+    async def _push_sensors():
+        try:
+            while True:
                 with _sensor_lock:
                     data = dict(_sensor)
-                await ws.send_json({
+                out_q.put_nowait({
                     "type":         "sensors",
                     "distance":     data["distance"],
                     "grayscale":    data["grayscale"],
@@ -327,18 +462,19 @@ async def websocket_endpoint(ws: WebSocket):
                     _logger.info("Watchdog reset — heartbeat restored from %s", client_ip)
                     _fired = False
 
-    recv_task     = asyncio.create_task(_recv())
-    send_task     = asyncio.create_task(_send())
+    recv_task    = asyncio.create_task(_recv())
+    send_task    = asyncio.create_task(_send())
+    sensor_task  = asyncio.create_task(_push_sensors())
     watchdog_task = asyncio.create_task(_watchdog())
     try:
         await asyncio.wait(
-            {recv_task, send_task, watchdog_task},
+            {recv_task, send_task, sensor_task, watchdog_task},
             return_when=asyncio.FIRST_COMPLETED,
         )
-        for t in (recv_task, send_task, watchdog_task):
+        for t in (recv_task, send_task, sensor_task, watchdog_task):
             t.cancel()
     finally:
-        _ws_clients.discard(ws)
+        _ws_queues.pop(ws, None)
         _logger.info("WebSocket disconnected from %s", client_ip)
         if not (chaser and chaser.is_running()):
             px.stop()
@@ -347,7 +483,7 @@ async def websocket_endpoint(ws: WebSocket):
 # ── Startup ───────────────────────────────────────────────────────────────────
 
 def main():
-    global px, chaser
+    global px, chaser, _picam2
 
     os.makedirs(LOG_DIR, exist_ok=True)
     log_ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -366,38 +502,33 @@ def main():
     px = Picarx()
     _logger.info("Picarx initialized")
 
-    # Load tag chaser config and create chaser instance (not started yet)
     _chase_config_path = os.path.join(
         _PROJ_ROOT, 'tag_chaser', 'v1_camera_lock', 'config.yaml')
     with open(_chase_config_path) as f:
         _chase_config = yaml.safe_load(f)
     chaser = TagChaser(px, _chase_config, broadcast_fn=broadcast_chase)
-    _logger.info("TagChaser initialized (not running)")
+    _logger.info("TagChaser initialized")
 
-    Vilib.camera_start(vflip=False, hflip=False)
-    Vilib.display(local=False, web=True)
-    _logger.info("Camera starting...")
+    from picamera2 import Picamera2
+    _picam2 = Picamera2()
+    _picam2.configure(_picam2.create_video_configuration(
+        main={'format': 'RGB888', 'size': (_CAM_W, _CAM_H)}
+    ))
+    _picam2.start()
+    time.sleep(0.5)
+    _logger.info("Picamera2 started at %dx%d", _CAM_W, _CAM_H)
 
-    deadline = time.time() + 5.0
-    while time.time() < deadline:
-        try:
-            if Vilib.flask_start:
-                break
-        except AttributeError:
-            time.sleep(1.0)
-            break
-        time.sleep(0.05)
-    _logger.info("Camera stream ready at :9000")
-    print("Camera stream ready at :9000")
+    _start_mjpeg_server(9000)
+    _logger.info("Camera stream at http://0.0.0.0:9000")
 
     for d in (PHOTO_DIR, VIDEO_DIR, LOG_DIR):
         os.makedirs(d, exist_ok=True)
 
-    threading.Thread(target=_sensor_loop, daemon=True).start()
-    _logger.info("Sensor loop started")
+    threading.Thread(target=_sensor_loop,  daemon=True).start()
+    threading.Thread(target=_capture_loop, daemon=True).start()
+    _logger.info("Sensor and capture loops started")
 
     _logger.info("Dashboard listening at http://0.0.0.0:8000")
-    print("Dashboard at http://0.0.0.0:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="warning")
 
 
