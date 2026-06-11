@@ -1,0 +1,2291 @@
+2026-06-10 22:43:44.066  INFO     Server starting | log=/home/jvpicar/picar_ros/logs/server_20260610_224344.log
+2026-06-10 22:43:44.469  INFO     Picarx initialized
+2026-06-10 22:43:44.565  INFO     TagChaser initialized
+2026-06-10 22:43:45.388  INFO     Picamera2 started at 640x480
+2026-06-10 22:43:45.389  INFO     MJPEG stream at :9000
+2026-06-10 22:43:45.389  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-10 22:43:45.390  INFO     Sensor and capture loops started
+2026-06-10 22:43:45.390  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-10 22:43:45.404  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=68.1 ch1_mean=79.1 ch2_mean=85.0
+2026-06-10 22:43:53.571  INFO     WebSocket connected from 192.168.1.87
+2026-06-10 22:43:54.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:43:55.557  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:43:56.558  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:43:56.794  INFO     gimbal axis=pan angle=5
+2026-06-10 22:43:56.873  INFO     gimbal axis=pan angle=10
+2026-06-10 22:43:56.987  INFO     gimbal axis=pan angle=15
+2026-06-10 22:43:57.063  INFO     gimbal axis=pan angle=20
+2026-06-10 22:43:57.163  INFO     gimbal axis=pan angle=25
+2026-06-10 22:43:57.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:43:57.895  INFO     gimbal axis=pan angle=30
+2026-06-10 22:43:57.977  INFO     gimbal axis=pan angle=35
+2026-06-10 22:43:58.500  INFO     gimbal axis=pan angle=30
+2026-06-10 22:43:58.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:43:58.580  INFO     gimbal axis=pan angle=25
+2026-06-10 22:43:59.161  INFO     gimbal axis=pan angle=20
+2026-06-10 22:43:59.241  INFO     gimbal axis=pan angle=15
+2026-06-10 22:43:59.339  INFO     gimbal axis=pan angle=10
+2026-06-10 22:43:59.424  INFO     gimbal axis=pan angle=5
+2026-06-10 22:43:59.498  INFO     gimbal axis=pan angle=0
+2026-06-10 22:43:59.554  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:43:59.585  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:43:59.683  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:43:59.764  INFO     gimbal axis=pan angle=-15
+2026-06-10 22:43:59.861  INFO     gimbal axis=pan angle=-20
+2026-06-10 22:43:59.942  INFO     gimbal axis=pan angle=-25
+2026-06-10 22:44:00.173  INFO     gimbal axis=pan angle=-30
+2026-06-10 22:44:00.253  INFO     gimbal axis=pan angle=-35
+2026-06-10 22:44:00.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:00.892  INFO     gimbal axis=tilt angle=5
+2026-06-10 22:44:00.961  INFO     gimbal axis=tilt angle=10
+2026-06-10 22:44:01.044  INFO     gimbal axis=tilt angle=15
+2026-06-10 22:44:01.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:02.150  INFO     gimbal axis=tilt angle=20
+2026-06-10 22:44:02.229  INFO     gimbal axis=tilt angle=25
+2026-06-10 22:44:02.310  INFO     gimbal axis=tilt angle=30
+2026-06-10 22:44:02.391  INFO     gimbal axis=tilt angle=35
+2026-06-10 22:44:02.469  INFO     gimbal axis=tilt angle=40
+2026-06-10 22:44:02.552  INFO     gimbal axis=tilt angle=45
+2026-06-10 22:44:02.554  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:02.629  INFO     gimbal axis=tilt angle=50
+2026-06-10 22:44:02.995  INFO     gimbal axis=tilt angle=55
+2026-06-10 22:44:03.075  INFO     gimbal axis=tilt angle=60
+2026-06-10 22:44:03.159  INFO     gimbal axis=tilt angle=65
+2026-06-10 22:44:03.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:04.300  INFO     gimbal axis=tilt angle=60
+2026-06-10 22:44:04.380  INFO     gimbal axis=tilt angle=55
+2026-06-10 22:44:04.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:04.641  INFO     gimbal axis=tilt angle=50
+2026-06-10 22:44:04.721  INFO     gimbal axis=tilt angle=45
+2026-06-10 22:44:04.802  INFO     gimbal axis=tilt angle=40
+2026-06-10 22:44:05.162  INFO     gimbal axis=tilt angle=35
+2026-06-10 22:44:05.246  INFO     gimbal axis=tilt angle=30
+2026-06-10 22:44:05.322  INFO     gimbal axis=tilt angle=25
+2026-06-10 22:44:05.555  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:05.765  INFO     gimbal axis=tilt angle=20
+2026-06-10 22:44:05.847  INFO     gimbal axis=tilt angle=15
+2026-06-10 22:44:05.927  INFO     gimbal axis=tilt angle=10
+2026-06-10 22:44:06.327  INFO     gimbal axis=tilt angle=5
+2026-06-10 22:44:06.408  INFO     gimbal axis=tilt angle=0
+2026-06-10 22:44:06.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:06.707  INFO     gimbal axis=tilt angle=-5
+2026-06-10 22:44:06.790  INFO     gimbal axis=tilt angle=-10
+2026-06-10 22:44:07.274  INFO     gimbal axis=tilt angle=-15
+2026-06-10 22:44:07.357  INFO     gimbal axis=tilt angle=-20
+2026-06-10 22:44:07.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:07.747  INFO     gimbal axis=tilt angle=-25
+2026-06-10 22:44:07.827  INFO     gimbal axis=tilt angle=-30
+2026-06-10 22:44:08.493  INFO     gimbal axis=tilt angle=-25
+2026-06-10 22:44:08.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:08.575  INFO     gimbal axis=tilt angle=-20
+2026-06-10 22:44:08.654  INFO     gimbal axis=tilt angle=-15
+2026-06-10 22:44:08.736  INFO     gimbal axis=tilt angle=-10
+2026-06-10 22:44:08.814  INFO     gimbal axis=tilt angle=-5
+2026-06-10 22:44:09.050  INFO     gimbal axis=tilt angle=0
+2026-06-10 22:44:09.127  INFO     gimbal axis=tilt angle=5
+2026-06-10 22:44:09.207  INFO     gimbal axis=tilt angle=10
+2026-06-10 22:44:09.289  INFO     gimbal axis=tilt angle=15
+2026-06-10 22:44:09.367  INFO     gimbal axis=tilt angle=20
+2026-06-10 22:44:09.450  INFO     gimbal axis=tilt angle=25
+2026-06-10 22:44:09.553  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:09.724  INFO     gimbal axis=tilt angle=30
+2026-06-10 22:44:09.801  INFO     gimbal axis=tilt angle=35
+2026-06-10 22:44:09.881  INFO     gimbal axis=tilt angle=40
+2026-06-10 22:44:09.969  INFO     gimbal axis=tilt angle=45
+2026-06-10 22:44:10.299  INFO     gimbal axis=tilt angle=50
+2026-06-10 22:44:10.379  INFO     gimbal axis=tilt angle=55
+2026-06-10 22:44:10.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:10.718  INFO     gimbal axis=tilt angle=60
+2026-06-10 22:44:10.799  INFO     gimbal axis=tilt angle=65
+2026-06-10 22:44:11.407  INFO     gimbal axis=tilt angle=65
+2026-06-10 22:44:11.488  INFO     gimbal axis=tilt angle=65
+2026-06-10 22:44:11.563  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:11.899  INFO     gimbal axis=tilt angle=60
+2026-06-10 22:44:11.979  INFO     gimbal axis=tilt angle=55
+2026-06-10 22:44:12.417  INFO     gimbal axis=tilt angle=50
+2026-06-10 22:44:12.499  INFO     gimbal axis=tilt angle=45
+2026-06-10 22:44:12.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:12.580  INFO     gimbal axis=tilt angle=40
+2026-06-10 22:44:12.658  INFO     gimbal axis=tilt angle=35
+2026-06-10 22:44:12.740  INFO     gimbal axis=tilt angle=30
+2026-06-10 22:44:12.984  INFO     gimbal axis=tilt angle=25
+2026-06-10 22:44:13.064  INFO     gimbal axis=tilt angle=20
+2026-06-10 22:44:13.148  INFO     gimbal axis=tilt angle=15
+2026-06-10 22:44:13.225  INFO     gimbal axis=tilt angle=10
+2026-06-10 22:44:13.305  INFO     gimbal axis=tilt angle=5
+2026-06-10 22:44:13.386  INFO     gimbal axis=tilt angle=0
+2026-06-10 22:44:13.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:13.646  INFO     gimbal axis=tilt angle=-5
+2026-06-10 22:44:13.724  INFO     gimbal axis=tilt angle=-10
+2026-06-10 22:44:13.804  INFO     gimbal axis=tilt angle=-15
+2026-06-10 22:44:13.887  INFO     gimbal axis=tilt angle=-20
+2026-06-10 22:44:14.165  INFO     gimbal axis=tilt angle=-25
+2026-06-10 22:44:14.247  INFO     gimbal axis=tilt angle=-30
+2026-06-10 22:44:14.329  INFO     gimbal axis=tilt angle=-35
+2026-06-10 22:44:14.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:14.739  INFO     gimbal axis=tilt angle=-35
+2026-06-10 22:44:14.819  INFO     gimbal axis=tilt angle=-35
+2026-06-10 22:44:15.166  INFO     gimbal axis=tilt angle=-35
+2026-06-10 22:44:15.249  INFO     gimbal axis=tilt angle=-35
+2026-06-10 22:44:15.329  INFO     gimbal axis=tilt angle=-35
+2026-06-10 22:44:15.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:15.755  INFO     gimbal axis=tilt angle=-30
+2026-06-10 22:44:15.835  INFO     gimbal axis=tilt angle=-25
+2026-06-10 22:44:16.104  INFO     gimbal axis=tilt angle=-20
+2026-06-10 22:44:16.184  INFO     gimbal axis=tilt angle=-15
+2026-06-10 22:44:16.384  INFO     gimbal axis=pan angle=-30
+2026-06-10 22:44:16.465  INFO     gimbal axis=pan angle=-25
+2026-06-10 22:44:16.546  INFO     gimbal axis=pan angle=-20
+2026-06-10 22:44:16.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:16.625  INFO     gimbal axis=pan angle=-15
+2026-06-10 22:44:16.704  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:16.785  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:17.149  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:17.227  INFO     gimbal axis=pan angle=-15
+2026-06-10 22:44:17.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:17.612  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:17.694  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:17.773  INFO     gimbal axis=pan angle=0
+2026-06-10 22:44:18.242  INFO     gimbal axis=pan angle=5
+2026-06-10 22:44:18.322  INFO     gimbal axis=pan angle=10
+2026-06-10 22:44:18.403  INFO     gimbal axis=pan angle=15
+2026-06-10 22:44:18.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:18.991  INFO     gimbal axis=pan angle=10
+2026-06-10 22:44:19.071  INFO     gimbal axis=pan angle=5
+2026-06-10 22:44:19.151  INFO     gimbal axis=pan angle=0
+2026-06-10 22:44:19.246  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:19.327  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:19.415  INFO     gimbal axis=pan angle=-15
+2026-06-10 22:44:19.495  INFO     gimbal axis=pan angle=-20
+2026-06-10 22:44:19.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:19.777  INFO     gimbal axis=pan angle=-15
+2026-06-10 22:44:19.859  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:19.938  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:20.017  INFO     gimbal axis=pan angle=0
+2026-06-10 22:44:20.097  INFO     gimbal axis=pan angle=5
+2026-06-10 22:44:20.411  INFO     gimbal axis=pan angle=10
+2026-06-10 22:44:20.492  INFO     gimbal axis=pan angle=15
+2026-06-10 22:44:20.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:20.571  INFO     gimbal axis=pan angle=20
+2026-06-10 22:44:20.651  INFO     gimbal axis=pan angle=25
+2026-06-10 22:44:20.731  INFO     gimbal axis=pan angle=30
+2026-06-10 22:44:20.811  INFO     gimbal axis=pan angle=35
+2026-06-10 22:44:20.891  INFO     gimbal axis=pan angle=40
+2026-06-10 22:44:20.973  INFO     gimbal axis=pan angle=45
+2026-06-10 22:44:21.051  INFO     gimbal axis=pan angle=50
+2026-06-10 22:44:21.133  INFO     gimbal axis=pan angle=55
+2026-06-10 22:44:21.211  INFO     gimbal axis=pan angle=60
+2026-06-10 22:44:21.293  INFO     gimbal axis=pan angle=65
+2026-06-10 22:44:21.384  INFO     gimbal axis=pan angle=60
+2026-06-10 22:44:21.465  INFO     gimbal axis=pan angle=55
+2026-06-10 22:44:21.544  INFO     gimbal axis=pan angle=50
+2026-06-10 22:44:21.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:21.625  INFO     gimbal axis=pan angle=45
+2026-06-10 22:44:21.706  INFO     gimbal axis=pan angle=40
+2026-06-10 22:44:21.784  INFO     gimbal axis=pan angle=35
+2026-06-10 22:44:21.865  INFO     gimbal axis=pan angle=30
+2026-06-10 22:44:21.944  INFO     gimbal axis=pan angle=25
+2026-06-10 22:44:22.027  INFO     gimbal axis=pan angle=20
+2026-06-10 22:44:22.112  INFO     gimbal axis=pan angle=15
+2026-06-10 22:44:22.184  INFO     gimbal axis=pan angle=10
+2026-06-10 22:44:22.278  INFO     gimbal axis=pan angle=5
+2026-06-10 22:44:22.348  INFO     gimbal axis=pan angle=0
+2026-06-10 22:44:22.427  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:22.505  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:22.560  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:22.594  INFO     gimbal axis=pan angle=-15
+2026-06-10 22:44:22.666  INFO     gimbal axis=pan angle=-20
+2026-06-10 22:44:22.748  INFO     gimbal axis=pan angle=-25
+2026-06-10 22:44:22.824  INFO     gimbal axis=pan angle=-30
+2026-06-10 22:44:22.905  INFO     gimbal axis=pan angle=-35
+2026-06-10 22:44:22.989  INFO     gimbal axis=pan angle=-40
+2026-06-10 22:44:23.064  INFO     gimbal axis=pan angle=-45
+2026-06-10 22:44:23.366  INFO     gimbal axis=pan angle=-40
+2026-06-10 22:44:23.444  INFO     gimbal axis=pan angle=-35
+2026-06-10 22:44:23.531  INFO     gimbal axis=pan angle=-30
+2026-06-10 22:44:23.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:23.603  INFO     gimbal axis=pan angle=-25
+2026-06-10 22:44:23.683  INFO     gimbal axis=pan angle=-20
+2026-06-10 22:44:24.065  INFO     gimbal axis=pan angle=-15
+2026-06-10 22:44:24.144  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:24.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:24.603  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:24.677  INFO     gimbal axis=pan angle=0
+2026-06-10 22:44:25.497  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:25.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:25.579  INFO     gimbal axis=pan angle=-10
+2026-06-10 22:44:26.055  INFO     gimbal axis=pan angle=-5
+2026-06-10 22:44:26.133  INFO     gimbal axis=pan angle=0
+2026-06-10 22:44:26.553  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:27.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:28.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:29.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:30.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:31.307  INFO     tag_chase start speed=75
+2026-06-10 22:44:31.308  DEBUG    capture->chaser active
+2026-06-10 22:44:31.309  INFO     chase_countdown n=3
+2026-06-10 22:44:31.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:32.310  INFO     chase_countdown n=2
+2026-06-10 22:44:32.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:33.310  INFO     chase_countdown n=1
+2026-06-10 22:44:33.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:34.311  INFO     chasing started speed=75
+2026-06-10 22:44:34.443  INFO     detect tag_lost
+2026-06-10 22:44:34.444  DEBUG    detect found=False
+2026-06-10 22:44:34.553  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:35.467  DEBUG    detect found=False
+2026-06-10 22:44:35.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:36.478  DEBUG    detect found=False
+2026-06-10 22:44:36.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:37.496  DEBUG    detect found=False
+2026-06-10 22:44:37.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:38.494  DEBUG    detect found=False
+2026-06-10 22:44:38.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:39.094  INFO     detect tag_acquired id=0 dist_cm=44.6
+2026-06-10 22:44:39.094  DEBUG    steer angle=20
+2026-06-10 22:44:39.164  DEBUG    steer angle=10
+2026-06-10 22:44:39.222  INFO     detect tag_lost
+2026-06-10 22:44:39.535  DEBUG    detect found=False
+2026-06-10 22:44:39.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:39.945  INFO     detect tag_acquired id=0 dist_cm=23.0
+2026-06-10 22:44:39.945  DEBUG    steer angle=20
+2026-06-10 22:44:40.011  DEBUG    steer angle=7
+2026-06-10 22:44:40.145  INFO     detect tag_lost
+2026-06-10 22:44:40.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:40.636  DEBUG    detect found=False
+2026-06-10 22:44:41.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:41.674  DEBUG    detect found=False
+2026-06-10 22:44:42.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:42.690  DEBUG    detect found=False
+2026-06-10 22:44:43.195  INFO     detect tag_acquired id=0 dist_cm=31.9
+2026-06-10 22:44:43.195  DEBUG    steer angle=20
+2026-06-10 22:44:43.269  DEBUG    steer angle=4
+2026-06-10 22:44:43.403  DEBUG    steer angle=5
+2026-06-10 22:44:43.468  INFO     detect tag_lost
+2026-06-10 22:44:43.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:43.722  DEBUG    detect found=False
+2026-06-10 22:44:44.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:44.764  DEBUG    detect found=False
+2026-06-10 22:44:45.005  INFO     detect tag_acquired id=0 dist_cm=19.1
+2026-06-10 22:44:45.005  DEBUG    steer angle=20
+2026-06-10 22:44:45.080  DEBUG    steer angle=10
+2026-06-10 22:44:45.227  INFO     detect tag_lost
+2026-06-10 22:44:45.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:45.771  DEBUG    detect found=False
+2026-06-10 22:44:46.555  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:46.795  DEBUG    detect found=False
+2026-06-10 22:44:47.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:47.778  DEBUG    detect found=False
+2026-06-10 22:44:48.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:48.795  DEBUG    detect found=False
+2026-06-10 22:44:49.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:49.830  DEBUG    detect found=False
+2026-06-10 22:44:50.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:50.853  DEBUG    detect found=False
+2026-06-10 22:44:51.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:51.889  DEBUG    detect found=False
+2026-06-10 22:44:52.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:52.917  DEBUG    detect found=False
+2026-06-10 22:44:53.554  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:53.941  DEBUG    detect found=False
+2026-06-10 22:44:54.555  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:54.976  DEBUG    detect found=False
+2026-06-10 22:44:55.484  INFO     detect tag_acquired id=0 dist_cm=51.5
+2026-06-10 22:44:55.484  DEBUG    steer angle=-20
+2026-06-10 22:44:55.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:55.557  DEBUG    steer angle=-6
+2026-06-10 22:44:55.691  INFO     detect tag_lost
+2026-06-10 22:44:55.828  INFO     detect tag_acquired id=0 dist_cm=53.3
+2026-06-10 22:44:55.829  DEBUG    steer angle=-8
+2026-06-10 22:44:56.025  DEBUG    detect found=True dist_cm=53.5
+2026-06-10 22:44:56.091  DEBUG    steer angle=-12
+2026-06-10 22:44:56.157  INFO     detect tag_lost
+2026-06-10 22:44:56.293  INFO     detect tag_acquired id=0 dist_cm=55.8
+2026-06-10 22:44:56.293  DEBUG    steer angle=-19
+2026-06-10 22:44:56.360  INFO     detect tag_lost
+2026-06-10 22:44:56.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:57.079  DEBUG    detect found=False
+2026-06-10 22:44:57.553  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:58.109  DEBUG    detect found=False
+2026-06-10 22:44:58.311  INFO     detect tag_acquired id=0 dist_cm=78.2
+2026-06-10 22:44:58.378  DEBUG    steer angle=-10
+2026-06-10 22:44:58.558  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:58.567  INFO     detect tag_lost
+2026-06-10 22:44:58.695  INFO     detect tag_acquired id=0 dist_cm=74.5
+2026-06-10 22:44:58.695  DEBUG    steer angle=-4
+2026-06-10 22:44:58.757  INFO     detect tag_lost
+2026-06-10 22:44:58.884  INFO     detect tag_acquired id=0 dist_cm=70.4
+2026-06-10 22:44:58.884  DEBUG    steer angle=-1
+2026-06-10 22:44:58.943  DEBUG    steer angle=-7
+2026-06-10 22:44:59.000  DEBUG    steer angle=-9
+2026-06-10 22:44:59.113  INFO     detect tag_lost
+2026-06-10 22:44:59.115  DEBUG    detect found=False
+2026-06-10 22:44:59.180  INFO     detect tag_acquired id=0 dist_cm=67.9
+2026-06-10 22:44:59.180  DEBUG    steer angle=-13
+2026-06-10 22:44:59.245  DEBUG    steer angle=-10
+2026-06-10 22:44:59.605  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:44:59.897  INFO     detect tag_lost
+2026-06-10 22:44:59.962  INFO     detect tag_acquired id=0 dist_cm=64.1
+2026-06-10 22:45:00.187  DEBUG    detect found=True dist_cm=58.0
+2026-06-10 22:45:00.404  DEBUG    steer angle=-6
+2026-06-10 22:45:00.475  DEBUG    steer angle=-5
+2026-06-10 22:45:00.547  INFO     detect tag_lost
+2026-06-10 22:45:00.609  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:00.619  INFO     detect tag_acquired id=0 dist_cm=61.7
+2026-06-10 22:45:00.620  DEBUG    steer angle=-2
+2026-06-10 22:45:00.690  INFO     detect tag_lost
+2026-06-10 22:45:00.758  INFO     detect tag_acquired id=0 dist_cm=64.4
+2026-06-10 22:45:00.890  INFO     detect tag_lost
+2026-06-10 22:45:00.960  INFO     detect tag_acquired id=0 dist_cm=66.8
+2026-06-10 22:45:01.246  DEBUG    detect found=True dist_cm=67.9
+2026-06-10 22:45:01.320  DEBUG    capture->chaser active
+2026-06-10 22:45:01.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:01.666  INFO     detect tag_lost
+2026-06-10 22:45:01.801  INFO     detect tag_acquired id=0 dist_cm=60.5
+2026-06-10 22:45:02.291  DEBUG    detect found=True dist_cm=54.2
+2026-06-10 22:45:02.361  INFO     detect tag_lost
+2026-06-10 22:45:02.435  INFO     detect tag_acquired id=0 dist_cm=49.3
+2026-06-10 22:45:02.435  DEBUG    steer angle=-4
+2026-06-10 22:45:02.510  DEBUG    steer angle=-7
+2026-06-10 22:45:02.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:02.655  INFO     detect tag_lost
+2026-06-10 22:45:02.726  INFO     detect tag_acquired id=0 dist_cm=41.1
+2026-06-10 22:45:02.726  DEBUG    steer angle=-12
+2026-06-10 22:45:02.794  DEBUG    steer angle=-10
+2026-06-10 22:45:02.864  INFO     detect tag_lost
+2026-06-10 22:45:02.938  INFO     detect tag_acquired id=0 dist_cm=39.4
+2026-06-10 22:45:02.938  DEBUG    steer angle=-12
+2026-06-10 22:45:03.008  DEBUG    steer angle=-7
+2026-06-10 22:45:03.272  INFO     detect tag_lost
+2026-06-10 22:45:03.348  INFO     detect tag_acquired id=0 dist_cm=36.5
+2026-06-10 22:45:03.348  DEBUG    steer angle=-6
+2026-06-10 22:45:03.350  DEBUG    detect found=True dist_cm=36.5
+2026-06-10 22:45:03.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:03.769  DEBUG    steer angle=-9
+2026-06-10 22:45:04.101  DEBUG    steer angle=-6
+2026-06-10 22:45:04.291  DEBUG    steer angle=-3
+2026-06-10 22:45:04.356  DEBUG    detect found=True dist_cm=48.9
+2026-06-10 22:45:04.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:04.807  DEBUG    steer angle=-1
+2026-06-10 22:45:04.871  DEBUG    steer angle=-3
+2026-06-10 22:45:04.933  INFO     detect tag_lost
+2026-06-10 22:45:05.060  INFO     detect tag_acquired id=0 dist_cm=41.6
+2026-06-10 22:45:05.060  DEBUG    steer angle=3
+2026-06-10 22:45:05.128  INFO     detect tag_lost
+2026-06-10 22:45:05.262  INFO     detect tag_acquired id=0 dist_cm=40.2
+2026-06-10 22:45:05.263  DEBUG    steer angle=8
+2026-06-10 22:45:05.324  INFO     detect tag_lost
+2026-06-10 22:45:05.388  DEBUG    detect found=False
+2026-06-10 22:45:05.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:06.036  INFO     detect tag_acquired id=0 dist_cm=59.7
+2026-06-10 22:45:06.036  DEBUG    steer angle=-20
+2026-06-10 22:45:06.098  INFO     detect tag_lost
+2026-06-10 22:45:06.218  INFO     detect tag_acquired id=0 dist_cm=63.9
+2026-06-10 22:45:06.218  DEBUG    steer angle=-3
+2026-06-10 22:45:06.277  INFO     detect tag_lost
+2026-06-10 22:45:06.407  INFO     detect tag_acquired id=0 dist_cm=64.7
+2026-06-10 22:45:06.408  DEBUG    steer angle=16
+2026-06-10 22:45:06.409  DEBUG    detect found=True dist_cm=64.7
+2026-06-10 22:45:06.471  DEBUG    steer angle=-2
+2026-06-10 22:45:06.535  DEBUG    steer angle=0
+2026-06-10 22:45:06.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:06.599  INFO     detect tag_lost
+2026-06-10 22:45:06.656  INFO     detect tag_acquired id=0 dist_cm=57.6
+2026-06-10 22:45:06.656  DEBUG    steer angle=-11
+2026-06-10 22:45:06.712  INFO     detect tag_lost
+2026-06-10 22:45:06.963  INFO     detect tag_acquired id=0 dist_cm=54.7
+2026-06-10 22:45:06.963  DEBUG    steer angle=-7
+2026-06-10 22:45:07.023  DEBUG    steer angle=-2
+2026-06-10 22:45:07.151  DEBUG    steer angle=-1
+2026-06-10 22:45:07.278  DEBUG    steer angle=-3
+2026-06-10 22:45:07.408  DEBUG    detect found=True dist_cm=52.8
+2026-06-10 22:45:07.467  DEBUG    steer angle=-4
+2026-06-10 22:45:07.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:07.899  INFO     detect tag_lost
+2026-06-10 22:45:07.965  INFO     detect tag_acquired id=0 dist_cm=52.9
+2026-06-10 22:45:07.965  DEBUG    steer angle=1
+2026-06-10 22:45:08.031  DEBUG    steer angle=0
+2026-06-10 22:45:08.424  DEBUG    detect found=True dist_cm=56.6
+2026-06-10 22:45:08.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:08.948  DEBUG    steer angle=-3
+2026-06-10 22:45:09.021  INFO     detect tag_lost
+2026-06-10 22:45:09.169  INFO     detect tag_acquired id=0 dist_cm=48.7
+2026-06-10 22:45:09.169  DEBUG    steer angle=-6
+2026-06-10 22:45:09.243  DEBUG    steer angle=-3
+2026-06-10 22:45:09.369  INFO     detect tag_lost
+2026-06-10 22:45:09.430  INFO     detect tag_acquired id=0 dist_cm=48.8
+2026-06-10 22:45:09.430  DEBUG    steer angle=4
+2026-06-10 22:45:09.432  DEBUG    detect found=True dist_cm=48.8
+2026-06-10 22:45:09.489  DEBUG    steer angle=2
+2026-06-10 22:45:09.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:09.656  DEBUG    steer angle=-1
+2026-06-10 22:45:09.716  DEBUG    steer angle=1
+2026-06-10 22:45:09.867  DEBUG    steer angle=2
+2026-06-10 22:45:09.933  DEBUG    steer angle=3
+2026-06-10 22:45:09.993  DEBUG    steer angle=4
+2026-06-10 22:45:10.481  DEBUG    steer angle=3
+2026-06-10 22:45:10.483  DEBUG    detect found=True dist_cm=57.3
+2026-06-10 22:45:10.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:10.734  DEBUG    steer angle=3
+2026-06-10 22:45:11.521  DEBUG    detect found=True dist_cm=46.2
+2026-06-10 22:45:11.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:11.663  DEBUG    steer angle=0
+2026-06-10 22:45:11.734  DEBUG    steer angle=-1
+2026-06-10 22:45:11.938  DEBUG    steer angle=2
+2026-06-10 22:45:12.231  DEBUG    steer angle=1
+2026-06-10 22:45:12.515  DEBUG    detect found=True dist_cm=50.6
+2026-06-10 22:45:12.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:12.728  DEBUG    steer angle=0
+2026-06-10 22:45:12.796  INFO     detect tag_lost
+2026-06-10 22:45:12.925  INFO     detect tag_acquired id=0 dist_cm=50.7
+2026-06-10 22:45:13.113  INFO     detect tag_lost
+2026-06-10 22:45:13.239  INFO     detect tag_acquired id=0 dist_cm=56.5
+2026-06-10 22:45:13.239  DEBUG    steer angle=-1
+2026-06-10 22:45:13.300  INFO     detect tag_lost
+2026-06-10 22:45:13.362  INFO     detect tag_acquired id=0 dist_cm=55.5
+2026-06-10 22:45:13.427  INFO     detect tag_lost
+2026-06-10 22:45:13.492  INFO     detect tag_acquired id=0 dist_cm=54.7
+2026-06-10 22:45:13.493  DEBUG    steer angle=0
+2026-06-10 22:45:13.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:13.553  DEBUG    detect found=True dist_cm=53.5
+2026-06-10 22:45:13.671  DEBUG    steer angle=1
+2026-06-10 22:45:13.808  INFO     detect tag_lost
+2026-06-10 22:45:13.871  INFO     detect tag_acquired id=0 dist_cm=49.5
+2026-06-10 22:45:14.156  DEBUG    steer angle=-1
+2026-06-10 22:45:14.223  DEBUG    steer angle=-3
+2026-06-10 22:45:14.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:14.567  DEBUG    detect found=True dist_cm=49.9
+2026-06-10 22:45:14.938  DEBUG    steer angle=2
+2026-06-10 22:45:15.222  DEBUG    steer angle=2
+2026-06-10 22:45:15.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:15.626  DEBUG    detect found=True dist_cm=48.2
+2026-06-10 22:45:15.892  DEBUG    steer angle=1
+2026-06-10 22:45:16.257  DEBUG    steer angle=4
+2026-06-10 22:45:16.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:16.689  DEBUG    detect found=True dist_cm=46.0
+2026-06-10 22:45:16.754  DEBUG    steer angle=7
+2026-06-10 22:45:16.825  DEBUG    steer angle=8
+2026-06-10 22:45:16.963  DEBUG    steer angle=11
+2026-06-10 22:45:17.028  INFO     detect tag_lost
+2026-06-10 22:45:17.102  INFO     detect tag_acquired id=0 dist_cm=44.2
+2026-06-10 22:45:17.102  DEBUG    steer angle=16
+2026-06-10 22:45:17.169  INFO     detect tag_lost
+2026-06-10 22:45:17.242  INFO     detect tag_acquired id=0 dist_cm=43.2
+2026-06-10 22:45:17.314  INFO     detect tag_lost
+2026-06-10 22:45:17.527  INFO     detect tag_acquired id=0 dist_cm=38.4
+2026-06-10 22:45:17.527  DEBUG    steer angle=-4
+2026-06-10 22:45:17.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:17.600  INFO     detect tag_lost
+2026-06-10 22:45:17.725  INFO     detect tag_acquired id=0 dist_cm=35.2
+2026-06-10 22:45:17.727  DEBUG    detect found=True dist_cm=35.2
+2026-06-10 22:45:17.791  INFO     detect tag_lost
+2026-06-10 22:45:18.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:18.788  DEBUG    detect found=False
+2026-06-10 22:45:19.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:19.787  DEBUG    detect found=False
+2026-06-10 22:45:20.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:20.829  DEBUG    detect found=False
+2026-06-10 22:45:20.893  INFO     detect tag_acquired id=0 dist_cm=33.1
+2026-06-10 22:45:20.894  DEBUG    steer angle=20
+2026-06-10 22:45:20.955  INFO     detect tag_lost
+2026-06-10 22:45:21.163  INFO     detect tag_acquired id=0 dist_cm=35.2
+2026-06-10 22:45:21.163  DEBUG    steer angle=-1
+2026-06-10 22:45:21.236  DEBUG    steer angle=6
+2026-06-10 22:45:21.383  INFO     detect tag_lost
+2026-06-10 22:45:21.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:21.887  DEBUG    detect found=False
+2026-06-10 22:45:22.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:22.920  INFO     detect tag_acquired id=0 dist_cm=50.8
+2026-06-10 22:45:22.920  DEBUG    steer angle=20
+2026-06-10 22:45:22.922  DEBUG    detect found=True dist_cm=50.8
+2026-06-10 22:45:22.981  DEBUG    steer angle=11
+2026-06-10 22:45:23.109  INFO     detect tag_lost
+2026-06-10 22:45:23.235  INFO     detect tag_acquired id=0 dist_cm=49.7
+2026-06-10 22:45:23.296  DEBUG    steer angle=11
+2026-06-10 22:45:23.419  DEBUG    steer angle=12
+2026-06-10 22:45:23.481  DEBUG    steer angle=15
+2026-06-10 22:45:23.546  INFO     detect tag_lost
+2026-06-10 22:45:23.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:23.959  DEBUG    detect found=False
+2026-06-10 22:45:24.260  INFO     detect tag_acquired id=0 dist_cm=38.8
+2026-06-10 22:45:24.260  DEBUG    steer angle=20
+2026-06-10 22:45:24.313  INFO     detect tag_lost
+2026-06-10 22:45:24.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:24.859  INFO     detect tag_acquired id=0 dist_cm=46.0
+2026-06-10 22:45:24.913  INFO     detect tag_lost
+2026-06-10 22:45:24.973  DEBUG    detect found=False
+2026-06-10 22:45:25.087  INFO     detect tag_acquired id=0 dist_cm=49.3
+2026-06-10 22:45:25.088  DEBUG    steer angle=1
+2026-06-10 22:45:25.144  INFO     detect tag_lost
+2026-06-10 22:45:25.314  INFO     detect tag_acquired id=0 dist_cm=50.6
+2026-06-10 22:45:25.314  DEBUG    steer angle=2
+2026-06-10 22:45:25.367  DEBUG    steer angle=8
+2026-06-10 22:45:25.424  DEBUG    steer angle=9
+2026-06-10 22:45:25.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:25.606  DEBUG    steer angle=8
+2026-06-10 22:45:25.726  DEBUG    steer angle=6
+2026-06-10 22:45:25.836  DEBUG    steer angle=4
+2026-06-10 22:45:25.891  INFO     detect tag_lost
+2026-06-10 22:45:26.008  INFO     detect tag_acquired id=0 dist_cm=57.7
+2026-06-10 22:45:26.009  DEBUG    steer angle=-2
+2026-06-10 22:45:26.010  DEBUG    detect found=True dist_cm=57.7
+2026-06-10 22:45:26.073  DEBUG    steer angle=2
+2026-06-10 22:45:26.136  DEBUG    steer angle=1
+2026-06-10 22:45:26.267  DEBUG    steer angle=2
+2026-06-10 22:45:26.327  INFO     detect tag_lost
+2026-06-10 22:45:26.395  INFO     detect tag_acquired id=0 dist_cm=56.8
+2026-06-10 22:45:26.395  DEBUG    steer angle=1
+2026-06-10 22:45:26.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:27.048  DEBUG    detect found=True dist_cm=59.8
+2026-06-10 22:45:27.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:28.109  DEBUG    detect found=True dist_cm=54.2
+2026-06-10 22:45:28.504  DEBUG    steer angle=1
+2026-06-10 22:45:28.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:28.631  DEBUG    steer angle=3
+2026-06-10 22:45:29.143  DEBUG    detect found=True dist_cm=60.0
+2026-06-10 22:45:29.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:30.166  DEBUG    detect found=True dist_cm=52.9
+2026-06-10 22:45:30.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:31.215  DEBUG    detect found=True dist_cm=51.6
+2026-06-10 22:45:31.355  DEBUG    capture->chaser active
+2026-06-10 22:45:31.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:31.866  INFO     detect tag_lost
+2026-06-10 22:45:32.268  DEBUG    detect found=False
+2026-06-10 22:45:32.635  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:33.289  DEBUG    detect found=False
+2026-06-10 22:45:33.574  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:34.355  DEBUG    detect found=False
+2026-06-10 22:45:34.635  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:35.403  DEBUG    detect found=False
+2026-06-10 22:45:35.580  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:36.417  DEBUG    detect found=False
+2026-06-10 22:45:36.551  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:37.454  DEBUG    detect found=False
+2026-06-10 22:45:37.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:38.498  DEBUG    detect found=False
+2026-06-10 22:45:38.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:39.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:39.618  DEBUG    detect found=False
+2026-06-10 22:45:40.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:40.720  DEBUG    detect found=False
+2026-06-10 22:45:41.560  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:41.792  DEBUG    detect found=False
+2026-06-10 22:45:42.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:42.827  DEBUG    detect found=False
+2026-06-10 22:45:43.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:43.877  DEBUG    detect found=False
+2026-06-10 22:45:44.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:45.004  DEBUG    detect found=False
+2026-06-10 22:45:45.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:46.097  DEBUG    detect found=False
+2026-06-10 22:45:46.559  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:47.200  DEBUG    detect found=False
+2026-06-10 22:45:47.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:48.307  DEBUG    detect found=False
+2026-06-10 22:45:48.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:49.428  DEBUG    detect found=False
+2026-06-10 22:45:49.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:50.535  DEBUG    detect found=False
+2026-06-10 22:45:50.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:51.558  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:51.648  DEBUG    detect found=False
+2026-06-10 22:45:52.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:52.755  DEBUG    detect found=False
+2026-06-10 22:45:53.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:53.864  DEBUG    detect found=False
+2026-06-10 22:45:54.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:54.979  DEBUG    detect found=False
+2026-06-10 22:45:55.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:56.091  DEBUG    detect found=False
+2026-06-10 22:45:56.558  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:57.194  DEBUG    detect found=False
+2026-06-10 22:45:57.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:58.310  DEBUG    detect found=False
+2026-06-10 22:45:58.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:45:59.423  DEBUG    detect found=False
+2026-06-10 22:45:59.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:00.462  DEBUG    detect found=False
+2026-06-10 22:46:00.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:01.375  DEBUG    capture->chaser active
+2026-06-10 22:46:01.445  DEBUG    detect found=False
+2026-06-10 22:46:01.560  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:02.477  DEBUG    detect found=False
+2026-06-10 22:46:02.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:03.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:03.594  DEBUG    detect found=False
+2026-06-10 22:46:04.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:04.707  DEBUG    detect found=False
+2026-06-10 22:46:05.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:05.814  DEBUG    detect found=False
+2026-06-10 22:46:06.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:06.931  DEBUG    detect found=False
+2026-06-10 22:46:07.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:08.034  DEBUG    detect found=False
+2026-06-10 22:46:08.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:09.129  DEBUG    detect found=False
+2026-06-10 22:46:09.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:10.232  DEBUG    detect found=False
+2026-06-10 22:46:10.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:11.260  DEBUG    detect found=False
+2026-06-10 22:46:11.559  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:12.261  DEBUG    detect found=False
+2026-06-10 22:46:12.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:13.310  DEBUG    detect found=False
+2026-06-10 22:46:13.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:14.417  DEBUG    detect found=False
+2026-06-10 22:46:14.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:15.524  DEBUG    detect found=False
+2026-06-10 22:46:15.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:16.561  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:16.636  DEBUG    detect found=False
+2026-06-10 22:46:17.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:17.671  DEBUG    detect found=False
+2026-06-10 22:46:18.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:18.661  DEBUG    detect found=False
+2026-06-10 22:46:19.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:19.681  DEBUG    detect found=False
+2026-06-10 22:46:20.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:20.740  DEBUG    detect found=False
+2026-06-10 22:46:21.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:21.704  DEBUG    detect found=False
+2026-06-10 22:46:22.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:22.756  DEBUG    detect found=False
+2026-06-10 22:46:23.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:23.860  DEBUG    detect found=False
+2026-06-10 22:46:24.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:24.977  DEBUG    detect found=False
+2026-06-10 22:46:25.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:26.017  DEBUG    detect found=False
+2026-06-10 22:46:26.561  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:27.047  DEBUG    detect found=False
+2026-06-10 22:46:27.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:28.110  DEBUG    detect found=False
+2026-06-10 22:46:28.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:29.127  DEBUG    detect found=False
+2026-06-10 22:46:29.535  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:30.258  DEBUG    detect found=False
+2026-06-10 22:46:30.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:31.367  DEBUG    detect found=False
+2026-06-10 22:46:31.375  DEBUG    capture->chaser active
+2026-06-10 22:46:31.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:32.421  DEBUG    detect found=False
+2026-06-10 22:46:32.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:33.494  DEBUG    detect found=False
+2026-06-10 22:46:33.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:34.498  DEBUG    detect found=False
+2026-06-10 22:46:34.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:35.501  DEBUG    detect found=False
+2026-06-10 22:46:35.535  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:36.516  DEBUG    detect found=False
+2026-06-10 22:46:36.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:37.529  DEBUG    detect found=False
+2026-06-10 22:46:37.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:38.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:38.577  DEBUG    detect found=False
+2026-06-10 22:46:39.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:39.611  DEBUG    detect found=False
+2026-06-10 22:46:39.803  INFO     detect tag_acquired id=0 dist_cm=56.2
+2026-06-10 22:46:39.804  DEBUG    steer angle=7
+2026-06-10 22:46:39.866  DEBUG    steer angle=3
+2026-06-10 22:46:39.991  DEBUG    steer angle=4
+2026-06-10 22:46:40.055  DEBUG    steer angle=2
+2026-06-10 22:46:40.294  INFO     detect tag_lost
+2026-06-10 22:46:40.355  INFO     detect tag_acquired id=0 dist_cm=46.6
+2026-06-10 22:46:40.355  DEBUG    steer angle=-2
+2026-06-10 22:46:40.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:40.606  DEBUG    steer angle=2
+2026-06-10 22:46:40.673  DEBUG    detect found=True dist_cm=37.6
+2026-06-10 22:46:40.735  DEBUG    steer angle=4
+2026-06-10 22:46:40.993  INFO     detect tag_lost
+2026-06-10 22:46:41.452  INFO     detect tag_acquired id=0 dist_cm=31.3
+2026-06-10 22:46:41.452  DEBUG    steer angle=20
+2026-06-10 22:46:41.527  INFO     detect tag_lost
+2026-06-10 22:46:41.550  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:41.689  DEBUG    detect found=False
+2026-06-10 22:46:42.047  INFO     detect tag_acquired id=0 dist_cm=31.9
+2026-06-10 22:46:42.107  DEBUG    steer angle=9
+2026-06-10 22:46:42.172  INFO     detect tag_lost
+2026-06-10 22:46:42.535  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:42.706  DEBUG    detect found=False
+2026-06-10 22:46:43.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:43.753  DEBUG    detect found=False
+2026-06-10 22:46:44.534  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:44.783  DEBUG    detect found=False
+2026-06-10 22:46:45.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:45.817  DEBUG    detect found=False
+2026-06-10 22:46:46.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:46.869  DEBUG    detect found=False
+2026-06-10 22:46:47.534  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:47.871  DEBUG    detect found=False
+2026-06-10 22:46:48.535  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:48.903  DEBUG    detect found=False
+2026-06-10 22:46:49.534  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:49.935  DEBUG    detect found=False
+2026-06-10 22:46:50.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:50.934  DEBUG    detect found=False
+2026-06-10 22:46:51.533  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:51.982  DEBUG    detect found=False
+2026-06-10 22:46:52.534  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:53.042  DEBUG    detect found=False
+2026-06-10 22:46:53.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:54.073  DEBUG    detect found=False
+2026-06-10 22:46:54.532  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:55.096  DEBUG    detect found=False
+2026-06-10 22:46:55.533  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:56.115  DEBUG    detect found=False
+2026-06-10 22:46:56.341  INFO     detect tag_acquired id=0 dist_cm=48.8
+2026-06-10 22:46:56.341  DEBUG    steer angle=20
+2026-06-10 22:46:56.444  DEBUG    steer angle=10
+2026-06-10 22:46:56.520  INFO     detect tag_lost
+2026-06-10 22:46:56.533  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:56.592  INFO     detect tag_acquired id=0 dist_cm=47.2
+2026-06-10 22:46:56.593  DEBUG    steer angle=14
+2026-06-10 22:46:56.663  DEBUG    steer angle=10
+2026-06-10 22:46:56.920  INFO     detect tag_lost
+2026-06-10 22:46:56.986  INFO     detect tag_acquired id=0 dist_cm=38.5
+2026-06-10 22:46:56.986  DEBUG    steer angle=14
+2026-06-10 22:46:57.055  INFO     detect tag_lost
+2026-06-10 22:46:57.121  DEBUG    detect found=False
+2026-06-10 22:46:57.532  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:58.227  DEBUG    detect found=False
+2026-06-10 22:46:58.532  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:46:59.302  DEBUG    detect found=False
+2026-06-10 22:46:59.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:00.292  DEBUG    detect found=False
+2026-06-10 22:47:00.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:01.384  DEBUG    detect found=False
+2026-06-10 22:47:01.391  DEBUG    capture->chaser active
+2026-06-10 22:47:01.533  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:02.377  DEBUG    detect found=False
+2026-06-10 22:47:02.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:03.446  DEBUG    detect found=False
+2026-06-10 22:47:03.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:04.463  DEBUG    detect found=False
+2026-06-10 22:47:04.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:05.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:05.552  DEBUG    detect found=False
+2026-06-10 22:47:06.534  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:06.543  DEBUG    detect found=False
+2026-06-10 22:47:07.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:07.639  DEBUG    detect found=False
+2026-06-10 22:47:08.535  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:08.726  DEBUG    detect found=False
+2026-06-10 22:47:09.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:09.794  DEBUG    detect found=False
+2026-06-10 22:47:10.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:10.835  DEBUG    detect found=False
+2026-06-10 22:47:11.534  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:11.801  DEBUG    detect found=False
+2026-06-10 22:47:12.557  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:12.905  DEBUG    detect found=False
+2026-06-10 22:47:13.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:13.966  DEBUG    detect found=False
+2026-06-10 22:47:14.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:15.115  DEBUG    detect found=False
+2026-06-10 22:47:15.535  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:16.121  DEBUG    detect found=False
+2026-06-10 22:47:16.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:17.202  DEBUG    detect found=False
+2026-06-10 22:47:17.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:18.195  DEBUG    detect found=False
+2026-06-10 22:47:18.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:19.276  DEBUG    detect found=False
+2026-06-10 22:47:19.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:20.275  DEBUG    detect found=False
+2026-06-10 22:47:20.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:21.337  DEBUG    detect found=False
+2026-06-10 22:47:21.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:22.352  DEBUG    detect found=False
+2026-06-10 22:47:22.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:23.435  DEBUG    detect found=False
+2026-06-10 22:47:23.536  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:24.440  DEBUG    detect found=False
+2026-06-10 22:47:24.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:25.520  DEBUG    detect found=False
+2026-06-10 22:47:25.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:26.532  DEBUG    detect found=False
+2026-06-10 22:47:26.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:27.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:27.581  DEBUG    detect found=False
+2026-06-10 22:47:28.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:28.607  DEBUG    detect found=False
+2026-06-10 22:47:29.556  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:29.688  DEBUG    detect found=False
+2026-06-10 22:47:30.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:30.686  DEBUG    detect found=False
+2026-06-10 22:47:31.449  DEBUG    capture->chaser active
+2026-06-10 22:47:31.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:31.769  DEBUG    detect found=False
+2026-06-10 22:47:32.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:32.820  DEBUG    detect found=False
+2026-06-10 22:47:33.537  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:33.874  DEBUG    detect found=False
+2026-06-10 22:47:34.539  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:34.906  DEBUG    detect found=False
+2026-06-10 22:47:35.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:35.906  DEBUG    detect found=False
+2026-06-10 22:47:36.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:36.973  DEBUG    detect found=False
+2026-06-10 22:47:37.538  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:37.977  DEBUG    detect found=False
+2026-06-10 22:47:38.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:39.019  DEBUG    detect found=False
+2026-06-10 22:47:39.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:40.049  DEBUG    detect found=False
+2026-06-10 22:47:40.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:41.109  DEBUG    detect found=False
+2026-06-10 22:47:41.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:42.173  DEBUG    detect found=False
+2026-06-10 22:47:42.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:43.164  DEBUG    detect found=False
+2026-06-10 22:47:43.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:44.239  DEBUG    detect found=False
+2026-06-10 22:47:44.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:45.314  DEBUG    detect found=False
+2026-06-10 22:47:45.557  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:46.297  DEBUG    detect found=False
+2026-06-10 22:47:46.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:47.335  DEBUG    detect found=False
+2026-06-10 22:47:47.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:48.351  DEBUG    detect found=False
+2026-06-10 22:47:48.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:49.384  DEBUG    detect found=False
+2026-06-10 22:47:49.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:50.439  DEBUG    detect found=False
+2026-06-10 22:47:50.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:51.526  DEBUG    detect found=False
+2026-06-10 22:47:51.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:52.534  DEBUG    detect found=False
+2026-06-10 22:47:52.540  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:53.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:53.578  DEBUG    detect found=False
+2026-06-10 22:47:54.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:54.618  DEBUG    detect found=False
+2026-06-10 22:47:55.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:55.623  DEBUG    detect found=False
+2026-06-10 22:47:56.557  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:56.650  DEBUG    detect found=False
+2026-06-10 22:47:57.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:57.700  DEBUG    detect found=False
+2026-06-10 22:47:58.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:58.784  DEBUG    detect found=False
+2026-06-10 22:47:59.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:47:59.785  DEBUG    detect found=False
+2026-06-10 22:48:00.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:00.859  DEBUG    detect found=False
+2026-06-10 22:48:01.455  DEBUG    capture->chaser active
+2026-06-10 22:48:01.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:01.856  DEBUG    detect found=False
+2026-06-10 22:48:02.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:02.942  DEBUG    detect found=False
+2026-06-10 22:48:03.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:03.925  DEBUG    detect found=False
+2026-06-10 22:48:04.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:05.015  DEBUG    detect found=False
+2026-06-10 22:48:05.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:06.183  DEBUG    detect found=False
+2026-06-10 22:48:06.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:07.267  DEBUG    detect found=False
+2026-06-10 22:48:07.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:08.324  DEBUG    detect found=False
+2026-06-10 22:48:08.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:09.323  DEBUG    detect found=False
+2026-06-10 22:48:09.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:10.397  DEBUG    detect found=False
+2026-06-10 22:48:10.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:11.547  DEBUG    detect found=False
+2026-06-10 22:48:11.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:12.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:12.582  DEBUG    detect found=False
+2026-06-10 22:48:13.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:13.648  DEBUG    detect found=False
+2026-06-10 22:48:14.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:14.821  DEBUG    detect found=False
+2026-06-10 22:48:15.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:15.967  DEBUG    detect found=False
+2026-06-10 22:48:16.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:16.958  DEBUG    detect found=False
+2026-06-10 22:48:17.562  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:18.057  DEBUG    detect found=False
+2026-06-10 22:48:18.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:19.146  DEBUG    detect found=False
+2026-06-10 22:48:19.555  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:20.204  DEBUG    detect found=False
+2026-06-10 22:48:20.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:21.372  DEBUG    detect found=False
+2026-06-10 22:48:21.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:22.373  DEBUG    detect found=False
+2026-06-10 22:48:22.555  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:23.443  DEBUG    detect found=False
+2026-06-10 22:48:23.552  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:24.438  DEBUG    detect found=False
+2026-06-10 22:48:24.562  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:25.494  DEBUG    detect found=False
+2026-06-10 22:48:25.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:26.526  DEBUG    detect found=False
+2026-06-10 22:48:26.563  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:27.522  DEBUG    detect found=False
+2026-06-10 22:48:27.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:28.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:28.612  DEBUG    detect found=False
+2026-06-10 22:48:29.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:29.620  DEBUG    detect found=False
+2026-06-10 22:48:29.795  INFO     detect tag_acquired id=0 dist_cm=38.2
+2026-06-10 22:48:29.795  DEBUG    steer angle=11
+2026-06-10 22:48:29.874  DEBUG    steer angle=2
+2026-06-10 22:48:29.949  INFO     detect tag_lost
+2026-06-10 22:48:30.025  INFO     detect tag_acquired id=0 dist_cm=34.6
+2026-06-10 22:48:30.025  DEBUG    steer angle=0
+2026-06-10 22:48:30.253  INFO     detect tag_lost
+2026-06-10 22:48:30.412  INFO     detect tag_acquired id=0 dist_cm=28.1
+2026-06-10 22:48:30.413  DEBUG    steer angle=12
+2026-06-10 22:48:30.485  DEBUG    steer angle=7
+2026-06-10 22:48:30.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:30.643  INFO     detect tag_lost
+2026-06-10 22:48:30.644  DEBUG    detect found=False
+2026-06-10 22:48:30.862  INFO     detect tag_acquired id=0 dist_cm=27.3
+2026-06-10 22:48:30.862  DEBUG    steer angle=-3
+2026-06-10 22:48:31.003  DEBUG    steer angle=0
+2026-06-10 22:48:31.069  INFO     detect tag_lost
+2026-06-10 22:48:31.501  DEBUG    capture->chaser active
+2026-06-10 22:48:31.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:31.641  DEBUG    detect found=False
+2026-06-10 22:48:31.932  INFO     detect tag_acquired id=0 dist_cm=25.4
+2026-06-10 22:48:31.932  DEBUG    steer angle=20
+2026-06-10 22:48:32.004  DEBUG    steer angle=12
+2026-06-10 22:48:32.069  INFO     detect tag_lost
+2026-06-10 22:48:32.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:32.710  DEBUG    detect found=False
+2026-06-10 22:48:33.006  INFO     detect tag_acquired id=0 dist_cm=16.4
+2026-06-10 22:48:33.007  DEBUG    steer angle=17
+2026-06-10 22:48:33.086  DEBUG    steer angle=6
+2026-06-10 22:48:33.228  INFO     detect tag_lost
+2026-06-10 22:48:33.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:33.784  DEBUG    detect found=False
+2026-06-10 22:48:34.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:34.816  INFO     detect tag_acquired id=0 dist_cm=16.2
+2026-06-10 22:48:34.817  DEBUG    steer angle=13
+2026-06-10 22:48:34.819  DEBUG    detect found=True dist_cm=16.2
+2026-06-10 22:48:34.898  DEBUG    steer angle=5
+2026-06-10 22:48:34.977  DEBUG    steer angle=7
+2026-06-10 22:48:35.060  INFO     detect tag_lost
+2026-06-10 22:48:35.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:35.855  DEBUG    detect found=False
+2026-06-10 22:48:36.187  INFO     detect tag_acquired id=0 dist_cm=34.9
+2026-06-10 22:48:36.187  DEBUG    steer angle=-2
+2026-06-10 22:48:36.332  INFO     detect tag_lost
+2026-06-10 22:48:36.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:36.659  INFO     detect tag_acquired id=0 dist_cm=41.7
+2026-06-10 22:48:36.659  DEBUG    steer angle=6
+2026-06-10 22:48:36.726  DEBUG    steer angle=3
+2026-06-10 22:48:36.857  INFO     detect tag_lost
+2026-06-10 22:48:36.859  DEBUG    detect found=False
+2026-06-10 22:48:37.032  INFO     detect tag_acquired id=0 dist_cm=37.5
+2026-06-10 22:48:37.032  DEBUG    steer angle=-8
+2026-06-10 22:48:37.089  DEBUG    steer angle=-3
+2026-06-10 22:48:37.270  INFO     detect tag_lost
+2026-06-10 22:48:37.333  INFO     detect tag_acquired id=0 dist_cm=42.2
+2026-06-10 22:48:37.333  DEBUG    steer angle=3
+2026-06-10 22:48:37.393  DEBUG    steer angle=1
+2026-06-10 22:48:37.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:37.588  DEBUG    steer angle=1
+2026-06-10 22:48:37.653  INFO     detect tag_lost
+2026-06-10 22:48:37.717  INFO     detect tag_acquired id=0 dist_cm=41.6
+2026-06-10 22:48:37.717  DEBUG    steer angle=-1
+2026-06-10 22:48:37.782  INFO     detect tag_lost
+2026-06-10 22:48:37.918  DEBUG    detect found=False
+2026-06-10 22:48:37.990  INFO     detect tag_acquired id=0 dist_cm=39.9
+2026-06-10 22:48:37.990  DEBUG    steer angle=-14
+2026-06-10 22:48:38.069  DEBUG    steer angle=-7
+2026-06-10 22:48:38.148  DEBUG    steer angle=-5
+2026-06-10 22:48:38.227  INFO     detect tag_lost
+2026-06-10 22:48:38.446  INFO     detect tag_acquired id=0 dist_cm=40.0
+2026-06-10 22:48:38.447  DEBUG    steer angle=15
+2026-06-10 22:48:38.519  DEBUG    steer angle=3
+2026-06-10 22:48:38.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:38.667  INFO     detect tag_lost
+2026-06-10 22:48:38.735  INFO     detect tag_acquired id=0 dist_cm=38.1
+2026-06-10 22:48:38.735  DEBUG    steer angle=-4
+2026-06-10 22:48:38.804  DEBUG    steer angle=1
+2026-06-10 22:48:38.879  INFO     detect tag_lost
+2026-06-10 22:48:38.953  DEBUG    detect found=False
+2026-06-10 22:48:39.158  INFO     detect tag_acquired id=0 dist_cm=32.6
+2026-06-10 22:48:39.158  DEBUG    steer angle=20
+2026-06-10 22:48:39.229  DEBUG    steer angle=8
+2026-06-10 22:48:39.307  DEBUG    steer angle=5
+2026-06-10 22:48:39.377  INFO     detect tag_lost
+2026-06-10 22:48:39.503  INFO     detect tag_acquired id=0 dist_cm=20.1
+2026-06-10 22:48:39.504  DEBUG    steer angle=-7
+2026-06-10 22:48:39.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:39.564  INFO     detect tag_lost
+2026-06-10 22:48:39.985  DEBUG    detect found=False
+2026-06-10 22:48:40.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:41.055  INFO     detect tag_acquired id=0 dist_cm=56.2
+2026-06-10 22:48:41.055  DEBUG    steer angle=20
+2026-06-10 22:48:41.057  DEBUG    detect found=True dist_cm=56.2
+2026-06-10 22:48:41.130  DEBUG    steer angle=10
+2026-06-10 22:48:41.280  DEBUG    steer angle=13
+2026-06-10 22:48:41.352  INFO     detect tag_lost
+2026-06-10 22:48:41.487  INFO     detect tag_acquired id=0 dist_cm=60.8
+2026-06-10 22:48:41.487  DEBUG    steer angle=-2
+2026-06-10 22:48:41.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:41.555  INFO     detect tag_lost
+2026-06-10 22:48:42.098  DEBUG    detect found=False
+2026-06-10 22:48:42.575  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:42.630  INFO     detect tag_acquired id=0 dist_cm=43.5
+2026-06-10 22:48:42.630  DEBUG    steer angle=20
+2026-06-10 22:48:42.710  DEBUG    steer angle=11
+2026-06-10 22:48:42.884  INFO     detect tag_lost
+2026-06-10 22:48:43.083  DEBUG    detect found=False
+2026-06-10 22:48:43.144  INFO     detect tag_acquired id=0 dist_cm=46.1
+2026-06-10 22:48:43.144  DEBUG    steer angle=-9
+2026-06-10 22:48:43.213  DEBUG    steer angle=6
+2026-06-10 22:48:43.283  DEBUG    steer angle=7
+2026-06-10 22:48:43.356  INFO     detect tag_lost
+2026-06-10 22:48:43.428  INFO     detect tag_acquired id=0 dist_cm=42.0
+2026-06-10 22:48:43.429  DEBUG    steer angle=18
+2026-06-10 22:48:43.491  INFO     detect tag_lost
+2026-06-10 22:48:43.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:43.560  INFO     detect tag_acquired id=0 dist_cm=36.6
+2026-06-10 22:48:43.630  INFO     detect tag_lost
+2026-06-10 22:48:43.922  INFO     detect tag_acquired id=0 dist_cm=27.1
+2026-06-10 22:48:43.922  DEBUG    steer angle=-17
+2026-06-10 22:48:43.990  DEBUG    steer angle=1
+2026-06-10 22:48:44.058  DEBUG    steer angle=5
+2026-06-10 22:48:44.116  INFO     detect tag_lost
+2026-06-10 22:48:44.117  DEBUG    detect found=False
+2026-06-10 22:48:44.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:45.145  DEBUG    detect found=False
+2026-06-10 22:48:45.452  INFO     detect tag_acquired id=0 dist_cm=26.9
+2026-06-10 22:48:45.452  DEBUG    steer angle=20
+2026-06-10 22:48:45.511  DEBUG    steer angle=6
+2026-06-10 22:48:45.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:45.576  INFO     detect tag_lost
+2026-06-10 22:48:46.171  DEBUG    detect found=False
+2026-06-10 22:48:46.585  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:47.192  DEBUG    detect found=False
+2026-06-10 22:48:47.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:47.727  INFO     detect tag_acquired id=0 dist_cm=35.6
+2026-06-10 22:48:47.728  DEBUG    steer angle=20
+2026-06-10 22:48:47.794  DEBUG    steer angle=9
+2026-06-10 22:48:47.920  INFO     detect tag_lost
+2026-06-10 22:48:48.202  DEBUG    detect found=False
+2026-06-10 22:48:48.483  INFO     detect tag_acquired id=0 dist_cm=27.3
+2026-06-10 22:48:48.484  DEBUG    steer angle=20
+2026-06-10 22:48:48.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:48.553  INFO     detect tag_lost
+2026-06-10 22:48:48.686  INFO     detect tag_acquired id=0 dist_cm=25.9
+2026-06-10 22:48:48.686  DEBUG    steer angle=6
+2026-06-10 22:48:48.746  DEBUG    steer angle=10
+2026-06-10 22:48:48.810  DEBUG    steer angle=9
+2026-06-10 22:48:48.868  INFO     detect tag_lost
+2026-06-10 22:48:49.198  DEBUG    detect found=False
+2026-06-10 22:48:49.549  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:50.218  DEBUG    detect found=False
+2026-06-10 22:48:50.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:51.227  DEBUG    detect found=False
+2026-06-10 22:48:51.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:52.250  DEBUG    detect found=False
+2026-06-10 22:48:52.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:53.276  DEBUG    detect found=False
+2026-06-10 22:48:53.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:54.308  DEBUG    detect found=False
+2026-06-10 22:48:54.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:55.300  DEBUG    detect found=False
+2026-06-10 22:48:55.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:56.338  DEBUG    detect found=False
+2026-06-10 22:48:56.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:57.365  DEBUG    detect found=False
+2026-06-10 22:48:57.556  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:57.635  INFO     detect tag_acquired id=0 dist_cm=39.8
+2026-06-10 22:48:57.635  DEBUG    steer angle=-4
+2026-06-10 22:48:57.689  INFO     detect tag_lost
+2026-06-10 22:48:58.310  INFO     detect tag_acquired id=0 dist_cm=58.0
+2026-06-10 22:48:58.310  DEBUG    steer angle=20
+2026-06-10 22:48:58.366  INFO     detect tag_lost
+2026-06-10 22:48:58.424  DEBUG    detect found=False
+2026-06-10 22:48:58.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:58.584  INFO     detect tag_acquired id=0 dist_cm=67.2
+2026-06-10 22:48:58.585  DEBUG    steer angle=10
+2026-06-10 22:48:58.699  INFO     detect tag_lost
+2026-06-10 22:48:58.755  INFO     detect tag_acquired id=0 dist_cm=66.6
+2026-06-10 22:48:58.756  DEBUG    steer angle=8
+2026-06-10 22:48:58.809  DEBUG    steer angle=10
+2026-06-10 22:48:59.160  INFO     detect tag_lost
+2026-06-10 22:48:59.224  INFO     detect tag_acquired id=0 dist_cm=78.1
+2026-06-10 22:48:59.224  DEBUG    steer angle=7
+2026-06-10 22:48:59.282  INFO     detect tag_lost
+2026-06-10 22:48:59.402  INFO     detect tag_acquired id=0 dist_cm=79.1
+2026-06-10 22:48:59.403  DEBUG    steer angle=3
+2026-06-10 22:48:59.471  DEBUG    steer angle=6
+2026-06-10 22:48:59.473  DEBUG    detect found=True dist_cm=75.1
+2026-06-10 22:48:59.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:48:59.836  DEBUG    steer angle=5
+2026-06-10 22:48:59.898  INFO     detect tag_lost
+2026-06-10 22:49:00.161  INFO     detect tag_acquired id=0 dist_cm=82.6
+2026-06-10 22:49:00.161  DEBUG    steer angle=3
+2026-06-10 22:49:00.224  DEBUG    steer angle=5
+2026-06-10 22:49:00.479  DEBUG    detect found=True dist_cm=90.0
+2026-06-10 22:49:00.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:00.984  INFO     detect tag_lost
+2026-06-10 22:49:01.105  INFO     detect tag_acquired id=0 dist_cm=91.3
+2026-06-10 22:49:01.105  DEBUG    steer angle=2
+2026-06-10 22:49:01.510  INFO     detect tag_lost
+2026-06-10 22:49:01.511  DEBUG    detect found=False
+2026-06-10 22:49:01.519  DEBUG    capture->chaser active
+2026-06-10 22:49:01.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:01.569  INFO     detect tag_acquired id=0 dist_cm=90.6
+2026-06-10 22:49:01.570  DEBUG    steer angle=-1
+2026-06-10 22:49:01.627  INFO     detect tag_lost
+2026-06-10 22:49:01.738  INFO     detect tag_acquired id=0 dist_cm=89.1
+2026-06-10 22:49:01.794  INFO     detect tag_lost
+2026-06-10 22:49:01.857  INFO     detect tag_acquired id=0 dist_cm=89.7
+2026-06-10 22:49:01.857  DEBUG    steer angle=1
+2026-06-10 22:49:02.047  INFO     detect tag_lost
+2026-06-10 22:49:02.169  INFO     detect tag_acquired id=0 dist_cm=80.6
+2026-06-10 22:49:02.169  DEBUG    steer angle=2
+2026-06-10 22:49:02.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:02.561  DEBUG    detect found=True dist_cm=72.3
+2026-06-10 22:49:02.615  INFO     detect tag_lost
+2026-06-10 22:49:02.676  INFO     detect tag_acquired id=0 dist_cm=69.2
+2026-06-10 22:49:02.676  DEBUG    steer angle=-2
+2026-06-10 22:49:02.733  DEBUG    steer angle=0
+2026-06-10 22:49:02.967  DEBUG    steer angle=1
+2026-06-10 22:49:03.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:03.571  DEBUG    detect found=True dist_cm=49.3
+2026-06-10 22:49:04.306  DEBUG    steer angle=0
+2026-06-10 22:49:04.427  DEBUG    steer angle=1
+2026-06-10 22:49:04.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:04.626  DEBUG    detect found=True dist_cm=35.8
+2026-06-10 22:49:04.697  DEBUG    steer angle=-1
+2026-06-10 22:49:04.761  DEBUG    steer angle=-4
+2026-06-10 22:49:04.825  INFO     detect tag_lost
+2026-06-10 22:49:04.887  INFO     detect tag_acquired id=0 dist_cm=26.3
+2026-06-10 22:49:04.887  DEBUG    steer angle=-8
+2026-06-10 22:49:04.946  INFO     detect tag_lost
+2026-06-10 22:49:05.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:05.667  DEBUG    detect found=False
+2026-06-10 22:49:05.732  INFO     detect tag_acquired id=0 dist_cm=24.5
+2026-06-10 22:49:05.732  DEBUG    steer angle=20
+2026-06-10 22:49:05.798  DEBUG    steer angle=13
+2026-06-10 22:49:05.861  INFO     detect tag_lost
+2026-06-10 22:49:06.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:06.694  DEBUG    detect found=False
+2026-06-10 22:49:06.760  INFO     detect tag_acquired id=0 dist_cm=40.5
+2026-06-10 22:49:06.760  DEBUG    steer angle=20
+2026-06-10 22:49:06.827  DEBUG    steer angle=14
+2026-06-10 22:49:06.893  INFO     detect tag_lost
+2026-06-10 22:49:07.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:07.746  DEBUG    detect found=False
+2026-06-10 22:49:08.556  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:08.800  DEBUG    detect found=False
+2026-06-10 22:49:09.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:09.822  DEBUG    detect found=False
+2026-06-10 22:49:10.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:10.852  DEBUG    detect found=False
+2026-06-10 22:49:11.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:11.959  DEBUG    detect found=False
+2026-06-10 22:49:12.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:13.007  DEBUG    detect found=False
+2026-06-10 22:49:13.557  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:13.986  DEBUG    detect found=False
+2026-06-10 22:49:14.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:15.024  DEBUG    detect found=False
+2026-06-10 22:49:15.433  INFO     detect tag_acquired id=0 dist_cm=25.2
+2026-06-10 22:49:15.506  DEBUG    steer angle=4
+2026-06-10 22:49:15.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:15.572  DEBUG    steer angle=6
+2026-06-10 22:49:15.637  INFO     detect tag_lost
+2026-06-10 22:49:15.949  INFO     detect tag_acquired id=0 dist_cm=19.1
+2026-06-10 22:49:15.949  DEBUG    steer angle=12
+2026-06-10 22:49:16.009  DEBUG    steer angle=6
+2026-06-10 22:49:16.068  DEBUG    steer angle=5
+2026-06-10 22:49:16.070  DEBUG    detect found=True dist_cm=19.8
+2026-06-10 22:49:16.140  INFO     detect tag_lost
+2026-06-10 22:49:16.207  INFO     detect tag_acquired id=0 dist_cm=20.1
+2026-06-10 22:49:16.207  DEBUG    steer angle=2
+2026-06-10 22:49:16.268  INFO     detect tag_lost
+2026-06-10 22:49:16.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:17.106  DEBUG    detect found=False
+2026-06-10 22:49:17.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:18.129  DEBUG    detect found=False
+2026-06-10 22:49:18.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:19.161  DEBUG    detect found=False
+2026-06-10 22:49:19.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:20.180  DEBUG    detect found=False
+2026-06-10 22:49:20.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:21.221  DEBUG    detect found=False
+2026-06-10 22:49:21.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:22.231  DEBUG    detect found=False
+2026-06-10 22:49:22.546  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:23.268  DEBUG    detect found=False
+2026-06-10 22:49:23.548  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:24.316  DEBUG    detect found=False
+2026-06-10 22:49:24.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:25.376  DEBUG    detect found=False
+2026-06-10 22:49:25.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:26.426  DEBUG    detect found=False
+2026-06-10 22:49:26.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:27.468  DEBUG    detect found=False
+2026-06-10 22:49:27.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:28.484  DEBUG    detect found=False
+2026-06-10 22:49:28.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:29.518  DEBUG    detect found=False
+2026-06-10 22:49:29.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:30.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:30.558  DEBUG    detect found=False
+2026-06-10 22:49:31.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:31.551  DEBUG    capture->chaser active
+2026-06-10 22:49:31.604  DEBUG    detect found=False
+2026-06-10 22:49:32.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:32.639  DEBUG    detect found=False
+2026-06-10 22:49:33.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:33.680  DEBUG    detect found=False
+2026-06-10 22:49:34.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:34.715  DEBUG    detect found=False
+2026-06-10 22:49:35.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:35.764  DEBUG    detect found=False
+2026-06-10 22:49:36.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:36.791  DEBUG    detect found=False
+2026-06-10 22:49:37.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:37.850  DEBUG    detect found=False
+2026-06-10 22:49:38.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:38.889  DEBUG    detect found=False
+2026-06-10 22:49:39.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:39.933  DEBUG    detect found=False
+2026-06-10 22:49:40.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:40.967  DEBUG    detect found=False
+2026-06-10 22:49:41.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:41.980  DEBUG    detect found=False
+2026-06-10 22:49:42.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:43.025  DEBUG    detect found=False
+2026-06-10 22:49:43.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:44.035  DEBUG    detect found=False
+2026-06-10 22:49:44.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:45.081  DEBUG    detect found=False
+2026-06-10 22:49:45.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:46.118  DEBUG    detect found=False
+2026-06-10 22:49:46.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:47.147  DEBUG    detect found=False
+2026-06-10 22:49:47.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:48.194  DEBUG    detect found=False
+2026-06-10 22:49:48.545  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:49.238  DEBUG    detect found=False
+2026-06-10 22:49:49.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:50.281  DEBUG    detect found=False
+2026-06-10 22:49:50.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:51.322  DEBUG    detect found=False
+2026-06-10 22:49:51.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:52.369  DEBUG    detect found=False
+2026-06-10 22:49:52.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:53.409  DEBUG    detect found=False
+2026-06-10 22:49:53.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:54.413  DEBUG    detect found=False
+2026-06-10 22:49:54.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:55.468  DEBUG    detect found=False
+2026-06-10 22:49:55.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:56.497  DEBUG    detect found=False
+2026-06-10 22:49:56.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:57.536  DEBUG    detect found=False
+2026-06-10 22:49:57.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:58.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:58.585  DEBUG    detect found=False
+2026-06-10 22:49:59.547  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:49:59.627  DEBUG    detect found=False
+2026-06-10 22:50:00.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:00.652  DEBUG    detect found=False
+2026-06-10 22:50:01.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:01.593  DEBUG    capture->chaser active
+2026-06-10 22:50:01.707  DEBUG    detect found=False
+2026-06-10 22:50:02.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:02.740  DEBUG    detect found=False
+2026-06-10 22:50:03.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:03.759  DEBUG    detect found=False
+2026-06-10 22:50:04.611  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:04.799  DEBUG    detect found=False
+2026-06-10 22:50:05.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:05.843  DEBUG    detect found=False
+2026-06-10 22:50:06.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:06.841  DEBUG    detect found=False
+2026-06-10 22:50:07.543  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:07.889  DEBUG    detect found=False
+2026-06-10 22:50:08.542  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:08.953  DEBUG    detect found=False
+2026-06-10 22:50:09.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:10.003  DEBUG    detect found=False
+2026-06-10 22:50:10.553  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:11.051  DEBUG    detect found=False
+2026-06-10 22:50:11.544  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:12.095  DEBUG    detect found=False
+2026-06-10 22:50:12.541  DEBUG    heartbeat from 192.168.1.87
+2026-06-10 22:50:13.120  DEBUG    detect found=False
+2026-06-10 22:50:14.125  DEBUG    detect found=False
+2026-06-10 22:50:15.159  DEBUG    detect found=False
+2026-06-10 22:50:16.220  DEBUG    detect found=False
+2026-06-10 22:50:17.259  DEBUG    detect found=False
+2026-06-10 22:50:18.058  WARNING  Watchdog fired — no heartbeat for 5.0s, stopping motors
+2026-06-10 22:50:18.299  DEBUG    detect found=False
+2026-06-10 22:50:19.336  DEBUG    detect found=False
+2026-06-10 22:50:20.368  DEBUG    detect found=False
+2026-06-10 22:50:21.387  DEBUG    detect found=False
+2026-06-10 22:50:22.432  DEBUG    detect found=False
+2026-06-10 22:50:23.446  DEBUG    detect found=False
+2026-06-10 22:50:24.492  DEBUG    detect found=False
+2026-06-10 22:50:25.545  DEBUG    detect found=False
+2026-06-10 22:50:26.549  DEBUG    detect found=False
+2026-06-10 22:50:27.589  DEBUG    detect found=False
+2026-06-10 22:50:28.614  DEBUG    detect found=False
+2026-06-10 22:50:29.629  DEBUG    detect found=False
+2026-06-10 22:50:30.670  DEBUG    detect found=False
+2026-06-10 22:50:31.604  DEBUG    capture->chaser active
+2026-06-10 22:50:31.677  DEBUG    detect found=False
+2026-06-10 22:50:32.728  DEBUG    detect found=False
+2026-06-10 22:50:33.766  DEBUG    detect found=False
+2026-06-10 22:50:34.853  DEBUG    detect found=False
+2026-06-10 22:50:35.906  DEBUG    detect found=False
+2026-06-10 22:50:36.308  INFO     detect tag_acquired id=0 dist_cm=37.1
+2026-06-10 22:50:36.308  DEBUG    steer angle=-4
+2026-06-10 22:50:36.364  DEBUG    steer angle=-2
+2026-06-10 22:50:36.421  DEBUG    steer angle=0
+2026-06-10 22:50:36.476  INFO     detect tag_lost
+2026-06-10 22:50:36.758  INFO     detect tag_acquired id=0 dist_cm=28.3
+2026-06-10 22:50:36.758  DEBUG    steer angle=20
+2026-06-10 22:50:36.813  INFO     detect tag_lost
+2026-06-10 22:50:36.872  INFO     detect tag_acquired id=0 dist_cm=27.4
+2026-06-10 22:50:36.877  DEBUG    steer angle=9
+2026-06-10 22:50:36.929  INFO     detect tag_lost
+2026-06-10 22:50:36.931  DEBUG    detect found=False
+2026-06-10 22:50:37.147  INFO     detect tag_acquired id=0 dist_cm=27.2
+2026-06-10 22:50:37.147  DEBUG    steer angle=-20
+2026-06-10 22:50:37.204  DEBUG    steer angle=1
+2026-06-10 22:50:37.257  INFO     detect tag_lost
+2026-06-10 22:50:37.319  INFO     detect tag_acquired id=0 dist_cm=25.4
+2026-06-10 22:50:37.319  DEBUG    steer angle=7
+2026-06-10 22:50:37.377  INFO     detect tag_lost
+2026-06-10 22:50:37.492  INFO     detect tag_acquired id=0 dist_cm=28.4
+2026-06-10 22:50:37.492  DEBUG    steer angle=20
+2026-06-10 22:50:37.546  INFO     detect tag_lost
+2026-06-10 22:50:37.656  INFO     detect tag_acquired id=0 dist_cm=26.1
+2026-06-10 22:50:37.656  DEBUG    steer angle=12
+2026-06-10 22:50:37.717  INFO     detect tag_lost
+2026-06-10 22:50:37.984  DEBUG    detect found=False
+2026-06-10 22:50:38.127  INFO     detect tag_acquired id=0 dist_cm=26.3
+2026-06-10 22:50:38.127  DEBUG    steer angle=-20
+2026-06-10 22:50:38.187  INFO     detect tag_lost
+2026-06-10 22:50:38.916  INFO     detect tag_acquired id=0 dist_cm=26.0
+2026-06-10 22:50:38.916  DEBUG    steer angle=20
+2026-06-10 22:50:38.984  INFO     detect tag_lost
+2026-06-10 22:50:38.986  DEBUG    detect found=False
+2026-06-10 22:50:39.108  INFO     detect tag_acquired id=0 dist_cm=31.1
+2026-06-10 22:50:39.108  DEBUG    steer angle=-14
+2026-06-10 22:50:39.164  INFO     detect tag_lost
+2026-06-10 22:50:40.001  DEBUG    detect found=False
+2026-06-10 22:50:41.054  DEBUG    detect found=False
+2026-06-10 22:50:42.096  DEBUG    detect found=False
+2026-06-10 22:50:43.124  DEBUG    detect found=False
+2026-06-10 22:50:43.750  INFO     WebSocket disconnected from 192.168.1.87
+2026-06-10 22:50:44.162  DEBUG    detect found=False
+2026-06-10 22:50:45.215  DEBUG    detect found=False
+2026-06-10 22:50:46.248  DEBUG    detect found=False
+2026-06-10 22:50:47.281  DEBUG    detect found=False
+2026-06-10 22:50:48.330  DEBUG    detect found=False
+2026-06-10 22:50:49.369  DEBUG    detect found=False
+2026-06-10 22:50:50.438  DEBUG    detect found=False
+2026-06-10 22:50:51.481  DEBUG    detect found=False
+2026-06-10 22:50:52.506  DEBUG    detect found=False
+2026-06-10 22:50:53.546  DEBUG    detect found=False
+2026-06-10 22:50:54.579  DEBUG    detect found=False
+2026-06-10 22:50:55.650  DEBUG    detect found=False
+2026-06-10 22:50:56.684  DEBUG    detect found=False
+2026-06-10 22:50:57.737  DEBUG    detect found=False
+2026-06-10 22:50:58.781  DEBUG    detect found=False
+2026-06-10 22:50:59.822  DEBUG    detect found=False
+2026-06-10 22:51:00.840  DEBUG    detect found=False
+2026-06-10 22:51:01.581  INFO     detect tag_acquired id=0 dist_cm=129.3
+2026-06-10 22:51:01.581  DEBUG    steer angle=-19
+2026-06-10 22:51:01.636  INFO     detect tag_lost
+2026-06-10 22:51:01.644  DEBUG    capture->chaser active
+2026-06-10 22:51:01.857  DEBUG    detect found=False
+2026-06-10 22:51:02.919  DEBUG    detect found=False
+2026-06-10 22:51:03.924  DEBUG    detect found=False
+2026-06-10 22:51:04.975  DEBUG    detect found=False
+2026-06-10 22:51:06.022  DEBUG    detect found=False
+2026-06-10 22:51:07.016  DEBUG    detect found=False
+2026-06-10 22:51:08.071  DEBUG    detect found=False
+2026-06-10 22:51:09.127  DEBUG    detect found=False
+2026-06-10 22:51:10.188  DEBUG    detect found=False
+2026-06-10 22:51:10.642  INFO     detect tag_acquired id=0 dist_cm=71.8
+2026-06-10 22:51:10.642  DEBUG    steer angle=20
+2026-06-10 22:51:10.705  DEBUG    steer angle=8
+2026-06-10 22:51:10.822  INFO     detect tag_lost
+2026-06-10 22:51:11.018  INFO     detect tag_acquired id=0 dist_cm=73.0
+2026-06-10 22:51:11.018  DEBUG    steer angle=9
+2026-06-10 22:51:11.080  DEBUG    steer angle=8
+2026-06-10 22:51:11.203  INFO     detect tag_lost
+2026-06-10 22:51:11.205  DEBUG    detect found=False
+2026-06-10 22:51:11.325  INFO     detect tag_acquired id=0 dist_cm=80.3
+2026-06-10 22:51:11.325  DEBUG    steer angle=6
+2026-06-10 22:51:11.382  INFO     detect tag_lost
+2026-06-10 22:51:11.788  INFO     detect tag_acquired id=0 dist_cm=92.6
+2026-06-10 22:51:11.789  DEBUG    steer angle=-6
+2026-06-10 22:51:11.850  INFO     detect tag_lost
+2026-06-10 22:51:12.250  DEBUG    detect found=False
+2026-06-10 22:51:12.549  INFO     detect tag_acquired id=0 dist_cm=94.0
+2026-06-10 22:51:12.549  DEBUG    steer angle=13
+2026-06-10 22:51:12.610  DEBUG    steer angle=3
+2026-06-10 22:51:12.734  INFO     detect tag_lost
+2026-06-10 22:51:12.916  INFO     detect tag_acquired id=0 dist_cm=103.9
+2026-06-10 22:51:12.916  DEBUG    steer angle=2
+2026-06-10 22:51:12.979  INFO     detect tag_lost
+2026-06-10 22:51:13.193  INFO     detect tag_acquired id=0 dist_cm=100.4
+2026-06-10 22:51:13.194  DEBUG    steer angle=0
+2026-06-10 22:51:13.261  DEBUG    steer angle=2
+2026-06-10 22:51:13.263  DEBUG    detect found=True dist_cm=98.8
+2026-06-10 22:51:13.325  INFO     detect tag_lost
+2026-06-10 22:51:13.393  INFO     detect tag_acquired id=0 dist_cm=93.7
+2026-06-10 22:51:13.458  INFO     detect tag_lost
+2026-06-10 22:51:13.520  INFO     detect tag_acquired id=0 dist_cm=91.9
+2026-06-10 22:51:13.587  INFO     detect tag_lost
+2026-06-10 22:51:13.779  INFO     detect tag_acquired id=0 dist_cm=88.0
+2026-06-10 22:51:13.850  INFO     detect tag_lost
+2026-06-10 22:51:13.918  INFO     detect tag_acquired id=0 dist_cm=87.4
+2026-06-10 22:51:13.919  DEBUG    steer angle=0
+2026-06-10 22:51:14.047  INFO     detect tag_lost
+2026-06-10 22:51:14.114  INFO     detect tag_acquired id=0 dist_cm=88.1
+2026-06-10 22:51:14.256  INFO     detect tag_lost
+2026-06-10 22:51:14.324  INFO     detect tag_acquired id=0 dist_cm=87.3
+2026-06-10 22:51:14.326  DEBUG    detect found=True dist_cm=87.3
+2026-06-10 22:51:14.389  INFO     detect tag_lost
+2026-06-10 22:51:14.459  INFO     detect tag_acquired id=0 dist_cm=86.6
+2026-06-10 22:51:14.522  INFO     detect tag_lost
+2026-06-10 22:51:14.587  INFO     detect tag_acquired id=0 dist_cm=86.8
+2026-06-10 22:51:14.652  INFO     detect tag_lost
+2026-06-10 22:51:14.714  INFO     detect tag_acquired id=0 dist_cm=85.3
+2026-06-10 22:51:14.714  DEBUG    steer angle=0
+2026-06-10 22:51:14.773  INFO     detect tag_lost
+2026-06-10 22:51:15.357  DEBUG    detect found=False
+2026-06-10 22:51:15.581  INFO     detect tag_acquired id=0 dist_cm=92.0
+2026-06-10 22:51:15.581  DEBUG    steer angle=-20
+2026-06-10 22:51:15.647  DEBUG    steer angle=-13
+2026-06-10 22:51:15.711  INFO     detect tag_lost
+2026-06-10 22:51:16.133  INFO     detect tag_acquired id=0 dist_cm=85.3
+2026-06-10 22:51:16.133  DEBUG    steer angle=-8
+2026-06-10 22:51:16.200  DEBUG    steer angle=-10
+2026-06-10 22:51:16.412  INFO     detect tag_lost
+2026-06-10 22:51:16.414  DEBUG    detect found=False
+2026-06-10 22:51:16.568  INFO     detect tag_acquired id=0 dist_cm=74.2
+2026-06-10 22:51:16.569  DEBUG    steer angle=-5
+2026-06-10 22:51:16.635  DEBUG    steer angle=-7
+2026-06-10 22:51:16.694  INFO     detect tag_lost
+2026-06-10 22:51:16.753  INFO     detect tag_acquired id=0 dist_cm=73.7
+2026-06-10 22:51:16.753  DEBUG    steer angle=-3
+2026-06-10 22:51:16.814  INFO     detect tag_lost
+2026-06-10 22:51:16.875  INFO     detect tag_acquired id=0 dist_cm=74.0
+2026-06-10 22:51:16.875  DEBUG    steer angle=-7
+2026-06-10 22:51:16.934  INFO     detect tag_lost
+2026-06-10 22:51:17.006  INFO     detect tag_acquired id=0 dist_cm=75.3
+2026-06-10 22:51:17.163  DEBUG    steer angle=-7
+2026-06-10 22:51:17.228  INFO     detect tag_lost
+2026-06-10 22:51:17.414  DEBUG    detect found=False
+2026-06-10 22:51:18.279  INFO     detect tag_acquired id=0 dist_cm=90.7
+2026-06-10 22:51:18.279  DEBUG    steer angle=20
+2026-06-10 22:51:18.343  INFO     detect tag_lost
+2026-06-10 22:51:18.488  DEBUG    detect found=False
+2026-06-10 22:51:19.070  INFO     detect tag_acquired id=0 dist_cm=64.4
+2026-06-10 22:51:19.070  DEBUG    steer angle=12
+2026-06-10 22:51:19.129  INFO     detect tag_lost
+2026-06-10 22:51:19.327  INFO     detect tag_acquired id=0 dist_cm=72.6
+2026-06-10 22:51:19.327  DEBUG    steer angle=20
+2026-06-10 22:51:19.395  DEBUG    steer angle=12
+2026-06-10 22:51:19.528  INFO     detect tag_lost
+2026-06-10 22:51:19.530  DEBUG    detect found=False
+2026-06-10 22:51:19.652  INFO     detect tag_acquired id=0 dist_cm=72.4
+2026-06-10 22:51:19.652  DEBUG    steer angle=4
+2026-06-10 22:51:19.717  DEBUG    steer angle=6
+2026-06-10 22:51:19.908  DEBUG    steer angle=7
+2026-06-10 22:51:20.309  DEBUG    steer angle=6
+2026-06-10 22:51:20.499  INFO     detect tag_lost
+2026-06-10 22:51:20.561  INFO     detect tag_acquired id=0 dist_cm=80.7
+2026-06-10 22:51:20.563  DEBUG    detect found=True dist_cm=80.7
+2026-06-10 22:51:20.687  INFO     detect tag_lost
+2026-06-10 22:51:20.763  INFO     detect tag_acquired id=0 dist_cm=79.2
+2026-06-10 22:51:20.767  DEBUG    steer angle=5
+2026-06-10 22:51:20.829  INFO     detect tag_lost
+2026-06-10 22:51:21.591  DEBUG    detect found=False
+2026-06-10 22:51:22.503  INFO     detect tag_acquired id=0 dist_cm=58.1
+2026-06-10 22:51:22.504  DEBUG    steer angle=-20
+2026-06-10 22:51:22.570  DEBUG    steer angle=-5
+2026-06-10 22:51:22.627  INFO     detect tag_lost
+2026-06-10 22:51:22.629  DEBUG    detect found=False
+2026-06-10 22:51:22.688  INFO     detect tag_acquired id=0 dist_cm=54.0
+2026-06-10 22:51:22.689  DEBUG    steer angle=-7
+2026-06-10 22:51:22.746  DEBUG    steer angle=-2
+2026-06-10 22:51:22.812  DEBUG    steer angle=-6
+2026-06-10 22:51:22.933  INFO     detect tag_lost
+2026-06-10 22:51:23.729  DEBUG    detect found=False
+2026-06-10 22:51:24.722  DEBUG    detect found=False
+2026-06-10 22:51:25.796  DEBUG    detect found=False
+2026-06-10 22:51:26.215  INFO     detect tag_acquired id=0 dist_cm=72.5
+2026-06-10 22:51:26.216  DEBUG    steer angle=-20
+2026-06-10 22:51:26.286  DEBUG    steer angle=-7
+2026-06-10 22:51:26.413  INFO     detect tag_lost
+2026-06-10 22:51:26.553  INFO     detect tag_acquired id=0 dist_cm=61.7
+2026-06-10 22:51:26.553  DEBUG    steer angle=-5
+2026-06-10 22:51:26.818  DEBUG    steer angle=-9
+2026-06-10 22:51:26.820  DEBUG    detect found=True dist_cm=54.0
+2026-06-10 22:51:26.939  DEBUG    steer angle=-10
+2026-06-10 22:51:27.133  INFO     detect tag_lost
+2026-06-10 22:51:27.259  INFO     detect tag_acquired id=0 dist_cm=53.1
+2026-06-10 22:51:27.260  DEBUG    steer angle=-15
+2026-06-10 22:51:27.324  INFO     detect tag_lost
+2026-06-10 22:51:27.452  INFO     detect tag_acquired id=0 dist_cm=51.6
+2026-06-10 22:51:27.452  DEBUG    steer angle=-13
+2026-06-10 22:51:27.506  INFO     detect tag_lost
+2026-06-10 22:51:27.733  INFO     detect tag_acquired id=0 dist_cm=51.9
+2026-06-10 22:51:27.733  DEBUG    steer angle=9
+2026-06-10 22:51:27.793  DEBUG    steer angle=-1
+2026-06-10 22:51:27.851  INFO     detect tag_lost
+2026-06-10 22:51:27.853  DEBUG    detect found=False
+2026-06-10 22:51:27.917  INFO     detect tag_acquired id=0 dist_cm=50.5
+2026-06-10 22:51:27.918  DEBUG    steer angle=3
+2026-06-10 22:51:27.982  INFO     detect tag_lost
+2026-06-10 22:51:28.048  INFO     detect tag_acquired id=0 dist_cm=50.5
+2026-06-10 22:51:28.048  DEBUG    steer angle=-6
+2026-06-10 22:51:28.108  DEBUG    steer angle=-4
+2026-06-10 22:51:28.174  INFO     detect tag_lost
+2026-06-10 22:51:28.246  INFO     detect tag_acquired id=0 dist_cm=46.8
+2026-06-10 22:51:28.246  DEBUG    steer angle=-9
+2026-06-10 22:51:28.310  DEBUG    steer angle=-7
+2026-06-10 22:51:28.371  INFO     detect tag_lost
+2026-06-10 22:51:28.433  INFO     detect tag_acquired id=0 dist_cm=38.6
+2026-06-10 22:51:28.434  DEBUG    steer angle=-13
+2026-06-10 22:51:28.495  INFO     detect tag_lost
+2026-06-10 22:51:28.902  DEBUG    detect found=False
+2026-06-10 22:51:29.950  DEBUG    detect found=False
+2026-06-10 22:51:30.526  INFO     detect tag_acquired id=0 dist_cm=46.4
+2026-06-10 22:51:30.526  DEBUG    steer angle=-20
+2026-06-10 22:51:30.587  DEBUG    steer angle=-11
+2026-06-10 22:51:30.647  DEBUG    steer angle=-10
+2026-06-10 22:51:30.710  INFO     detect tag_lost
+2026-06-10 22:51:30.902  INFO     detect tag_acquired id=0 dist_cm=41.9
+2026-06-10 22:51:30.908  DEBUG    steer angle=4
+2026-06-10 22:51:31.016  DEBUG    steer angle=-5
+2026-06-10 22:51:31.022  DEBUG    detect found=True dist_cm=38.2
+2026-06-10 22:51:31.081  INFO     detect tag_lost
+2026-06-10 22:51:31.209  INFO     detect tag_acquired id=0 dist_cm=36.1
+2026-06-10 22:51:31.210  DEBUG    steer angle=-9
+2026-06-10 22:51:31.281  DEBUG    steer angle=-7
+2026-06-10 22:51:31.350  DEBUG    steer angle=-4
+2026-06-10 22:51:31.410  INFO     detect tag_lost
+2026-06-10 22:51:31.707  DEBUG    capture->chaser active
+2026-06-10 22:51:32.069  DEBUG    detect found=False
+2026-06-10 22:51:32.601  INFO     detect tag_acquired id=0 dist_cm=20.5
+2026-06-10 22:51:32.602  DEBUG    steer angle=-14
+2026-06-10 22:51:32.673  INFO     detect tag_lost
+2026-06-10 22:51:33.106  DEBUG    detect found=False
+2026-06-10 22:51:34.146  DEBUG    detect found=False
+2026-06-10 22:51:35.168  DEBUG    detect found=False
+2026-06-10 22:51:36.170  DEBUG    detect found=False
+2026-06-10 22:51:37.209  DEBUG    detect found=False
+2026-06-10 22:51:38.233  DEBUG    detect found=False
+2026-06-10 22:51:39.276  DEBUG    detect found=False
+2026-06-10 22:51:40.301  DEBUG    detect found=False
+2026-06-10 22:51:41.321  DEBUG    detect found=False
+2026-06-10 22:51:42.360  DEBUG    detect found=False
+2026-06-10 22:51:43.399  DEBUG    detect found=False
+2026-06-10 22:51:44.440  DEBUG    detect found=False
+2026-06-10 22:51:45.505  DEBUG    detect found=False
+2026-06-10 22:51:46.508  DEBUG    detect found=False
+2026-06-10 22:51:47.555  DEBUG    detect found=False
+2026-06-10 22:51:48.560  DEBUG    detect found=False
+2026-06-10 22:51:49.625  DEBUG    detect found=False
+2026-06-10 22:51:50.631  DEBUG    detect found=False
+2026-06-10 22:51:51.686  DEBUG    detect found=False
+2026-06-10 22:51:52.689  DEBUG    detect found=False
+2026-06-10 22:51:53.735  DEBUG    detect found=False
+2026-06-10 22:51:54.742  DEBUG    detect found=False
+2026-06-10 22:51:55.758  DEBUG    detect found=False
+2026-06-10 22:51:56.809  DEBUG    detect found=False
+2026-06-10 22:51:57.792  DEBUG    detect found=False
+2026-06-10 22:51:58.805  DEBUG    detect found=False
+2026-06-10 22:51:59.877  DEBUG    detect found=False
+2026-06-10 22:52:00.930  DEBUG    detect found=False
+2026-06-10 22:52:01.727  DEBUG    capture->chaser active
+2026-06-10 22:52:01.908  DEBUG    detect found=False
+2026-06-10 22:52:02.333  INFO     detect tag_acquired id=0 dist_cm=46.2
+2026-06-10 22:52:02.334  DEBUG    steer angle=12
+2026-06-10 22:52:02.390  INFO     detect tag_lost
+2026-06-10 22:52:02.917  DEBUG    detect found=False
+2026-06-10 22:52:03.091  INFO     detect tag_acquired id=0 dist_cm=35.3
+2026-06-10 22:52:03.091  DEBUG    steer angle=-20
+2026-06-10 22:52:03.147  DEBUG    steer angle=-8
+2026-06-10 22:52:03.206  INFO     detect tag_lost
+2026-06-10 22:52:03.963  DEBUG    detect found=False
+2026-06-10 22:52:04.988  DEBUG    detect found=False
+2026-06-10 22:52:06.034  DEBUG    detect found=False
+2026-06-10 22:52:07.086  DEBUG    detect found=False
+2026-06-10 22:52:08.195  DEBUG    detect found=False
+2026-06-10 22:52:09.251  DEBUG    detect found=False
+2026-06-10 22:52:10.272  DEBUG    detect found=False
+2026-06-10 22:52:10.482  INFO     detect tag_acquired id=0 dist_cm=108.9
+2026-06-10 22:52:10.482  DEBUG    steer angle=2
+2026-06-10 22:52:10.541  DEBUG    steer angle=0
+2026-06-10 22:52:10.660  DEBUG    steer angle=4
+2026-06-10 22:52:10.723  INFO     detect tag_lost
+2026-06-10 22:52:10.803  INFO     detect tag_acquired id=0 dist_cm=119.1
+2026-06-10 22:52:10.803  DEBUG    steer angle=0
+2026-06-10 22:52:10.871  INFO     detect tag_lost
+2026-06-10 22:52:11.060  INFO     detect tag_acquired id=0 dist_cm=112.0
+2026-06-10 22:52:11.060  DEBUG    steer angle=-2
+2026-06-10 22:52:11.124  INFO     detect tag_lost
+2026-06-10 22:52:11.352  DEBUG    detect found=False
+2026-06-10 22:52:12.368  DEBUG    detect found=False
+2026-06-10 22:52:13.428  DEBUG    detect found=False
+2026-06-10 22:52:14.486  DEBUG    detect found=False
+2026-06-10 22:52:15.514  DEBUG    detect found=False
+2026-06-10 22:52:16.557  DEBUG    detect found=False
+2026-06-10 22:52:17.584  DEBUG    detect found=False
+2026-06-10 22:52:18.642  DEBUG    detect found=False
+2026-06-10 22:52:19.452  INFO     detect tag_acquired id=0 dist_cm=116.9
+2026-06-10 22:52:19.452  DEBUG    steer angle=2
+2026-06-10 22:52:19.521  DEBUG    steer angle=0
+2026-06-10 22:52:19.589  INFO     detect tag_lost
+2026-06-10 22:52:19.659  DEBUG    detect found=False
+2026-06-10 22:52:20.671  DEBUG    detect found=False
+2026-06-10 22:52:21.025  INFO     detect tag_acquired id=0 dist_cm=107.5
+2026-06-10 22:52:21.025  DEBUG    steer angle=-8
+2026-06-10 22:52:21.088  INFO     detect tag_lost
+2026-06-10 22:52:21.690  DEBUG    detect found=False
+2026-06-10 22:52:22.223  INFO     detect tag_acquired id=0 dist_cm=92.9
+2026-06-10 22:52:22.223  DEBUG    steer angle=3
+2026-06-10 22:52:22.303  DEBUG    steer angle=1
+2026-06-10 22:52:22.373  INFO     detect tag_lost
+2026-06-10 22:52:22.711  DEBUG    detect found=False
+2026-06-10 22:52:23.082  INFO     detect tag_acquired id=0 dist_cm=74.8
+2026-06-10 22:52:23.082  DEBUG    steer angle=17
+2026-06-10 22:52:23.146  DEBUG    steer angle=11
+2026-06-10 22:52:23.209  DEBUG    steer angle=9
+2026-06-10 22:52:23.276  DEBUG    steer angle=10
+2026-06-10 22:52:23.337  INFO     detect tag_lost
+2026-06-10 22:52:23.761  DEBUG    detect found=False
+2026-06-10 22:52:24.759  DEBUG    detect found=False
+2026-06-10 22:52:25.809  DEBUG    detect found=False
+2026-06-10 22:52:26.843  DEBUG    detect found=False
+2026-06-10 22:52:27.881  DEBUG    detect found=False
+2026-06-10 22:52:28.910  DEBUG    detect found=False
+2026-06-10 22:52:29.938  DEBUG    detect found=False
+2026-06-10 22:52:30.981  DEBUG    detect found=False
+2026-06-10 22:52:31.752  DEBUG    capture->chaser active
+2026-06-10 22:52:31.996  DEBUG    detect found=False
+2026-06-10 22:52:33.015  DEBUG    detect found=False
+2026-06-10 22:52:34.042  DEBUG    detect found=False
+2026-06-10 22:52:35.097  DEBUG    detect found=False
+2026-06-10 22:52:36.140  DEBUG    detect found=False
+2026-06-10 22:52:37.192  DEBUG    detect found=False
+2026-06-10 22:52:38.210  DEBUG    detect found=False
+2026-06-10 22:52:39.265  DEBUG    detect found=False
+2026-06-10 22:52:40.273  DEBUG    detect found=False
+2026-06-10 22:52:41.286  DEBUG    detect found=False
+2026-06-10 22:52:42.286  DEBUG    detect found=False
+2026-06-10 22:52:43.332  DEBUG    detect found=False
+2026-06-10 22:52:43.849  INFO     detect tag_acquired id=0 dist_cm=69.5
+2026-06-10 22:52:43.849  DEBUG    steer angle=18
+2026-06-10 22:52:43.910  DEBUG    steer angle=4
+2026-06-10 22:52:44.026  INFO     detect tag_lost
+2026-06-10 22:52:44.331  DEBUG    detect found=False
+2026-06-10 22:52:45.379  DEBUG    detect found=False
+2026-06-10 22:52:46.499  DEBUG    detect found=False
+2026-06-10 22:52:47.522  DEBUG    detect found=False
+2026-06-10 22:52:48.552  DEBUG    detect found=False
+2026-06-10 22:52:49.595  DEBUG    detect found=False
+2026-06-10 22:52:50.642  DEBUG    detect found=False
+2026-06-10 22:52:51.689  DEBUG    detect found=False
+2026-06-10 22:52:52.728  DEBUG    detect found=False
+2026-06-10 22:52:53.752  DEBUG    detect found=False
+2026-06-10 22:52:54.801  DEBUG    detect found=False
+2026-06-10 22:52:55.851  DEBUG    detect found=False
+2026-06-10 22:52:56.888  DEBUG    detect found=False
+2026-06-10 22:52:57.913  DEBUG    detect found=False
+2026-06-10 22:52:58.960  DEBUG    detect found=False
+2026-06-10 22:53:00.008  DEBUG    detect found=False
+2026-06-10 22:53:01.046  DEBUG    detect found=False
+2026-06-10 22:53:01.794  DEBUG    capture->chaser active
+2026-06-10 22:53:02.072  DEBUG    detect found=False
+2026-06-10 22:53:03.117  DEBUG    detect found=False
+2026-06-10 22:53:04.148  DEBUG    detect found=False
+2026-06-10 22:53:05.192  DEBUG    detect found=False
+2026-06-10 22:53:06.246  DEBUG    detect found=False
+2026-06-10 22:53:06.367  INFO     detect tag_acquired id=0 dist_cm=82.7
+2026-06-10 22:53:06.367  DEBUG    steer angle=20
+2026-06-10 22:53:06.427  DEBUG    steer angle=8
+2026-06-10 22:53:06.483  INFO     detect tag_lost
+2026-06-10 22:53:06.539  INFO     detect tag_acquired id=0 dist_cm=87.3
+2026-06-10 22:53:06.594  INFO     detect tag_lost
+2026-06-10 22:53:07.269  DEBUG    detect found=False
+2026-06-10 22:53:07.329  INFO     detect tag_acquired id=0 dist_cm=80.9
+2026-06-10 22:53:07.329  DEBUG    steer angle=-20
+2026-06-10 22:53:07.387  DEBUG    steer angle=-13
+2026-06-10 22:53:07.447  INFO     detect tag_lost
+2026-06-10 22:53:07.510  INFO     detect tag_acquired id=0 dist_cm=88.9
+2026-06-10 22:53:07.511  DEBUG    steer angle=-15
+2026-06-10 22:53:07.570  INFO     detect tag_lost
+2026-06-10 22:53:07.983  INFO     detect tag_acquired id=0 dist_cm=81.0
+2026-06-10 22:53:07.984  DEBUG    steer angle=19
+2026-06-10 22:53:08.042  INFO     detect tag_lost
+2026-06-10 22:53:08.282  DEBUG    detect found=False
+2026-06-10 22:53:09.335  DEBUG    detect found=False
+2026-06-10 22:53:10.166  INFO     detect tag_acquired id=0 dist_cm=117.9
+2026-06-10 22:53:10.166  DEBUG    steer angle=8
+2026-06-10 22:53:10.223  DEBUG    steer angle=2
+2026-06-10 22:53:10.282  INFO     detect tag_lost
+2026-06-10 22:53:10.338  INFO     detect tag_acquired id=0 dist_cm=111.7
+2026-06-10 22:53:10.339  DEBUG    steer angle=-2
+2026-06-10 22:53:10.347  DEBUG    detect found=True dist_cm=111.7
+2026-06-10 22:53:10.405  INFO     detect tag_lost
+2026-06-10 22:53:10.465  INFO     detect tag_acquired id=0 dist_cm=94.0
+2026-06-10 22:53:10.524  DEBUG    steer angle=-1
+2026-06-10 22:53:10.583  INFO     detect tag_lost
+2026-06-10 22:53:10.642  INFO     detect tag_acquired id=0 dist_cm=81.3
+2026-06-10 22:53:10.642  DEBUG    steer angle=1
+2026-06-10 22:53:10.886  INFO     detect tag_lost
+2026-06-10 22:53:11.370  DEBUG    detect found=False
+2026-06-10 22:53:12.337  INFO     detect tag_acquired id=0 dist_cm=91.9
+2026-06-10 22:53:12.337  DEBUG    steer angle=-20
+2026-06-10 22:53:12.396  DEBUG    steer angle=-11
+2026-06-10 22:53:12.398  DEBUG    detect found=True dist_cm=87.5
+2026-06-10 22:53:12.457  DEBUG    steer angle=-12
+2026-06-10 22:53:12.518  DEBUG    steer angle=-14
+2026-06-10 22:53:12.584  INFO     detect tag_lost
+2026-06-10 22:53:12.703  INFO     detect tag_acquired id=0 dist_cm=93.7
+2026-06-10 22:53:12.703  DEBUG    steer angle=-10
+2026-06-10 22:53:12.769  INFO     detect tag_lost
+2026-06-10 22:53:12.893  INFO     detect tag_acquired id=0 dist_cm=88.8
+2026-06-10 22:53:12.893  DEBUG    steer angle=-4
+2026-06-10 22:53:12.956  INFO     detect tag_lost
+2026-06-10 22:53:13.151  INFO     detect tag_acquired id=0 dist_cm=80.1
+2026-06-10 22:53:13.151  DEBUG    steer angle=-3
+2026-06-10 22:53:13.222  DEBUG    steer angle=-8
+2026-06-10 22:53:13.290  INFO     detect tag_lost
+2026-06-10 22:53:13.428  DEBUG    detect found=False
+2026-06-10 22:53:13.617  INFO     detect tag_acquired id=0 dist_cm=76.1
+2026-06-10 22:53:13.617  DEBUG    steer angle=-20
+2026-06-10 22:53:13.681  INFO     detect tag_lost
+2026-06-10 22:53:13.743  INFO     detect tag_acquired id=0 dist_cm=75.5
+2026-06-10 22:53:13.743  DEBUG    steer angle=-12
+2026-06-10 22:53:13.816  INFO     detect tag_lost
+2026-06-10 22:53:14.092  INFO     detect tag_acquired id=0 dist_cm=71.0
+2026-06-10 22:53:14.093  DEBUG    steer angle=6
+2026-06-10 22:53:14.158  INFO     detect tag_lost
+2026-06-10 22:53:14.223  INFO     detect tag_acquired id=0 dist_cm=68.3
+2026-06-10 22:53:14.223  DEBUG    steer angle=-2
+2026-06-10 22:53:14.278  INFO     detect tag_lost
+2026-06-10 22:53:14.468  DEBUG    detect found=False
+2026-06-10 22:53:14.534  INFO     detect tag_acquired id=0 dist_cm=64.2
+2026-06-10 22:53:14.534  DEBUG    steer angle=-20
+2026-06-10 22:53:14.601  DEBUG    steer angle=-12
+2026-06-10 22:53:14.670  DEBUG    steer angle=-10
+2026-06-10 22:53:14.734  INFO     detect tag_lost
+2026-06-10 22:53:15.483  DEBUG    detect found=False
+2026-06-10 22:53:15.547  INFO     detect tag_acquired id=0 dist_cm=55.9
+2026-06-10 22:53:15.547  DEBUG    steer angle=20
+2026-06-10 22:53:15.614  DEBUG    steer angle=12
+2026-06-10 22:53:15.746  INFO     detect tag_lost
+2026-06-10 22:53:16.547  DEBUG    detect found=False
+2026-06-10 22:53:17.197  INFO     detect tag_acquired id=0 dist_cm=51.5
+2026-06-10 22:53:17.197  DEBUG    steer angle=20
+2026-06-10 22:53:17.266  DEBUG    steer angle=9
+2026-06-10 22:53:17.334  DEBUG    steer angle=10
+2026-06-10 22:53:17.415  INFO     detect tag_lost
+2026-06-10 22:53:17.480  INFO     detect tag_acquired id=0 dist_cm=56.2
+2026-06-10 22:53:17.480  DEBUG    steer angle=11
+2026-06-10 22:53:17.543  DEBUG    steer angle=9
+2026-06-10 22:53:17.545  DEBUG    detect found=True dist_cm=55.0
+2026-06-10 22:53:17.818  INFO     detect tag_lost
+2026-06-10 22:53:17.890  INFO     detect tag_acquired id=0 dist_cm=56.4
+2026-06-10 22:53:18.062  DEBUG    steer angle=6
+2026-06-10 22:53:18.242  INFO     detect tag_lost
+2026-06-10 22:53:18.370  INFO     detect tag_acquired id=0 dist_cm=59.9
+2026-06-10 22:53:18.370  DEBUG    steer angle=3
+2026-06-10 22:53:18.452  DEBUG    steer angle=5
+2026-06-10 22:53:18.512  DEBUG    steer angle=4
+2026-06-10 22:53:18.573  DEBUG    steer angle=5
+2026-06-10 22:53:18.574  DEBUG    detect found=True dist_cm=62.3
+2026-06-10 22:53:18.641  DEBUG    steer angle=7
+2026-06-10 22:53:18.702  INFO     detect tag_lost
+2026-06-10 22:53:18.760  INFO     detect tag_acquired id=0 dist_cm=63.7
+2026-06-10 22:53:18.760  DEBUG    steer angle=8
+2026-06-10 22:53:18.824  INFO     detect tag_lost
+2026-06-10 22:53:18.894  INFO     detect tag_acquired id=0 dist_cm=63.5
+2026-06-10 22:53:18.894  DEBUG    steer angle=7
+2026-06-10 22:53:18.980  DEBUG    steer angle=5
+2026-06-10 22:53:19.037  INFO     detect tag_lost
+2026-06-10 22:53:19.162  INFO     detect tag_acquired id=0 dist_cm=65.2
+2026-06-10 22:53:19.168  DEBUG    steer angle=-1
+2026-06-10 22:53:19.230  DEBUG    steer angle=4
+2026-06-10 22:53:19.461  INFO     detect tag_lost
+2026-06-10 22:53:19.577  DEBUG    detect found=False
+2026-06-10 22:53:20.453  INFO     detect tag_acquired id=0 dist_cm=68.5
+2026-06-10 22:53:20.453  DEBUG    steer angle=-20
+2026-06-10 22:53:20.519  DEBUG    steer angle=-13
+2026-06-10 22:53:20.581  DEBUG    detect found=True dist_cm=68.1
+2026-06-10 22:53:20.652  INFO     detect tag_lost
+2026-06-10 22:53:20.975  INFO     detect tag_acquired id=0 dist_cm=63.5
+2026-06-10 22:53:20.975  DEBUG    steer angle=19
+2026-06-10 22:53:21.044  DEBUG    steer angle=-3
+2026-06-10 22:53:21.175  INFO     detect tag_lost
+2026-06-10 22:53:21.437  INFO     detect tag_acquired id=0 dist_cm=64.1
+2026-06-10 22:53:21.437  DEBUG    steer angle=-20
+2026-06-10 22:53:21.497  DEBUG    steer angle=-12
+2026-06-10 22:53:21.635  DEBUG    steer angle=-13
+2026-06-10 22:53:21.637  DEBUG    detect found=True dist_cm=59.4
+2026-06-10 22:53:21.697  DEBUG    steer angle=-5
+2026-06-10 22:53:21.756  DEBUG    steer angle=-8
+2026-06-10 22:53:21.817  INFO     detect tag_lost
+2026-06-10 22:53:21.936  INFO     detect tag_acquired id=0 dist_cm=54.3
+2026-06-10 22:53:21.936  DEBUG    steer angle=-4
+2026-06-10 22:53:22.002  DEBUG    steer angle=-8
+2026-06-10 22:53:22.177  DEBUG    steer angle=-10
+2026-06-10 22:53:22.237  DEBUG    steer angle=-9
+2026-06-10 22:53:22.416  DEBUG    steer angle=-8
+2026-06-10 22:53:22.556  INFO     detect tag_lost
+2026-06-10 22:53:22.672  DEBUG    detect found=False
+2026-06-10 22:53:22.739  INFO     detect tag_acquired id=0 dist_cm=51.0
+2026-06-10 22:53:22.739  DEBUG    steer angle=2
+2026-06-10 22:53:22.804  DEBUG    steer angle=-4
+2026-06-10 22:53:22.865  INFO     detect tag_lost
+2026-06-10 22:53:22.990  INFO     detect tag_acquired id=0 dist_cm=47.5
+2026-06-10 22:53:23.114  DEBUG    steer angle=-2
+2026-06-10 22:53:23.179  INFO     detect tag_lost
+2026-06-10 22:53:23.343  INFO     detect tag_acquired id=0 dist_cm=43.6
+2026-06-10 22:53:23.343  DEBUG    steer angle=6
+2026-06-10 22:53:23.405  DEBUG    steer angle=2
+2026-06-10 22:53:23.466  INFO     detect tag_lost
+2026-06-10 22:53:23.528  INFO     detect tag_acquired id=0 dist_cm=41.8
+2026-06-10 22:53:23.528  DEBUG    steer angle=5
+2026-06-10 22:53:23.592  DEBUG    steer angle=1
+2026-06-10 22:53:23.662  DEBUG    steer angle=3
+2026-06-10 22:53:23.721  INFO     detect tag_lost
+2026-06-10 22:53:23.723  DEBUG    detect found=False
+2026-06-10 22:53:23.844  INFO     detect tag_acquired id=0 dist_cm=42.9
+2026-06-10 22:53:23.844  DEBUG    steer angle=9
+2026-06-10 22:53:23.904  DEBUG    steer angle=7
+2026-06-10 22:53:24.317  INFO     detect tag_lost
+2026-06-10 22:53:24.412  INFO     detect tag_acquired id=0 dist_cm=42.8
+2026-06-10 22:53:24.468  DEBUG    steer angle=7
+2026-06-10 22:53:24.527  INFO     detect tag_lost
+2026-06-10 22:53:24.585  INFO     detect tag_acquired id=0 dist_cm=44.3
+2026-06-10 22:53:24.585  DEBUG    steer angle=10
+2026-06-10 22:53:24.731  INFO     detect tag_lost
+2026-06-10 22:53:24.733  DEBUG    detect found=False
+2026-06-10 22:53:24.791  INFO     detect tag_acquired id=0 dist_cm=44.7
+2026-06-10 22:53:24.791  DEBUG    steer angle=10
+2026-06-10 22:53:24.850  DEBUG    steer angle=8
+2026-06-10 22:53:24.907  DEBUG    steer angle=6
+2026-06-10 22:53:24.969  INFO     detect tag_lost
+2026-06-10 22:53:25.025  INFO     detect tag_acquired id=0 dist_cm=44.5
+2026-06-10 22:53:25.026  DEBUG    steer angle=4
+2026-06-10 22:53:25.087  DEBUG    steer angle=5
+2026-06-10 22:53:25.212  DEBUG    steer angle=7
+2026-06-10 22:53:25.274  DEBUG    steer angle=9
+2026-06-10 22:53:25.767  DEBUG    detect found=True dist_cm=41.6
+2026-06-10 22:53:25.830  DEBUG    steer angle=9
+2026-06-10 22:53:26.173  DEBUG    steer angle=10
+2026-06-10 22:53:26.469  DEBUG    steer angle=10
+2026-06-10 22:53:26.527  INFO     detect tag_lost
+2026-06-10 22:53:26.842  DEBUG    detect found=False
+2026-06-10 22:53:26.914  INFO     detect tag_acquired id=0 dist_cm=41.0
+2026-06-10 22:53:26.914  DEBUG    steer angle=-15
+2026-06-10 22:53:26.988  INFO     detect tag_lost
+2026-06-10 22:53:27.125  INFO     detect tag_acquired id=0 dist_cm=43.3
+2026-06-10 22:53:27.125  DEBUG    steer angle=-8
+2026-06-10 22:53:27.199  INFO     detect tag_lost
+2026-06-10 22:53:27.483  INFO     detect tag_acquired id=0 dist_cm=45.1
+2026-06-10 22:53:27.483  DEBUG    steer angle=12
+2026-06-10 22:53:27.551  INFO     detect tag_lost
+2026-06-10 22:53:27.904  DEBUG    detect found=False
+2026-06-10 22:53:28.924  DEBUG    detect found=False
+2026-06-10 22:53:29.095  INFO     detect tag_acquired id=0 dist_cm=26.6
+2026-06-10 22:53:29.095  DEBUG    steer angle=-20
+2026-06-10 22:53:29.175  DEBUG    steer angle=-13
+2026-06-10 22:53:29.310  INFO     detect tag_lost
+2026-06-10 22:53:29.519  INFO     detect tag_acquired id=0 dist_cm=31.2
+2026-06-10 22:53:29.519  DEBUG    steer angle=2
+2026-06-10 22:53:29.586  DEBUG    steer angle=-6
+2026-06-10 22:53:29.648  DEBUG    steer angle=-10
+2026-06-10 22:53:29.711  INFO     detect tag_lost
+2026-06-10 22:53:29.954  DEBUG    detect found=False
+2026-06-10 22:53:30.357  INFO     detect tag_acquired id=0 dist_cm=27.9
+2026-06-10 22:53:30.358  DEBUG    steer angle=-20
+2026-06-10 22:53:30.423  DEBUG    steer angle=-9
+2026-06-10 22:53:30.514  DEBUG    steer angle=-12
+2026-06-10 22:53:30.575  DEBUG    steer angle=-15
+2026-06-10 22:53:30.642  INFO     detect tag_lost
+2026-06-10 22:53:30.801  INFO     detect tag_acquired id=0 dist_cm=44.0
+2026-06-10 22:53:30.865  DEBUG    steer angle=-11
+2026-06-10 22:53:30.984  INFO     detect tag_lost
+2026-06-10 22:53:30.986  DEBUG    detect found=False
+2026-06-10 22:53:31.044  INFO     detect tag_acquired id=0 dist_cm=48.6
+2026-06-10 22:53:31.044  DEBUG    steer angle=-10
+2026-06-10 22:53:31.109  DEBUG    steer angle=-12
+2026-06-10 22:53:31.295  DEBUG    steer angle=-15
+2026-06-10 22:53:31.356  INFO     detect tag_lost
+2026-06-10 22:53:31.586  INFO     detect tag_acquired id=0 dist_cm=54.7
+2026-06-10 22:53:31.643  DEBUG    steer angle=-11
+2026-06-10 22:53:31.792  INFO     detect tag_lost
+2026-06-10 22:53:31.800  DEBUG    capture->chaser active
+2026-06-10 22:53:31.849  INFO     detect tag_acquired id=0 dist_cm=57.1
+2026-06-10 22:53:31.849  DEBUG    steer angle=-7
+2026-06-10 22:53:31.907  DEBUG    steer angle=-10
+2026-06-10 22:53:31.970  INFO     detect tag_lost
+2026-06-10 22:53:32.064  INFO     detect tag_acquired id=0 dist_cm=60.9
+2026-06-10 22:53:32.064  DEBUG    steer angle=-11
+2026-06-10 22:53:32.066  DEBUG    detect found=True dist_cm=60.9
+2026-06-10 22:53:32.123  DEBUG    steer angle=-14
+2026-06-10 22:53:32.239  INFO     detect tag_lost
+2026-06-10 22:53:32.380  INFO     detect tag_acquired id=0 dist_cm=62.7
+2026-06-10 22:53:32.380  DEBUG    steer angle=-17
+2026-06-10 22:53:32.438  DEBUG    steer angle=-13
+2026-06-10 22:53:32.508  DEBUG    steer angle=-14
+2026-06-10 22:53:32.706  DEBUG    steer angle=-14
+2026-06-10 22:53:32.862  INFO     detect tag_lost
+2026-06-10 22:53:33.101  DEBUG    detect found=False
+2026-06-10 22:53:33.349  INFO     detect tag_acquired id=0 dist_cm=45.4
+2026-06-10 22:53:33.350  DEBUG    steer angle=-20
+2026-06-10 22:53:33.414  DEBUG    steer angle=-6
+2026-06-10 22:53:33.536  DEBUG    steer angle=-9
+2026-06-10 22:53:33.592  INFO     detect tag_lost
+2026-06-10 22:53:33.650  INFO     detect tag_acquired id=0 dist_cm=49.3
+2026-06-10 22:53:33.650  DEBUG    steer angle=-13
+2026-06-10 22:53:33.725  DEBUG    steer angle=-11
+2026-06-10 22:53:33.828  DEBUG    steer angle=-12
+2026-06-10 22:53:33.896  DEBUG    steer angle=-16
+2026-06-10 22:53:33.963  DEBUG    steer angle=-14
+2026-06-10 22:53:34.031  INFO     detect tag_lost
+2026-06-10 22:53:34.165  DEBUG    detect found=False
+2026-06-10 22:53:34.244  INFO     detect tag_acquired id=0 dist_cm=36.0
+2026-06-10 22:53:34.244  DEBUG    steer angle=-11
+2026-06-10 22:53:34.343  INFO     detect tag_lost
+2026-06-10 22:53:34.489  INFO     detect tag_acquired id=0 dist_cm=37.9
+2026-06-10 22:53:34.489  DEBUG    steer angle=-1
+2026-06-10 22:53:34.563  DEBUG    steer angle=-9
+2026-06-10 22:53:34.704  INFO     detect tag_lost
+2026-06-10 22:53:35.201  DEBUG    detect found=False
+2026-06-10 22:53:36.228  DEBUG    detect found=False
+2026-06-10 22:53:37.246  DEBUG    detect found=False
+2026-06-10 22:53:38.272  DEBUG    detect found=False
+2026-06-10 22:53:39.348  DEBUG    detect found=False
+2026-06-10 22:53:40.352  DEBUG    detect found=False
+2026-06-10 22:53:41.370  DEBUG    detect found=False
+2026-06-10 22:53:42.396  DEBUG    detect found=False
+2026-06-10 22:53:43.423  DEBUG    detect found=False
+2026-06-10 22:53:44.452  DEBUG    detect found=False
+2026-06-10 22:53:45.500  DEBUG    detect found=False
+2026-06-10 22:53:46.526  DEBUG    detect found=False
+2026-06-10 22:53:47.547  DEBUG    detect found=False
+2026-06-10 22:53:48.585  DEBUG    detect found=False
+2026-06-10 22:53:49.620  DEBUG    detect found=False
+2026-06-10 22:53:50.650  DEBUG    detect found=False
+2026-06-10 22:53:51.668  DEBUG    detect found=False
+2026-06-10 22:53:52.686  DEBUG    detect found=False
+2026-06-10 22:53:53.728  DEBUG    detect found=False
+2026-06-10 22:53:54.755  DEBUG    detect found=False
+2026-06-10 22:53:55.783  DEBUG    detect found=False
+2026-06-10 22:53:56.803  DEBUG    detect found=False
+2026-06-10 22:53:57.866  DEBUG    detect found=False
+2026-06-10 22:53:58.894  DEBUG    detect found=False
+2026-06-10 22:53:59.945  DEBUG    detect found=False
+2026-06-10 22:54:01.003  DEBUG    detect found=False
+2026-06-10 22:54:01.805  DEBUG    capture->chaser active
+2026-06-10 22:54:02.040  DEBUG    detect found=False
+2026-06-10 22:54:03.063  DEBUG    detect found=False
+2026-06-10 22:54:04.110  DEBUG    detect found=False
+2026-06-10 22:54:05.156  INFO     detect tag_acquired id=0 dist_cm=42.1
+2026-06-10 22:54:05.156  DEBUG    steer angle=-20
+2026-06-10 22:54:05.159  DEBUG    detect found=True dist_cm=42.1
+2026-06-10 22:54:05.239  DEBUG    steer angle=-9
+2026-06-10 22:54:05.314  INFO     detect tag_lost
+2026-06-10 22:54:05.466  INFO     detect tag_acquired id=0 dist_cm=45.3
+2026-06-10 22:54:05.466  DEBUG    steer angle=-16
+2026-06-10 22:54:05.538  DEBUG    steer angle=-14
+2026-06-10 22:54:05.614  INFO     detect tag_lost
+2026-06-10 22:54:06.233  DEBUG    detect found=False
+2026-06-10 22:54:07.278  DEBUG    detect found=False
+2026-06-10 22:54:08.288  DEBUG    detect found=False
+2026-06-10 22:54:09.362  DEBUG    detect found=False
+2026-06-10 22:54:09.717  INFO     detect tag_acquired id=0 dist_cm=39.8
+2026-06-10 22:54:09.718  DEBUG    steer angle=-19
+2026-06-10 22:54:09.802  DEBUG    steer angle=-8
+2026-06-10 22:54:09.876  INFO     detect tag_lost
+2026-06-10 22:54:09.955  INFO     detect tag_acquired id=0 dist_cm=39.3
+2026-06-10 22:54:09.955  DEBUG    steer angle=-10
+2026-06-10 22:54:10.039  INFO     detect tag_lost
+2026-06-10 22:54:10.116  INFO     detect tag_acquired id=0 dist_cm=35.1
+2026-06-10 22:54:10.117  DEBUG    steer angle=-13
+2026-06-10 22:54:10.198  DEBUG    steer angle=-12
+2026-06-10 22:54:10.275  INFO     detect tag_lost
+2026-06-10 22:54:10.352  DEBUG    detect found=False
+2026-06-10 22:54:11.403  DEBUG    detect found=False
+2026-06-10 22:54:11.554  INFO     detect tag_acquired id=0 dist_cm=47.4
+2026-06-10 22:54:11.554  DEBUG    steer angle=-20
+2026-06-10 22:54:11.628  DEBUG    steer angle=-10
+2026-06-10 22:54:11.695  INFO     detect tag_lost
+2026-06-10 22:54:12.168  INFO     detect tag_acquired id=0 dist_cm=58.8
+2026-06-10 22:54:12.168  DEBUG    steer angle=-4
+2026-06-10 22:54:12.238  DEBUG    steer angle=-9
+2026-06-10 22:54:12.373  INFO     detect tag_lost
+2026-06-10 22:54:12.438  DEBUG    detect found=False
+2026-06-10 22:54:12.568  INFO     detect tag_acquired id=0 dist_cm=64.3
+2026-06-10 22:54:12.568  DEBUG    steer angle=-3
+2026-06-10 22:54:12.631  INFO     detect tag_lost
+2026-06-10 22:54:12.698  INFO     detect tag_acquired id=0 dist_cm=64.2
+2026-06-10 22:54:12.699  DEBUG    steer angle=-4
+2026-06-10 22:54:12.765  DEBUG    steer angle=-6
+2026-06-10 22:54:12.832  INFO     detect tag_lost
+2026-06-10 22:54:13.095  INFO     detect tag_acquired id=0 dist_cm=67.4
+2026-06-10 22:54:13.096  DEBUG    steer angle=-12
+2026-06-10 22:54:13.166  DEBUG    steer angle=-6
+2026-06-10 22:54:13.233  INFO     detect tag_lost
+2026-06-10 22:54:13.446  DEBUG    detect found=False
+2026-06-10 22:54:13.640  INFO     detect tag_acquired id=0 dist_cm=67.2
+2026-06-10 22:54:13.640  DEBUG    steer angle=7
+2026-06-10 22:54:13.708  INFO     detect tag_lost
+2026-06-10 22:54:13.980  INFO     detect tag_acquired id=0 dist_cm=67.8
+2026-06-10 22:54:13.981  DEBUG    steer angle=-5
+2026-06-10 22:54:14.042  INFO     detect tag_lost
+2026-06-10 22:54:14.161  INFO     detect tag_acquired id=0 dist_cm=67.6
+2026-06-10 22:54:14.161  DEBUG    steer angle=-10
+2026-06-10 22:54:14.224  DEBUG    steer angle=-4
+2026-06-10 22:54:14.412  DEBUG    steer angle=-2
+2026-06-10 22:54:14.478  DEBUG    steer angle=-3
+2026-06-10 22:54:14.479  DEBUG    detect found=True dist_cm=71.7
+2026-06-10 22:54:14.798  INFO     detect tag_lost
+2026-06-10 22:54:14.863  INFO     detect tag_acquired id=0 dist_cm=69.8
+2026-06-10 22:54:14.989  DEBUG    steer angle=-1
+2026-06-10 22:54:15.056  INFO     detect tag_lost
+2026-06-10 22:54:15.117  INFO     detect tag_acquired id=0 dist_cm=71.0
+2026-06-10 22:54:15.176  INFO     detect tag_lost
+2026-06-10 22:54:15.411  INFO     detect tag_acquired id=0 dist_cm=75.6
+2026-06-10 22:54:15.412  DEBUG    steer angle=-13
+2026-06-10 22:54:15.469  INFO     detect tag_lost
+2026-06-10 22:54:15.533  INFO     detect tag_acquired id=0 dist_cm=76.0
+2026-06-10 22:54:15.533  DEBUG    steer angle=-8
+2026-06-10 22:54:15.535  DEBUG    detect found=True dist_cm=76.0
+2026-06-10 22:54:15.591  INFO     detect tag_lost
+2026-06-10 22:54:15.653  INFO     detect tag_acquired id=0 dist_cm=78.1
+2026-06-10 22:54:15.724  INFO     detect tag_lost
+2026-06-10 22:54:15.812  INFO     detect tag_acquired id=0 dist_cm=77.8
+2026-06-10 22:54:16.130  DEBUG    steer angle=-8
+2026-06-10 22:54:16.190  INFO     detect tag_lost
+2026-06-10 22:54:16.271  INFO     detect tag_acquired id=0 dist_cm=74.4
+2026-06-10 22:54:16.271  DEBUG    steer angle=-10
+2026-06-10 22:54:16.570  DEBUG    detect found=True dist_cm=70.6
+2026-06-10 22:54:16.824  DEBUG    steer angle=-8
+2026-06-10 22:54:16.947  INFO     detect tag_lost
+2026-06-10 22:54:17.008  INFO     detect tag_acquired id=0 dist_cm=63.3
+2026-06-10 22:54:17.322  INFO     detect tag_lost
+2026-06-10 22:54:17.384  INFO     detect tag_acquired id=0 dist_cm=63.7
+2026-06-10 22:54:17.384  DEBUG    steer angle=-5
+2026-06-10 22:54:17.507  DEBUG    steer angle=-5
+2026-06-10 22:54:17.575  DEBUG    detect found=True dist_cm=64.8
+2026-06-10 22:54:17.643  INFO     detect tag_lost
+2026-06-10 22:54:17.707  INFO     detect tag_acquired id=0 dist_cm=65.3
+2026-06-10 22:54:17.773  INFO     detect tag_lost
+2026-06-10 22:54:17.908  INFO     detect tag_acquired id=0 dist_cm=63.1
+2026-06-10 22:54:17.908  DEBUG    steer angle=-4
+2026-06-10 22:54:18.235  INFO     detect tag_lost
+2026-06-10 22:54:18.482  INFO     detect tag_acquired id=0 dist_cm=59.2
+2026-06-10 22:54:18.482  DEBUG    steer angle=-10
+2026-06-10 22:54:18.544  DEBUG    steer angle=-6
+2026-06-10 22:54:18.608  INFO     detect tag_lost
+2026-06-10 22:54:18.610  DEBUG    detect found=False
+2026-06-10 22:54:19.338  INFO     detect tag_acquired id=0 dist_cm=69.1
+2026-06-10 22:54:19.339  DEBUG    steer angle=20
+2026-06-10 22:54:19.409  DEBUG    steer angle=13
+2026-06-10 22:54:19.481  INFO     detect tag_lost
+2026-06-10 22:54:19.618  DEBUG    detect found=False
+2026-06-10 22:54:20.044  INFO     detect tag_acquired id=0 dist_cm=71.9
+2026-06-10 22:54:20.045  DEBUG    steer angle=20
+2026-06-10 22:54:20.142  DEBUG    steer angle=12
+2026-06-10 22:54:20.213  INFO     detect tag_lost
+2026-06-10 22:54:20.429  INFO     detect tag_acquired id=0 dist_cm=69.4
+2026-06-10 22:54:20.429  DEBUG    steer angle=14
+2026-06-10 22:54:20.503  INFO     detect tag_lost
+2026-06-10 22:54:20.647  INFO     detect tag_acquired id=0 dist_cm=66.0
+2026-06-10 22:54:20.647  DEBUG    steer angle=8
+2026-06-10 22:54:20.649  DEBUG    detect found=True dist_cm=66.0
+2026-06-10 22:54:20.725  INFO     detect tag_lost
+2026-06-10 22:54:20.797  INFO     detect tag_acquired id=0 dist_cm=65.9
+2026-06-10 22:54:20.798  DEBUG    steer angle=10
+2026-06-10 22:54:20.865  DEBUG    steer angle=11
+2026-06-10 22:54:20.930  INFO     detect tag_lost
+2026-06-10 22:54:21.309  INFO     detect tag_acquired id=0 dist_cm=68.4
+2026-06-10 22:54:21.309  DEBUG    steer angle=7
+2026-06-10 22:54:21.378  INFO     detect tag_lost
+2026-06-10 22:54:21.580  INFO     detect tag_acquired id=0 dist_cm=63.9
+2026-06-10 22:54:21.581  DEBUG    steer angle=13
+2026-06-10 22:54:21.651  DEBUG    steer angle=11
+2026-06-10 22:54:21.653  DEBUG    detect found=True dist_cm=63.0
+2026-06-10 22:54:21.864  INFO     detect tag_lost
+2026-06-10 22:54:21.927  INFO     detect tag_acquired id=0 dist_cm=69.1
+2026-06-10 22:54:21.927  DEBUG    steer angle=9
+2026-06-10 22:54:22.195  INFO     detect tag_lost
+2026-06-10 22:54:22.407  INFO     detect tag_acquired id=0 dist_cm=63.9
+2026-06-10 22:54:22.408  DEBUG    steer angle=1
+2026-06-10 22:54:22.472  DEBUG    steer angle=6
+2026-06-10 22:54:22.527  INFO     detect tag_lost
+2026-06-10 22:54:22.635  DEBUG    detect found=False
+2026-06-10 22:54:22.690  INFO     detect tag_acquired id=0 dist_cm=62.4
+2026-06-10 22:54:22.690  DEBUG    steer angle=8
+2026-06-10 22:54:22.802  INFO     detect tag_lost
+2026-06-10 22:54:22.857  INFO     detect tag_acquired id=0 dist_cm=67.0
+2026-06-10 22:54:22.909  INFO     detect tag_lost
+2026-06-10 22:54:22.970  INFO     detect tag_acquired id=0 dist_cm=70.1
+2026-06-10 22:54:22.971  DEBUG    steer angle=7
+2026-06-10 22:54:23.066  INFO     detect tag_lost
+2026-06-10 22:54:23.122  INFO     detect tag_acquired id=0 dist_cm=73.6
+2026-06-10 22:54:23.122  DEBUG    steer angle=8
+2026-06-10 22:54:23.240  INFO     detect tag_lost
+2026-06-10 22:54:23.304  INFO     detect tag_acquired id=0 dist_cm=76.9
+2026-06-10 22:54:23.361  DEBUG    steer angle=6
+2026-06-10 22:54:23.419  INFO     detect tag_lost
+2026-06-10 22:54:23.636  INFO     detect tag_acquired id=0 dist_cm=83.8
+2026-06-10 22:54:23.636  DEBUG    steer angle=-3
+2026-06-10 22:54:23.697  INFO     detect tag_lost
+2026-06-10 22:54:23.699  DEBUG    detect found=False
+2026-06-10 22:54:23.756  INFO     detect tag_acquired id=0 dist_cm=82.2
+2026-06-10 22:54:23.756  DEBUG    steer angle=1
+2026-06-10 22:54:23.814  INFO     detect tag_lost
+2026-06-10 22:54:24.108  INFO     detect tag_acquired id=0 dist_cm=82.2
+2026-06-10 22:54:24.108  DEBUG    steer angle=14
+2026-06-10 22:54:24.171  INFO     detect tag_lost
+2026-06-10 22:54:24.613  INFO     detect tag_acquired id=0 dist_cm=83.1
+2026-06-10 22:54:24.613  DEBUG    steer angle=-20
+2026-06-10 22:54:24.670  INFO     detect tag_lost
+2026-06-10 22:54:24.732  DEBUG    detect found=False
+2026-06-10 22:54:25.295  INFO     detect tag_acquired id=0 dist_cm=90.1
+2026-06-10 22:54:25.296  DEBUG    steer angle=12
+2026-06-10 22:54:25.372  INFO     detect tag_lost
+2026-06-10 22:54:25.731  DEBUG    detect found=False
+2026-06-10 22:54:26.307  INFO     detect tag_acquired id=0 dist_cm=87.1
+2026-06-10 22:54:26.307  DEBUG    steer angle=-20
+2026-06-10 22:54:26.373  DEBUG    steer angle=-8
+2026-06-10 22:54:26.500  INFO     detect tag_lost
+2026-06-10 22:54:26.757  DEBUG    detect found=False
+2026-06-10 22:54:26.814  INFO     detect tag_acquired id=0 dist_cm=90.8
+2026-06-10 22:54:26.814  DEBUG    steer angle=-15
+2026-06-10 22:54:26.874  DEBUG    steer angle=-12
+2026-06-10 22:54:26.936  INFO     detect tag_lost
+2026-06-10 22:54:26.997  INFO     detect tag_acquired id=0 dist_cm=91.6
+2026-06-10 22:54:26.997  DEBUG    steer angle=-11
+2026-06-10 22:54:27.060  INFO     detect tag_lost
+2026-06-10 22:54:27.316  INFO     detect tag_acquired id=0 dist_cm=80.9
+2026-06-10 22:54:27.316  DEBUG    steer angle=9
+2026-06-10 22:54:27.372  INFO     detect tag_lost
+2026-06-10 22:54:27.776  DEBUG    detect found=False
+2026-06-10 22:54:28.837  DEBUG    detect found=False
+2026-06-10 22:54:29.399  INFO     detect tag_acquired id=0 dist_cm=91.6
+2026-06-10 22:54:29.399  DEBUG    steer angle=-20
+2026-06-10 22:54:29.463  INFO     detect tag_lost
+2026-06-10 22:54:29.527  INFO     detect tag_acquired id=0 dist_cm=90.3
+2026-06-10 22:54:29.527  DEBUG    steer angle=-9
+2026-06-10 22:54:29.588  INFO     detect tag_lost
+2026-06-10 22:54:29.831  DEBUG    detect found=False
+2026-06-10 22:54:30.024  INFO     detect tag_acquired id=0 dist_cm=85.0
+2026-06-10 22:54:30.024  DEBUG    steer angle=-2
+2026-06-10 22:54:30.085  DEBUG    steer angle=-6
+2026-06-10 22:54:30.146  INFO     detect tag_lost
+2026-06-10 22:54:30.357  INFO     detect tag_acquired id=0 dist_cm=82.0
+2026-06-10 22:54:30.357  DEBUG    steer angle=-10
+2026-06-10 22:54:30.420  INFO     detect tag_lost
+2026-06-10 22:54:30.483  INFO     detect tag_acquired id=0 dist_cm=82.1
+2026-06-10 22:54:30.547  INFO     detect tag_lost
+2026-06-10 22:54:30.845  DEBUG    detect found=False
+2026-06-10 22:54:31.532  INFO     detect tag_acquired id=0 dist_cm=91.4
+2026-06-10 22:54:31.533  DEBUG    steer angle=-20
+2026-06-10 22:54:31.597  DEBUG    steer angle=-9
+2026-06-10 22:54:31.743  INFO     detect tag_lost
+2026-06-10 22:54:31.817  DEBUG    capture->chaser active
+2026-06-10 22:54:31.872  DEBUG    detect found=False
+2026-06-10 22:54:32.880  DEBUG    detect found=False
+2026-06-10 22:54:32.960  INFO     detect tag_acquired id=0 dist_cm=108.7
+2026-06-10 22:54:32.960  DEBUG    steer angle=-20
+2026-06-10 22:54:33.026  DEBUG    steer angle=-11
+2026-06-10 22:54:33.149  INFO     detect tag_lost
+2026-06-10 22:54:33.217  INFO     detect tag_acquired id=0 dist_cm=101.6
+2026-06-10 22:54:33.217  DEBUG    steer angle=-9
+2026-06-10 22:54:33.279  DEBUG    steer angle=-10
+2026-06-10 22:54:33.402  INFO     detect tag_lost
+2026-06-10 22:54:33.477  INFO     detect tag_acquired id=0 dist_cm=96.7
+2026-06-10 22:54:33.580  INFO     detect tag_lost
+2026-06-10 22:54:33.640  INFO     detect tag_acquired id=0 dist_cm=98.6
+2026-06-10 22:54:33.640  DEBUG    steer angle=-9
+2026-06-10 22:54:33.696  INFO     detect tag_lost
+2026-06-10 22:54:33.769  INFO     detect tag_acquired id=0 dist_cm=98.3
+2026-06-10 22:54:33.888  DEBUG    detect found=True dist_cm=97.5
+2026-06-10 22:54:34.083  INFO     detect tag_lost
+2026-06-10 22:54:34.146  INFO     detect tag_acquired id=0 dist_cm=91.5
+2026-06-10 22:54:34.147  DEBUG    steer angle=-7
+2026-06-10 22:54:34.207  DEBUG    steer angle=-9
+2026-06-10 22:54:34.269  INFO     detect tag_lost
+2026-06-10 22:54:34.962  DEBUG    detect found=False
+2026-06-10 22:54:36.000  DEBUG    detect found=False
+2026-06-10 22:54:36.224  INFO     detect tag_acquired id=0 dist_cm=106.7
+2026-06-10 22:54:36.224  DEBUG    steer angle=-20
+2026-06-10 22:54:36.291  INFO     detect tag_lost
+2026-06-10 22:54:37.036  DEBUG    detect found=False
+2026-06-10 22:54:37.407  INFO     detect tag_acquired id=0 dist_cm=88.9
+2026-06-10 22:54:37.486  DEBUG    steer angle=-11
+2026-06-10 22:54:37.551  INFO     detect tag_lost
+2026-06-10 22:54:37.825  INFO     detect tag_acquired id=0 dist_cm=80.5
+2026-06-10 22:54:37.825  DEBUG    steer angle=-3
+2026-06-10 22:54:37.894  INFO     detect tag_lost
+2026-06-10 22:54:37.964  INFO     detect tag_acquired id=0 dist_cm=78.9
+2026-06-10 22:54:37.964  DEBUG    steer angle=-8
+2026-06-10 22:54:38.030  INFO     detect tag_lost
+2026-06-10 22:54:38.096  DEBUG    detect found=False
+2026-06-10 22:54:38.305  INFO     detect tag_acquired id=0 dist_cm=70.1
+2026-06-10 22:54:38.306  DEBUG    steer angle=-20
+2026-06-10 22:54:38.384  DEBUG    steer angle=-13
+2026-06-10 22:54:38.457  DEBUG    steer angle=-11
+2026-06-10 22:54:38.532  INFO     detect tag_lost
+2026-06-10 22:54:38.602  INFO     detect tag_acquired id=0 dist_cm=61.2
+2026-06-10 22:54:38.603  DEBUG    steer angle=-8
+2026-06-10 22:54:38.672  INFO     detect tag_lost
+2026-06-10 22:54:39.171  DEBUG    detect found=False
+2026-06-10 22:54:40.241  DEBUG    detect found=False
+2026-06-10 22:54:41.268  DEBUG    detect found=False
+2026-06-10 22:54:41.992  INFO     detect tag_acquired id=0 dist_cm=42.2
+2026-06-10 22:54:41.992  DEBUG    steer angle=-20
+2026-06-10 22:54:42.084  INFO     detect tag_lost
+2026-06-10 22:54:42.156  INFO     detect tag_acquired id=0 dist_cm=39.7
+2026-06-10 22:54:42.156  DEBUG    steer angle=-5
+2026-06-10 22:54:42.226  INFO     detect tag_lost
+2026-06-10 22:54:42.297  DEBUG    detect found=False
+2026-06-10 22:54:42.370  INFO     detect tag_acquired id=0 dist_cm=32.9
+2026-06-10 22:54:42.370  DEBUG    steer angle=-2
+2026-06-10 22:54:42.447  INFO     detect tag_lost
+2026-06-10 22:54:43.425  DEBUG    detect found=False
+2026-06-10 22:54:44.509  DEBUG    detect found=False
+2026-06-10 22:54:45.546  DEBUG    detect found=False
+2026-06-10 22:54:46.617  DEBUG    detect found=False
+2026-06-10 22:54:47.612  DEBUG    detect found=False
+2026-06-10 22:54:48.748  DEBUG    detect found=False
+2026-06-10 22:54:49.768  DEBUG    detect found=False
+2026-06-10 22:54:50.788  DEBUG    detect found=False
+2026-06-10 22:54:51.807  DEBUG    detect found=False
+2026-06-10 22:54:52.817  DEBUG    detect found=False
+2026-06-10 22:54:53.852  DEBUG    detect found=False
+2026-06-10 22:54:54.867  DEBUG    detect found=False
+2026-06-10 22:54:55.868  DEBUG    detect found=False
+2026-06-10 22:54:56.883  DEBUG    detect found=False
+2026-06-10 22:54:57.901  DEBUG    detect found=False
+2026-06-10 22:54:58.930  DEBUG    detect found=False
+2026-06-10 22:54:59.958  DEBUG    detect found=False
+2026-06-10 22:55:00.994  DEBUG    detect found=False
+2026-06-10 22:55:01.919  DEBUG    capture->chaser active
+2026-06-10 22:55:02.020  DEBUG    detect found=False
+2026-06-10 22:55:03.075  DEBUG    detect found=False
+2026-06-10 22:55:04.119  DEBUG    detect found=False
+2026-06-10 22:55:05.157  DEBUG    detect found=False
+2026-06-10 22:55:06.204  DEBUG    detect found=False
+                                                                                                                                                                                                                                                                         

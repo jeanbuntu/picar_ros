@@ -7,9 +7,9 @@ pid:
   kd: 2.0
 
 chase:
-  stop_distance_cm: 10.0       # stop when tag is this close
+  stop_distance_cm: 20.0       # stop when tag is this close
   steer_limit_deg: 20          # softer cap than hardware max (30 deg)
-  tag_lost_timeout_s: 0.5      # hold last steer for this long before stopping
+  tag_lost_timeout_s: 2      # hold last steer for this long before stopping
   tag_id: 0                    # AprilTag ID to track
   countdown_s: 3               # "Starting 3 2 1" delay before driving
 
