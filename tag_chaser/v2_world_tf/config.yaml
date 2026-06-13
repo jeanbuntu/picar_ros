@@ -17,4 +17,4 @@ camera:
   width: 640
   height: 480
   tag_size_m: 0.05
-  calibration_file: "../../camera_cal_marker/camera_calibration.yaml"
+  calibration_file: "../../camera_cal_marker/camera_calibration_pi.yaml"
