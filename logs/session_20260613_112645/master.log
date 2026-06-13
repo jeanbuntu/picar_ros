@@ -1,0 +1,105 @@
+2026-06-13 11:26:45.816  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/session_20260613_112645
+2026-06-13 11:26:46.217  INFO     Picarx initialized
+2026-06-13 11:26:46.315  INFO     TagChaser v2 initialized
+2026-06-13 11:26:46.406  INFO     ManualTracker initialized
+2026-06-13 11:26:47.240  INFO     Picamera2 started at 640x480
+2026-06-13 11:26:47.241  INFO     MJPEG stream at :9000
+2026-06-13 11:26:47.242  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-13 11:26:47.243  INFO     Sensor and capture loops started
+2026-06-13 11:26:47.243  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-13 11:26:47.255  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=122.0 ch1_mean=124.9 ch2_mean=115.0
+2026-06-13 11:26:52.600  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:26:53.522  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:26:54.569  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:26:54.736  INFO     gimbal axis=pan angle=0
+2026-06-13 11:26:54.738  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:26:54.767  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:26:54.933  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:26:55.922  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:26:56.055  INFO     gimbal axis=pan angle=0
+2026-06-13 11:26:56.057  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:26:56.076  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:26:56.124  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:26:56.676  INFO     gimbal axis=pan angle=0
+2026-06-13 11:26:56.678  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:26:56.692  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:26:56.741  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:26:56.888  INFO     gimbal axis=pan angle=0
+2026-06-13 11:26:56.890  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:26:56.905  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:26:56.955  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:26:57.946  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:26:58.963  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:26:59.952  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:00.948  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:01.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:02.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:03.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:04.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:05.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:06.947  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:07.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:08.946  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:09.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:10.946  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:11.450  INFO     drive direction=stop speed=0
+2026-06-13 11:27:11.458  INFO     steer angle=0
+2026-06-13 11:27:12.542  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:13.544  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:14.542  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:15.542  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:16.542  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:17.543  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:18.561  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:19.553  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:20.472  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:20.564  INFO     steer angle=0
+2026-06-13 11:27:20.566  INFO     drive direction=stop speed=0
+2026-06-13 11:27:20.946  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:21.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:22.945  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:23.044  INFO     gimbal axis=pan angle=0
+2026-06-13 11:27:23.045  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:27:23.076  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:27:23.120  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:27:23.242  INFO     gimbal axis=pan angle=0
+2026-06-13 11:27:23.243  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:27:23.263  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:27:23.293  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:27:23.458  INFO     gimbal axis=pan angle=0
+2026-06-13 11:27:23.460  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:27:23.477  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:27:23.527  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:27:23.856  INFO     gimbal axis=pan angle=0
+2026-06-13 11:27:23.858  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:27:23.872  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:27:23.910  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:27:24.074  INFO     gimbal axis=pan angle=0
+2026-06-13 11:27:24.075  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:27:24.091  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:27:24.122  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:27:24.241  INFO     gimbal axis=pan angle=0
+2026-06-13 11:27:24.243  INFO     gimbal axis=tilt angle=0
+2026-06-13 11:27:24.258  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:27:24.302  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:27:25.291  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:25.959  INFO     photo saved file=photo_2026-06-13-11-27-25.jpg
+2026-06-13 11:27:26.288  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:27.290  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:28.290  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:29.290  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:30.302  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:31.320  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:32.338  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:32.969  INFO     tag_chase start speed=75
+2026-06-13 11:27:32.989  DEBUG    capture->chaser active
+2026-06-13 11:27:33.294  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:33.859  INFO     tag_chase stop
+2026-06-13 11:27:34.288  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:35.290  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:36.288  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:37.288  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:38.288  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:27:38.357  INFO     shutdown command from 192.168.1.105
+2026-06-13 11:27:38.358  INFO     Graceful shutdown initiated — stopping hardware
+2026-06-13 11:27:38.622  INFO     WebSocket disconnected from 192.168.1.105

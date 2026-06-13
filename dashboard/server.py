@@ -6,7 +6,7 @@ import logging
 import os
 import signal
 import socketserver
-import subprocess
+
 import sys
 import threading
 import time
@@ -32,6 +32,7 @@ if _PROJ_ROOT not in sys.path:
     sys.path.insert(0, _PROJ_ROOT)
 
 from tag_chaser.v2_world_tf.chaser import TagChaser
+from tag_chaser.v2_world_tf.tracker import ManualTracker
 from tag_chaser.v1_camera_lock.chaser import TagChaser as TagChaserV1
 
 BASE_DIR         = os.path.dirname(os.path.abspath(__file__))
@@ -41,9 +42,10 @@ _CAM_W, _CAM_H   = 640, 480
 app = FastAPI()
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 
-px:      Picarx    = None
-chaser:  TagChaser = None
-_picam2            = None
+px:      Picarx        = None
+chaser:  TagChaser     = None
+tracker: ManualTracker = None
+_picam2                = None
 
 _sensor      = {"distance": -1.0, "grayscale": [0, 0, 0], "battery": None}
 _sensor_lock = threading.Lock()
@@ -65,11 +67,15 @@ _frame_diag_logged   = False
 _ws_queues: dict = {}   # ws → asyncio.Queue
 _loop: asyncio.AbstractEventLoop = None
 
+# Global heartbeat clock — any connection's heartbeat resets this, preventing
+# orphaned-connection watchdogs from firing after a browser reconnect.
+_last_hb: list = [0.0]
+
 PHOTO_DIR = "/home/jvpicar/Pictures/picar-x"
 VIDEO_DIR = "/home/jvpicar/Videos/picar-x"
 LOG_DIR   = "/home/jvpicar/picar_ros/logs"
 
-UBUNTU_LOG_DEST = "jeano@192.168.1.250:/home/jeano/picar_ros/dashboard/sessionlogs/"
+
 
 _logger = logging.getLogger("picarx")
 
@@ -153,6 +159,8 @@ def _capture_loop():
                     _logger.debug("capture->chaser active")
                     _chaser_frame_log_t = _now_mt
                 chaser.process_frame(frame)
+            elif tracker is not None and tracker.is_running():
+                tracker.process_frame(frame)
 
         except Exception as e:
             _logger.error("capture_loop error: %s", e)
@@ -236,7 +244,9 @@ async def dl_video(filename: str):
 async def _graceful_shutdown():
     _logger.info("Graceful shutdown initiated — stopping hardware")
     if chaser and chaser.is_running():
-        chaser.stop()
+        await asyncio.to_thread(chaser.stop)
+    if tracker and tracker.is_running():
+        await asyncio.to_thread(tracker.stop)
     try:
         px.stop()
         px.set_dir_servo_angle(0)
@@ -254,21 +264,7 @@ async def _graceful_shutdown():
     except Exception:
         pass
 
-    _logger.info("Transferring logs to Ubuntu: %s", UBUNTU_LOG_DEST)
-    for h in _logger.handlers:
-        h.flush()
-
-    try:
-        result = subprocess.run(
-            ["scp", "-r", LOG_DIR + "/", UBUNTU_LOG_DEST],
-            timeout=30, capture_output=True, text=True,
-        )
-        if result.returncode == 0:
-            _logger.info("Log transfer complete")
-        else:
-            _logger.error("SCP failed (rc=%d): %s", result.returncode, result.stderr.strip())
-    except Exception as e:
-        _logger.error("SCP exception: %s", e)
+    await asyncio.sleep(0.2)  # let shutdown_ack drain to client before killing
 
     for h in list(_logger.handlers):
         h.flush()
@@ -301,7 +297,7 @@ async def websocket_endpoint(ws: WebSocket):
     })
 
     async def _recv():
-        global _rec_state, _rec_last_video, _rec_writer, chaser
+        global _rec_state, _rec_last_video, _rec_writer, chaser, tracker
         try:
             while True:
                 msg = await ws.receive_json()
@@ -367,6 +363,25 @@ async def websocket_endpoint(ws: WebSocket):
                         out_q.put_nowait({'type': 'chase_status',
                                           'active': False, 'state': 'idle'})
 
+                elif cmd == "manual_track":
+                    action = msg.get("action", "stop")
+                    _logger.info("manual_track action=%s tracker_ready=%s from %s",
+                                 action, tracker is not None, client_ip)
+                    if action == "start":
+                        if chaser and chaser.is_running():
+                            _logger.info("manual_track: stopping active chaser first")
+                            await asyncio.to_thread(chaser.stop)
+                            await asyncio.to_thread(px.stop)
+                        if tracker:
+                            await asyncio.to_thread(tracker.start)
+                            _logger.info("manual_track: tracker started cycle=%d", tracker._cycle)
+                        else:
+                            _logger.error("manual_track: tracker is None — skipped")
+                    elif action == "stop":
+                        if tracker:
+                            await asyncio.to_thread(tracker.stop)
+                            _logger.info("manual_track: tracker stopped")
+
                 elif cmd == "photo":
                     ts    = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
                     fname = f"photo_{ts}.jpg"
@@ -407,6 +422,8 @@ async def websocket_endpoint(ws: WebSocket):
                     _logger.info("kill command from %s", client_ip)
                     if chaser and chaser.is_running():
                         await asyncio.to_thread(chaser.stop)
+                    if tracker and tracker.is_running():
+                        await asyncio.to_thread(tracker.stop)
                     await asyncio.to_thread(px.stop)
                     await asyncio.to_thread(px.set_dir_servo_angle, 0)
                     out_q.put_nowait({"type": "kill_confirmed"})
@@ -431,6 +448,8 @@ async def websocket_endpoint(ws: WebSocket):
 
         except (WebSocketDisconnect, RuntimeError):
             pass
+        except Exception as e:
+            _logger.error("_recv unhandled exception (cmd=%s): %s", cmd, e, exc_info=True)
 
     async def _send():
         try:
@@ -461,7 +480,7 @@ async def websocket_endpoint(ws: WebSocket):
         except Exception:
             pass
 
-    _last_hb = [time.monotonic()]
+    _last_hb[0] = time.monotonic()
 
     async def _watchdog():
         _fired = False
@@ -474,6 +493,10 @@ async def websocket_endpoint(ws: WebSocket):
                         WATCHDOG_TIMEOUT)
                     _fired = True
                 px.stop()
+                try:
+                    px.set_dir_servo_angle(0)
+                except Exception:
+                    pass
             else:
                 if _fired:
                     _logger.info("Watchdog reset — heartbeat restored from %s", client_ip)
@@ -493,18 +516,18 @@ async def websocket_endpoint(ws: WebSocket):
     finally:
         _ws_queues.pop(ws, None)
         _logger.info("WebSocket disconnected from %s", client_ip)
-        if not (chaser and chaser.is_running()):
+        if not (chaser and chaser.is_running()) and not (tracker and tracker.is_running()):
             px.stop()
 
 
 # ── Startup ───────────────────────────────────────────────────────────────────
 
 def main():
-    global px, chaser, _picam2, _session_dir, _chase_config_v1
+    global px, chaser, tracker, _picam2, _session_dir, _chase_config_v1
 
     os.makedirs(LOG_DIR, exist_ok=True)
     log_ts      = datetime.now().strftime("%Y%m%d_%H%M%S")
-    _session_dir = os.path.join(LOG_DIR, f"session_{log_ts}")
+    _session_dir = os.path.join(LOG_DIR, f"pi_session_{log_ts}")
     os.makedirs(_session_dir, exist_ok=True)
     log_path = os.path.join(_session_dir, "master.log")
 
@@ -538,6 +561,10 @@ def main():
     chaser = TagChaser(px, _chase_config_v2, broadcast_fn=broadcast_chase,
                        session_dir=_session_dir)
     _logger.info("TagChaser v2 initialized")
+
+    tracker = ManualTracker(px, _chase_config_v2, broadcast_fn=broadcast_chase,
+                            session_dir=_session_dir)
+    _logger.info("ManualTracker initialized")
 
     from picamera2 import Picamera2
     _picam2 = Picamera2()

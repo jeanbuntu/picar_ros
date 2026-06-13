@@ -288,7 +288,7 @@ class TagChaser:
                     })
                     self.broadcast({'type': 'chase_status', 'active': True,
                                     'state': 'stopping', 'distance_cm': round(dist_cm, 1),
-                                    'world': world_state})
+                                    'world': world_state, 'steer_angle': 0})
             else:
                 self._at_stop_dist = False
                 error = (tag0.center[0] - self.cam_w / 2.0) / (self.cam_w / 2.0)
@@ -308,7 +308,7 @@ class TagChaser:
                     })
                     self.broadcast({'type': 'chase_status', 'active': True,
                                     'state': 'chasing', 'distance_cm': round(dist_cm, 1),
-                                    'world': world_state})
+                                    'world': world_state, 'steer_angle': int(round(steer))})
 
             if log_due:
                 _logger.debug("detect tag0_found=True dist_cm=%.1f", dist_cm)
@@ -332,7 +332,8 @@ class TagChaser:
                 self.broadcast({'type': 'chase_detection', 'found': False,
                                 'frame_w': self.cam_w, 'frame_h': self.cam_h})
                 self.broadcast({'type': 'chase_status', 'active': True,
-                                'state': 'searching', 'world': world_state})
+                                'state': 'searching', 'world': world_state,
+                                'steer_angle': int(round(self._last_steer))})
 
             if log_due:
                 _logger.debug("detect tag0_found=False")

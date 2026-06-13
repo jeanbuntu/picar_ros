@@ -27,6 +27,9 @@ let _battWarnShown = false;
 // Tag chase state
 let chaseActive = false;
 
+// Manual track state
+let trackActive = false;
+
 // Motor display state
 const motorState = { leftPct: 0, rightPct: 0, dir: 'stop' };
 
@@ -49,6 +52,9 @@ let tPhotoBtn, tDetectBtn, tModeBtn, tSessionBtn;
 
 // Chase DOM refs
 let chaseBtn, tChaseBtn, chaseStatusbar, chaseCanvas, chaseCtx;
+
+// Track DOM refs
+let trackBtn, tTrackBtn, trackStatusbar;
 
 // Servo gauges
 let gaugeSteer = null, gaugePan = null, gaugeTilt = null;
@@ -91,6 +97,8 @@ function connect() {
             updateChaseStatus(msg);
         } else if (msg.type === 'chase_detection') {
             drawTagOverlay(msg);
+        } else if (msg.type === 'track_status') {
+            updateTrackStatus(msg);
         }
     };
 
@@ -338,6 +346,8 @@ function updateChaseStatus(msg) {
     if (chaseBtn)   { chaseBtn.textContent = label;   chaseBtn.classList.toggle('btn-chase-active', on); }
     if (tChaseBtn)  { tChaseBtn.textContent = on ? 'Chase ON' : 'Chase';
                       tChaseBtn.classList.toggle('btn-chase-active', on); }
+    if (trackBtn)  trackBtn.disabled  = on;
+    if (tTrackBtn) tTrackBtn.disabled = on;
 
     if (!chaseStatusbar) return;
     if (!on) {
@@ -377,6 +387,7 @@ function updateChaseStatus(msg) {
         chaseStatusbar.style.background = '';
     }
     chaseStatusbar.textContent = text;
+    if (msg.steer_angle != null && gaugeSteer) gaugeSteer.update(msg.steer_angle);
 }
 
 function showWorldNotFoundPopup() {
@@ -399,6 +410,40 @@ function showWorldNotFoundPopup() {
         send({ cmd: 'tag_chase', action: 'cancel' });
         overlay.remove();
     };
+}
+
+function toggleTrack() {
+    const action = trackActive ? 'stop' : 'start';
+    send({ cmd: 'manual_track', action });
+}
+
+function updateTrackStatus(msg) {
+    trackActive = msg.active;
+    const on = msg.active;
+    const label = on ? 'Manual Track ON' : 'Manual Track OFF';
+    if (trackBtn)  { trackBtn.textContent = label;  trackBtn.classList.toggle('btn-track-active', on); }
+    if (tTrackBtn) { tTrackBtn.textContent = on ? 'Track ON' : 'Track';
+                     tTrackBtn.classList.toggle('btn-track-active', on); }
+
+    // Grey out chase button while tracking and vice versa
+    if (chaseBtn)  chaseBtn.disabled  = on;
+    if (tChaseBtn) tChaseBtn.disabled = on;
+
+    if (!trackStatusbar) return;
+    if (!on) {
+        trackStatusbar.classList.remove('track-bar-visible');
+        trackStatusbar.textContent = '';
+        return;
+    }
+    trackStatusbar.classList.add('track-bar-visible');
+    const world = msg.world || 'searching';
+    if (world === 'acquired') {
+        trackStatusbar.textContent = `Manual Track — world acquired${msg.cycle != null ? ' · cycle ' + msg.cycle : ''}`;
+        trackStatusbar.style.background = '';
+    } else {
+        trackStatusbar.textContent = 'Manual Track — searching for world tag…';
+        trackStatusbar.style.background = '#155e75';
+    }
 }
 
 function drawTagOverlay(msg) {
@@ -789,6 +834,10 @@ window.addEventListener('DOMContentLoaded', () => {
     chaseCanvas    = document.getElementById('chase-overlay');
     chaseCtx       = chaseCanvas ? chaseCanvas.getContext('2d') : null;
 
+    trackBtn       = document.getElementById('track-btn');
+    tTrackBtn      = document.getElementById('t-track-btn');
+    trackStatusbar = document.getElementById('track-statusbar');
+
     document.getElementById('cam-feed').src = VIDEO_SRC;
 
     speedSlider.addEventListener('input', () => {
@@ -810,6 +859,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (tModeBtn)    tModeBtn.addEventListener('click', toggleMode);
     if (chaseBtn)    chaseBtn.addEventListener('click', toggleChase);
     if (tChaseBtn)   tChaseBtn.addEventListener('click', toggleChase);
+    if (trackBtn)    trackBtn.addEventListener('click', toggleTrack);
+    if (tTrackBtn)   tTrackBtn.addEventListener('click', toggleTrack);
     if (tSessionBtn) tSessionBtn.addEventListener('click', () => {
         send({ cmd: 'shutdown' });
         sessionBtn.disabled = true;
