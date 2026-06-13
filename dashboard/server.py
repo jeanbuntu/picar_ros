@@ -31,7 +31,8 @@ _PROJ_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJ_ROOT not in sys.path:
     sys.path.insert(0, _PROJ_ROOT)
 
-from tag_chaser.v1_camera_lock.chaser import TagChaser
+from tag_chaser.v2_world_tf.chaser import TagChaser
+from tag_chaser.v1_camera_lock.chaser import TagChaser as TagChaserV1
 
 BASE_DIR         = os.path.dirname(os.path.abspath(__file__))
 WATCHDOG_TIMEOUT = 5.0
@@ -71,6 +72,9 @@ LOG_DIR   = "/home/jvpicar/picar_ros/logs"
 UBUNTU_LOG_DEST = "jeano@192.168.1.250:/home/jeano/picar_ros/dashboard/sessionlogs/"
 
 _logger = logging.getLogger("picarx")
+
+_session_dir:    str  = ''
+_chase_config_v1: dict = {}
 
 
 # ── MJPEG server ──────────────────────────────────────────────────────────────
@@ -297,7 +301,7 @@ async def websocket_endpoint(ws: WebSocket):
     })
 
     async def _recv():
-        global _rec_state, _rec_last_video, _rec_writer
+        global _rec_state, _rec_last_video, _rec_writer, chaser
         try:
             while True:
                 msg = await ws.receive_json()
@@ -349,6 +353,19 @@ async def websocket_endpoint(ws: WebSocket):
                             await asyncio.to_thread(chaser.stop)
                         await asyncio.to_thread(px.stop)
                         await asyncio.to_thread(px.set_dir_servo_angle, 0)
+                    elif action == "switch_to_v1":
+                        speed = max(0, min(100, int(msg.get("speed", 30))))
+                        _logger.info("tag_chase switch_to_v1 speed=%d", speed)
+                        if chaser and chaser.is_running():
+                            await asyncio.to_thread(chaser.stop)
+                        await asyncio.sleep(0.05)
+                        chaser = TagChaserV1(px, _chase_config_v1,
+                                             broadcast_fn=broadcast_chase)
+                        await asyncio.to_thread(chaser.start, speed)
+                    elif action == "cancel":
+                        _logger.info("tag_chase cancel — world_not_found popup dismissed")
+                        out_q.put_nowait({'type': 'chase_status',
+                                          'active': False, 'state': 'idle'})
 
                 elif cmd == "photo":
                     ts    = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
@@ -483,11 +500,13 @@ async def websocket_endpoint(ws: WebSocket):
 # ── Startup ───────────────────────────────────────────────────────────────────
 
 def main():
-    global px, chaser, _picam2
+    global px, chaser, _picam2, _session_dir, _chase_config_v1
 
     os.makedirs(LOG_DIR, exist_ok=True)
-    log_ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_path = os.path.join(LOG_DIR, f"server_{log_ts}.log")
+    log_ts      = datetime.now().strftime("%Y%m%d_%H%M%S")
+    _session_dir = os.path.join(LOG_DIR, f"session_{log_ts}")
+    os.makedirs(_session_dir, exist_ok=True)
+    log_path = os.path.join(_session_dir, "master.log")
 
     _logger.setLevel(logging.DEBUG)
     fh = logging.FileHandler(log_path)
@@ -496,18 +515,29 @@ def main():
         "%(asctime)s.%(msecs)03d  %(levelname)-7s  %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     ))
+    sh = logging.StreamHandler()
+    sh.setLevel(logging.DEBUG)
+    sh.setFormatter(fh.formatter)
     _logger.addHandler(fh)
-    _logger.info("Server starting | log=%s", log_path)
+    _logger.addHandler(sh)
+    _logger.info("Server starting | session=%s", _session_dir)
 
     px = Picarx()
     _logger.info("Picarx initialized")
 
-    _chase_config_path = os.path.join(
+    _chase_config_v2_path = os.path.join(
+        _PROJ_ROOT, 'tag_chaser', 'v2_world_tf', 'config.yaml')
+    with open(_chase_config_v2_path) as f:
+        _chase_config_v2 = yaml.safe_load(f)
+
+    _chase_config_v1_path = os.path.join(
         _PROJ_ROOT, 'tag_chaser', 'v1_camera_lock', 'config.yaml')
-    with open(_chase_config_path) as f:
-        _chase_config = yaml.safe_load(f)
-    chaser = TagChaser(px, _chase_config, broadcast_fn=broadcast_chase)
-    _logger.info("TagChaser initialized")
+    with open(_chase_config_v1_path) as f:
+        _chase_config_v1 = yaml.safe_load(f)
+
+    chaser = TagChaser(px, _chase_config_v2, broadcast_fn=broadcast_chase,
+                       session_dir=_session_dir)
+    _logger.info("TagChaser v2 initialized")
 
     from picamera2 import Picamera2
     _picam2 = Picamera2()

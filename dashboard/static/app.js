@@ -343,23 +343,62 @@ function updateChaseStatus(msg) {
     if (!on) {
         chaseStatusbar.classList.remove('chase-bar-visible');
         chaseStatusbar.textContent = '';
+        if (msg.state === 'world_not_found') {
+            showWorldNotFoundPopup();
+        }
         return;
     }
     chaseStatusbar.classList.add('chase-bar-visible');
     const state = msg.state || 'idle';
+    const worldLost = msg.world === 'world_lost';
     let text = '';
-    if (state === 'starting') {
-        text = `Starting… ${msg.countdown}`;
+    if (state === 'world_search') {
+        text = `Searching for world tag… ${msg.countdown != null ? msg.countdown : ''}s`;
+        chaseStatusbar.style.background = '';
+    } else if (state === 'starting') {
+        text = `World found — Starting ${msg.countdown}`;
+        chaseStatusbar.style.background = '';
     } else if (state === 'chasing') {
-        text = msg.distance_cm != null ? `Chasing — ${msg.distance_cm} cm` : 'Chasing';
+        if (worldLost) {
+            text = 'Chasing — world lost';
+            chaseStatusbar.style.background = '#92400e';
+        } else {
+            text = msg.distance_cm != null ? `Chasing — world ${msg.distance_cm} cm` : 'Chasing';
+            chaseStatusbar.style.background = '';
+        }
     } else if (state === 'stopping') {
         text = msg.distance_cm != null ? `Stopping — ${msg.distance_cm} cm` : 'Stopping';
+        chaseStatusbar.style.background = '';
     } else if (state === 'searching') {
-        text = 'Searching…';
+        text = worldLost ? 'Searching… world lost' : 'Searching…';
+        chaseStatusbar.style.background = worldLost ? '#92400e' : '';
     } else {
         text = state.charAt(0).toUpperCase() + state.slice(1);
+        chaseStatusbar.style.background = '';
     }
     chaseStatusbar.textContent = text;
+}
+
+function showWorldNotFoundPopup() {
+    if (document.getElementById('world-popup')) return;
+    const overlay = document.createElement('div');
+    overlay.id = 'world-popup';
+    overlay.innerHTML =
+        '<div class="world-popup-box">' +
+        '<p>World tag not found after 15 seconds.<br>How would you like to proceed?</p>' +
+        '<div class="world-popup-btns">' +
+        '<button id="popup-v1">Switch to v1</button>' +
+        '<button id="popup-cancel">Cancel tag chase</button>' +
+        '</div></div>';
+    document.body.appendChild(overlay);
+    document.getElementById('popup-v1').onclick = () => {
+        send({ cmd: 'tag_chase', action: 'switch_to_v1', speed: getSpeed() });
+        overlay.remove();
+    };
+    document.getElementById('popup-cancel').onclick = () => {
+        send({ cmd: 'tag_chase', action: 'cancel' });
+        overlay.remove();
+    };
 }
 
 function drawTagOverlay(msg) {

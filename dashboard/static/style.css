@@ -507,6 +507,73 @@ footer {
     color: var(--text-dim);
 }
 
+/* ── World-not-found popup ───────────────────────────── */
+#world-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.world-popup-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    max-width: 340px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.world-popup-box p {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.55;
+    margin-bottom: 20px;
+}
+
+.world-popup-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.world-popup-btns button {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+}
+
+#popup-v1 {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+#popup-v1:hover {
+    background: #3a7be0;
+    border-color: #3a7be0;
+}
+
+#popup-cancel {
+    background: var(--surface2);
+    color: var(--text);
+}
+
+#popup-cancel:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+}
+
 /* ── Touch controls (mobile only) ────────────────────── */
 .touch-controls { display: none; }
 .touch-actions  { display: none; }

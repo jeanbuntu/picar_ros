@@ -1,0 +1,20 @@
+pid:
+  kp: 15.0
+  ki: 0.5
+  kd: 2.0
+
+chase:
+  stop_distance_cm: 20.0
+  steer_limit_deg: 20
+  tag_lost_timeout_s: 2.0
+  tag_id_chase: 0
+  tag_id_world: 1
+  countdown_s: 3
+  world_search_timeout_s: 15
+  confidence_threshold: 20.0
+
+camera:
+  width: 640
+  height: 480
+  tag_size_m: 0.05
+  calibration_file: "../../camera_cal_marker/camera_calibration.yaml"
