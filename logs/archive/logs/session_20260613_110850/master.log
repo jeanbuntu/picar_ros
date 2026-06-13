@@ -1,0 +1,51 @@
+2026-06-13 11:08:50.273  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/session_20260613_110850
+2026-06-13 11:08:50.679  INFO     Picarx initialized
+2026-06-13 11:08:50.786  INFO     TagChaser v2 initialized
+2026-06-13 11:08:50.874  INFO     ManualTracker initialized
+2026-06-13 11:08:51.878  INFO     Picamera2 started at 640x480
+2026-06-13 11:08:51.879  INFO     MJPEG stream at :9000
+2026-06-13 11:08:51.879  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-13 11:08:51.881  INFO     Sensor and capture loops started
+2026-06-13 11:08:51.882  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-13 11:08:51.893  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=121.2 ch1_mean=124.5 ch2_mean=115.9
+2026-06-13 11:09:02.018  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:09:02.756  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:03.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:04.756  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:05.761  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:06.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:07.754  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:08.758  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:09.756  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:10.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:10.978  INFO     drive direction=stop speed=0
+2026-06-13 11:09:10.986  INFO     steer angle=0
+2026-06-13 11:09:11.756  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:12.756  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:13.756  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:14.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:15.763  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:16.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:17.075  INFO     tag_chase start speed=75
+2026-06-13 11:09:17.082  DEBUG    capture->chaser active
+2026-06-13 11:09:17.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:18.262  INFO     tag_chase stop
+2026-06-13 11:09:18.757  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:19.754  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:20.754  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:21.754  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:22.765  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:23.115  INFO     drive direction=stop speed=0
+2026-06-13 11:09:23.122  INFO     steer angle=0
+2026-06-13 11:09:23.756  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:24.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:25.757  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:26.757  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:27.755  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:28.712  INFO     WebSocket disconnected from 192.168.1.105
+2026-06-13 11:09:36.997  INFO     WebSocket connected from 192.168.1.105
+2026-06-13 11:09:37.984  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:38.899  INFO     shutdown command from 192.168.1.105
+2026-06-13 11:09:38.900  INFO     Graceful shutdown initiated — stopping hardware
+2026-06-13 11:09:38.989  DEBUG    heartbeat from 192.168.1.105
+2026-06-13 11:09:39.142  INFO     WebSocket disconnected from 192.168.1.105

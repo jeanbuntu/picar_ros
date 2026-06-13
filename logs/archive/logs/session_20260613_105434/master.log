@@ -1,0 +1,225 @@
+2026-06-13 10:54:34.612  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/session_20260613_105434
+2026-06-13 10:54:35.018  INFO     Picarx initialized
+2026-06-13 10:54:35.130  INFO     TagChaser v2 initialized
+2026-06-13 10:54:35.220  INFO     ManualTracker initialized
+2026-06-13 10:54:36.252  INFO     Picamera2 started at 640x480
+2026-06-13 10:54:36.253  INFO     MJPEG stream at :9000
+2026-06-13 10:54:36.254  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-13 10:54:36.256  INFO     Sensor and capture loops started
+2026-06-13 10:54:36.257  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-13 10:54:36.270  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=98.6 ch1_mean=103.4 ch2_mean=97.1
+2026-06-13 10:54:38.374  INFO     WebSocket connected from 192.168.1.111
+2026-06-13 10:54:38.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:39.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:40.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:41.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:42.783  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:43.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:44.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:45.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:46.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:47.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:48.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:49.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:50.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:51.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:52.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:53.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:54.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:55.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:56.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:57.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:58.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:54:59.411  INFO     tag_chase start speed=15
+2026-06-13 10:54:59.427  DEBUG    capture->chaser active
+2026-06-13 10:54:59.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:00.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:01.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:02.661  DEBUG    detect tag0_found=False
+2026-06-13 10:55:02.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:03.675  DEBUG    detect tag0_found=False
+2026-06-13 10:55:03.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:04.697  DEBUG    detect tag0_found=False
+2026-06-13 10:55:04.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:05.715  DEBUG    detect tag0_found=False
+2026-06-13 10:55:05.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:06.728  DEBUG    detect tag0_found=False
+2026-06-13 10:55:06.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:07.754  DEBUG    detect tag0_found=False
+2026-06-13 10:55:07.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:08.776  DEBUG    detect tag0_found=False
+2026-06-13 10:55:08.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:09.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:09.783  DEBUG    detect tag0_found=False
+2026-06-13 10:55:10.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:10.805  DEBUG    detect tag0_found=False
+2026-06-13 10:55:11.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:11.823  DEBUG    detect tag0_found=False
+2026-06-13 10:55:12.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:12.837  DEBUG    detect tag0_found=False
+2026-06-13 10:55:13.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:13.850  DEBUG    detect tag0_found=False
+2026-06-13 10:55:14.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:14.868  DEBUG    detect tag0_found=False
+2026-06-13 10:55:15.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:15.889  DEBUG    detect tag0_found=False
+2026-06-13 10:55:16.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:16.920  DEBUG    detect tag0_found=False
+2026-06-13 10:55:17.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:17.941  DEBUG    detect tag0_found=False
+2026-06-13 10:55:18.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:18.959  DEBUG    detect tag0_found=False
+2026-06-13 10:55:19.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:19.981  DEBUG    detect tag0_found=False
+2026-06-13 10:55:20.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:21.004  DEBUG    detect tag0_found=False
+2026-06-13 10:55:21.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:22.030  DEBUG    detect tag0_found=False
+2026-06-13 10:55:22.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:23.058  DEBUG    detect tag0_found=False
+2026-06-13 10:55:23.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:24.078  DEBUG    detect tag0_found=False
+2026-06-13 10:55:24.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:25.106  DEBUG    detect tag0_found=False
+2026-06-13 10:55:25.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:26.124  DEBUG    detect tag0_found=False
+2026-06-13 10:55:26.560  INFO     WebSocket connected from 192.168.1.111
+2026-06-13 10:55:26.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:27.139  DEBUG    detect tag0_found=False
+2026-06-13 10:55:27.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:28.166  DEBUG    detect tag0_found=False
+2026-06-13 10:55:28.787  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:29.176  DEBUG    detect tag0_found=False
+2026-06-13 10:55:29.470  DEBUG    capture->chaser active
+2026-06-13 10:55:29.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:30.230  DEBUG    detect tag0_found=False
+2026-06-13 10:55:30.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:31.252  DEBUG    detect tag0_found=False
+2026-06-13 10:55:31.565  WARNING  Watchdog fired — no heartbeat for 5.0s, stopping motors
+2026-06-13 10:55:31.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:32.271  DEBUG    detect tag0_found=False
+2026-06-13 10:55:32.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:33.301  DEBUG    detect tag0_found=False
+2026-06-13 10:55:33.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:34.325  DEBUG    detect tag0_found=False
+2026-06-13 10:55:34.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:35.347  DEBUG    detect tag0_found=False
+2026-06-13 10:55:35.788  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:36.377  DEBUG    detect tag0_found=False
+2026-06-13 10:55:36.784  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:37.410  DEBUG    detect tag0_found=False
+2026-06-13 10:55:37.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:38.434  DEBUG    detect tag0_found=False
+2026-06-13 10:55:38.864  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:39.467  DEBUG    detect tag0_found=False
+2026-06-13 10:55:39.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:40.497  DEBUG    detect tag0_found=False
+2026-06-13 10:55:40.803  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:41.517  DEBUG    detect tag0_found=False
+2026-06-13 10:55:41.788  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:42.545  DEBUG    detect tag0_found=False
+2026-06-13 10:55:42.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:43.567  DEBUG    detect tag0_found=False
+2026-06-13 10:55:43.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:44.590  DEBUG    detect tag0_found=False
+2026-06-13 10:55:44.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:45.621  DEBUG    detect tag0_found=False
+2026-06-13 10:55:45.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:46.647  DEBUG    detect tag0_found=False
+2026-06-13 10:55:46.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:47.669  DEBUG    detect tag0_found=False
+2026-06-13 10:55:47.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:48.688  DEBUG    detect tag0_found=False
+2026-06-13 10:55:48.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:49.733  DEBUG    detect tag0_found=False
+2026-06-13 10:55:49.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:50.768  DEBUG    detect tag0_found=False
+2026-06-13 10:55:50.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:51.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:51.794  DEBUG    detect tag0_found=False
+2026-06-13 10:55:52.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:52.821  DEBUG    detect tag0_found=False
+2026-06-13 10:55:53.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:53.836  DEBUG    detect tag0_found=False
+2026-06-13 10:55:54.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:54.897  DEBUG    detect tag0_found=False
+2026-06-13 10:55:55.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:55.934  DEBUG    detect tag0_found=False
+2026-06-13 10:55:56.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:56.957  DEBUG    detect tag0_found=False
+2026-06-13 10:55:57.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:57.979  DEBUG    detect tag0_found=False
+2026-06-13 10:55:58.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:55:59.012  DEBUG    detect tag0_found=False
+2026-06-13 10:55:59.534  DEBUG    capture->chaser active
+2026-06-13 10:55:59.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:00.071  DEBUG    detect tag0_found=False
+2026-06-13 10:56:00.785  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:01.099  DEBUG    detect tag0_found=False
+2026-06-13 10:56:01.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:02.134  DEBUG    detect tag0_found=False
+2026-06-13 10:56:02.637  INFO     tag_chase stop
+2026-06-13 10:56:02.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:03.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:04.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:05.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:06.784  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:07.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:08.783  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:09.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:10.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:11.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:12.777  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:13.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:14.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:15.776  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:16.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:17.081  INFO     drive direction=stop speed=0
+2026-06-13 10:56:17.089  INFO     steer angle=0
+2026-06-13 10:56:17.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:18.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:19.146  INFO     WebSocket disconnected from 192.168.1.111
+2026-06-13 10:56:19.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:20.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:21.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:22.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:23.785  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:24.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:25.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:26.786  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:27.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:28.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:29.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:30.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:31.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:32.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:33.783  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:34.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:35.633  INFO     drive direction=stop speed=0
+2026-06-13 10:56:35.640  INFO     steer angle=0
+2026-06-13 10:56:35.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:36.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:37.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:38.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:39.778  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:40.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:41.784  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:42.783  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:43.792  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:44.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:45.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:46.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:47.779  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:48.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:49.783  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:50.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:51.780  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:52.782  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:53.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:54.783  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:55.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:56.781  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:57.578  INFO     drive direction=stop speed=0
+2026-06-13 10:56:57.585  INFO     steer angle=0
+2026-06-13 10:56:58.544  DEBUG    heartbeat from 192.168.1.111
+2026-06-13 10:56:59.512  INFO     WebSocket disconnected from 192.168.1.111

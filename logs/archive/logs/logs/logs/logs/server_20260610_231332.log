@@ -1,0 +1,252 @@
+2026-06-10 23:13:32.640  INFO     Server starting | log=/home/jvpicar/picar_ros/logs/server_20260610_231332.log
+2026-06-10 23:13:33.044  INFO     Picarx initialized
+2026-06-10 23:13:33.139  INFO     TagChaser initialized
+2026-06-10 23:13:33.974  INFO     Picamera2 started at 640x480
+2026-06-10 23:13:33.975  INFO     MJPEG stream at :9000
+2026-06-10 23:13:33.976  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-10 23:13:33.977  INFO     Sensor and capture loops started
+2026-06-10 23:13:33.977  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-10 23:13:33.991  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=17.9 ch1_mean=42.8 ch2_mean=58.2
+2026-06-10 23:13:42.462  INFO     WebSocket connected from 192.168.1.90
+2026-06-10 23:13:42.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:43.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:44.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:45.648  INFO     tag_chase start speed=75
+2026-06-10 23:13:45.651  INFO     chase_countdown n=3
+2026-06-10 23:13:45.656  DEBUG    capture->chaser active
+2026-06-10 23:13:45.912  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:46.651  INFO     chase_countdown n=2
+2026-06-10 23:13:46.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:47.652  INFO     chase_countdown n=1
+2026-06-10 23:13:47.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:48.653  INFO     chasing started speed=75
+2026-06-10 23:13:48.765  INFO     detect tag_lost
+2026-06-10 23:13:48.767  DEBUG    detect found=False
+2026-06-10 23:13:48.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:49.812  DEBUG    detect found=False
+2026-06-10 23:13:49.895  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:50.883  DEBUG    detect found=False
+2026-06-10 23:13:50.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:51.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:51.951  DEBUG    detect found=False
+2026-06-10 23:13:52.864  INFO     detect tag_acquired id=0 dist_cm=34.6
+2026-06-10 23:13:52.864  DEBUG    steer angle=-20
+2026-06-10 23:13:52.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:52.956  DEBUG    steer angle=-8
+2026-06-10 23:13:52.958  DEBUG    detect found=True dist_cm=36.2
+2026-06-10 23:13:53.022  INFO     detect tag_lost
+2026-06-10 23:13:53.265  INFO     detect tag_acquired id=0 dist_cm=36.1
+2026-06-10 23:13:53.266  DEBUG    steer angle=-12
+2026-06-10 23:13:53.331  DEBUG    steer angle=-13
+2026-06-10 23:13:53.404  INFO     detect tag_lost
+2026-06-10 23:13:53.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:53.955  DEBUG    detect found=False
+2026-06-10 23:13:54.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:54.963  DEBUG    detect found=False
+2026-06-10 23:13:55.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:55.997  DEBUG    detect found=False
+2026-06-10 23:13:56.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:57.013  DEBUG    detect found=False
+2026-06-10 23:13:57.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:58.094  DEBUG    detect found=False
+2026-06-10 23:13:58.893  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:59.136  DEBUG    detect found=False
+2026-06-10 23:13:59.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:13:59.946  INFO     detect tag_acquired id=0 dist_cm=60.9
+2026-06-10 23:13:59.946  DEBUG    steer angle=-20
+2026-06-10 23:14:00.011  DEBUG    steer angle=-9
+2026-06-10 23:14:00.120  INFO     detect tag_lost
+2026-06-10 23:14:00.176  DEBUG    detect found=False
+2026-06-10 23:14:00.291  INFO     detect tag_acquired id=0 dist_cm=49.8
+2026-06-10 23:14:00.291  DEBUG    steer angle=-4
+2026-06-10 23:14:00.350  DEBUG    steer angle=-6
+2026-06-10 23:14:00.466  DEBUG    steer angle=-4
+2026-06-10 23:14:00.528  DEBUG    steer angle=-6
+2026-06-10 23:14:00.649  DEBUG    steer angle=-5
+2026-06-10 23:14:00.772  DEBUG    steer angle=-2
+2026-06-10 23:14:00.830  INFO     detect tag_lost
+2026-06-10 23:14:00.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:00.896  INFO     detect tag_acquired id=0 dist_cm=61.8
+2026-06-10 23:14:00.896  DEBUG    steer angle=1
+2026-06-10 23:14:00.957  DEBUG    steer angle=-2
+2026-06-10 23:14:01.149  DEBUG    steer angle=-3
+2026-06-10 23:14:01.217  DEBUG    detect found=True dist_cm=67.3
+2026-06-10 23:14:01.531  INFO     detect tag_lost
+2026-06-10 23:14:01.615  INFO     detect tag_acquired id=0 dist_cm=78.6
+2026-06-10 23:14:01.615  DEBUG    steer angle=-2
+2026-06-10 23:14:01.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:01.970  DEBUG    steer angle=0
+2026-06-10 23:14:02.040  INFO     detect tag_lost
+2026-06-10 23:14:02.245  INFO     detect tag_acquired id=0 dist_cm=80.6
+2026-06-10 23:14:02.245  DEBUG    steer angle=8
+2026-06-10 23:14:02.257  DEBUG    detect found=True dist_cm=80.6
+2026-06-10 23:14:02.361  INFO     detect tag_lost
+2026-06-10 23:14:02.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:03.278  DEBUG    detect found=False
+2026-06-10 23:14:03.345  INFO     detect tag_acquired id=0 dist_cm=64.6
+2026-06-10 23:14:03.346  DEBUG    steer angle=-20
+2026-06-10 23:14:03.416  DEBUG    steer angle=-14
+2026-06-10 23:14:03.484  INFO     detect tag_lost
+2026-06-10 23:14:03.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:03.932  INFO     detect tag_acquired id=0 dist_cm=54.2
+2026-06-10 23:14:03.932  DEBUG    steer angle=20
+2026-06-10 23:14:03.994  INFO     detect tag_lost
+2026-06-10 23:14:04.064  INFO     detect tag_acquired id=0 dist_cm=58.2
+2026-06-10 23:14:04.065  DEBUG    steer angle=-6
+2026-06-10 23:14:04.131  INFO     detect tag_lost
+2026-06-10 23:14:04.314  DEBUG    detect found=False
+2026-06-10 23:14:04.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:05.359  DEBUG    detect found=False
+2026-06-10 23:14:05.416  INFO     detect tag_acquired id=0 dist_cm=30.0
+2026-06-10 23:14:05.417  DEBUG    steer angle=-12
+2026-06-10 23:14:05.479  DEBUG    steer angle=-7
+2026-06-10 23:14:05.539  INFO     detect tag_lost
+2026-06-10 23:14:05.831  INFO     detect tag_acquired id=0 dist_cm=29.2
+2026-06-10 23:14:05.832  DEBUG    steer angle=-20
+2026-06-10 23:14:05.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:05.893  INFO     detect tag_lost
+2026-06-10 23:14:06.421  DEBUG    detect found=False
+2026-06-10 23:14:06.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:07.403  DEBUG    detect found=False
+2026-06-10 23:14:07.584  INFO     detect tag_acquired id=0 dist_cm=20.5
+2026-06-10 23:14:07.584  DEBUG    steer angle=20
+2026-06-10 23:14:07.626  INFO     detect tag_lost
+2026-06-10 23:14:07.858  INFO     detect tag_acquired id=0 dist_cm=17.5
+2026-06-10 23:14:07.858  INFO     chase_stop reason=distance_reached dist_cm=17.5
+2026-06-10 23:14:07.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:07.914  INFO     detect tag_lost
+2026-06-10 23:14:08.079  INFO     detect tag_acquired id=0 dist_cm=13.4
+2026-06-10 23:14:08.079  INFO     chase_stop reason=distance_reached dist_cm=13.4
+2026-06-10 23:14:08.137  INFO     chase_stop reason=distance_reached dist_cm=13.6
+2026-06-10 23:14:08.194  INFO     detect tag_lost
+2026-06-10 23:14:08.451  DEBUG    detect found=False
+2026-06-10 23:14:08.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:09.465  DEBUG    detect found=False
+2026-06-10 23:14:09.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:10.504  DEBUG    detect found=False
+2026-06-10 23:14:10.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:11.503  DEBUG    detect found=False
+2026-06-10 23:14:11.897  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:12.536  DEBUG    detect found=False
+2026-06-10 23:14:12.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:13.574  DEBUG    detect found=False
+2026-06-10 23:14:13.911  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:14.629  DEBUG    detect found=False
+2026-06-10 23:14:14.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:15.662  DEBUG    detect found=False
+2026-06-10 23:14:15.668  DEBUG    capture->chaser active
+2026-06-10 23:14:15.895  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:16.327  INFO     detect tag_acquired id=0 dist_cm=75.4
+2026-06-10 23:14:16.396  DEBUG    steer angle=7
+2026-06-10 23:14:16.463  INFO     detect tag_lost
+2026-06-10 23:14:16.584  INFO     detect tag_acquired id=0 dist_cm=78.6
+2026-06-10 23:14:16.584  DEBUG    steer angle=13
+2026-06-10 23:14:16.644  DEBUG    steer angle=10
+2026-06-10 23:14:16.710  DEBUG    detect found=True dist_cm=73.4
+2026-06-10 23:14:16.840  DEBUG    steer angle=8
+2026-06-10 23:14:16.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:17.107  DEBUG    steer angle=9
+2026-06-10 23:14:17.179  INFO     detect tag_lost
+2026-06-10 23:14:17.374  INFO     detect tag_acquired id=0 dist_cm=76.5
+2026-06-10 23:14:17.374  DEBUG    steer angle=17
+2026-06-10 23:14:17.446  DEBUG    steer angle=11
+2026-06-10 23:14:17.578  INFO     detect tag_lost
+2026-06-10 23:14:17.764  DEBUG    detect found=False
+2026-06-10 23:14:17.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:18.525  INFO     detect tag_acquired id=0 dist_cm=46.9
+2026-06-10 23:14:18.525  DEBUG    steer angle=-20
+2026-06-10 23:14:18.586  INFO     detect tag_lost
+2026-06-10 23:14:18.820  DEBUG    detect found=False
+2026-06-10 23:14:18.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:19.887  DEBUG    detect found=False
+2026-06-10 23:14:19.895  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:20.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:20.975  DEBUG    detect found=False
+2026-06-10 23:14:21.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:22.035  DEBUG    detect found=False
+2026-06-10 23:14:22.692  INFO     detect tag_acquired id=0 dist_cm=19.8
+2026-06-10 23:14:22.692  INFO     chase_stop reason=distance_reached dist_cm=19.8
+2026-06-10 23:14:22.762  INFO     chase_stop reason=distance_reached dist_cm=19.5
+2026-06-10 23:14:22.834  INFO     chase_stop reason=distance_reached dist_cm=19.3
+2026-06-10 23:14:22.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:22.909  INFO     chase_stop reason=distance_reached dist_cm=18.8
+2026-06-10 23:14:22.986  INFO     chase_stop reason=distance_reached dist_cm=18.0
+2026-06-10 23:14:23.057  INFO     chase_stop reason=distance_reached dist_cm=17.5
+2026-06-10 23:14:23.063  DEBUG    detect found=True dist_cm=17.5
+2026-06-10 23:14:23.131  INFO     chase_stop reason=distance_reached dist_cm=17.0
+2026-06-10 23:14:23.202  INFO     chase_stop reason=distance_reached dist_cm=16.9
+2026-06-10 23:14:23.275  INFO     chase_stop reason=distance_reached dist_cm=16.9
+2026-06-10 23:14:23.351  INFO     chase_stop reason=distance_reached dist_cm=17.2
+2026-06-10 23:14:23.427  INFO     chase_stop reason=distance_reached dist_cm=17.3
+2026-06-10 23:14:23.503  INFO     chase_stop reason=distance_reached dist_cm=17.3
+2026-06-10 23:14:23.579  INFO     chase_stop reason=distance_reached dist_cm=17.2
+2026-06-10 23:14:23.658  INFO     chase_stop reason=distance_reached dist_cm=17.2
+2026-06-10 23:14:23.735  INFO     chase_stop reason=distance_reached dist_cm=17.3
+2026-06-10 23:14:23.809  INFO     chase_stop reason=distance_reached dist_cm=17.7
+2026-06-10 23:14:23.885  INFO     chase_stop reason=distance_reached dist_cm=18.5
+2026-06-10 23:14:23.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:23.980  INFO     chase_stop reason=distance_reached dist_cm=19.1
+2026-06-10 23:14:24.064  INFO     chase_stop reason=distance_reached dist_cm=20.0
+2026-06-10 23:14:24.141  DEBUG    steer angle=-3
+2026-06-10 23:14:24.143  DEBUG    detect found=True dist_cm=20.8
+2026-06-10 23:14:24.284  INFO     detect tag_lost
+2026-06-10 23:14:24.350  INFO     detect tag_acquired id=0 dist_cm=32.5
+2026-06-10 23:14:24.350  DEBUG    steer angle=-1
+2026-06-10 23:14:24.423  DEBUG    steer angle=-2
+2026-06-10 23:14:24.493  DEBUG    steer angle=-3
+2026-06-10 23:14:24.568  DEBUG    steer angle=-4
+2026-06-10 23:14:24.638  DEBUG    steer angle=-6
+2026-06-10 23:14:24.829  DEBUG    steer angle=-2
+2026-06-10 23:14:24.889  DEBUG    steer angle=-1
+2026-06-10 23:14:24.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:24.946  INFO     detect tag_lost
+2026-06-10 23:14:25.009  INFO     detect tag_acquired id=0 dist_cm=32.9
+2026-06-10 23:14:25.009  DEBUG    steer angle=4
+2026-06-10 23:14:25.067  DEBUG    steer angle=2
+2026-06-10 23:14:25.181  DEBUG    steer angle=3
+2026-06-10 23:14:25.183  DEBUG    detect found=True dist_cm=27.8
+2026-06-10 23:14:25.237  DEBUG    steer angle=-1
+2026-06-10 23:14:25.344  INFO     detect tag_lost
+2026-06-10 23:14:25.402  INFO     detect tag_acquired id=0 dist_cm=21.3
+2026-06-10 23:14:25.402  DEBUG    steer angle=-8
+2026-06-10 23:14:25.453  DEBUG    steer angle=-3
+2026-06-10 23:14:25.503  INFO     chase_stop reason=distance_reached dist_cm=18.7
+2026-06-10 23:14:25.556  INFO     detect tag_lost
+2026-06-10 23:14:25.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:26.184  DEBUG    detect found=False
+2026-06-10 23:14:26.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:27.199  DEBUG    detect found=False
+2026-06-10 23:14:27.893  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:28.205  DEBUG    detect found=False
+2026-06-10 23:14:28.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:29.235  DEBUG    detect found=False
+2026-06-10 23:14:29.898  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:30.268  DEBUG    detect found=False
+2026-06-10 23:14:30.892  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:31.304  DEBUG    detect found=False
+2026-06-10 23:14:31.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:32.333  DEBUG    detect found=False
+2026-06-10 23:14:32.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:33.366  DEBUG    detect found=False
+2026-06-10 23:14:33.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:34.398  DEBUG    detect found=False
+2026-06-10 23:14:34.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:35.432  DEBUG    detect found=False
+2026-06-10 23:14:35.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:36.463  DEBUG    detect found=False
+2026-06-10 23:14:36.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:37.496  DEBUG    detect found=False
+2026-06-10 23:14:37.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:38.528  DEBUG    detect found=False
+2026-06-10 23:14:38.581  INFO     tag_chase stop
+2026-06-10 23:14:38.890  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:39.891  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:40.677  INFO     shutdown command from 192.168.1.90
+2026-06-10 23:14:40.678  INFO     Graceful shutdown initiated — stopping hardware
+2026-06-10 23:14:40.717  INFO     Transferring logs to Ubuntu: jeano@192.168.1.250:/home/jeano/picar_ros/dashboard/sessionlogs/
+2026-06-10 23:14:43.819  ERROR    SCP failed (rc=255): ssh: connect to host 192.168.1.250 port 22: No route to host
+scp: Connection closed
+2026-06-10 23:14:43.822  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:43.823  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:43.823  DEBUG    heartbeat from 192.168.1.90
+2026-06-10 23:14:43.824  INFO     WebSocket disconnected from 192.168.1.90

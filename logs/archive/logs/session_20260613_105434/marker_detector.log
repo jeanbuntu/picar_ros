@@ -1,0 +1,11 @@
+2026-06-13 10:54:59.414 [INFO ] [marker_detector] chase_toggle_on cycle=0
+2026-06-13 10:54:59.558 [INFO ] [marker_detector] chase_start cycle=0 world=acquired
+2026-06-13 10:54:59.558 [INFO ] [marker_detector] chase_countdown n=3
+2026-06-13 10:55:00.559 [INFO ] [marker_detector] chase_countdown n=2
+2026-06-13 10:55:01.560 [INFO ] [marker_detector] chase_countdown n=1
+2026-06-13 10:55:02.561 [INFO ] [marker_detector] cycle_file_open cycle=0 file=cycle_0_raw_105502.json
+2026-06-13 10:55:02.561 [INFO ] [marker_detector] chasing_started cycle=0 speed=15
+2026-06-13 10:55:02.660 [INFO ] [marker_detector] world_reacquired — TF gap closed
+2026-06-13 10:55:02.661 [INFO ] [marker_detector] detect tag0_lost
+2026-06-13 10:56:02.644 [INFO ] [marker_detector] cycle_file_close cycle=0
+2026-06-13 10:56:02.644 [INFO ] [marker_detector] chase_stop cycle=0 reason=toggle_off
