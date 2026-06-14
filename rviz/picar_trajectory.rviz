@@ -84,6 +84,21 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /trajectory/tag0
       Value: true
+    - Class: rviz_default_plugins/RobotModel
+      Enabled: true
+      Name: PiCar
+      Description Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Links:
+        All Links Enabled: true
+      Alpha: 1
+      Visual Enabled: true
+      Collision Enabled: false
+      Value: true
     - Class: rviz_default_plugins/Marker
       Enabled: true
       Name: World Origin

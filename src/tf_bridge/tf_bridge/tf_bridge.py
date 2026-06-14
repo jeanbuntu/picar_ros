@@ -95,9 +95,14 @@ class TfBridgeNode(Node):
         self._cycle_file_n     = -1
         self._cycle_file_first = True
 
+        # Session-scoped XYZ point cloud (MeshLab-compatible, x y z r g b per line)
+        xyz_path = os.path.join(self._session_dir, "points.xyz")
+        self._xyz_file = open(xyz_path, 'w')
+
         self._first_detection = True
 
         self._pylog.info("tf_bridge started | session=%s", self._session_dir)
+        self._pylog.info("xyz_file_open path=%s", xyz_path)
         self._pylog.info("connecting to %s", self._ws_url)
 
     # ── WebSocket connection loop ──────────────────────────────────────────────
@@ -159,6 +164,11 @@ class TfBridgeNode(Node):
         T_camera_tag1 = self._build_4x4(R1, t1)
         T_world_camera = np.linalg.inv(T_camera_tag1)
 
+        det = np.linalg.det(T_world_camera[:3, :3])
+        if det <= 0:
+            self._pylog.warning("skipping frame: degenerate rotation matrix det=%.4f", det)
+            return
+
         cam_pos = T_world_camera[:3, 3]
         cam_quat = Rotation.from_matrix(T_world_camera[:3, :3]).as_quat()  # [x,y,z,w]
 
@@ -172,6 +182,7 @@ class TfBridgeNode(Node):
 
         # Append car point
         self._append_point(self._car_markers, cycle, cam_pos)
+        self._append_xyz(cam_pos, 0, 220, 0)
 
         tag0_world_pos = None
         if tag0 is not None:
@@ -185,6 +196,7 @@ class TfBridgeNode(Node):
 
             self._publish_tf('world', 'tag0', tag0_world_pos, tag0_quat)
             self._append_point(self._tag0_markers, cycle, tag0_world_pos)
+            self._append_xyz(tag0_world_pos, 220, 0, 0)
 
         self._publish_marker_arrays()
         self._append_world_record(ts, cycle, cam_pos.tolist(),
@@ -270,6 +282,10 @@ class TfBridgeNode(Node):
         m.color.r = 1.0; m.color.g = 1.0; m.color.b = 0.0; m.color.a = 1.0
         self._world_pub.publish(m)
 
+    def _append_xyz(self, pos, r: int, g: int, b: int):
+        self._xyz_file.write(f"{pos[0]:.4f} {pos[1]:.4f} {pos[2]:.4f} {r} {g} {b}\n")
+        self._xyz_file.flush()
+
     def _append_point(self, markers_dict: dict, cycle: int, pos):
         if cycle not in markers_dict:
             return
@@ -344,9 +360,13 @@ def main(args=None):
         pass
     finally:
         node._close_cycle_file()
+        node._xyz_file.close()
         executor.shutdown(wait=False)
         node.destroy_node()
-        rclpy.shutdown()
+        try:
+            rclpy.shutdown()
+        except Exception:
+            pass
 
 
 if __name__ == '__main__':

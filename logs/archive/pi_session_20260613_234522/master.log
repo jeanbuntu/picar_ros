@@ -1,0 +1,625 @@
+2026-06-13 23:45:22.901  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/pi_session_20260613_234522
+2026-06-13 23:45:23.303  INFO     Picarx initialized
+2026-06-13 23:45:23.404  INFO     TagChaser v2 initialized
+2026-06-13 23:45:23.496  INFO     ManualTracker initialized
+2026-06-13 23:45:24.319  INFO     Picamera2 started at 640x480
+2026-06-13 23:45:24.320  INFO     MJPEG stream at :9000
+2026-06-13 23:45:24.321  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-13 23:45:24.322  INFO     Sensor and capture loops started
+2026-06-13 23:45:24.322  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-13 23:45:24.338  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=18.5 ch1_mean=29.9 ch2_mean=37.3
+2026-06-13 23:45:24.518  INFO     WebSocket connected from 192.168.1.107
+2026-06-13 23:45:25.040  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:26.046  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:27.038  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:27.712  INFO     gimbal axis=pan angle=0
+2026-06-13 23:45:27.714  INFO     gimbal axis=tilt angle=0
+2026-06-13 23:45:27.792  INFO     WebSocket disconnected from 192.168.1.107
+2026-06-13 23:45:27.841  INFO     WebSocket connected from 192.168.1.107
+2026-06-13 23:45:28.834  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:29.587  INFO     drive direction=stop speed=0
+2026-06-13 23:45:29.594  INFO     steer angle=0
+2026-06-13 23:45:29.831  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:30.834  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:31.831  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:32.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:33.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:34.833  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:35.844  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:36.829  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:37.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:38.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:39.829  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:40.837  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:41.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:42.832  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:43.834  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:44.835  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:45.829  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:46.833  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:47.905  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:48.958  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:49.839  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:50.918  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:51.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:52.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:53.831  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:54.828  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:55.829  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:55.909  INFO     manual_track action=start tracker_ready=True from 192.168.1.107
+2026-06-13 23:45:55.912  INFO     manual_track: tracker started cycle=0
+2026-06-13 23:45:56.829  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:56.922  INFO     drive direction=stop speed=0
+2026-06-13 23:45:56.929  INFO     steer angle=0
+2026-06-13 23:45:57.828  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:58.834  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:45:59.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:00.831  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:01.841  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:02.280  INFO     steer angle=0
+2026-06-13 23:46:02.281  INFO     drive direction=forward speed=75
+2026-06-13 23:46:02.378  INFO     steer angle=0
+2026-06-13 23:46:02.380  INFO     drive direction=forward speed=75
+2026-06-13 23:46:02.400  INFO     steer angle=0
+2026-06-13 23:46:02.401  INFO     drive direction=stop speed=0
+2026-06-13 23:46:02.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:03.403  INFO     steer angle=0
+2026-06-13 23:46:03.404  INFO     drive direction=backward speed=75
+2026-06-13 23:46:03.511  INFO     steer angle=0
+2026-06-13 23:46:03.512  INFO     drive direction=backward speed=75
+2026-06-13 23:46:03.550  INFO     steer angle=0
+2026-06-13 23:46:03.552  INFO     drive direction=stop speed=0
+2026-06-13 23:46:03.834  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:04.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:05.527  INFO     drive direction=stop speed=0
+2026-06-13 23:46:05.534  INFO     steer angle=0
+2026-06-13 23:46:05.828  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:06.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:07.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:08.832  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:09.829  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:10.828  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:11.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:12.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:13.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:14.831  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:15.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:16.828  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:17.833  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:18.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:19.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:20.836  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:21.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:22.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:23.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:24.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:25.834  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:26.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:27.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:28.828  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:29.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:30.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:31.841  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:32.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:33.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:34.112  INFO     steer angle=0
+2026-06-13 23:46:34.116  INFO     drive direction=forward speed=75
+2026-06-13 23:46:34.159  INFO     steer angle=-30
+2026-06-13 23:46:34.160  INFO     drive direction=forward speed=75
+2026-06-13 23:46:34.216  INFO     steer angle=-30
+2026-06-13 23:46:34.218  INFO     drive direction=forward speed=75
+2026-06-13 23:46:34.257  INFO     steer angle=-30
+2026-06-13 23:46:34.258  INFO     drive direction=forward speed=75
+2026-06-13 23:46:34.312  INFO     steer angle=-30
+2026-06-13 23:46:34.314  INFO     drive direction=forward speed=75
+2026-06-13 23:46:34.337  INFO     steer angle=-30
+2026-06-13 23:46:34.339  INFO     drive direction=stop speed=0
+2026-06-13 23:46:34.346  INFO     steer angle=0
+2026-06-13 23:46:34.348  INFO     drive direction=stop speed=0
+2026-06-13 23:46:34.828  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:35.204  INFO     steer angle=0
+2026-06-13 23:46:35.206  INFO     drive direction=backward speed=75
+2026-06-13 23:46:35.304  INFO     steer angle=0
+2026-06-13 23:46:35.306  INFO     drive direction=backward speed=75
+2026-06-13 23:46:35.384  INFO     steer angle=0
+2026-06-13 23:46:35.386  INFO     drive direction=stop speed=0
+2026-06-13 23:46:35.604  INFO     steer angle=0
+2026-06-13 23:46:35.605  INFO     drive direction=backward speed=75
+2026-06-13 23:46:35.707  INFO     steer angle=0
+2026-06-13 23:46:35.769  INFO     drive direction=backward speed=75
+2026-06-13 23:46:35.771  INFO     steer angle=0
+2026-06-13 23:46:35.772  INFO     drive direction=stop speed=0
+2026-06-13 23:46:35.838  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:36.833  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:37.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:38.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:39.456  INFO     drive direction=stop speed=0
+2026-06-13 23:46:39.463  INFO     steer angle=0
+2026-06-13 23:46:39.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:40.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:41.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:42.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:43.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:44.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:45.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:46.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:47.831  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:48.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:49.831  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:50.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:51.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:52.835  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:53.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:54.838  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:55.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:56.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:57.829  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:58.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:46:59.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:00.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:01.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:02.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:03.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:04.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:05.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:06.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:07.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:08.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:09.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:10.314  INFO     manual_track action=stop tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:10.315  INFO     manual_track: tracker stopped
+2026-06-13 23:47:10.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:11.295  INFO     manual_track action=start tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:11.297  INFO     manual_track: tracker started cycle=1
+2026-06-13 23:47:11.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:12.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:12.980  INFO     drive direction=stop speed=0
+2026-06-13 23:47:12.987  INFO     steer angle=0
+2026-06-13 23:47:13.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:14.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:15.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:16.830  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:17.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:18.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:19.826  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:20.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:21.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:22.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:23.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:24.834  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:25.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:26.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:27.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:28.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:29.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:30.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:31.354  INFO     steer angle=0
+2026-06-13 23:47:31.355  INFO     drive direction=forward speed=75
+2026-06-13 23:47:31.454  INFO     steer angle=0
+2026-06-13 23:47:31.456  INFO     drive direction=forward speed=75
+2026-06-13 23:47:31.555  INFO     steer angle=0
+2026-06-13 23:47:31.556  INFO     drive direction=forward speed=75
+2026-06-13 23:47:31.654  INFO     steer angle=0
+2026-06-13 23:47:31.656  INFO     drive direction=forward speed=75
+2026-06-13 23:47:31.759  INFO     steer angle=0
+2026-06-13 23:47:31.760  INFO     drive direction=forward speed=75
+2026-06-13 23:47:31.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:31.854  INFO     steer angle=0
+2026-06-13 23:47:31.855  INFO     drive direction=forward speed=75
+2026-06-13 23:47:31.954  INFO     steer angle=0
+2026-06-13 23:47:31.955  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.056  INFO     steer angle=0
+2026-06-13 23:47:32.057  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.066  INFO     steer angle=0
+2026-06-13 23:47:32.067  INFO     drive direction=stop speed=0
+2026-06-13 23:47:32.301  INFO     steer angle=0
+2026-06-13 23:47:32.306  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.400  INFO     steer angle=0
+2026-06-13 23:47:32.401  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.501  INFO     steer angle=0
+2026-06-13 23:47:32.502  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.527  INFO     steer angle=-30
+2026-06-13 23:47:32.529  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.602  INFO     steer angle=-30
+2026-06-13 23:47:32.603  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.625  INFO     steer angle=-30
+2026-06-13 23:47:32.626  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.699  INFO     steer angle=-30
+2026-06-13 23:47:32.701  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.725  INFO     steer angle=-30
+2026-06-13 23:47:32.727  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.803  INFO     steer angle=-30
+2026-06-13 23:47:32.804  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:32.825  INFO     steer angle=-30
+2026-06-13 23:47:32.826  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.846  INFO     steer angle=0
+2026-06-13 23:47:32.848  INFO     drive direction=forward speed=75
+2026-06-13 23:47:32.901  INFO     steer angle=0
+2026-06-13 23:47:32.902  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.006  INFO     steer angle=0
+2026-06-13 23:47:33.007  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.100  INFO     steer angle=0
+2026-06-13 23:47:33.102  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.182  INFO     steer angle=30
+2026-06-13 23:47:33.184  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.205  INFO     steer angle=30
+2026-06-13 23:47:33.206  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.286  INFO     steer angle=30
+2026-06-13 23:47:33.288  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.305  INFO     steer angle=30
+2026-06-13 23:47:33.307  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.383  INFO     steer angle=30
+2026-06-13 23:47:33.384  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.394  INFO     steer angle=0
+2026-06-13 23:47:33.395  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.411  INFO     steer angle=0
+2026-06-13 23:47:33.412  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.502  INFO     steer angle=0
+2026-06-13 23:47:33.503  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.598  INFO     steer angle=0
+2026-06-13 23:47:33.600  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.699  INFO     steer angle=0
+2026-06-13 23:47:33.701  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.800  INFO     steer angle=0
+2026-06-13 23:47:33.802  INFO     drive direction=forward speed=75
+2026-06-13 23:47:33.814  INFO     steer angle=0
+2026-06-13 23:47:33.815  INFO     drive direction=stop speed=0
+2026-06-13 23:47:33.823  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:33.957  INFO     steer angle=-30
+2026-06-13 23:47:33.960  INFO     drive direction=stop speed=0
+2026-06-13 23:47:34.048  INFO     steer angle=-30
+2026-06-13 23:47:34.049  INFO     drive direction=backward speed=75
+2026-06-13 23:47:34.057  INFO     steer angle=-30
+2026-06-13 23:47:34.058  INFO     drive direction=backward speed=75
+2026-06-13 23:47:34.152  INFO     steer angle=-30
+2026-06-13 23:47:34.153  INFO     drive direction=backward speed=75
+2026-06-13 23:47:34.158  INFO     steer angle=-30
+2026-06-13 23:47:34.159  INFO     drive direction=backward speed=75
+2026-06-13 23:47:34.249  INFO     steer angle=-30
+2026-06-13 23:47:34.250  INFO     drive direction=backward speed=75
+2026-06-13 23:47:34.256  INFO     steer angle=-30
+2026-06-13 23:47:34.258  INFO     drive direction=backward speed=75
+2026-06-13 23:47:34.283  INFO     steer angle=-30
+2026-06-13 23:47:34.285  INFO     drive direction=stop speed=0
+2026-06-13 23:47:34.320  INFO     steer angle=0
+2026-06-13 23:47:34.321  INFO     drive direction=stop speed=0
+2026-06-13 23:47:34.419  INFO     steer angle=0
+2026-06-13 23:47:34.420  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.503  INFO     steer angle=-30
+2026-06-13 23:47:34.504  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.523  INFO     steer angle=-30
+2026-06-13 23:47:34.524  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.604  INFO     steer angle=-30
+2026-06-13 23:47:34.605  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.615  INFO     steer angle=-30
+2026-06-13 23:47:34.617  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.703  INFO     steer angle=-30
+2026-06-13 23:47:34.704  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.715  INFO     steer angle=-30
+2026-06-13 23:47:34.717  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.732  INFO     steer angle=0
+2026-06-13 23:47:34.733  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.741  INFO     steer angle=30
+2026-06-13 23:47:34.742  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.813  INFO     steer angle=30
+2026-06-13 23:47:34.815  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:34.842  INFO     steer angle=30
+2026-06-13 23:47:34.844  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.866  INFO     steer angle=0
+2026-06-13 23:47:34.867  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.913  INFO     steer angle=0
+2026-06-13 23:47:34.915  INFO     drive direction=forward speed=75
+2026-06-13 23:47:34.934  INFO     steer angle=-30
+2026-06-13 23:47:34.935  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.013  INFO     steer angle=-30
+2026-06-13 23:47:35.015  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.034  INFO     steer angle=-30
+2026-06-13 23:47:35.035  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.113  INFO     steer angle=-30
+2026-06-13 23:47:35.115  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.134  INFO     steer angle=-30
+2026-06-13 23:47:35.135  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.213  INFO     steer angle=-30
+2026-06-13 23:47:35.214  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.234  INFO     steer angle=-30
+2026-06-13 23:47:35.235  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.313  INFO     steer angle=-30
+2026-06-13 23:47:35.315  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.334  INFO     steer angle=-30
+2026-06-13 23:47:35.335  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.413  INFO     steer angle=-30
+2026-06-13 23:47:35.415  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.434  INFO     steer angle=-30
+2026-06-13 23:47:35.436  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.513  INFO     steer angle=-30
+2026-06-13 23:47:35.514  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.536  INFO     steer angle=-30
+2026-06-13 23:47:35.537  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.613  INFO     steer angle=-30
+2026-06-13 23:47:35.615  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.635  INFO     steer angle=-30
+2026-06-13 23:47:35.636  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.670  INFO     steer angle=0
+2026-06-13 23:47:35.671  INFO     drive direction=forward speed=75
+2026-06-13 23:47:35.685  INFO     steer angle=0
+2026-06-13 23:47:35.687  INFO     drive direction=stop speed=0
+2026-06-13 23:47:35.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:35.946  INFO     steer angle=0
+2026-06-13 23:47:35.947  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.046  INFO     steer angle=0
+2026-06-13 23:47:36.047  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.144  INFO     steer angle=0
+2026-06-13 23:47:36.146  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.248  INFO     steer angle=0
+2026-06-13 23:47:36.251  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.345  INFO     steer angle=0
+2026-06-13 23:47:36.346  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.446  INFO     steer angle=0
+2026-06-13 23:47:36.448  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.551  INFO     steer angle=0
+2026-06-13 23:47:36.553  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.650  INFO     steer angle=0
+2026-06-13 23:47:36.651  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.745  INFO     steer angle=0
+2026-06-13 23:47:36.746  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:36.845  INFO     steer angle=0
+2026-06-13 23:47:36.846  INFO     drive direction=backward speed=75
+2026-06-13 23:47:36.946  INFO     steer angle=0
+2026-06-13 23:47:36.948  INFO     drive direction=backward speed=75
+2026-06-13 23:47:37.030  INFO     steer angle=0
+2026-06-13 23:47:37.032  INFO     drive direction=stop speed=0
+2026-06-13 23:47:37.454  INFO     steer angle=0
+2026-06-13 23:47:37.455  INFO     drive direction=backward speed=75
+2026-06-13 23:47:37.550  INFO     steer angle=0
+2026-06-13 23:47:37.551  INFO     drive direction=backward speed=75
+2026-06-13 23:47:37.651  INFO     steer angle=0
+2026-06-13 23:47:37.654  INFO     drive direction=backward speed=75
+2026-06-13 23:47:37.756  INFO     steer angle=0
+2026-06-13 23:47:37.757  INFO     drive direction=backward speed=75
+2026-06-13 23:47:37.825  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:37.861  INFO     steer angle=0
+2026-06-13 23:47:37.862  INFO     drive direction=backward speed=75
+2026-06-13 23:47:37.896  INFO     steer angle=0
+2026-06-13 23:47:37.897  INFO     drive direction=stop speed=0
+2026-06-13 23:47:38.328  INFO     steer angle=0
+2026-06-13 23:47:38.329  INFO     drive direction=forward speed=75
+2026-06-13 23:47:38.429  INFO     steer angle=0
+2026-06-13 23:47:38.430  INFO     drive direction=forward speed=75
+2026-06-13 23:47:38.526  INFO     steer angle=0
+2026-06-13 23:47:38.528  INFO     drive direction=forward speed=75
+2026-06-13 23:47:38.629  INFO     steer angle=0
+2026-06-13 23:47:38.630  INFO     drive direction=forward speed=75
+2026-06-13 23:47:38.730  INFO     steer angle=0
+2026-06-13 23:47:38.731  INFO     drive direction=forward speed=75
+2026-06-13 23:47:38.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:38.829  INFO     steer angle=0
+2026-06-13 23:47:38.830  INFO     drive direction=forward speed=75
+2026-06-13 23:47:38.928  INFO     steer angle=0
+2026-06-13 23:47:38.930  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.032  INFO     steer angle=30
+2026-06-13 23:47:39.033  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.037  INFO     steer angle=30
+2026-06-13 23:47:39.038  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.083  INFO     steer angle=30
+2026-06-13 23:47:39.084  INFO     drive direction=stop speed=0
+2026-06-13 23:47:39.132  INFO     steer angle=30
+2026-06-13 23:47:39.133  INFO     drive direction=stop speed=0
+2026-06-13 23:47:39.144  INFO     steer angle=30
+2026-06-13 23:47:39.145  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.231  INFO     steer angle=30
+2026-06-13 23:47:39.232  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.245  INFO     steer angle=30
+2026-06-13 23:47:39.247  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.288  INFO     steer angle=0
+2026-06-13 23:47:39.289  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.345  INFO     steer angle=0
+2026-06-13 23:47:39.347  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.444  INFO     steer angle=0
+2026-06-13 23:47:39.446  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.547  INFO     steer angle=0
+2026-06-13 23:47:39.548  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.645  INFO     steer angle=0
+2026-06-13 23:47:39.646  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.749  INFO     steer angle=0
+2026-06-13 23:47:39.750  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.818  INFO     steer angle=-30
+2026-06-13 23:47:39.820  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.832  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:39.846  INFO     steer angle=-30
+2026-06-13 23:47:39.848  INFO     drive direction=forward speed=75
+2026-06-13 23:47:39.855  INFO     steer angle=-30
+2026-06-13 23:47:39.856  INFO     drive direction=stop speed=0
+2026-06-13 23:47:39.917  INFO     steer angle=-30
+2026-06-13 23:47:39.918  INFO     drive direction=stop speed=0
+2026-06-13 23:47:40.017  INFO     steer angle=-30
+2026-06-13 23:47:40.018  INFO     drive direction=stop speed=0
+2026-06-13 23:47:40.028  INFO     steer angle=-30
+2026-06-13 23:47:40.030  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.088  INFO     steer angle=0
+2026-06-13 23:47:40.090  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.121  INFO     steer angle=0
+2026-06-13 23:47:40.123  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.192  INFO     steer angle=0
+2026-06-13 23:47:40.193  INFO     drive direction=stop speed=0
+2026-06-13 23:47:40.388  INFO     steer angle=0
+2026-06-13 23:47:40.389  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.489  INFO     steer angle=0
+2026-06-13 23:47:40.490  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.588  INFO     steer angle=0
+2026-06-13 23:47:40.589  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.688  INFO     steer angle=0
+2026-06-13 23:47:40.690  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.789  INFO     steer angle=0
+2026-06-13 23:47:40.791  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:40.891  INFO     steer angle=0
+2026-06-13 23:47:40.892  INFO     drive direction=backward speed=75
+2026-06-13 23:47:40.999  INFO     steer angle=0
+2026-06-13 23:47:41.000  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.090  INFO     steer angle=0
+2026-06-13 23:47:41.091  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.193  INFO     steer angle=0
+2026-06-13 23:47:41.194  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.293  INFO     steer angle=0
+2026-06-13 23:47:41.295  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.396  INFO     steer angle=0
+2026-06-13 23:47:41.397  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.494  INFO     steer angle=0
+2026-06-13 23:47:41.496  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.601  INFO     steer angle=0
+2026-06-13 23:47:41.603  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.688  INFO     steer angle=0
+2026-06-13 23:47:41.691  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.772  INFO     steer angle=-30
+2026-06-13 23:47:41.775  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.788  INFO     steer angle=-30
+2026-06-13 23:47:41.790  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.820  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:41.874  INFO     steer angle=-30
+2026-06-13 23:47:41.876  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.888  INFO     steer angle=-30
+2026-06-13 23:47:41.889  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.972  INFO     steer angle=-30
+2026-06-13 23:47:41.973  INFO     drive direction=backward speed=75
+2026-06-13 23:47:41.988  INFO     steer angle=-30
+2026-06-13 23:47:41.989  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.072  INFO     steer angle=-30
+2026-06-13 23:47:42.074  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.089  INFO     steer angle=-30
+2026-06-13 23:47:42.090  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.176  INFO     steer angle=-30
+2026-06-13 23:47:42.178  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.188  INFO     steer angle=-30
+2026-06-13 23:47:42.190  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.278  INFO     steer angle=-30
+2026-06-13 23:47:42.280  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.290  INFO     steer angle=-30
+2026-06-13 23:47:42.291  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.348  INFO     steer angle=0
+2026-06-13 23:47:42.350  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.388  INFO     steer angle=0
+2026-06-13 23:47:42.389  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.488  INFO     steer angle=0
+2026-06-13 23:47:42.490  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.554  INFO     steer angle=30
+2026-06-13 23:47:42.556  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.587  INFO     steer angle=30
+2026-06-13 23:47:42.589  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.656  INFO     steer angle=30
+2026-06-13 23:47:42.657  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.689  INFO     steer angle=30
+2026-06-13 23:47:42.690  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.763  INFO     steer angle=30
+2026-06-13 23:47:42.764  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.788  INFO     steer angle=30
+2026-06-13 23:47:42.789  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:42.856  INFO     steer angle=30
+2026-06-13 23:47:42.857  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.888  INFO     steer angle=30
+2026-06-13 23:47:42.889  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.956  INFO     steer angle=30
+2026-06-13 23:47:42.957  INFO     drive direction=backward speed=75
+2026-06-13 23:47:42.991  INFO     steer angle=30
+2026-06-13 23:47:42.992  INFO     drive direction=backward speed=75
+2026-06-13 23:47:43.060  INFO     steer angle=30
+2026-06-13 23:47:43.062  INFO     drive direction=backward speed=75
+2026-06-13 23:47:43.094  INFO     steer angle=30
+2026-06-13 23:47:43.095  INFO     drive direction=backward speed=75
+2026-06-13 23:47:43.158  INFO     steer angle=30
+2026-06-13 23:47:43.159  INFO     drive direction=backward speed=75
+2026-06-13 23:47:43.191  INFO     steer angle=30
+2026-06-13 23:47:43.192  INFO     drive direction=backward speed=75
+2026-06-13 23:47:43.223  INFO     steer angle=0
+2026-06-13 23:47:43.225  INFO     drive direction=backward speed=75
+2026-06-13 23:47:43.294  INFO     steer angle=0
+2026-06-13 23:47:43.295  INFO     drive direction=backward speed=75
+2026-06-13 23:47:43.363  INFO     steer angle=0
+2026-06-13 23:47:43.364  INFO     drive direction=stop speed=0
+2026-06-13 23:47:43.667  INFO     steer angle=0
+2026-06-13 23:47:43.668  INFO     drive direction=forward speed=75
+2026-06-13 23:47:43.767  INFO     steer angle=0
+2026-06-13 23:47:43.768  INFO     drive direction=forward speed=75
+2026-06-13 23:47:43.827  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:43.867  INFO     steer angle=0
+2026-06-13 23:47:43.868  INFO     drive direction=forward speed=75
+2026-06-13 23:47:43.968  INFO     steer angle=0
+2026-06-13 23:47:43.969  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.067  INFO     steer angle=0
+2026-06-13 23:47:44.068  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.182  INFO     steer angle=0
+2026-06-13 23:47:44.184  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.236  INFO     steer angle=30
+2026-06-13 23:47:44.238  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.269  INFO     steer angle=30
+2026-06-13 23:47:44.270  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.337  INFO     steer angle=30
+2026-06-13 23:47:44.338  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.369  INFO     steer angle=30
+2026-06-13 23:47:44.370  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.439  INFO     steer angle=30
+2026-06-13 23:47:44.440  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.468  INFO     steer angle=30
+2026-06-13 23:47:44.470  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.483  INFO     steer angle=0
+2026-06-13 23:47:44.484  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.569  INFO     steer angle=0
+2026-06-13 23:47:44.571  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.676  INFO     steer angle=0
+2026-06-13 23:47:44.681  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.777  INFO     steer angle=0
+2026-06-13 23:47:44.778  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:44.868  INFO     steer angle=0
+2026-06-13 23:47:44.869  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.970  INFO     steer angle=0
+2026-06-13 23:47:44.971  INFO     drive direction=forward speed=75
+2026-06-13 23:47:44.973  INFO     steer angle=0
+2026-06-13 23:47:44.974  INFO     drive direction=stop speed=0
+2026-06-13 23:47:45.093  INFO     steer angle=0
+2026-06-13 23:47:45.094  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.188  INFO     steer angle=0
+2026-06-13 23:47:45.190  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.290  INFO     steer angle=0
+2026-06-13 23:47:45.291  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.390  INFO     steer angle=0
+2026-06-13 23:47:45.391  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.492  INFO     steer angle=0
+2026-06-13 23:47:45.493  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.600  INFO     steer angle=0
+2026-06-13 23:47:45.601  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.699  INFO     steer angle=0
+2026-06-13 23:47:45.700  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.790  INFO     steer angle=0
+2026-06-13 23:47:45.791  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:45.890  INFO     steer angle=0
+2026-06-13 23:47:45.891  INFO     drive direction=backward speed=75
+2026-06-13 23:47:45.947  INFO     steer angle=0
+2026-06-13 23:47:45.949  INFO     drive direction=stop speed=0
+2026-06-13 23:47:46.820  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:47.822  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:48.497  INFO     manual_track action=stop tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:48.498  INFO     manual_track: tracker stopped
+2026-06-13 23:47:48.821  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:49.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:50.819  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:50.975  INFO     manual_track action=stop tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:50.975  INFO     manual_track: tracker stopped
+2026-06-13 23:47:51.820  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:52.292  INFO     manual_track action=stop tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:52.293  INFO     manual_track: tracker stopped
+2026-06-13 23:47:52.689  INFO     manual_track action=stop tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:52.690  INFO     manual_track: tracker stopped
+2026-06-13 23:47:52.820  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:52.934  INFO     manual_track action=stop tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:52.935  INFO     manual_track: tracker stopped
+2026-06-13 23:47:53.091  INFO     manual_track action=stop tracker_ready=True from 192.168.1.107
+2026-06-13 23:47:53.092  INFO     manual_track: tracker stopped
+2026-06-13 23:47:53.824  DEBUG    heartbeat from 192.168.1.107
+2026-06-13 23:47:54.084  INFO     shutdown command from 192.168.1.107
+2026-06-13 23:47:54.085  INFO     Graceful shutdown initiated — stopping hardware
+2026-06-13 23:47:54.330  INFO     WebSocket disconnected from 192.168.1.107

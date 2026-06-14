@@ -516,7 +516,7 @@ async def websocket_endpoint(ws: WebSocket):
     finally:
         _ws_queues.pop(ws, None)
         _logger.info("WebSocket disconnected from %s", client_ip)
-        if not (chaser and chaser.is_running()) and not (tracker and tracker.is_running()):
+        if not _ws_queues and not (chaser and chaser.is_running()) and not (tracker and tracker.is_running()):
             px.stop()
 
 
