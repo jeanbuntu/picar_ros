@@ -31,7 +31,7 @@ from rclpy.node import Node
 from scipy.spatial.transform import Rotation
 from std_msgs.msg import ColorRGBA
 from std_srvs.srv import Empty
-from tf2_ros import TransformBroadcaster
+from tf2_ros import TransformBroadcaster, StaticTransformBroadcaster
 from visualization_msgs.msg import Marker, MarkerArray
 
 try:
@@ -56,11 +56,14 @@ class TfBridgeNode(Node):
 
         self.declare_parameter('pi_ws_url', 'ws://192.168.1.241:8000/ws')
         self.declare_parameter('confidence_threshold', 20.0)
+        self.declare_parameter('camera_height_m', 0.075)
 
-        self._ws_url        = self.get_parameter('pi_ws_url').value
+        self._ws_url         = self.get_parameter('pi_ws_url').value
         self._conf_threshold = self.get_parameter('confidence_threshold').value
+        self._camera_height  = self.get_parameter('camera_height_m').value
 
-        self._tf_broadcaster = TransformBroadcaster(self)
+        self._tf_broadcaster        = TransformBroadcaster(self)
+        self._static_tf_broadcaster = StaticTransformBroadcaster(self)
 
         self._car_pub   = self.create_publisher(MarkerArray, '/trajectory/car',  10)
         self._tag0_pub  = self.create_publisher(MarkerArray, '/trajectory/tag0', 10)
@@ -95,14 +98,18 @@ class TfBridgeNode(Node):
         self._cycle_file_n     = -1
         self._cycle_file_first = True
 
-        # Session-scoped XYZ point cloud (MeshLab-compatible, x y z r g b per line)
-        xyz_path = os.path.join(self._session_dir, "points.xyz")
-        self._xyz_file = open(xyz_path, 'w')
+        # Per-cycle PLY timestamps (cycle_n -> "HHMMSS")
+        self._cycle_ts: dict = {}
+
+        # World frame state
+        self._world_initialized = False
+        self._T_world_tag1      = None   # 4x4 ndarray, set once at first tag1 detection
+        self._waiting_logged    = False  # suppresses repeated "waiting for tag1" log spam
 
         self._first_detection = True
 
         self._pylog.info("tf_bridge started | session=%s", self._session_dir)
-        self._pylog.info("xyz_file_open path=%s", xyz_path)
+        self._pylog.info("camera_height=%.3fm", self._camera_height)
         self._pylog.info("connecting to %s", self._ws_url)
 
     # ── WebSocket connection loop ──────────────────────────────────────────────
@@ -148,7 +155,11 @@ class TfBridgeNode(Node):
         tag0 = next((t for t in tags if t['id'] == 0), None)
 
         if tag1 is None:
+            if not self._waiting_logged:
+                self._pylog.info("waiting_for_tag1: world not yet initialized, frames skipped")
+                self._waiting_logged = True
             return
+        self._waiting_logged = False
 
         if self._first_detection:
             self._first_detection = False
@@ -158,18 +169,31 @@ class TfBridgeNode(Node):
         if cycle != self._current_cycle:
             self._on_cycle_start(cycle)
 
-        # Compute T_world_camera = inv(T_camera_tag1)
         R1 = np.array(tag1['pose_R'], dtype=np.float64)
         t1 = np.array(tag1['pose_t'], dtype=np.float64).reshape(3)
         T_camera_tag1 = self._build_4x4(R1, t1)
-        T_world_camera = np.linalg.inv(T_camera_tag1)
+
+        # Initialize floor-anchored world frame on first tag1 detection.
+        # World: origin = floor below camera start, Z = up, Y = toward wall, X = along wall.
+        if not self._world_initialized:
+            R_CW = np.array([[1, 0, 0], [0, 0, 1], [0, -1, 0]], dtype=np.float64)
+            T_world_camera_0   = self._build_4x4(R_CW, np.array([0.0, 0.0, self._camera_height]))
+            self._T_world_tag1 = T_world_camera_0 @ T_camera_tag1
+            self._world_initialized = True
+            tag1_pos  = self._T_world_tag1[:3, 3]
+            tag1_quat = Rotation.from_matrix(self._T_world_tag1[:3, :3]).as_quat()
+            self._publish_static_tf('world', 'tag1', tag1_pos, tag1_quat)
+            self._pylog.info("world_initialized camera_height=%.3fm tag1=[%.3f, %.3f, %.3f]",
+                             self._camera_height, *tag1_pos)
+
+        T_world_camera = self._T_world_tag1 @ np.linalg.inv(T_camera_tag1)
 
         det = np.linalg.det(T_world_camera[:3, :3])
         if det <= 0:
             self._pylog.warning("skipping frame: degenerate rotation matrix det=%.4f", det)
             return
 
-        cam_pos = T_world_camera[:3, 3]
+        cam_pos  = T_world_camera[:3, 3]
         cam_quat = Rotation.from_matrix(T_world_camera[:3, :3]).as_quat()  # [x,y,z,w]
 
         self._publish_tf('world', 'camera', cam_pos, cam_quat)
@@ -182,7 +206,6 @@ class TfBridgeNode(Node):
 
         # Append car point
         self._append_point(self._car_markers, cycle, cam_pos)
-        self._append_xyz(cam_pos, 0, 220, 0)
 
         tag0_world_pos = None
         if tag0 is not None:
@@ -196,7 +219,6 @@ class TfBridgeNode(Node):
 
             self._publish_tf('world', 'tag0', tag0_world_pos, tag0_quat)
             self._append_point(self._tag0_markers, cycle, tag0_world_pos)
-            self._append_xyz(tag0_world_pos, 220, 0, 0)
 
         self._publish_marker_arrays()
         self._append_world_record(ts, cycle, cam_pos.tolist(),
@@ -207,8 +229,10 @@ class TfBridgeNode(Node):
     def _on_cycle_start(self, cycle: int):
         if self._current_cycle >= 0:
             self._pylog.info("cycle_end cycle=%d", self._current_cycle)
+            self._flush_cycle_ply(self._current_cycle)
         self._close_cycle_file()
         self._current_cycle = cycle
+        self._cycle_ts[cycle] = datetime.now().strftime("%H%M%S")
         self._pylog.info("cycle_start cycle=%d", cycle)
 
         color = self._cycle_color(cycle)
@@ -282,9 +306,45 @@ class TfBridgeNode(Node):
         m.color.r = 1.0; m.color.g = 1.0; m.color.b = 0.0; m.color.a = 1.0
         self._world_pub.publish(m)
 
-    def _append_xyz(self, pos, r: int, g: int, b: int):
-        self._xyz_file.write(f"{pos[0]:.4f} {pos[1]:.4f} {pos[2]:.4f} {r} {g} {b}\n")
-        self._xyz_file.flush()
+    def _flush_cycle_ply(self, cycle: int):
+        ts_str = self._cycle_ts.get(cycle, 'unknown')
+        for series, markers_dict, r, g, b in [
+            ('car',  self._car_markers,  0,   220, 0),
+            ('tag0', self._tag0_markers, 220, 0,   0),
+        ]:
+            if cycle not in markers_dict:
+                continue
+            pts = markers_dict[cycle].points
+            if not pts:
+                continue
+            fname = f"{series}_cycle_{cycle}_{ts_str}.ply"
+            path  = os.path.join(self._session_dir, fname)
+            self._write_ply(path, pts, r, g, b)
+            self._pylog.info("ply_written file=%s points=%d", fname, len(pts))
+
+    def _write_ply(self, path: str, points, r: int, g: int, b: int):
+        with open(path, 'w') as f:
+            f.write("ply\nformat ascii 1.0\n")
+            f.write(f"element vertex {len(points)}\n")
+            f.write("property float x\nproperty float y\nproperty float z\n")
+            f.write("property uchar red\nproperty uchar green\nproperty uchar blue\n")
+            f.write("end_header\n")
+            for p in points:
+                f.write(f"{p.x:.4f} {p.y:.4f} {p.z:.4f} {r} {g} {b}\n")
+
+    def _publish_static_tf(self, parent: str, child: str, pos, quat):
+        t = TransformStamped()
+        t.header.stamp    = self.get_clock().now().to_msg()
+        t.header.frame_id = parent
+        t.child_frame_id  = child
+        t.transform.translation.x = float(pos[0])
+        t.transform.translation.y = float(pos[1])
+        t.transform.translation.z = float(pos[2])
+        t.transform.rotation.x = float(quat[0])
+        t.transform.rotation.y = float(quat[1])
+        t.transform.rotation.z = float(quat[2])
+        t.transform.rotation.w = float(quat[3])
+        self._static_tf_broadcaster.sendTransform(t)
 
     def _append_point(self, markers_dict: dict, cycle: int, pos):
         if cycle not in markers_dict:
@@ -320,6 +380,9 @@ class TfBridgeNode(Node):
         self._world_marker_published = False
         self._current_cycle = -1
         self._first_detection = True
+        self._world_initialized = False
+        self._T_world_tag1   = None
+        self._waiting_logged = False
         # Publish empty arrays to clear RViz displays
         self._car_pub.publish(MarkerArray())
         self._tag0_pub.publish(MarkerArray())
@@ -360,7 +423,8 @@ def main(args=None):
         pass
     finally:
         node._close_cycle_file()
-        node._xyz_file.close()
+        if node._current_cycle >= 0:
+            node._flush_cycle_ply(node._current_cycle)
         executor.shutdown(wait=False)
         node.destroy_node()
         try:
