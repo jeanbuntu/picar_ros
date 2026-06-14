@@ -2,21 +2,27 @@
 
 ## Status
 
-Active development. Manual Track mode working as of 2026-06-13. Autonomous chase working. Two bugs identified and fixed after first real sessions.
+Active development. Manual Track and autonomous chase confirmed working. tf_bridge Ubuntu node substantially extended with URDF visualization, floor-anchored world frame, and per-cycle PLY export for MeshLab.
 
 ---
 
 ## What Works
 
-**ManualTracker** — drive with WASD while tag detection + TF publishing runs in the background. Confirmed working in session `pi_session_20260613_115413`. Produces `cycle_N_raw_HHMMSS.json` on the Pi side (camera-frame poses). World-frame JSON requires tf_bridge running on Ubuntu during the session.
+**ManualTracker** — drive with WASD while tag detection + TF publishing runs in the background. Confirmed working in session `pi_session_20260613_115413`. Produces `cycle_N_raw_HHMMSS.json` on the Pi side (camera-frame poses).
 
-**TagChaser v2** — dual-tag detection, world-search gate, PID steering, countdown. Confirmed working in session `pi_session_20260613_112645` (chase_start fired, countdown began). Chase is fast — ManualTracker is the recommended mode for debugging and data collection.
+**TagChaser v2** — dual-tag detection, world-search gate, PID steering, countdown. Confirmed working in session `pi_session_20260613_112645`.
 
 **Dashboard** — Manual Track toggle button, track status bar, live steer gauge during autonomous chase, world_not_found popup, Stop Session shutdown.
 
-**tf_bridge** — Ubuntu ROS2 node connects to Pi WebSocket, computes world-frame TF, publishes `/trajectory/car` and `/trajectory/tag0` LINE_STRIP markers to RViz2. Confirmed working against mock server and against Pi (session `105526` on 2026-06-13).
+**tf_bridge** — Ubuntu ROS2 node connects to Pi WebSocket, computes floor-anchored world-frame TF, publishes `/trajectory/car` and `/trajectory/tag0` LINE_STRIP markers to RViz2. Also publishes static `world` → `tag1` TF on world initialization.
 
-**Session logging** — Pi logs land in `~/picar_ros/logs/pi_session_YYYYMMDD_HHMMSS/` (prefix `pi_session_` distinguishes them from Ubuntu tf_bridge sessions). Ubuntu tf_bridge writes world-frame cycle JSON alongside its own session logs.
+**Floor-anchored world frame** — World origin is the floor point directly below the camera at first tag1 detection. Axes: X = along wall, Y = toward wall, Z = up. `camera_height_m` ROS param (default 0.075m) controls the floor offset. Tag1 (physically fixed to the wall) is expressed as a static TF `world` → `tag1` and never changes within a session. World is re-initialized on `/reset_markers` service call.
+
+**URDF visualization** — `picar_description` ROS2 package (`src/picar_description/`) provides a tracking URDF anchored to the `camera` TF frame. Robot mesh appears live in RViz2 following the camera's world-frame position. Launched automatically by `launch_tf_bridge.sh`.
+
+**PLY point cloud export** — At the end of each cycle (and on Ctrl-C for the last), tf_bridge writes `car_cycle_N_HHMMSS.ply` and `tag0_cycle_N_HHMMSS.ply` to the session log directory. Files are MeshLab-compatible ASCII PLY with vertex color (car = green, tag0 = red). Open in MeshLab: File → Import Mesh → Render → Color → Per Vertex.
+
+**Session logging** — Pi logs land in `~/picar_ros/logs/pi_session_*/`. Ubuntu tf_bridge writes world-frame cycle JSON and per-cycle PLY to `~/picar_ros/logs/session_*/`.
 
 ---
 
@@ -24,35 +30,45 @@ Active development. Manual Track mode working as of 2026-06-13. Autonomous chase
 
 ### Bug 1 — Manual Track button did nothing (2026-06-13)
 
-`tracker` was missing from the `global` declaration in `main()`. `tracker = ManualTracker(...)` created a local variable; module-level `tracker` stayed `None`. Every `if tracker:` in `_recv` silently no-op'd. `ManualTracker initialized` still appeared in logs because that line ran before the assignment, making it look correct.
+`tracker` missing from `global` declaration in `main()`. Fix: added to global list. Also added explicit log breadcrumbs in `manual_track` handler and broadened exception handling in `_recv`.
 
-Fix: added `tracker` to `global px, chaser, tracker, _picam2, _session_dir, _chase_config_v1` in `main()`.
+### Bug 2 — Motors froze mid-drive; steer held angle after freeze (2026-06-13)
 
-Also added explicit `_logger.info/error` breadcrumbs throughout the `manual_track` handler so future issues are immediately visible, and broadened the `_recv` exception handler from `except (WebSocketDisconnect, RuntimeError)` to also catch all `Exception` with traceback logging.
+`_last_hb` was per-connection; browser reconnects created orphaned watchdog timers. Fix: promoted `_last_hb` to module-level global. Also added `px.set_dir_servo_angle(0)` in `_watchdog()` so steer resets on freeze.
 
-### Bug 2 — Motors froze mid-drive; wheel kept spinning after freeze (2026-06-13)
+### Bug 3 — Double-shutdown traceback on Ctrl-C (2026-06-13)
 
-Three watchdog fires at 11:55:04, 11:55:45, 11:56:35 during session `pi_session_20260613_115413`.
+`rclpy.shutdown()` called twice — once by the executor's spin thread (on SIGINT) and once by the `finally` block. Fix: `executor.shutdown(wait=False)` and `rclpy.shutdown()` wrapped in try/except. Exit code is now clean.
 
-Root cause: `_last_hb = [time.monotonic()]` was per-connection (inside `ws_handler`). The browser reconnected at 11:54:59, creating a new WS connection. The browser sent heartbeats to the new connection only; the old connection got none. Five seconds later its watchdog fired and called `px.stop()`. This repeated each time the browser reconnected.
+---
 
-Additionally, `_watchdog()` called `px.stop()` but not `px.set_dir_servo_angle(0)`. The steer servo held its last angle (up to 30°) after the freeze, so when the user pressed forward again the car arced.
+## Jitter Analysis (2026-06-13)
 
-Fixes applied to `dashboard/server.py`:
-- `_last_hb` promoted to module-level global. Any connection's heartbeat updates the shared clock; orphaned connection watchdogs can no longer fire independently.
-- `px.set_dir_servo_angle(0)` added inside `_watchdog()` after `px.stop()`.
+Trajectory plots show sharp zig-zags that are measurement noise, not real motion. Root cause chain:
+
+1. **AprilTag PnP pose ambiguity** — the solver has two valid solutions for a planar tag and flips between them frame-to-frame. One axis (Y in the sessions analyzed) swings ±15cm per frame while the car is stationary. This is the primary source of zig-zags.
+2. **Rotation-to-translation amplification** — `T_world_camera = inv(T_camera_tag1)`. A small angular error δθ becomes `|t| × sin(δθ)` of position noise in world frame. At ~74cm tag distance, 5° error = 6.5cm position noise.
+3. **No filtering** — every raw frame goes straight to TF and trajectory. One bad frame = a spike on the trajectory.
+
+An EWMA + velocity-gate filter was prototyped and tested but removed at user's request — deferred to a future session.
+
+**Mitigation without code changes**: ensure tag1 is squarely in frame, well-lit, and printed at a larger size.
 
 ---
 
 ## Known Issues / Next Steps
 
-**World tag flapping** — Tag 1 (world anchor) shows rapid `world_acquired`/`world_lost` cycling (multiple times per second) when it is near the edge of the camera frame or at a borderline confidence level. This produces spurious TF gaps in RViz. Fix: keep Tag 1 more squarely in frame, print it larger, or improve lighting. Could also lower `confidence_threshold` in `config.yaml` (currently `20.0`) with the tradeoff of noisier pose estimates.
+**Jitter** — AprilTag PnP pose ambiguity produces ~7cm std dev noise in the worst axis when stationary. An EWMA filter + velocity gate in `_process_frame` would address this. Deferred.
 
-**tf_bridge must be running during the session** — No offline replay tooling exists yet. If tf_bridge wasn't running, only the raw camera-frame JSON from the Pi is available. The world-frame TF math could be applied post-hoc in a Python/matplotlib script, but that isn't built.
+**World_lost gaps during driving** — Pi-side logs show rapid `world_acquired`/`world_lost` transitions (6+ in 15s) when tag1 leaves frame during turns. tf_bridge drops those frames. A short grace-period hold of the last known transform would prevent TF gaps in RViz. Deferred.
 
-**SCP to Ubuntu from Pi** — The hardcoded Ubuntu IP in `server.py` was stale (192.168.1.250 got "No route to host"). Confirm Ubuntu IP before sessions that need SCP. Consider removing the auto-SCP and doing it manually.
+**URDF joint offsets need visual tuning** — The `camera` → `car_body` offsets in `src/picar_description/urdf/picar_tracking.urdf` are approximate. Tune them visually once the system is running with RViz.
 
-**Ubuntu IP discovery** — Use `ip addr` on Ubuntu or check router DHCP leases. tf_bridge launch script uses the Pi IP (`ws://192.168.1.241:8000/ws`), which is stable; Ubuntu IP only matters for SCP.
+**`picar-jv` hostname not resolving on Ubuntu** — DNS doesn't resolve `picar-jv`. Use IP directly (`ws://192.168.1.241:8000/ws`) or add once to `/etc/hosts`: `echo "192.168.1.241 picar-jv" | sudo tee -a /etc/hosts`.
+
+**RViz must be opened from a sourced shell** — RViz needs `~/picar_ros/install/setup.bash` sourced to find `picar_description`. The `world` TF frame won't exist until the first tag1 detection; RViz will briefly warn "Fixed Frame [world] does not exist" during reconnection.
+
+**tf_bridge must be running during the session** — No offline replay tooling yet. World-frame math could be applied post-hoc to the Pi's raw JSON, but that script isn't built.
 
 ---
 
@@ -62,8 +78,9 @@ Fixes applied to `dashboard/server.py`:
 |------|---------|-------|
 | 2026-06-13 | `pi_session_20260613_110850` | Manual Track did nothing — tracker global bug (pre-fix) |
 | 2026-06-13 | `pi_session_20260613_112645` | Tag chase start confirmed; Manual Track still broken |
-| 2026-06-13 | `pi_session_20260613_115413` | Manual Track working (post-fix); 3 watchdog fires; cycle_0_raw_115427.json has ~1130 frames |
-| 2026-06-13 | tf_bridge `105526` | tf_bridge connected to Pi, published world origin; SCP to Ubuntu failed |
+| 2026-06-13 | `pi_session_20260613_115413` | Manual Track working (post-fix); 3 watchdog fires |
+| 2026-06-13 | tf_bridge `105526` | tf_bridge connected to Pi, published world origin |
+| 2026-06-13 | `session_20260613_143848` | First full dual-tag world-frame trajectory session; jitter analyzed |
 
 ---
 
@@ -72,15 +89,26 @@ Fixes applied to `dashboard/server.py`:
 Pi (camera-frame raw poses):
 `~/picar_ros/logs/pi_session_YYYYMMDD_HHMMSS/cycle_N_raw_HHMMSS.json`
 
-Ubuntu (world-frame, written by tf_bridge during session):
+Ubuntu (world-frame JSON, written by tf_bridge during session):
 `~/picar_ros/logs/session_YYYYMMDD_HHMMSS/cycle_N_world_HHMMSS.json`
 
-## Live Visualization
+Ubuntu (MeshLab PLY point clouds, written at cycle end):
+`~/picar_ros/logs/session_YYYYMMDD_HHMMSS/car_cycle_N_HHMMSS.ply`
+`~/picar_ros/logs/session_YYYYMMDD_HHMMSS/tag0_cycle_N_HHMMSS.ply`
+
+---
+
+## Launch
 
 ```bash
-# Ubuntu terminal 1
+# Ubuntu — starts robot_state_publisher + tf_bridge together
 ./scripts/launch_tf_bridge.sh --ros-args -p pi_ws_url:=ws://192.168.1.241:8000/ws
 
-# Ubuntu terminal 2
+# RViz (from same sourced shell, or a shell with install/setup.bash sourced)
 rviz2 -d rviz/picar_trajectory.rviz
+```
+
+Tune camera height if needed:
+```bash
+./scripts/launch_tf_bridge.sh --ros-args -p pi_ws_url:=ws://192.168.1.241:8000/ws -p camera_height_m:=0.082
 ```
