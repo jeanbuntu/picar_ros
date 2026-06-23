@@ -1,0 +1,46 @@
+2026-06-14 18:02:20.079 [INFO ] [tf_bridge] tf_bridge started | session=/home/jeano/picar_ros/logs/session_20260614_180220
+2026-06-14 18:02:20.080 [INFO ] [tf_bridge] camera_height=0.075m  world_tags=[2,3]  x_offset=0.065m  offset_tol=0.020m  nz_tol=0.025m
+2026-06-14 18:02:20.080 [INFO ] [tf_bridge] connecting to ws://192.168.1.241:8000/ws
+2026-06-14 18:02:20.113 [INFO ] [tf_bridge] websocket connected to ws://192.168.1.241:8000/ws
+2026-06-14 18:02:27.701 [INFO ] [tf_bridge] first_detection session cycle=0
+2026-06-14 18:02:27.702 [INFO ] [tf_bridge] cycle_start cycle=0
+2026-06-14 18:02:27.702 [INFO ] [tf_bridge] cycle_file_open file=cycle_0_world_180227.json
+2026-06-14 18:02:27.703 [INFO ] [tf_bridge] world_initialized camera_height=0.075m anchor=[-0.156, 0.808, -0.039]
+2026-06-14 18:02:27.703 [INFO ] [tf_bridge] world_origin_published cycle=0
+2026-06-14 18:02:42.771 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:47.378 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:48.247 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:48.829 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:49.166 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:49.400 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:51.030 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:51.397 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:53.604 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:54.444 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:56.530 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:56.762 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:02:58.427 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:04.792 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:05.315 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:08.313 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:11.947 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:20.436 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:23.174 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:24.475 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:29.045 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:29.535 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:30.459 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:03:42.726 [WARNING] [tf_bridge] websocket closed: received 1012 (service restart); then sent 1012 (service restart) — retry in 1.0s
+2026-06-14 18:03:43.740 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 2.0s
+2026-06-14 18:03:45.754 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 4.0s
+2026-06-14 18:03:49.768 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 8.0s
+2026-06-14 18:03:57.786 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 16.0s
+2026-06-14 18:04:13.803 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 30.0s
+2026-06-14 18:04:43.844 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 30.0s
+2026-06-14 18:05:13.877 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 30.0s
+2026-06-14 18:05:43.912 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 30.0s
+2026-06-14 18:05:50.637 [INFO ] [tf_bridge] cycle_file_close cycle=0
+2026-06-14 18:05:50.639 [INFO ] [tf_bridge] ply_written file=car_cycle_0_180227.ply points=405
+2026-06-14 18:05:50.641 [INFO ] [tf_bridge] ply_written file=tag2_raw_cycle_0_180227.ply points=453
+2026-06-14 18:05:50.642 [INFO ] [tf_bridge] ply_written file=tag3_raw_cycle_0_180227.ply points=422
+2026-06-14 18:05:50.644 [INFO ] [tf_bridge] ply_written file=pair_filtered_cycle_0_180227.ply points=810

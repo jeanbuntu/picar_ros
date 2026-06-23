@@ -42,9 +42,11 @@ class TfPublisher:
         self._cycle_file = None
         _logger.info("cycle_file_close cycle=%d", self._cycle_n)
 
-    def on_frame(self, ts: float, cycle: int, detected_tags: list, bcast_due: bool) -> None:
+    def on_frame(self, ts: float, cycle: int, detected_tags: list,
+                 bcast_due: bool, pair_valid: bool = False) -> None:
         """
         detected_tags: list of pupil_apriltags Detection objects (already confidence-filtered).
+        pair_valid: True when both world tags satisfy the geometric consistency check.
         Appends raw record to the open cycle JSON file unconditionally.
         Broadcasts tag_detections WebSocket message when bcast_due is True.
         """
@@ -67,7 +69,7 @@ class TfPublisher:
 
         # Append raw record to cycle JSON file (every frame, no throttle)
         if self._cycle_file is not None:
-            record = {'ts': round(ts, 6), 'tags': tag_records}
+            record = {'ts': round(ts, 6), 'pair_valid': pair_valid, 'tags': tag_records}
             if not self._cycle_file_first:
                 self._cycle_file.write(',\n')
             self._cycle_file_first = False
@@ -79,6 +81,7 @@ class TfPublisher:
                 'type': 'tag_detections',
                 'ts': round(ts, 6),
                 'cycle': cycle,
+                'pair_valid': pair_valid,
                 'tags': tag_records,
             }
             try:

@@ -1,0 +1,357 @@
+2026-06-14 18:44:52.872 [INFO ] [tf_bridge] tf_bridge started | session=/home/jeano/picar_ros/logs/session_20260614_184452
+2026-06-14 18:44:52.872 [INFO ] [tf_bridge] camera_height=0.075m±0.020m  world_tags=[2,3]  x_offset=0.065m  offset_tol=0.020m  nz_tol=0.025m
+2026-06-14 18:44:52.872 [INFO ] [tf_bridge] connecting to ws://192.168.1.241:8000/ws
+2026-06-14 18:44:53.173 [INFO ] [tf_bridge] websocket connected to ws://192.168.1.241:8000/ws
+2026-06-14 18:45:11.797 [INFO ] [tf_bridge] first_detection session cycle=0
+2026-06-14 18:45:11.797 [INFO ] [tf_bridge] cycle_start cycle=0
+2026-06-14 18:45:11.797 [INFO ] [tf_bridge] cycle_file_open file=cycle_0_world_184511.json
+2026-06-14 18:45:11.798 [INFO ] [tf_bridge] world_initialized camera_height=0.075m anchor=[0.029, 0.581, -0.012]
+2026-06-14 18:45:11.798 [INFO ] [tf_bridge] world_origin_published cycle=0
+2026-06-14 18:45:13.359 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.196m skip_count=1
+2026-06-14 18:45:14.106 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.193m skip_count=2
+2026-06-14 18:45:18.127 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=3
+2026-06-14 18:45:18.245 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=4
+2026-06-14 18:45:18.385 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=5
+2026-06-14 18:45:18.515 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.152m skip_count=6
+2026-06-14 18:45:18.619 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.111m skip_count=7
+2026-06-14 18:45:18.746 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.113m skip_count=8
+2026-06-14 18:45:18.845 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.116m skip_count=9
+2026-06-14 18:45:18.979 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.104m skip_count=10
+2026-06-14 18:45:19.113 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.120m skip_count=11
+2026-06-14 18:45:19.248 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.105m skip_count=12
+2026-06-14 18:45:19.376 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:19.514 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.206m skip_count=13
+2026-06-14 18:45:19.652 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.152m skip_count=14
+2026-06-14 18:45:19.751 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.164m skip_count=15
+2026-06-14 18:45:20.177 [DEBUG] [tf_bridge] z_rejected z=0.052m threshold=0.055m z_skips=1
+2026-06-14 18:45:20.309 [DEBUG] [tf_bridge] z_rejected z=0.014m threshold=0.055m z_skips=2
+2026-06-14 18:45:20.412 [DEBUG] [tf_bridge] z_rejected z=0.034m threshold=0.055m z_skips=3
+2026-06-14 18:45:20.515 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.193m skip_count=16
+2026-06-14 18:45:20.645 [DEBUG] [tf_bridge] z_rejected z=-0.001m threshold=0.055m z_skips=4
+2026-06-14 18:45:20.778 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.246m skip_count=17
+2026-06-14 18:45:20.917 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.128m skip_count=18
+2026-06-14 18:45:21.044 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.131m skip_count=19
+2026-06-14 18:45:21.149 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.138m skip_count=20
+2026-06-14 18:45:21.279 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.140m skip_count=21
+2026-06-14 18:45:21.377 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.141m skip_count=22
+2026-06-14 18:45:21.510 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.212m skip_count=23
+2026-06-14 18:45:21.610 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=24
+2026-06-14 18:45:22.106 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.317m skip_count=25
+2026-06-14 18:45:22.207 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.344m skip_count=26
+2026-06-14 18:45:22.315 [DEBUG] [tf_bridge] z_rejected z=0.001m threshold=0.055m z_skips=5
+2026-06-14 18:45:22.417 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.213m skip_count=27
+2026-06-14 18:45:22.548 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.312m skip_count=28
+2026-06-14 18:45:22.682 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.311m skip_count=29
+2026-06-14 18:45:22.818 [DEBUG] [tf_bridge] z_rejected z=0.011m threshold=0.055m z_skips=6
+2026-06-14 18:45:22.920 [DEBUG] [tf_bridge] z_rejected z=0.007m threshold=0.055m z_skips=7
+2026-06-14 18:45:23.025 [DEBUG] [tf_bridge] z_rejected z=0.008m threshold=0.055m z_skips=8
+2026-06-14 18:45:23.122 [DEBUG] [tf_bridge] z_rejected z=0.007m threshold=0.055m z_skips=9
+2026-06-14 18:45:23.247 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.311m skip_count=30
+2026-06-14 18:45:23.378 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.312m skip_count=31
+2026-06-14 18:45:23.609 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.242m skip_count=32
+2026-06-14 18:45:23.874 [DEBUG] [tf_bridge] z_rejected z=0.025m threshold=0.055m z_skips=10
+2026-06-14 18:45:24.107 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.166m skip_count=33
+2026-06-14 18:45:24.241 [DEBUG] [tf_bridge] z_rejected z=0.012m threshold=0.055m z_skips=11
+2026-06-14 18:45:24.342 [DEBUG] [tf_bridge] z_rejected z=0.031m threshold=0.055m z_skips=12
+2026-06-14 18:45:24.438 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:24.544 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.136m skip_count=34
+2026-06-14 18:45:24.676 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.157m skip_count=35
+2026-06-14 18:45:24.777 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.106m skip_count=36
+2026-06-14 18:45:24.912 [DEBUG] [tf_bridge] z_rejected z=0.050m threshold=0.055m z_skips=13
+2026-06-14 18:45:25.043 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.191m skip_count=37
+2026-06-14 18:45:25.145 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.219m skip_count=38
+2026-06-14 18:45:25.271 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.196m skip_count=39
+2026-06-14 18:45:25.405 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.213m skip_count=40
+2026-06-14 18:45:25.518 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.194m skip_count=41
+2026-06-14 18:45:25.639 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.210m skip_count=42
+2026-06-14 18:45:25.902 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.234m skip_count=43
+2026-06-14 18:45:26.036 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.267m skip_count=44
+2026-06-14 18:45:26.137 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.285m skip_count=45
+2026-06-14 18:45:26.238 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.288m skip_count=46
+2026-06-14 18:45:26.346 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.286m skip_count=47
+2026-06-14 18:45:26.469 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.273m skip_count=48
+2026-06-14 18:45:26.571 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.277m skip_count=49
+2026-06-14 18:45:26.672 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.240m skip_count=50
+2026-06-14 18:45:26.805 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:28.277 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.192m skip_count=51
+2026-06-14 18:45:30.213 [DEBUG] [tf_bridge] z_rejected z=-0.134m threshold=0.055m z_skips=14
+2026-06-14 18:45:30.341 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.477m skip_count=52
+2026-06-14 18:45:30.441 [DEBUG] [tf_bridge] z_rejected z=0.044m threshold=0.055m z_skips=15
+2026-06-14 18:45:30.543 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.549m skip_count=53
+2026-06-14 18:45:30.647 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.549m skip_count=54
+2026-06-14 18:45:31.285 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.550m skip_count=55
+2026-06-14 18:45:31.405 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.602m skip_count=56
+2026-06-14 18:45:31.504 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.521m skip_count=57
+2026-06-14 18:45:31.637 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.530m skip_count=58
+2026-06-14 18:45:31.739 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.519m skip_count=59
+2026-06-14 18:45:31.870 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.534m skip_count=60
+2026-06-14 18:45:31.970 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.530m skip_count=61
+2026-06-14 18:45:32.113 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.526m skip_count=62
+2026-06-14 18:45:32.237 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.520m skip_count=63
+2026-06-14 18:45:32.370 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.526m skip_count=64
+2026-06-14 18:45:32.468 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:32.938 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.648m skip_count=65
+2026-06-14 18:45:33.074 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.637m skip_count=66
+2026-06-14 18:45:33.209 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.634m skip_count=67
+2026-06-14 18:45:33.970 [DEBUG] [tf_bridge] z_rejected z=-0.034m threshold=0.055m z_skips=16
+2026-06-14 18:45:34.072 [DEBUG] [tf_bridge] z_rejected z=-0.026m threshold=0.055m z_skips=17
+2026-06-14 18:45:34.631 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:34.868 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.895m skip_count=68
+2026-06-14 18:45:35.008 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.874m skip_count=69
+2026-06-14 18:45:35.143 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.880m skip_count=70
+2026-06-14 18:45:35.275 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.821m skip_count=71
+2026-06-14 18:45:35.376 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.883m skip_count=72
+2026-06-14 18:45:35.510 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.822m skip_count=73
+2026-06-14 18:45:35.602 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.878m skip_count=74
+2026-06-14 18:45:35.735 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.878m skip_count=75
+2026-06-14 18:45:35.835 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.914m skip_count=76
+2026-06-14 18:45:35.979 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.915m skip_count=77
+2026-06-14 18:45:36.069 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.879m skip_count=78
+2026-06-14 18:45:36.202 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.821m skip_count=79
+2026-06-14 18:45:36.336 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.876m skip_count=80
+2026-06-14 18:45:36.440 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.920m skip_count=81
+2026-06-14 18:45:36.572 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.876m skip_count=82
+2026-06-14 18:45:36.676 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.918m skip_count=83
+2026-06-14 18:45:36.807 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.878m skip_count=84
+2026-06-14 18:45:36.902 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.877m skip_count=85
+2026-06-14 18:45:37.033 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.877m skip_count=86
+2026-06-14 18:45:37.137 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.878m skip_count=87
+2026-06-14 18:45:37.730 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:37.868 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.908m skip_count=88
+2026-06-14 18:45:37.969 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.903m skip_count=89
+2026-06-14 18:45:38.101 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.904m skip_count=90
+2026-06-14 18:45:38.208 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.909m skip_count=91
+2026-06-14 18:45:38.331 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.901m skip_count=92
+2026-06-14 18:45:38.440 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.903m skip_count=93
+2026-06-14 18:45:38.575 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.908m skip_count=94
+2026-06-14 18:45:39.395 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:40.996 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.890m skip_count=95
+2026-06-14 18:45:41.262 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:42.193 [DEBUG] [tf_bridge] z_rejected z=-0.104m threshold=0.055m z_skips=18
+2026-06-14 18:45:42.326 [DEBUG] [tf_bridge] z_rejected z=-0.089m threshold=0.055m z_skips=19
+2026-06-14 18:45:42.478 [DEBUG] [tf_bridge] z_rejected z=-0.126m threshold=0.055m z_skips=20
+2026-06-14 18:45:43.226 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:43.330 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.469m skip_count=96
+2026-06-14 18:45:43.463 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.524m skip_count=97
+2026-06-14 18:45:43.597 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.520m skip_count=98
+2026-06-14 18:45:43.736 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.511m skip_count=99
+2026-06-14 18:45:43.866 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.512m skip_count=100
+2026-06-14 18:45:44.001 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.522m skip_count=101
+2026-06-14 18:45:44.495 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.391m skip_count=102
+2026-06-14 18:45:44.593 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.368m skip_count=103
+2026-06-14 18:45:44.695 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.366m skip_count=104
+2026-06-14 18:45:44.807 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.370m skip_count=105
+2026-06-14 18:45:44.926 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.365m skip_count=106
+2026-06-14 18:45:45.027 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.364m skip_count=107
+2026-06-14 18:45:45.356 [DEBUG] [tf_bridge] z_rejected z=0.039m threshold=0.055m z_skips=21
+2026-06-14 18:45:45.488 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:45:45.625 [DEBUG] [tf_bridge] z_rejected z=-0.118m threshold=0.055m z_skips=22
+2026-06-14 18:45:45.757 [DEBUG] [tf_bridge] z_rejected z=-0.065m threshold=0.055m z_skips=23
+2026-06-14 18:45:45.860 [DEBUG] [tf_bridge] z_rejected z=-0.021m threshold=0.055m z_skips=24
+2026-06-14 18:45:45.989 [DEBUG] [tf_bridge] z_rejected z=-0.028m threshold=0.055m z_skips=25
+2026-06-14 18:45:46.093 [DEBUG] [tf_bridge] z_rejected z=-0.049m threshold=0.055m z_skips=26
+2026-06-14 18:45:46.225 [DEBUG] [tf_bridge] z_rejected z=0.020m threshold=0.055m z_skips=27
+2026-06-14 18:45:46.356 [DEBUG] [tf_bridge] z_rejected z=-0.040m threshold=0.055m z_skips=28
+2026-06-14 18:45:46.496 [DEBUG] [tf_bridge] z_rejected z=-0.037m threshold=0.055m z_skips=29
+2026-06-14 18:45:46.624 [DEBUG] [tf_bridge] z_rejected z=-0.057m threshold=0.055m z_skips=30
+2026-06-14 18:45:47.130 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.212m skip_count=108
+2026-06-14 18:45:47.262 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.183m skip_count=109
+2026-06-14 18:45:47.362 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.183m skip_count=110
+2026-06-14 18:45:47.495 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.187m skip_count=111
+2026-06-14 18:45:47.617 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.187m skip_count=112
+2026-06-14 18:45:47.715 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.188m skip_count=113
+2026-06-14 18:45:47.836 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.188m skip_count=114
+2026-06-14 18:45:47.959 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.188m skip_count=115
+2026-06-14 18:45:48.091 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.188m skip_count=116
+2026-06-14 18:45:48.190 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.188m skip_count=117
+2026-06-14 18:45:48.323 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.188m skip_count=118
+2026-06-14 18:45:48.428 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.188m skip_count=119
+2026-06-14 18:45:48.557 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.182m skip_count=120
+2026-06-14 18:45:48.920 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.120m skip_count=121
+2026-06-14 18:45:49.031 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.159m skip_count=122
+2026-06-14 18:45:49.154 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=123
+2026-06-14 18:45:49.289 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.172m skip_count=124
+2026-06-14 18:45:49.427 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=125
+2026-06-14 18:45:49.558 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=126
+2026-06-14 18:45:49.659 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=127
+2026-06-14 18:45:49.792 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=128
+2026-06-14 18:45:49.926 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=129
+2026-06-14 18:45:50.028 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=130
+2026-06-14 18:45:50.162 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=131
+2026-06-14 18:45:50.261 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.174m skip_count=132
+2026-06-14 18:45:50.396 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=133
+2026-06-14 18:45:50.530 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.176m skip_count=134
+2026-06-14 18:45:50.654 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.176m skip_count=135
+2026-06-14 18:45:50.789 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.118m skip_count=136
+2026-06-14 18:45:50.931 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=137
+2026-06-14 18:45:51.054 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=138
+2026-06-14 18:45:51.152 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.168m skip_count=139
+2026-06-14 18:45:51.288 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.163m skip_count=140
+2026-06-14 18:45:51.420 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.114m skip_count=141
+2026-06-14 18:45:51.559 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.169m skip_count=142
+2026-06-14 18:45:51.690 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.173m skip_count=143
+2026-06-14 18:45:51.820 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.164m skip_count=144
+2026-06-14 18:45:51.959 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.112m skip_count=145
+2026-06-14 18:45:52.090 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=146
+2026-06-14 18:45:52.192 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=147
+2026-06-14 18:45:52.323 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.167m skip_count=148
+2026-06-14 18:45:52.468 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.181m skip_count=149
+2026-06-14 18:45:52.592 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.167m skip_count=150
+2026-06-14 18:45:52.700 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.166m skip_count=151
+2026-06-14 18:45:52.805 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=152
+2026-06-14 18:45:52.920 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.170m skip_count=153
+2026-06-14 18:45:53.052 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=154
+2026-06-14 18:45:53.187 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.167m skip_count=155
+2026-06-14 18:45:53.294 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.176m skip_count=156
+2026-06-14 18:45:53.387 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.181m skip_count=157
+2026-06-14 18:45:53.488 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=158
+2026-06-14 18:45:53.618 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=159
+2026-06-14 18:45:53.718 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.169m skip_count=160
+2026-06-14 18:45:53.852 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=161
+2026-06-14 18:45:53.990 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=162
+2026-06-14 18:45:54.088 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.166m skip_count=163
+2026-06-14 18:45:54.226 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=164
+2026-06-14 18:45:54.352 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.167m skip_count=165
+2026-06-14 18:45:54.487 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.169m skip_count=166
+2026-06-14 18:45:54.618 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=167
+2026-06-14 18:45:54.722 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=168
+2026-06-14 18:45:54.856 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.167m skip_count=169
+2026-06-14 18:45:54.955 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=170
+2026-06-14 18:45:55.088 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.165m skip_count=171
+2026-06-14 18:45:55.190 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.176m skip_count=172
+2026-06-14 18:45:55.322 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=173
+2026-06-14 18:45:55.459 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.165m skip_count=174
+2026-06-14 18:45:55.561 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.169m skip_count=175
+2026-06-14 18:45:55.683 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=176
+2026-06-14 18:45:55.818 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=177
+2026-06-14 18:45:55.949 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=178
+2026-06-14 18:45:56.084 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=179
+2026-06-14 18:45:56.192 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.174m skip_count=180
+2026-06-14 18:45:56.317 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.165m skip_count=181
+2026-06-14 18:45:56.417 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=182
+2026-06-14 18:45:56.549 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=183
+2026-06-14 18:45:56.682 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.168m skip_count=184
+2026-06-14 18:45:56.820 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=185
+2026-06-14 18:45:56.947 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.169m skip_count=186
+2026-06-14 18:45:57.081 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=187
+2026-06-14 18:45:57.183 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.175m skip_count=188
+2026-06-14 18:45:57.317 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=189
+2026-06-14 18:45:57.455 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.171m skip_count=190
+2026-06-14 18:45:57.552 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.164m skip_count=191
+2026-06-14 18:45:57.652 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=192
+2026-06-14 18:45:57.803 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.169m skip_count=193
+2026-06-14 18:45:57.906 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.173m skip_count=194
+2026-06-14 18:45:58.024 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.172m skip_count=195
+2026-06-14 18:45:58.148 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=196
+2026-06-14 18:45:58.257 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.174m skip_count=197
+2026-06-14 18:45:58.381 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.168m skip_count=198
+2026-06-14 18:45:58.514 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.178m skip_count=199
+2026-06-14 18:45:58.648 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.177m skip_count=200
+2026-06-14 18:45:58.749 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.173m skip_count=201
+2026-06-14 18:45:58.882 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.170m skip_count=202
+2026-06-14 18:45:58.981 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.173m skip_count=203
+2026-06-14 18:45:59.082 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.172m skip_count=204
+2026-06-14 18:45:59.183 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.163m skip_count=205
+2026-06-14 18:45:59.313 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.114m skip_count=206
+2026-06-14 18:45:59.448 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=207
+2026-06-14 18:45:59.580 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=208
+2026-06-14 18:45:59.713 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.179m skip_count=209
+2026-06-14 18:45:59.847 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.170m skip_count=210
+2026-06-14 18:45:59.950 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.180m skip_count=211
+2026-06-14 18:46:00.312 [DEBUG] [tf_bridge] z_rejected z=-0.051m threshold=0.055m z_skips=31
+2026-06-14 18:46:00.418 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.145m skip_count=212
+2026-06-14 18:46:00.552 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.100m skip_count=213
+2026-06-14 18:46:00.876 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:01.144 [DEBUG] [tf_bridge] z_rejected z=-0.010m threshold=0.055m z_skips=32
+2026-06-14 18:46:02.007 [DEBUG] [tf_bridge] z_rejected z=-0.024m threshold=0.055m z_skips=33
+2026-06-14 18:46:03.802 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:04.572 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.102m skip_count=214
+2026-06-14 18:46:04.669 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:04.809 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.194m skip_count=215
+2026-06-14 18:46:05.073 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.293m skip_count=216
+2026-06-14 18:46:05.176 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.345m skip_count=217
+2026-06-14 18:46:05.408 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.348m skip_count=218
+2026-06-14 18:46:05.542 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.342m skip_count=219
+2026-06-14 18:46:05.641 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.325m skip_count=220
+2026-06-14 18:46:05.740 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.349m skip_count=221
+2026-06-14 18:46:05.876 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.390m skip_count=222
+2026-06-14 18:46:06.008 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.439m skip_count=223
+2026-06-14 18:46:06.106 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.487m skip_count=224
+2026-06-14 18:46:06.441 [DEBUG] [tf_bridge] z_rejected z=0.033m threshold=0.055m z_skips=34
+2026-06-14 18:46:06.544 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.530m skip_count=225
+2026-06-14 18:46:06.677 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.505m skip_count=226
+2026-06-14 18:46:07.011 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.466m skip_count=227
+2026-06-14 18:46:07.111 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.453m skip_count=228
+2026-06-14 18:46:07.245 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.380m skip_count=229
+2026-06-14 18:46:07.471 [DEBUG] [tf_bridge] z_rejected z=0.032m threshold=0.055m z_skips=35
+2026-06-14 18:46:07.706 [DEBUG] [tf_bridge] z_rejected z=-0.043m threshold=0.055m z_skips=36
+2026-06-14 18:46:07.803 [DEBUG] [tf_bridge] z_rejected z=-0.053m threshold=0.055m z_skips=37
+2026-06-14 18:46:07.939 [DEBUG] [tf_bridge] z_rejected z=-0.048m threshold=0.055m z_skips=38
+2026-06-14 18:46:08.042 [DEBUG] [tf_bridge] z_rejected z=-0.054m threshold=0.055m z_skips=39
+2026-06-14 18:46:08.166 [DEBUG] [tf_bridge] z_rejected z=-0.048m threshold=0.055m z_skips=40
+2026-06-14 18:46:08.404 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.182m skip_count=230
+2026-06-14 18:46:08.671 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.115m skip_count=231
+2026-06-14 18:46:08.803 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.127m skip_count=232
+2026-06-14 18:46:08.940 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.125m skip_count=233
+2026-06-14 18:46:09.170 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.100m skip_count=234
+2026-06-14 18:46:09.304 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.117m skip_count=235
+2026-06-14 18:46:10.563 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:10.799 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:11.998 [DEBUG] [tf_bridge] z_rejected z=0.047m threshold=0.055m z_skips=41
+2026-06-14 18:46:13.560 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:13.927 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:14.067 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.123m skip_count=236
+2026-06-14 18:46:14.595 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.136m skip_count=237
+2026-06-14 18:46:14.701 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.133m skip_count=238
+2026-06-14 18:46:14.830 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.108m skip_count=239
+2026-06-14 18:46:16.459 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:16.796 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.126m skip_count=240
+2026-06-14 18:46:16.927 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.102m skip_count=241
+2026-06-14 18:46:17.655 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:18.026 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:46:18.164 [DEBUG] [tf_bridge] z_rejected z=0.036m threshold=0.055m z_skips=42
+2026-06-14 18:46:18.318 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.104m skip_count=242
+2026-06-14 18:46:18.528 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.124m skip_count=243
+2026-06-14 18:46:18.665 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.155m skip_count=244
+2026-06-14 18:46:18.765 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.194m skip_count=245
+2026-06-14 18:46:18.899 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.278m skip_count=246
+2026-06-14 18:46:19.036 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.320m skip_count=247
+2026-06-14 18:46:19.165 [DEBUG] [tf_bridge] z_rejected z=0.006m threshold=0.055m z_skips=43
+2026-06-14 18:46:19.299 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.402m skip_count=248
+2026-06-14 18:46:19.430 [DEBUG] [tf_bridge] z_rejected z=0.024m threshold=0.055m z_skips=44
+2026-06-14 18:46:19.537 [DEBUG] [tf_bridge] z_rejected z=0.020m threshold=0.055m z_skips=45
+2026-06-14 18:46:19.997 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.578m skip_count=249
+2026-06-14 18:46:20.129 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.575m skip_count=250
+2026-06-14 18:46:20.262 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.554m skip_count=251
+2026-06-14 18:46:20.395 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.578m skip_count=252
+2026-06-14 18:46:20.528 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.549m skip_count=253
+2026-06-14 18:46:20.632 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.553m skip_count=254
+2026-06-14 18:46:20.761 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.573m skip_count=255
+2026-06-14 18:46:20.897 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.547m skip_count=256
+2026-06-14 18:46:21.031 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.564m skip_count=257
+2026-06-14 18:46:21.162 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.549m skip_count=258
+2026-06-14 18:46:21.261 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.547m skip_count=259
+2026-06-14 18:46:21.396 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.550m skip_count=260
+2026-06-14 18:46:21.533 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.551m skip_count=261
+2026-06-14 18:46:21.637 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.571m skip_count=262
+2026-06-14 18:46:21.768 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.562m skip_count=263
+2026-06-14 18:46:21.902 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.561m skip_count=264
+2026-06-14 18:46:22.002 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.579m skip_count=265
+2026-06-14 18:46:22.105 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.564m skip_count=266
+2026-06-14 18:46:22.238 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.559m skip_count=267
+2026-06-14 18:46:22.339 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.557m skip_count=268
+2026-06-14 18:46:22.463 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.579m skip_count=269
+2026-06-14 18:46:22.593 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.562m skip_count=270
+2026-06-14 18:46:22.729 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.568m skip_count=271
+2026-06-14 18:46:22.861 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.559m skip_count=272
+2026-06-14 18:46:22.963 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.560m skip_count=273
+2026-06-14 18:46:23.094 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.561m skip_count=274
+2026-06-14 18:46:24.674 [WARNING] [tf_bridge] websocket closed: received 1012 (service restart); then sent 1012 (service restart) — retry in 1.0s
+2026-06-14 18:46:25.688 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 2.0s
+2026-06-14 18:46:27.698 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 4.0s
+2026-06-14 18:46:32.090 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 8.0s
+2026-06-14 18:46:35.177 [INFO ] [tf_bridge] cycle_file_close cycle=0
+2026-06-14 18:46:35.178 [INFO ] [tf_bridge] ply_written file=car_cycle_0_184511.ply points=132
+2026-06-14 18:46:35.178 [INFO ] [tf_bridge] ply_written file=tag2_raw_cycle_0_184511.ply points=146
+2026-06-14 18:46:35.179 [INFO ] [tf_bridge] ply_written file=tag3_raw_cycle_0_184511.ply points=141
+2026-06-14 18:46:35.180 [INFO ] [tf_bridge] ply_written file=pair_filtered_cycle_0_184511.ply points=264

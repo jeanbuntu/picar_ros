@@ -2,9 +2,10 @@
 chaser.py -- TagChaser v2: dual-tag detection, world-frame anchor, TF publishing.
 
 Camera is owned by server.py. Each frame is passed in via process_frame().
-Tag ID 1 (world anchor) must be visible to start a chase cycle; Tag ID 0 is
-the chase target. The tf_publisher serializes pose data over WebSocket so
-tf_bridge.py on Ubuntu can compute TF and publish RViz2 trajectories.
+Tags world_a and world_b (default IDs 2 and 3) must both be visible and pass the
+geometric consistency check to start a chase cycle. Tag ID 0 is the chase target.
+The tf_publisher serializes pose data over WebSocket so tf_bridge.py on Ubuntu can
+compute TF and publish RViz2 trajectories.
 """
 
 import logging
@@ -41,6 +42,7 @@ class TagChaser:
         pid_cfg   = config['pid']
         chase_cfg = config['chase']
         cam_cfg   = config['camera']
+        det_cfg   = config.get('detector', {})
 
         steer_limit = float(chase_cfg.get('steer_limit_deg', 20))
         self.pid = PID(
@@ -50,16 +52,20 @@ class TagChaser:
             output_limits=(-steer_limit, steer_limit),
         )
 
-        self.stop_dist_cm        = float(chase_cfg.get('stop_distance_cm', 20.0))
-        self.tag_lost_timeout    = float(chase_cfg.get('tag_lost_timeout_s', 2.0))
-        self._tag_id_chase       = int(chase_cfg.get('tag_id_chase', 0))
-        self._tag_id_world       = int(chase_cfg.get('tag_id_world', 1))
-        self.countdown_s         = int(chase_cfg.get('countdown_s', 3))
+        self.stop_dist_cm          = float(chase_cfg.get('stop_distance_cm', 20.0))
+        self.tag_lost_timeout      = float(chase_cfg.get('tag_lost_timeout_s', 2.0))
+        self._tag_id_chase         = int(chase_cfg.get('tag_id_chase', 0))
+        self._tag_id_world_a       = int(chase_cfg.get('tag_id_world_a', 2))
+        self._tag_id_world_b       = int(chase_cfg.get('tag_id_world_b', 3))
+        self._world_offset_m       = float(chase_cfg.get('world_offset_m', 0.065))
+        self._world_offset_tol_m   = float(chase_cfg.get('world_offset_tol_m', 0.020))
+        self._world_near_zero_tol  = float(chase_cfg.get('world_near_zero_tol_m', 0.025))
+        self.countdown_s           = int(chase_cfg.get('countdown_s', 3))
         self._world_search_timeout = float(chase_cfg.get('world_search_timeout_s', 15))
-        self._conf_threshold     = float(chase_cfg.get('confidence_threshold', 20.0))
-        self.cam_w               = int(cam_cfg.get('width', 640))
-        self.cam_h               = int(cam_cfg.get('height', 480))
-        self.tag_size_m          = float(cam_cfg.get('tag_size_m', 0.05))
+        self._conf_threshold       = float(chase_cfg.get('confidence_threshold', 20.0))
+        self.cam_w                 = int(cam_cfg.get('width', 640))
+        self.cam_h                 = int(cam_cfg.get('height', 480))
+        self.tag_size_m            = float(cam_cfg.get('tag_size_m', 0.05))
 
         calib_rel  = cam_cfg.get('calibration_file', '../../camera_cal_marker/camera_calibration.yaml')
         calib_path = os.path.normpath(os.path.join(os.path.dirname(__file__), calib_rel))
@@ -76,11 +82,11 @@ class TagChaser:
 
         self.detector = apriltag.Detector(
             families='tag36h11',
-            nthreads=1,
-            quad_decimate=1.0,
-            quad_sigma=0.0,
-            refine_edges=1,
-            decode_sharpening=0.25,
+            nthreads=int(det_cfg.get('nthreads', 2)),
+            quad_decimate=float(det_cfg.get('quad_decimate', 2.0)),
+            quad_sigma=float(det_cfg.get('quad_sigma', 0.0)),
+            refine_edges=int(det_cfg.get('refine_edges', 1)),
+            decode_sharpening=float(det_cfg.get('decode_sharpening', 0.25)),
         )
 
         # Session logging
@@ -193,30 +199,46 @@ class TagChaser:
         )
 
         # Filter by confidence and extract tags of interest
-        tag0 = next((d for d in detections
-                     if d.tag_id == self._tag_id_chase
-                     and d.decision_margin >= self._conf_threshold), None)
-        tag1 = next((d for d in detections
-                     if d.tag_id == self._tag_id_world
-                     and d.decision_margin >= self._conf_threshold), None)
+        tag0  = next((d for d in detections
+                      if d.tag_id == self._tag_id_chase
+                      and d.decision_margin >= self._conf_threshold), None)
+        tag_a = next((d for d in detections
+                      if d.tag_id == self._tag_id_world_a
+                      and d.decision_margin >= self._conf_threshold), None)
+        tag_b = next((d for d in detections
+                      if d.tag_id == self._tag_id_world_b
+                      and d.decision_margin >= self._conf_threshold), None)
+
+        pair_valid = (tag_a is not None and tag_b is not None
+                      and self._validate_world_pair(tag_a, tag_b))
 
         if state == 'world_search':
-            self._do_world_search(t_now, tag1)
+            self._do_world_search(t_now, pair_valid)
         elif state == 'chasing':
-            self._do_chasing(t_now, tag0, tag1)
+            self._do_chasing(t_now, tag0, tag_a, tag_b, pair_valid)
 
     # ── Internal state handlers ────────────────────────────────────────────────
 
-    def _do_world_search(self, t_now: float, tag1):
+    def _validate_world_pair(self, tag_a, tag_b) -> bool:
+        """Return True if the geometric relationship between the two world tags
+        matches the expected constraint: |X|≈world_offset_m (horizontal separation),
+        Y≈0 (no vertical offset). Z (depth) is excluded — monocular depth estimation
+        has inherent bias and noise that makes it unreliable as a filter."""
+        diff = np.array(tag_b.pose_t).reshape(3) - np.array(tag_a.pose_t).reshape(3)
+        x_ok = abs(abs(diff[0]) - self._world_offset_m) < self._world_offset_tol_m
+        y_ok = abs(diff[1]) < self._world_near_zero_tol
+        return bool(x_ok and y_ok)
+
+    def _do_world_search(self, t_now: float, pair_valid: bool):
         elapsed   = t_now - self._world_search_start
         remaining = max(0.0, self._world_search_timeout - elapsed)
 
-        if tag1 is not None:
+        if pair_valid:
             with self._state_lock:
                 if self._state != 'world_search':
                     return
                 self._state = 'countdown'
-            _marker_logger.info("chase_start cycle=%d world=acquired", self._cycle)
+            _marker_logger.info("chase_start cycle=%d world=acquired pair_validated", self._cycle)
             threading.Thread(
                 target=self._countdown, daemon=True, name='chaser-countdown').start()
             return
@@ -226,7 +248,7 @@ class TagChaser:
                 if self._state != 'world_search':
                     return
                 self._state = 'idle'
-            _marker_logger.info("world_search_timeout cycle=%d — no world tag found", self._cycle)
+            _marker_logger.info("world_search_timeout cycle=%d — no valid world pair found", self._cycle)
             self.broadcast({'type': 'chase_status', 'active': False,
                             'state': 'world_not_found'})
             return
@@ -237,9 +259,9 @@ class TagChaser:
             self.broadcast({'type': 'chase_status', 'active': True,
                             'state': 'world_search', 'countdown': int(remaining)})
 
-    def _do_chasing(self, t_now: float, tag0, tag1):
-        # Track world-tag visibility changes (state transitions only)
-        if tag1 is not None:
+    def _do_chasing(self, t_now: float, tag0, tag_a, tag_b, pair_valid: bool):
+        # Track world-pair visibility changes
+        if pair_valid:
             if not self._world_visible:
                 self._world_visible = True
                 _marker_logger.info("world_reacquired — TF gap closed")
@@ -256,9 +278,10 @@ class TagChaser:
         log_due   = (t_now - self._last_log_t)       >= _LOG_INTERVAL
         bcast_due = (t_now - self._last_broadcast_t) >= 0.1
 
-        # Publish TF data for visible tags
-        detected_for_tf = [t for t in [tag0, tag1] if t is not None]
-        self._tf_pub.on_frame(t_now, self._cycle, detected_for_tf, bcast_due)
+        # Publish TF data — include tag0 plus both world tags when present
+        detected_for_tf = [t for t in [tag0, tag_a, tag_b] if t is not None]
+        self._tf_pub.on_frame(t_now, self._cycle, detected_for_tf, bcast_due,
+                              pair_valid=pair_valid)
 
         world_state = 'world_acquired' if self._world_visible else 'world_lost'
 

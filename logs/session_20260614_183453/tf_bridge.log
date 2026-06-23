@@ -1,0 +1,68 @@
+2026-06-14 18:34:53.486 [INFO ] [tf_bridge] tf_bridge started | session=/home/jeano/picar_ros/logs/session_20260614_183453
+2026-06-14 18:34:53.486 [INFO ] [tf_bridge] camera_height=0.075m±0.020m  world_tags=[2,3]  x_offset=0.065m  offset_tol=0.020m  nz_tol=0.025m
+2026-06-14 18:34:53.486 [INFO ] [tf_bridge] connecting to ws://192.168.1.241:8000/ws
+2026-06-14 18:34:53.516 [INFO ] [tf_bridge] websocket connected to ws://192.168.1.241:8000/ws
+2026-06-14 18:34:53.594 [INFO ] [tf_bridge] first_detection session cycle=0
+2026-06-14 18:34:53.594 [INFO ] [tf_bridge] cycle_start cycle=0
+2026-06-14 18:34:53.595 [INFO ] [tf_bridge] cycle_file_open file=cycle_0_world_183453.json
+2026-06-14 18:34:53.595 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:35:08.938 [INFO ] [tf_bridge] world_initialized camera_height=0.075m anchor=[-0.031, 0.277, 0.014]
+2026-06-14 18:35:08.939 [INFO ] [tf_bridge] world_origin_published cycle=0
+2026-06-14 18:35:09.419 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:35:15.572 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:35:44.079 [INFO ] [tf_bridge] cycle_end cycle=0 flip_skips=0 z_skips=0
+2026-06-14 18:35:44.079 [INFO ] [tf_bridge] ply_written file=car_cycle_0_183453.ply points=7
+2026-06-14 18:35:44.079 [INFO ] [tf_bridge] ply_written file=tag2_raw_cycle_0_183453.ply points=7
+2026-06-14 18:35:44.080 [INFO ] [tf_bridge] ply_written file=tag3_raw_cycle_0_183453.ply points=244
+2026-06-14 18:35:44.080 [INFO ] [tf_bridge] ply_written file=pair_filtered_cycle_0_183453.ply points=14
+2026-06-14 18:35:44.080 [INFO ] [tf_bridge] cycle_file_close cycle=0
+2026-06-14 18:35:44.081 [INFO ] [tf_bridge] cycle_start cycle=1
+2026-06-14 18:35:44.081 [INFO ] [tf_bridge] cycle_file_open file=cycle_1_world_183544.json
+2026-06-14 18:35:56.041 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.100m skip_count=1
+2026-06-14 18:35:56.142 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.129m skip_count=2
+2026-06-14 18:35:56.243 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.163m skip_count=3
+2026-06-14 18:35:56.375 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:36:04.373 [DEBUG] [tf_bridge] z_rejected z=0.117m err=0.042m z_skips=1
+2026-06-14 18:36:04.477 [DEBUG] [tf_bridge] z_rejected z=0.120m err=0.045m z_skips=2
+2026-06-14 18:36:04.590 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:36:04.933 [DEBUG] [tf_bridge] z_rejected z=0.100m err=0.025m z_skips=3
+2026-06-14 18:36:05.069 [DEBUG] [tf_bridge] z_rejected z=0.107m err=0.032m z_skips=4
+2026-06-14 18:36:05.203 [DEBUG] [tf_bridge] z_rejected z=0.109m err=0.034m z_skips=5
+2026-06-14 18:36:05.306 [DEBUG] [tf_bridge] z_rejected z=0.102m err=0.027m z_skips=6
+2026-06-14 18:36:05.437 [DEBUG] [tf_bridge] z_rejected z=0.103m err=0.028m z_skips=7
+2026-06-14 18:36:05.571 [DEBUG] [tf_bridge] z_rejected z=0.104m err=0.029m z_skips=8
+2026-06-14 18:36:05.803 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:36:20.653 [DEBUG] [tf_bridge] z_rejected z=0.095m err=0.020m z_skips=9
+2026-06-14 18:36:20.921 [DEBUG] [tf_bridge] z_rejected z=0.131m err=0.056m z_skips=10
+2026-06-14 18:36:21.021 [DEBUG] [tf_bridge] z_rejected z=0.110m err=0.035m z_skips=11
+2026-06-14 18:36:21.153 [DEBUG] [tf_bridge] z_rejected z=0.105m err=0.030m z_skips=12
+2026-06-14 18:36:21.387 [DEBUG] [tf_bridge] z_rejected z=0.123m err=0.048m z_skips=13
+2026-06-14 18:36:21.491 [DEBUG] [tf_bridge] z_rejected z=0.131m err=0.056m z_skips=14
+2026-06-14 18:36:21.591 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=4
+2026-06-14 18:36:21.697 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.203m skip_count=5
+2026-06-14 18:36:21.822 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=6
+2026-06-14 18:36:21.957 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=7
+2026-06-14 18:36:22.060 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=8
+2026-06-14 18:36:22.194 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=9
+2026-06-14 18:36:22.327 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.201m skip_count=10
+2026-06-14 18:36:22.429 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=11
+2026-06-14 18:36:22.530 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.202m skip_count=12
+2026-06-14 18:36:22.652 [DEBUG] [tf_bridge] z_rejected z=0.134m err=0.059m z_skips=15
+2026-06-14 18:36:22.787 [DEBUG] [tf_bridge] z_rejected z=0.096m err=0.021m z_skips=16
+2026-06-14 18:36:22.930 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:36:23.056 [DEBUG] [tf_bridge] z_rejected z=-0.081m err=0.156m z_skips=17
+2026-06-14 18:36:23.153 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:36:24.023 [DEBUG] [tf_bridge] z_rejected z=0.012m err=0.063m z_skips=18
+2026-06-14 18:36:24.151 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:36:24.929 [DEBUG] [tf_bridge] pose_flip_rejected jump=0.290m skip_count=13
+2026-06-14 18:36:25.029 [INFO ] [tf_bridge] waiting_for_valid_pair: world not yet initialized or pair failed
+2026-06-14 18:36:30.677 [WARNING] [tf_bridge] websocket closed: received 1012 (service restart); then sent 1012 (service restart) — retry in 1.0s
+2026-06-14 18:36:31.690 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 2.0s
+2026-06-14 18:36:33.700 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 4.0s
+2026-06-14 18:36:37.716 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 8.0s
+2026-06-14 18:36:45.942 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 16.0s
+2026-06-14 18:36:49.033 [INFO ] [tf_bridge] cycle_file_close cycle=1
+2026-06-14 18:36:49.034 [INFO ] [tf_bridge] ply_written file=car_cycle_1_183544.ply points=22
+2026-06-14 18:36:49.034 [INFO ] [tf_bridge] ply_written file=tag2_raw_cycle_1_183544.ply points=22
+2026-06-14 18:36:49.035 [INFO ] [tf_bridge] ply_written file=tag3_raw_cycle_1_183544.ply points=215
+2026-06-14 18:36:49.035 [INFO ] [tf_bridge] ply_written file=pair_filtered_cycle_1_183544.ply points=44

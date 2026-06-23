@@ -3,12 +3,23 @@ pid:
   ki: 0.5
   kd: 2.0
 
+detector:
+  nthreads: 2
+  quad_decimate: 1.5
+  quad_sigma: 0.0
+  refine_edges: 1
+  decode_sharpening: 0.25
+
 chase:
   stop_distance_cm: 20.0
   steer_limit_deg: 20
   tag_lost_timeout_s: 2.0
   tag_id_chase: 0
-  tag_id_world: 1
+  tag_id_world_a: 2
+  tag_id_world_b: 3
+  world_offset_m: 0.065
+  world_offset_tol_m: 0.020
+  world_near_zero_tol_m: 0.025
   countdown_s: 3
   world_search_timeout_s: 15
   confidence_threshold: 20.0

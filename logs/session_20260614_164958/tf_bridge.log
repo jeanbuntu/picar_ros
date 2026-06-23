@@ -1,0 +1,15 @@
+2026-06-14 16:49:58.671 [INFO ] [tf_bridge] tf_bridge started | session=/home/jeano/picar_ros/logs/session_20260614_164958
+2026-06-14 16:49:58.672 [INFO ] [tf_bridge] camera_height=0.075m
+2026-06-14 16:49:58.672 [INFO ] [tf_bridge] connecting to ws://192.168.1.241:8000/ws
+2026-06-14 16:49:58.709 [INFO ] [tf_bridge] websocket connected to ws://192.168.1.241:8000/ws
+2026-06-14 16:50:13.848 [INFO ] [tf_bridge] first_detection session cycle=1
+2026-06-14 16:50:13.848 [INFO ] [tf_bridge] cycle_start cycle=1
+2026-06-14 16:50:13.849 [INFO ] [tf_bridge] cycle_file_open file=cycle_1_world_165013.json
+2026-06-14 16:50:13.850 [INFO ] [tf_bridge] world_initialized camera_height=0.075m tag1=[0.031, 1.397, -0.032]
+2026-06-14 16:50:13.852 [INFO ] [tf_bridge] world_origin_published cycle=1
+2026-06-14 16:50:46.507 [WARNING] [tf_bridge] websocket closed: received 1012 (service restart); then sent 1012 (service restart) — retry in 1.0s
+2026-06-14 16:50:47.520 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 2.0s
+2026-06-14 16:50:49.532 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 4.0s
+2026-06-14 16:50:53.548 [WARNING] [tf_bridge] connection refused: [Errno 111] Connect call failed ('192.168.1.241', 8000) — retry in 8.0s
+2026-06-14 16:50:54.150 [INFO ] [tf_bridge] cycle_file_close cycle=1
+2026-06-14 16:50:54.151 [INFO ] [tf_bridge] ply_written file=car_cycle_1_165013.ply points=160

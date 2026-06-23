@@ -1,0 +1,11 @@
+2026-06-14 16:48:04.134 [INFO ] [tf_bridge] tf_bridge started | session=/home/jeano/picar_ros/logs/session_20260614_164804
+2026-06-14 16:48:04.134 [INFO ] [tf_bridge] camera_height=0.075m
+2026-06-14 16:48:04.134 [INFO ] [tf_bridge] connecting to ws://192.168.1.241:8000/ws
+2026-06-14 16:48:04.168 [INFO ] [tf_bridge] websocket connected to ws://192.168.1.241:8000/ws
+2026-06-14 16:48:21.808 [INFO ] [tf_bridge] first_detection session cycle=0
+2026-06-14 16:48:21.808 [INFO ] [tf_bridge] cycle_start cycle=0
+2026-06-14 16:48:21.809 [INFO ] [tf_bridge] cycle_file_open file=cycle_0_world_164821.json
+2026-06-14 16:48:21.811 [INFO ] [tf_bridge] world_initialized camera_height=0.075m tag1=[0.162, 1.563, -0.051]
+2026-06-14 16:48:21.812 [INFO ] [tf_bridge] world_origin_published cycle=0
+2026-06-14 16:49:53.551 [INFO ] [tf_bridge] cycle_file_close cycle=0
+2026-06-14 16:49:53.552 [INFO ] [tf_bridge] ply_written file=car_cycle_0_164821.ply points=135

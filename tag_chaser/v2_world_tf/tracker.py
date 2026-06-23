@@ -1,8 +1,8 @@
 """
 tracker.py -- ManualTracker: tag detection + TF publishing without autonomous drive.
 
-Operator drives with WASD; both AprilTags are detected and streamed to tf_bridge
-on Ubuntu for RViz2 trajectory visualization. No PID, no motor commands.
+Operator drives with WASD; tags 0, world_a, and world_b are detected and streamed
+to tf_bridge on Ubuntu for RViz2 trajectory visualization. No PID, no motor commands.
 Camera is locked to center on start().
 """
 
@@ -37,13 +37,18 @@ class ManualTracker:
 
         chase_cfg = config['chase']
         cam_cfg   = config['camera']
+        det_cfg   = config.get('detector', {})
 
-        self._tag_id_chase   = int(chase_cfg.get('tag_id_chase', 0))
-        self._tag_id_world   = int(chase_cfg.get('tag_id_world', 1))
-        self._conf_threshold = float(chase_cfg.get('confidence_threshold', 20.0))
-        self.cam_w           = int(cam_cfg.get('width', 640))
-        self.cam_h           = int(cam_cfg.get('height', 480))
-        self.tag_size_m      = float(cam_cfg.get('tag_size_m', 0.05))
+        self._tag_id_chase       = int(chase_cfg.get('tag_id_chase', 0))
+        self._tag_id_world_a     = int(chase_cfg.get('tag_id_world_a', 2))
+        self._tag_id_world_b     = int(chase_cfg.get('tag_id_world_b', 3))
+        self._world_offset_m       = float(chase_cfg.get('world_offset_m', 0.065))
+        self._world_offset_tol_m   = float(chase_cfg.get('world_offset_tol_m', 0.020))
+        self._world_near_zero_tol  = float(chase_cfg.get('world_near_zero_tol_m', 0.025))
+        self._conf_threshold     = float(chase_cfg.get('confidence_threshold', 20.0))
+        self.cam_w               = int(cam_cfg.get('width', 640))
+        self.cam_h               = int(cam_cfg.get('height', 480))
+        self.tag_size_m          = float(cam_cfg.get('tag_size_m', 0.05))
 
         calib_rel  = cam_cfg.get('calibration_file',
                                   '../../camera_cal_marker/camera_calibration_pi.yaml')
@@ -61,11 +66,11 @@ class ManualTracker:
 
         self.detector = apriltag.Detector(
             families='tag36h11',
-            nthreads=1,
-            quad_decimate=1.0,
-            quad_sigma=0.0,
-            refine_edges=1,
-            decode_sharpening=0.25,
+            nthreads=int(det_cfg.get('nthreads', 2)),
+            quad_decimate=float(det_cfg.get('quad_decimate', 2.0)),
+            quad_sigma=float(det_cfg.get('quad_sigma', 0.0)),
+            refine_edges=int(det_cfg.get('refine_edges', 1)),
+            decode_sharpening=float(det_cfg.get('decode_sharpening', 0.25)),
         )
 
         self._session_dir = session_dir or os.path.join(
@@ -145,14 +150,20 @@ class ManualTracker:
             tag_size=self.tag_size_m,
         )
 
-        tag0 = next((d for d in detections
-                     if d.tag_id == self._tag_id_chase
-                     and d.decision_margin >= self._conf_threshold), None)
-        tag1 = next((d for d in detections
-                     if d.tag_id == self._tag_id_world
-                     and d.decision_margin >= self._conf_threshold), None)
+        tag0  = next((d for d in detections
+                      if d.tag_id == self._tag_id_chase
+                      and d.decision_margin >= self._conf_threshold), None)
+        tag_a = next((d for d in detections
+                      if d.tag_id == self._tag_id_world_a
+                      and d.decision_margin >= self._conf_threshold), None)
+        tag_b = next((d for d in detections
+                      if d.tag_id == self._tag_id_world_b
+                      and d.decision_margin >= self._conf_threshold), None)
 
-        if tag1 is not None:
+        pair_valid = (tag_a is not None and tag_b is not None
+                      and self._validate_world_pair(tag_a, tag_b))
+
+        if pair_valid:
             if not self._world_visible:
                 self._world_visible = True
                 _marker_logger.info("manual_track world_acquired cycle=%d", cycle)
@@ -162,8 +173,9 @@ class ManualTracker:
                 _marker_logger.info("manual_track world_lost cycle=%d — TF gap open", cycle)
 
         bcast_due = (t_now - self._last_broadcast_t) >= 0.1
-        detected_for_tf = [t for t in [tag0, tag1] if t is not None]
-        self._tf_pub.on_frame(t_now, cycle, detected_for_tf, bcast_due)
+        detected_for_tf = [t for t in [tag0, tag_a, tag_b] if t is not None]
+        self._tf_pub.on_frame(t_now, cycle, detected_for_tf, bcast_due,
+                              pair_valid=pair_valid)
         if bcast_due:
             self._last_broadcast_t = t_now
 
@@ -172,6 +184,12 @@ class ManualTracker:
             world_state = 'acquired' if self._world_visible else 'searching'
             self.broadcast({'type': 'track_status', 'active': True,
                             'world': world_state, 'cycle': cycle})
+
+    def _validate_world_pair(self, tag_a, tag_b) -> bool:
+        diff = np.array(tag_b.pose_t).reshape(3) - np.array(tag_a.pose_t).reshape(3)
+        x_ok = abs(abs(diff[0]) - self._world_offset_m) < self._world_offset_tol_m
+        y_ok = abs(diff[1]) < self._world_near_zero_tol
+        return bool(x_ok and y_ok)
 
     def _ensure_log_handler(self):
         if self._log_handler is not None:
