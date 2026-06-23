@@ -23,9 +23,10 @@ chase:
   countdown_s: 3
   world_search_timeout_s: 15
   confidence_threshold: 20.0
+  single_tag_world_mode: true   # true = world_a (tag 2) only; skips world_b and pair validation
 
 camera:
   width: 640
   height: 480
-  tag_size_m: 0.05
+  tag_size_m: 0.2
   calibration_file: "../../camera_cal_marker/camera_calibration_pi.yaml"

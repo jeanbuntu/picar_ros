@@ -1,9 +1,0 @@
-2026-06-13 09:53:43.735 [INFO ] [tf_bridge] tf_bridge started | session=/home/jeano/picar_ros/logs/session_20260613_095343
-2026-06-13 09:53:43.735 [INFO ] [tf_bridge] connecting to ws://picar-jv:8000/ws
-2026-06-13 09:53:43.773 [WARNING] [tf_bridge] connection refused: [Errno -3] Temporary failure in name resolution — retry in 1.0s
-2026-06-13 09:53:44.786 [WARNING] [tf_bridge] connection refused: [Errno -3] Temporary failure in name resolution — retry in 2.0s
-2026-06-13 09:53:46.795 [WARNING] [tf_bridge] connection refused: [Errno -3] Temporary failure in name resolution — retry in 4.0s
-2026-06-13 09:53:50.808 [WARNING] [tf_bridge] connection refused: [Errno -3] Temporary failure in name resolution — retry in 8.0s
-2026-06-13 09:53:58.823 [WARNING] [tf_bridge] connection refused: [Errno -3] Temporary failure in name resolution — retry in 16.0s
-2026-06-13 09:54:14.855 [WARNING] [tf_bridge] connection refused: [Errno -3] Temporary failure in name resolution — retry in 30.0s
-2026-06-13 09:54:44.893 [WARNING] [tf_bridge] connection refused: [Errno -3] Temporary failure in name resolution — retry in 30.0s

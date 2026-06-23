@@ -46,6 +46,7 @@ class ManualTracker:
         self._world_offset_tol_m   = float(chase_cfg.get('world_offset_tol_m', 0.020))
         self._world_near_zero_tol  = float(chase_cfg.get('world_near_zero_tol_m', 0.025))
         self._conf_threshold     = float(chase_cfg.get('confidence_threshold', 20.0))
+        self._single_tag_mode    = bool(chase_cfg.get('single_tag_world_mode', False))
         self.cam_w               = int(cam_cfg.get('width', 640))
         self.cam_h               = int(cam_cfg.get('height', 480))
         self.tag_size_m          = float(cam_cfg.get('tag_size_m', 0.05))
@@ -156,12 +157,17 @@ class ManualTracker:
         tag_a = next((d for d in detections
                       if d.tag_id == self._tag_id_world_a
                       and d.decision_margin >= self._conf_threshold), None)
-        tag_b = next((d for d in detections
-                      if d.tag_id == self._tag_id_world_b
-                      and d.decision_margin >= self._conf_threshold), None)
+        tag_b = None
+        if not self._single_tag_mode:
+            tag_b = next((d for d in detections
+                          if d.tag_id == self._tag_id_world_b
+                          and d.decision_margin >= self._conf_threshold), None)
 
-        pair_valid = (tag_a is not None and tag_b is not None
-                      and self._validate_world_pair(tag_a, tag_b))
+        if self._single_tag_mode:
+            pair_valid = tag_a is not None
+        else:
+            pair_valid = (tag_a is not None and tag_b is not None
+                          and self._validate_world_pair(tag_a, tag_b))
 
         if pair_valid:
             if not self._world_visible:

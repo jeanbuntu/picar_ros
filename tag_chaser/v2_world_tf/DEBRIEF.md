@@ -72,6 +72,64 @@ An EWMA + velocity-gate filter was prototyped and tested but removed at user's r
 
 ---
 
+## Tag Size Ambiguity Experiment (2026-06-23)
+
+### Motivation
+
+The jitter analysis from 2026-06-13 identified AprilTag PnP pose ambiguity as the primary noise source (~7cm std dev when stationary). The hypothesis was that printing larger tags would reduce ambiguity by giving the corner-detection step more pixels to work with, reducing the angular error that gets amplified into position noise.
+
+### Method
+
+A `single_tag_world_mode` config flag was added to `config.yaml` (under `chase:`). When `true`, the system requires only `tag_id_world_a` (tag 2) to be visible and skips the geometric pair-validation gate. This lets ManualTracker run and record with a single tag in frame.
+
+For each condition the camera was held stationary pointing directly at the tag for ~2–3 minutes. All raw camera-frame poses were recorded automatically by `TfPublisher` to `cycle_N_raw_HHMMSS.json`. Tag size was set via `camera.tag_size_m` in `config.yaml` (0.05 for 5cm, 0.20 for 20cm).
+
+A plotting script (`tag_chaser/v2_world_tf/plot_poses.py`) was written to load the cycle JSON files and produce per-session time-series and distribution plots. A second set of plots with globally-unified axis scales was generated to enable direct visual comparison across conditions.
+
+### Sessions
+
+| Session directory | Tag size | Lighting | Frames | Duration |
+|---|---|---|---|---|
+| `pi_session_20260623_071720_5cm_01_lights off` | 5cm | Off | 5026 | 174.7s |
+| `pi_session_20260623_072234_5cm_02_lights_on` | 5cm | On | 6005 | 205.3s |
+| `pi_session_20260623_074929_20cm_01_lights_on` | 20cm | On | 4363 | 145.9s |
+| `pi_session_20260623_075251_20cm_02_lights_off` | 20cm | Off | 4513 | ~150s (idealdataset cycle only) |
+
+The 20cm lights-off session produced two cycles; only `cycle_1_raw_075550_idealdataset.json` was used for analysis.
+
+### Results
+
+Translation std dev (camera frame, stationary camera):
+
+| Condition | σ X | σ Y | σ Z (depth) |
+|---|---|---|---|
+| 5cm — lights off | 3.4 cm | 0.5 cm | 4.5 cm |
+| 5cm — lights on | 5.1 cm | 1.7 cm | 3.7 cm |
+| 20cm — lights on | **2.7 cm** | **0.4 cm** | **1.4 cm** |
+| 20cm — lights off (idealdataset) | 2.1 cm | 1.0 cm | 1.7 cm |
+
+### Key Findings
+
+**Tag size is the dominant factor.** The 20cm tag reduces depth noise by ~3x compared to the 5cm tag under comparable lighting. X and Y noise also improve, though less dramatically.
+
+**Lighting interacts differently with tag size.** For the 5cm tag, lights-on is worse (σX 5.1 vs 3.4cm), likely because uncontrolled ambient light creates glare that degrades corner localization on a small tag. For the 20cm tag, lights-on is marginally better on depth but worse on X -- results are close enough that lighting is a secondary concern once the tag is large enough.
+
+**20cm + lights on is the best-performing condition** across all three axes simultaneously (σX=2.7cm, σY=0.4cm, σZ=1.4cm).
+
+**The PnP flip signature is visible in the distribution plots.** The 5cm sessions show broad, sometimes bimodal histograms on X and Z, consistent with the solver alternating between its two valid solutions. The 20cm sessions show tighter, more unimodal distributions.
+
+### Plots
+
+Saved to `logs/`:
+- `plot_5cm_01_lights_off.png` / `scaled_5cm_01_lights_off.png`
+- `plot_5cm_02_lights_on.png` / `scaled_5cm_02_lights_on.png`
+- `plot_20cm_01_lights_on.png` / `scaled_20cm_01_lights_on.png`
+- `plot_20cm_02_lights_off.png` / `scaled_20cm_02_lights_off.png`
+
+`scaled_*` versions share identical axis limits across all four plots for direct visual comparison.
+
+---
+
 ## Session Log
 
 | Date | Session | Notes |

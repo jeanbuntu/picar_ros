@@ -1,8 +1,0 @@
-2026-06-13 10:55:26.329 [INFO ] [tf_bridge] tf_bridge started | session=/home/jeano/picar_ros/logs/session_20260613_105526
-2026-06-13 10:55:26.329 [INFO ] [tf_bridge] connecting to ws://picar-jv:8000/ws
-2026-06-13 10:55:26.537 [INFO ] [tf_bridge] websocket connected to ws://picar-jv:8000/ws
-2026-06-13 10:55:26.705 [INFO ] [tf_bridge] first_detection session cycle=0
-2026-06-13 10:55:26.705 [INFO ] [tf_bridge] cycle_start cycle=0
-2026-06-13 10:55:26.706 [INFO ] [tf_bridge] cycle_file_open file=cycle_0_world_105526.json
-2026-06-13 10:55:26.709 [INFO ] [tf_bridge] world_origin_published cycle=0
-2026-06-13 10:56:19.057 [INFO ] [tf_bridge] cycle_file_close cycle=0

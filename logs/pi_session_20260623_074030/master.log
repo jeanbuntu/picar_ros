@@ -1,0 +1,211 @@
+2026-06-23 07:40:30.287  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/pi_session_20260623_074030
+2026-06-23 07:40:30.688  INFO     Picarx initialized
+2026-06-23 07:40:30.789  INFO     TagChaser v2 initialized
+2026-06-23 07:40:30.878  INFO     ManualTracker initialized
+2026-06-23 07:40:31.703  INFO     Picamera2 started at 640x480
+2026-06-23 07:40:31.704  INFO     MJPEG stream at :9000
+2026-06-23 07:40:31.705  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-23 07:40:31.706  INFO     Sensor and capture loops started
+2026-06-23 07:40:31.706  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-23 07:40:31.721  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=127.2 ch1_mean=132.7 ch2_mean=127.2
+2026-06-23 07:40:35.615  INFO     WebSocket connected from 192.168.1.128
+2026-06-23 07:40:35.981  INFO     manual_track action=start tracker_ready=True from 192.168.1.128
+2026-06-23 07:40:35.995  INFO     manual_track: tracker started cycle=0
+2026-06-23 07:40:35.996  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:36.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:37.987  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:38.985  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:39.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:40.349  INFO     steer angle=0
+2026-06-23 07:40:40.353  INFO     drive direction=backward speed=75
+2026-06-23 07:40:40.417  INFO     steer angle=0
+2026-06-23 07:40:40.418  INFO     drive direction=stop speed=0
+2026-06-23 07:40:40.712  INFO     steer angle=0
+2026-06-23 07:40:40.713  INFO     drive direction=backward speed=75
+2026-06-23 07:40:40.813  INFO     steer angle=0
+2026-06-23 07:40:40.814  INFO     drive direction=backward speed=75
+2026-06-23 07:40:40.821  INFO     steer angle=0
+2026-06-23 07:40:40.822  INFO     drive direction=stop speed=0
+2026-06-23 07:40:40.988  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:41.582  INFO     steer angle=0
+2026-06-23 07:40:41.584  INFO     drive direction=backward speed=75
+2026-06-23 07:40:41.675  INFO     steer angle=0
+2026-06-23 07:40:41.677  INFO     drive direction=stop speed=0
+2026-06-23 07:40:41.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:42.179  INFO     steer angle=0
+2026-06-23 07:40:42.181  INFO     drive direction=backward speed=75
+2026-06-23 07:40:42.277  INFO     steer angle=0
+2026-06-23 07:40:42.278  INFO     drive direction=backward speed=75
+2026-06-23 07:40:42.285  INFO     steer angle=0
+2026-06-23 07:40:42.286  INFO     drive direction=stop speed=0
+2026-06-23 07:40:42.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:43.984  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:44.811  INFO     steer angle=-30
+2026-06-23 07:40:44.814  INFO     drive direction=stop speed=0
+2026-06-23 07:40:44.823  INFO     steer angle=-30
+2026-06-23 07:40:44.824  INFO     drive direction=forward speed=75
+2026-06-23 07:40:44.912  INFO     steer angle=-30
+2026-06-23 07:40:44.915  INFO     drive direction=forward speed=75
+2026-06-23 07:40:44.917  INFO     steer angle=-30
+2026-06-23 07:40:44.919  INFO     drive direction=forward speed=75
+2026-06-23 07:40:44.942  INFO     steer angle=-30
+2026-06-23 07:40:44.944  INFO     drive direction=stop speed=0
+2026-06-23 07:40:44.957  INFO     steer angle=0
+2026-06-23 07:40:44.958  INFO     drive direction=stop speed=0
+2026-06-23 07:40:44.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:45.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:46.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:47.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:48.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:49.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:50.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:51.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:52.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:53.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:54.360  INFO     drive direction=stop speed=0
+2026-06-23 07:40:54.368  INFO     steer angle=0
+2026-06-23 07:40:54.984  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:55.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:56.986  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:57.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:58.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:40:59.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:00.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:01.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:02.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:03.985  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:04.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:05.984  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:06.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:07.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:08.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:09.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:10.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:11.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:12.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:13.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:14.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:15.984  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:16.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:17.984  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:18.985  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:19.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:20.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:21.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:22.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:23.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:24.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:25.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:26.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:27.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:28.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:29.118  INFO     WebSocket connected from 192.168.1.128
+2026-06-23 07:41:29.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:30.989  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:31.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:32.983  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:33.989  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:34.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:35.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:36.988  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:37.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:38.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:39.989  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:40.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:41.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:42.984  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:43.985  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:44.991  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:45.986  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:46.988  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:47.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:48.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:49.985  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:50.988  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:51.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:52.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:53.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:54.804  INFO     WebSocket disconnected from 192.168.1.128
+2026-06-23 07:41:54.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:55.981  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:56.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:57.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:58.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:41:59.982  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:00.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:01.607  INFO     drive direction=stop speed=0
+2026-06-23 07:42:01.615  INFO     steer angle=0
+2026-06-23 07:42:01.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:03.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:04.001  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:04.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:06.003  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:06.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:08.001  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:08.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:09.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:10.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:11.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:13.002  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:14.003  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:15.003  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:16.002  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:17.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:17.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:18.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:20.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:20.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:22.004  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:22.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:24.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:24.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:25.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:26.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:27.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:29.005  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:30.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:31.004  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:31.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:32.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:34.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:34.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:36.001  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:36.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:38.001  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:38.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:39.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:40.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:42.002  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:43.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:43.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:44.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:46.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:46.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:47.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:49.002  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:49.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:51.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:52.003  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:53.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:54.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:55.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:56.003  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:56.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:58.003  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:42:58.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:00.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:01.001  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:01.978  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:02.980  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:04.013  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:04.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:06.006  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:07.027  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:08.019  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:09.003  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:09.999  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:10.998  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:12.013  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:13.000  DEBUG    heartbeat from 192.168.1.128
+2026-06-23 07:43:18.751  WARNING  Watchdog fired — no heartbeat for 5.0s, stopping motors
+2026-06-23 07:43:45.657  INFO     WebSocket disconnected from 192.168.1.128
