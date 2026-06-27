@@ -388,6 +388,24 @@ function updateChaseStatus(msg) {
     }
     chaseStatusbar.textContent = text;
     if (msg.steer_angle != null && gaugeSteer) gaugeSteer.update(msg.steer_angle);
+    if (msg.pan_angle   != null && gaugePan)   gaugePan.update(msg.pan_angle);
+
+    // IBVS status badges
+    const ibvsEl  = document.getElementById('ibvs-badge');
+    const scanEl  = document.getElementById('scan-badge');
+    const ccEl    = document.getElementById('cc-badge');
+    if (ibvsEl) {
+        ibvsEl.textContent = msg.ibvs_active  ? 'IBVS ●' : 'IBVS ○';
+        ibvsEl.className   = 'signal-badge ' + (msg.ibvs_active  ? 'signal-ok' : 'signal-no');
+    }
+    if (scanEl) {
+        scanEl.textContent = msg.scan_active  ? 'SCAN ●' : 'SCAN ○';
+        scanEl.className   = 'signal-badge ' + (msg.scan_active  ? 'signal-warn' : 'signal-no');
+    }
+    if (ccEl) {
+        ccEl.textContent   = msg.car_centering_active ? 'CENTER ●' : 'CENTER ○';
+        ccEl.className     = 'signal-badge ' + (msg.car_centering_active ? 'signal-ok' : 'signal-no');
+    }
 }
 
 function showWorldNotFoundPopup() {
@@ -852,6 +870,18 @@ window.addEventListener('DOMContentLoaded', () => {
         sessionBtn.disabled = true;
         if (tSessionBtn) tSessionBtn.disabled = true;
     });
+
+    // IBVS-only toggle
+    let ibvsOnlyEnabled = false;
+    const ibvsOnlyBtn = document.getElementById('ibvs-only-btn');
+    if (ibvsOnlyBtn) {
+        ibvsOnlyBtn.addEventListener('click', () => {
+            ibvsOnlyEnabled = !ibvsOnlyEnabled;
+            ibvsOnlyBtn.textContent = `IBVS Only: ${ibvsOnlyEnabled ? 'ON' : 'OFF'}`;
+            ibvsOnlyBtn.style.background = ibvsOnlyEnabled ? '#7c3aed' : '';
+            send({ cmd: 'set_mode', ibvs_only: ibvsOnlyEnabled });
+        });
+    }
 
     if (killBtn)     killBtn.addEventListener('click', doKill);
     if (tPhotoBtn)   tPhotoBtn.addEventListener('click', () => send({ cmd: 'photo' }));

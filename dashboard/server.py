@@ -382,6 +382,12 @@ async def websocket_endpoint(ws: WebSocket):
                             await asyncio.to_thread(tracker.stop)
                             _logger.info("manual_track: tracker stopped")
 
+                elif cmd == "set_mode":
+                    if chaser and hasattr(chaser, 'set_ibvs_only'):
+                        ibvs_only = bool(msg.get('ibvs_only', False))
+                        await asyncio.to_thread(chaser.set_ibvs_only, ibvs_only)
+                        _logger.info("set_mode ibvs_only=%s", ibvs_only)
+
                 elif cmd == "photo":
                     ts    = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
                     fname = f"photo_{ts}.jpg"

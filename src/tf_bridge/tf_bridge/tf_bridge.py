@@ -38,6 +38,8 @@ from std_msgs.msg import ColorRGBA
 from std_srvs.srv import Empty
 from tf2_ros import TransformBroadcaster, StaticTransformBroadcaster
 from visualization_msgs.msg import Marker, MarkerArray
+import math
+from sensor_msgs.msg import JointState
 
 try:
     import websockets
@@ -75,6 +77,10 @@ class TfBridgeNode(Node):
         self.declare_parameter('world_near_zero_tol_m', 0.025)
         self.declare_parameter('max_position_jump_m',  0.10)
         self.declare_parameter('position_smooth_alpha', 0.4)
+        # TUNE: pan/tilt kinematic offsets — must match picar_tracking.urdf joint origins
+        self.declare_parameter('pan_z_m',  0.060)   # height of pan servo above car_base (-Y)
+        self.declare_parameter('tilt_z_m', 0.020)   # height of tilt servo above pan_link (-Y)
+        self.declare_parameter('cam_z_m',  0.015)   # height of camera above tilt_link (-Y)
 
         self._ws_url           = self.get_parameter('pi_ws_url').value
         self._conf_threshold   = self.get_parameter('confidence_threshold').value
@@ -87,6 +93,9 @@ class TfBridgeNode(Node):
         self._world_near_zero  = self.get_parameter('world_near_zero_tol_m').value
         self._max_jump_m       = self.get_parameter('max_position_jump_m').value
         self._pos_smooth_alpha = self.get_parameter('position_smooth_alpha').value
+        self._pan_z_m          = self.get_parameter('pan_z_m').value
+        self._tilt_z_m         = self.get_parameter('tilt_z_m').value
+        self._cam_z_m          = self.get_parameter('cam_z_m').value
 
         self._tf_broadcaster        = TransformBroadcaster(self)
         self._static_tf_broadcaster = StaticTransformBroadcaster(self)
@@ -97,6 +106,7 @@ class TfBridgeNode(Node):
         self._tag3_raw_pub   = self.create_publisher(MarkerArray, '/trajectory/tag3_raw',      10)
         self._pair_filt_pub  = self.create_publisher(MarkerArray, '/trajectory/pair_filtered', 10)
         self._world_pub      = self.create_publisher(Marker,      '/marker/world',             1)
+        self._js_pub         = self.create_publisher(JointState,  '/joint_states',             10)
 
         self.create_service(Empty, '/reset_markers', self._reset_markers_cb)
 
@@ -139,8 +149,8 @@ class TfBridgeNode(Node):
         self._T_world_camera_last = None    # most recent valid camera TF (4x4)
         self._waiting_logged      = False
 
-        # Velocity gate + EWMA smoother
-        self._cam_pos_smooth:  np.ndarray = None
+        # Velocity gate + EWMA smoother (tracks car_base world position)
+        self._pos_smooth:      np.ndarray = None
         self._flip_skip_count: int = 0
         self._z_skip_count:    int = 0
 
@@ -185,10 +195,13 @@ class TfBridgeNode(Node):
     # ── Frame processing ───────────────────────────────────────────────────────
 
     def _process_frame(self, msg: dict):
-        tags       = msg.get('tags', [])
-        cycle      = int(msg.get('cycle', 0))
-        ts         = float(msg.get('ts', time.time()))
-        pair_valid = bool(msg.get('pair_valid', False))
+        tags           = msg.get('tags', [])
+        cycle          = int(msg.get('cycle', 0))
+        ts             = float(msg.get('ts', time.time()))
+        pair_valid     = bool(msg.get('pair_valid', False))
+        pan_angle_deg  = float(msg.get('pan_angle_deg', 0.0))
+        tilt_angle_deg = float(msg.get('tilt_angle_deg', 0.0))
+        self._publish_joint_states(pan_angle_deg, tilt_angle_deg)
 
         # Filter by confidence threshold
         tags = [t for t in tags if t.get('confidence', 0.0) >= self._conf_threshold]
@@ -240,7 +253,7 @@ class TfBridgeNode(Node):
             T_world_camera_0  = self._build_4x4(R_CW, np.array([0.0, 0.0, self._camera_height]))
             self._T_world_anchor = T_world_camera_0 @ T_camera_anchor_curr
             self._world_initialized = True
-            self._cam_pos_smooth = None  # reset smoother so first pos seeds it cleanly
+            self._pos_smooth = None  # reset smoother so first car_base pos seeds it cleanly
             anchor_pos  = self._T_world_anchor[:3, 3]
             anchor_quat = Rotation.from_matrix(self._T_world_anchor[:3, :3]).as_quat()
             self._publish_static_tf('world', 'world_anchor', anchor_pos, anchor_quat)
@@ -250,6 +263,12 @@ class TfBridgeNode(Node):
 
         T_world_camera = self._T_world_anchor @ np.linalg.inv(T_camera_anchor_curr)
 
+        # Compute car_base world pose via pan/tilt forward kinematics
+        pan_rad  = math.radians(pan_angle_deg)
+        tilt_rad = math.radians(tilt_angle_deg)
+        T_car_base_camera = self._fk_car_base_to_camera(pan_rad, tilt_rad)
+        T_world_car_base  = T_world_camera @ np.linalg.inv(T_car_base_camera)
+
         det = np.linalg.det(T_world_camera[:3, :3])
         if det <= 0:
             self._pylog.warning("skipping frame: degenerate rotation matrix det=%.4f", det)
@@ -257,9 +276,10 @@ class TfBridgeNode(Node):
 
         self._T_world_camera_last = T_world_camera
 
-        cam_pos  = T_world_camera[:3, 3]
-        cam_quat = Rotation.from_matrix(T_world_camera[:3, :3]).as_quat()
-        self._publish_tf('world', 'camera', cam_pos, cam_quat)
+        cam_pos       = T_world_camera[:3, 3]
+        car_base_pos  = T_world_car_base[:3, 3]
+        car_base_quat = Rotation.from_matrix(T_world_car_base[:3, :3]).as_quat()
+        self._publish_tf('world', 'car_base', car_base_pos, car_base_quat)
 
         # Z filter: PnP flips push Z to ~-0.54m (underground). Only the lower bound
         # matters — valid frames can be slightly above nominal camera height.
@@ -271,21 +291,21 @@ class TfBridgeNode(Node):
             self._publish_marker_arrays()
             return
 
-        # Velocity gate: reject frames where the position jumps more than max_jump_m.
-        if self._cam_pos_smooth is not None:
-            jump = float(np.linalg.norm(cam_pos - self._cam_pos_smooth))
+        # Velocity gate: reject frames where car_base position jumps more than max_jump_m.
+        if self._pos_smooth is not None:
+            jump = float(np.linalg.norm(car_base_pos - self._pos_smooth))
             if jump > self._max_jump_m:
                 self._flip_skip_count += 1
                 self._pylog.debug("pose_flip_rejected jump=%.3fm skip_count=%d", jump, self._flip_skip_count)
                 self._publish_marker_arrays()
                 return
 
-        # EWMA smooth
-        if self._cam_pos_smooth is None:
-            self._cam_pos_smooth = cam_pos.copy()
+        # EWMA smooth car_base position for trajectory tracking
+        if self._pos_smooth is None:
+            self._pos_smooth = car_base_pos.copy()
         else:
             a = self._pos_smooth_alpha
-            self._cam_pos_smooth = a * cam_pos + (1.0 - a) * self._cam_pos_smooth
+            self._pos_smooth = a * car_base_pos + (1.0 - a) * self._pos_smooth
 
         # Publish world origin marker once per session
         if not self._world_marker_published:
@@ -293,8 +313,8 @@ class TfBridgeNode(Node):
             self._world_marker_published = True
             self._pylog.info("world_origin_published cycle=%d", cycle)
 
-        # Car trajectory uses smoothed position
-        self._append_point(self._car_markers, cycle, self._cam_pos_smooth)
+        # Car trajectory uses smoothed car_base position
+        self._append_point(self._car_markers, cycle, self._pos_smooth)
 
         # World positions for both world tags (this is a valid pair frame)
         T_world_tag_a = T_world_camera @ self._build_4x4(R_a, t_a)
@@ -324,7 +344,7 @@ class TfBridgeNode(Node):
             self._append_point(self._tag0_markers, cycle, tag0_world_pos)
 
         self._publish_marker_arrays()
-        self._append_world_record(ts, cycle, self._cam_pos_smooth.tolist(),
+        self._append_world_record(ts, cycle, self._pos_smooth.tolist(),
                                   tag0_world_pos.tolist() if tag0_world_pos is not None else None,
                                   pos_a.tolist(), pos_b.tolist())
 
@@ -535,7 +555,7 @@ class TfBridgeNode(Node):
         self._world_initialized   = False
         self._T_world_anchor      = None
         self._T_world_camera_last = None
-        self._cam_pos_smooth   = None
+        self._pos_smooth       = None
         self._flip_skip_count  = 0
         self._z_skip_count     = 0
         self._waiting_logged   = False
@@ -544,6 +564,30 @@ class TfBridgeNode(Node):
                     self._tag2_raw_pub, self._tag3_raw_pub, self._pair_filt_pub]:
             pub.publish(MarkerArray())
         return response
+
+    # ── Kinematics helpers ─────────────────────────────────────────────────────
+
+    def _fk_car_base_to_camera(self, pan_rad: float, tilt_rad: float) -> np.ndarray:
+        """Return T_car_base_camera: 4x4 transform that maps camera-frame coords to
+        car_base-frame coords.  Uses the same coordinate convention as the URDF
+        (X=right, Y=down, Z=forward).  Joint offsets match picar_tracking.urdf.
+        TUNE: pan_z_m / tilt_z_m / cam_z_m ROS parameters match URDF joint origins."""
+        # Translation to pan joint origin (pan servo is pan_z above car_base, -Y = up)
+        T_to_pan  = self._build_4x4(np.eye(3), [0.0, -self._pan_z_m, 0.0])
+        # Pan rotation around Y (yaw in camera convention)
+        R_pan     = Rotation.from_euler('y', pan_rad).as_matrix()
+        T_pan_rot = self._build_4x4(R_pan, [0.0, -self._tilt_z_m, 0.0])
+        # Tilt rotation around X (pitch in camera convention), then translate to camera
+        R_tilt    = Rotation.from_euler('x', tilt_rad).as_matrix()
+        T_tilt_rot = self._build_4x4(R_tilt, [0.0, -self._cam_z_m, 0.0])
+        return T_to_pan @ T_pan_rot @ T_tilt_rot
+
+    def _publish_joint_states(self, pan_deg: float, tilt_deg: float):
+        js = JointState()
+        js.header.stamp = self.get_clock().now().to_msg()
+        js.name     = ['pan_joint', 'tilt_joint']
+        js.position = [math.radians(pan_deg), math.radians(tilt_deg)]
+        self._js_pub.publish(js)
 
     # ── Math helpers ───────────────────────────────────────────────────────────
 
