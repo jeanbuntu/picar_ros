@@ -1,0 +1,20 @@
+2026-06-27 16:22:36.401 [INFO ] [marker_detector] chase_toggle_on cycle=0 mode=ibvs_test
+2026-06-27 16:22:36.461 [INFO ] [marker_detector] ibvs_recording_start frames_dir=/home/jvpicar/picar_ros/logs/pi_session_20260627_162225/ibvs_frames_162236 csv=/home/jvpicar/picar_ros/logs/pi_session_20260627_162225/ibvs_log_162236.csv
+2026-06-27 16:22:36.462 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=0.0 tilt=0.0
+2026-06-27 16:22:39.542 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=12.4 tilt=-3.1
+2026-06-27 16:22:41.388 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=44.0 tilt=-3.0
+2026-06-27 16:22:42.694 [DEBUG] [marker_detector] ibvs eu=-202 ev=-96 eu_s=-201.7 ev_s=-95.5 dpan=+10.08 dtilt=-4.78 pan=54.1 tilt=-7.8 err=223px
+2026-06-27 16:22:42.810 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=71.6 tilt=-16.8
+2026-06-27 16:22:47.849 [INFO ] [marker_detector] ibvs servo_reset pan→0 tilt→0 lost=5.0s
+2026-06-27 16:22:47.895 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=0.0 tilt=0.0
+2026-06-27 16:22:49.500 [DEBUG] [marker_detector] ibvs eu=-234 ev=-69 eu_s=-233.9 ev_s=-69.2 dpan=+11.70 dtilt=-3.46 pan=35.3 tilt=-10.3 err=244px
+2026-06-27 16:22:49.534 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=35.3 tilt=-10.3
+2026-06-27 16:22:51.544 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=63.6 tilt=-28.9
+2026-06-27 16:22:56.583 [INFO ] [marker_detector] ibvs servo_reset pan→0 tilt→0 lost=5.0s
+2026-06-27 16:22:56.630 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=0.0 tilt=0.0
+2026-06-27 16:23:01.277 [DEBUG] [marker_detector] ibvs eu=-222 ev=-104 eu_s=-222.3 ev_s=-103.9 dpan=+11.12 dtilt=-5.20 pan=22.4 tilt=-10.4 err=245px
+2026-06-27 16:23:01.356 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=33.4 tilt=-15.8
+2026-06-27 16:23:05.606 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=43.5 tilt=-34.0
+2026-06-27 16:23:07.235 [INFO ] [marker_detector] ibvs_recording_stop frames=728 dir=/home/jvpicar/picar_ros/logs/pi_session_20260627_162225/ibvs_frames_162236
+2026-06-27 16:23:07.235 [INFO ] [marker_detector] chase_stop cycle=0 reason=toggle_off
+2026-06-27 16:23:07.249 [INFO ] [marker_detector] ibvs_recording_start frames_dir=/home/jvpicar/picar_ros/logs/pi_session_20260627_162225/ibvs_frames_162307 csv=/home/jvpicar/picar_ros/logs/pi_session_20260627_162225/ibvs_log_162307.csv

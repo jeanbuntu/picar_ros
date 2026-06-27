@@ -268,6 +268,29 @@ label span {
     opacity: 0.85;
 }
 
+.mode-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+.btn.mode-sel {
+    font-size: 10px;
+    padding: 6px 4px;
+    letter-spacing: 0.04em;
+    opacity: 0.6;
+}
+
+.btn.mode-sel.active-mode {
+    background: #7c3aed;
+    border-color: #7c3aed;
+    color: #fff;
+    opacity: 1;
+}
+
+.debug-canvas { width: 100%; display: none; border: 1px solid #2a2a2a; margin-top: 6px; border-radius: 4px; }
+.debug-text   { display: none; font-size: 10px; color: #aaa; background: #111; border-radius: 4px; padding: 6px; margin-top: 4px; white-space: pre-wrap; }
+
 .btn.btn-recording {
     background: var(--rec);
     border-color: var(--rec);
@@ -609,6 +632,64 @@ footer {
     background: var(--danger);
     border-color: var(--danger);
     color: #fff;
+}
+
+/* ── Command Servo panel ─────────────────────────────── */
+.servo-cmd-row {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.servo-cmd-select {
+    flex: 0 0 auto;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 12px;
+    padding: 5px 6px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.servo-cmd-select:focus {
+    border-color: var(--accent);
+}
+
+.servo-cmd-angle {
+    flex: 1 1 0;
+    min-width: 0;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    padding: 5px 6px;
+    outline: none;
+    text-align: right;
+}
+
+.servo-cmd-angle:focus {
+    border-color: var(--accent);
+}
+
+.servo-cmd-btn {
+    flex: 0 0 auto;
+    width: auto;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.servo-cmd-status {
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-dim);
+    padding: 2px 0;
+    letter-spacing: 0.3px;
 }
 
 /* ── Touch controls (mobile only) ────────────────────── */

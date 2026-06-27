@@ -5,7 +5,7 @@ pid:
 
 detector:
   nthreads: 2
-  quad_decimate: 1.5
+  quad_decimate: 1.0
   quad_sigma: 0.0
   refine_edges: 1
   decode_sharpening: 0.25
@@ -34,10 +34,12 @@ camera:
 ibvs:
   kp_pan: 0.05              # deg/px; tune up until oscillation then halve
   kp_tilt: 0.05             # deg/px
-  ewma_alpha: 0.3           # smoothing; higher = more responsive, more noisy
+  ewma_alpha: 1.0        # smoothing; higher = more responsive, more noisy
   deadband_px: 10           # pixel radius around center where no correction applied
-  tag_lost_timeout_s: 1.0   # seconds before servos return to neutral after tag0 lost
+  tag_lost_timeout_s: 5.0   # seconds before servos return to neutral after tag0 lost
   ibvs_only: false          # true = run IBVS but skip car centering (Layer 1 tuning)
+  tilt_invert: true          # set_cam_tilt_angle(+X) = looks DOWN on this hardware
+  log_every_n_frames: 2     # IBVS debug log at ~6Hz (30fps / 5)
 
 world_scan:
   scan_speed_deg_per_frame: 3.0   # degrees moved per camera frame
@@ -50,3 +52,13 @@ car_centering:
   car_centering_speed: 20          # PWM forward speed (0-100)
   tilt_elevation_threshold_deg: 30 # above this tilt, stop driving forward
   decimation_n: 3                  # run car centering every Nth camera frame
+
+servo_limits:
+  pan_min_deg:       -90
+  pan_max_deg:        90
+  tilt_min_deg:      -35
+  tilt_max_deg:       35
+  steer_min_deg:     -20
+  steer_max_deg:      20
+  pan_max_delta_deg:   2  # max pan change per frame; caps IBVS step regardless of error
+  tilt_max_delta_deg:  2  # max tilt change per frame

@@ -1,4 +1,5 @@
 import asyncio
+import base64
 import cv2
 import http.server
 import json
@@ -31,8 +32,8 @@ _PROJ_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJ_ROOT not in sys.path:
     sys.path.insert(0, _PROJ_ROOT)
 
-from tag_chaser.v2_world_tf.chaser import TagChaser
-from tag_chaser.v2_world_tf.tracker import ManualTracker
+from tag_chaser.v3_ibvs.chaser import TagChaser
+from tag_chaser.v3_ibvs.tracker import ManualTracker
 from tag_chaser.v1_camera_lock.chaser import TagChaser as TagChaserV1
 
 BASE_DIR         = os.path.dirname(os.path.abspath(__file__))
@@ -55,6 +56,11 @@ _rec_last_video = ""
 # MJPEG frame buffer
 _frame_lock  = threading.Lock()
 _frame_bytes = b''
+
+# Debug capture buffers
+_raw_frame_lock = threading.Lock()
+_last_raw_frame = None   # most-recent numpy frame from capture loop
+_debug_frame    = None   # frozen frame waiting for simulate
 
 # Video writer
 _rec_writer      = None
@@ -134,6 +140,9 @@ def _capture_loop():
         try:
             raw   = _picam2.capture_array()
             frame = raw
+            global _last_raw_frame
+            with _raw_frame_lock:
+                _last_raw_frame = frame.copy()
 
             global _frame_diag_logged
             if not _frame_diag_logged:
@@ -291,9 +300,10 @@ async def websocket_endpoint(ws: WebSocket):
 
     chase_active = chaser.is_running() if chaser else False
     out_q.put_nowait({
-        "type":   "chase_status",
-        "active": chase_active,
-        "state":  "chasing" if chase_active else "idle",
+        "type":       "chase_status",
+        "active":     chase_active,
+        "state":      "chasing" if chase_active else "idle",
+        "chase_mode": chaser.chase_mode if chaser else 'rat_chase',
     })
 
     async def _recv():
@@ -304,7 +314,9 @@ async def websocket_endpoint(ws: WebSocket):
                 cmd = msg.get("cmd")
 
                 if cmd == "drive":
-                    if chaser and chaser.is_running():
+                    is_manual_ibvs = (chaser and chaser.is_running()
+                                      and chaser.chase_mode == 'manual_ibvs')
+                    if chaser and chaser.is_running() and not is_manual_ibvs:
                         continue
                     direction = msg.get("direction", "stop")
                     speed     = max(0, min(100, int(msg.get("speed", 50))))
@@ -317,7 +329,9 @@ async def websocket_endpoint(ws: WebSocket):
                         await asyncio.to_thread(px.stop)
 
                 elif cmd == "steer":
-                    if chaser and chaser.is_running():
+                    is_manual_ibvs = (chaser and chaser.is_running()
+                                      and chaser.chase_mode == 'manual_ibvs')
+                    if chaser and chaser.is_running() and not is_manual_ibvs:
                         continue
                     angle = max(-30, min(30, int(msg.get("angle", 0))))
                     _logger.info("steer angle=%d", angle)
@@ -340,8 +354,11 @@ async def websocket_endpoint(ws: WebSocket):
                     action = msg.get("action", "stop")
                     if action == "start":
                         speed = max(0, min(100, int(msg.get("speed", 30))))
-                        _logger.info("tag_chase start speed=%d", speed)
+                        mode  = msg.get("mode")
+                        _logger.info("tag_chase start speed=%d mode=%s", speed, mode or "unchanged")
                         if chaser:
+                            if mode and hasattr(chaser, 'set_chase_mode'):
+                                await asyncio.to_thread(chaser.set_chase_mode, mode)
                             await asyncio.to_thread(chaser.start, speed)
                     elif action == "stop":
                         _logger.info("tag_chase stop")
@@ -382,11 +399,52 @@ async def websocket_endpoint(ws: WebSocket):
                             await asyncio.to_thread(tracker.stop)
                             _logger.info("manual_track: tracker stopped")
 
+                elif cmd == "set_chase_mode":
+                    mode = msg.get('mode', 'rat_chase')
+                    if chaser and hasattr(chaser, 'set_chase_mode'):
+                        await asyncio.to_thread(chaser.set_chase_mode, mode)
+                        _logger.info("set_chase_mode mode=%s", mode)
+
                 elif cmd == "set_mode":
                     if chaser and hasattr(chaser, 'set_ibvs_only'):
                         ibvs_only = bool(msg.get('ibvs_only', False))
                         await asyncio.to_thread(chaser.set_ibvs_only, ibvs_only)
                         _logger.info("set_mode ibvs_only=%s", ibvs_only)
+
+                elif cmd == 'debug_capture':
+                    global _debug_frame
+                    with _raw_frame_lock:
+                        _debug_frame = _last_raw_frame.copy() if _last_raw_frame is not None else None
+                    if _debug_frame is None:
+                        out_q.put_nowait({'type': 'notif', 'msg': 'No frame available yet'})
+                    else:
+                        ok, buf = cv2.imencode('.jpg', _debug_frame)
+                        if ok:
+                            jpeg_bytes = buf.tobytes()
+                            ts    = datetime.now().strftime("%H%M%S_%f")[:10]
+                            fname = f"debug_capture_{ts}.jpg"
+                            save_path = os.path.join(_session_dir, fname)
+                            with open(save_path, 'wb') as fp:
+                                fp.write(jpeg_bytes)
+                            _logger.info("debug_capture saved file=%s", fname)
+                            jpeg_b64 = base64.b64encode(jpeg_bytes).decode()
+                            out_q.put_nowait({'type': 'debug_capture_ok', 'jpeg_b64': jpeg_b64,
+                                             'width': _debug_frame.shape[1],
+                                             'height': _debug_frame.shape[0],
+                                             'filename': fname})
+
+                elif cmd == 'debug_simulate':
+                    if _debug_frame is None:
+                        out_q.put_nowait({'type': 'notif', 'msg': 'Capture a frame first'})
+                    elif chaser is None:
+                        out_q.put_nowait({'type': 'notif', 'msg': 'Chaser not initialized'})
+                    else:
+                        result = await asyncio.to_thread(chaser.simulate_frame, _debug_frame)
+                        ann = result.pop('annotated_frame', _debug_frame)
+                        ok, buf = cv2.imencode('.jpg', ann, [cv2.IMWRITE_JPEG_QUALITY, 90])
+                        if ok:
+                            result['jpeg_b64'] = base64.b64encode(buf.tobytes()).decode()
+                        out_q.put_nowait({'type': 'debug_result', **result})
 
                 elif cmd == "photo":
                     ts    = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
@@ -554,21 +612,21 @@ def main():
     px = Picarx()
     _logger.info("Picarx initialized")
 
-    _chase_config_v2_path = os.path.join(
-        _PROJ_ROOT, 'tag_chaser', 'v2_world_tf', 'config.yaml')
-    with open(_chase_config_v2_path) as f:
-        _chase_config_v2 = yaml.safe_load(f)
+    _chase_config_v3_path = os.path.join(
+        _PROJ_ROOT, 'tag_chaser', 'v3_ibvs', 'config.yaml')
+    with open(_chase_config_v3_path) as f:
+        _chase_config_v3 = yaml.safe_load(f)
 
     _chase_config_v1_path = os.path.join(
         _PROJ_ROOT, 'tag_chaser', 'v1_camera_lock', 'config.yaml')
     with open(_chase_config_v1_path) as f:
         _chase_config_v1 = yaml.safe_load(f)
 
-    chaser = TagChaser(px, _chase_config_v2, broadcast_fn=broadcast_chase,
+    chaser = TagChaser(px, _chase_config_v3, broadcast_fn=broadcast_chase,
                        session_dir=_session_dir)
-    _logger.info("TagChaser v2 initialized")
+    _logger.info("TagChaser v3 initialized")
 
-    tracker = ManualTracker(px, _chase_config_v2, broadcast_fn=broadcast_chase,
+    tracker = ManualTracker(px, _chase_config_v3, broadcast_fn=broadcast_chase,
                             session_dir=_session_dir)
     _logger.info("ManualTracker initialized")
 

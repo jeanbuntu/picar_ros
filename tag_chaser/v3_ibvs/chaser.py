@@ -1,13 +1,14 @@
 """
-chaser.py -- TagChaser v2: dual-tag detection, world-frame anchor, TF publishing.
+chaser.py -- TagChaser v3: IBVS + world-frame anchor + multi-mode chase.
 
-Camera is owned by server.py. Each frame is passed in via process_frame().
-Tags world_a and world_b (default IDs 2 and 3) must both be visible and pass the
-geometric consistency check to start a chase cycle. Tag ID 0 is the chase target.
-The tf_publisher serializes pose data over WebSocket so tf_bridge.py on Ubuntu can
-compute TF and publish RViz2 trajectories.
+Four operational modes (set via set_chase_mode()):
+  rat_chase   -- No world anchor. IBVS centers tag0, car centering drives forward.
+  ibvs_test   -- IBVS centers tag0, motors locked. For servo gain tuning.
+  manual_ibvs -- IBVS centers any visible tag, WASD controls the car.
+  world_ibvs  -- Full v2+ behavior: world anchor -> countdown -> TF chase.
 """
 
+import csv
 import logging
 import os
 import threading
@@ -133,6 +134,19 @@ class TagChaser:
         self._ibvs_deadband     = float(ibvs_cfg.get('deadband_px', 10))
         self._ibvs_lost_timeout = float(ibvs_cfg.get('tag_lost_timeout_s', 1.0))
         self._ibvs_only         = bool(ibvs_cfg.get('ibvs_only', False))
+        self._ibvs_tilt_invert  = bool(ibvs_cfg.get('tilt_invert', False))
+        self._ibvs_log_every    = int(ibvs_cfg.get('log_every_n_frames', 5))
+        self._ibvs_log_count    = 0
+
+        # IBVS test recording (frames + CSV) — created lazily on first ibvs_test frame
+        self._ibvs_rec_dir         = None
+        self._ibvs_csv_f           = None
+        self._ibvs_csv_w           = None
+        self._ibvs_rec_frame_count = 0
+        self._ibvs_rec_t0          = None
+        self._ibvs_save_every      = 2     # save 1 JPEG per 2 frames (~15 Hz at 30fps)
+        self._ibvs_frame_cap       = 2000  # rolling buffer — delete oldest past this
+        self._ibvs_saved_files     = []    # ordered list of saved JPEG paths
 
         self._scan_speed        = float(scan_cfg.get('scan_speed_deg_per_frame', 3.0))
         self._scan_pan_limit    = float(scan_cfg.get('pan_range_deg', 60.0))
@@ -143,6 +157,16 @@ class TagChaser:
         self._cc_speed          = int(cc_cfg.get('car_centering_speed', 20))
         self._cc_tilt_thresh    = float(cc_cfg.get('tilt_elevation_threshold_deg', 30))
         self._cc_decimation     = int(cc_cfg.get('decimation_n', 3))
+
+        lim_cfg = config.get('servo_limits', {})
+        self._pan_min       = float(lim_cfg.get('pan_min_deg',       -90))
+        self._pan_max       = float(lim_cfg.get('pan_max_deg',        90))
+        self._tilt_min      = float(lim_cfg.get('tilt_min_deg',      -35))
+        self._tilt_max      = float(lim_cfg.get('tilt_max_deg',       35))
+        self._steer_min     = float(lim_cfg.get('steer_min_deg',     -20))
+        self._steer_max     = float(lim_cfg.get('steer_max_deg',      20))
+        self._pan_max_delta  = float(lim_cfg.get('pan_max_delta_deg',  float('inf')))
+        self._tilt_max_delta = float(lim_cfg.get('tilt_max_delta_deg', float('inf')))
 
         # IBVS per-frame state
         self._pan_angle         = 0.0
@@ -157,6 +181,7 @@ class TagChaser:
         self._scan_pan_dir      = 1
         self._scan_tilt_idx     = 0
         self._cc_frame_count    = 0
+        self._chase_mode        = 'rat_chase'
 
         # Set up marker_detector logger (StreamHandler — file handler added lazily)
         if not _marker_logger.handlers:
@@ -181,9 +206,12 @@ class TagChaser:
                 return
             self._cycle += 1
             self._speed = max(0, min(100, speed))
-            self._state = 'world_search'
-            self._world_search_start   = time.perf_counter()
-            self._world_search_bcast_t = 0.0
+            if self._chase_mode == 'world_ibvs':
+                self._state = 'world_search'
+                self._world_search_start   = time.perf_counter()
+                self._world_search_bcast_t = 0.0
+            else:
+                self._state = 'chasing'
 
         self._ensure_log_handler()
 
@@ -193,10 +221,58 @@ class TagChaser:
         except Exception:
             pass
 
-        remaining = int(self._world_search_timeout)
-        self.broadcast({'type': 'chase_status', 'active': True,
-                        'state': 'world_search', 'countdown': remaining})
-        _marker_logger.info("chase_toggle_on cycle=%d", self._cycle)
+        if self._chase_mode == 'world_ibvs':
+            remaining = int(self._world_search_timeout)
+            self.broadcast({'type': 'chase_status', 'active': True,
+                            'state': 'world_search', 'countdown': remaining,
+                            'chase_mode': self._chase_mode})
+        else:
+            # Non-world modes start chasing immediately — reset chase state now
+            self.pid.reset()
+            self._last_seen_time   = None
+            self._last_steer       = 0.0
+            self._last_log_t       = 0.0
+            self._prev_found       = None
+            self._last_broadcast_t = 0.0
+            self._t_last           = time.perf_counter()
+            self._at_stop_dist     = False
+            self._world_visible    = False
+            self.broadcast({'type': 'chase_status', 'active': True,
+                            'state': 'chasing', 'chase_mode': self._chase_mode})
+        _marker_logger.info("chase_toggle_on cycle=%d mode=%s", self._cycle, self._chase_mode)
+
+    def _ensure_ibvs_recording(self):
+        """Lazily create the ibvs_frames_* folder and ibvs_log_*.csv for this run."""
+        if self._ibvs_rec_dir is not None:
+            return
+        ts = time.strftime("%H%M%S")
+        self._ibvs_rec_dir = os.path.join(self._session_dir, f"ibvs_frames_{ts}")
+        os.makedirs(self._ibvs_rec_dir, exist_ok=True)
+        csv_path = os.path.join(self._session_dir, f"ibvs_log_{ts}.csv")
+        self._ibvs_csv_f = open(csv_path, 'w', newline='')
+        self._ibvs_csv_w = csv.writer(self._ibvs_csv_f)
+        self._ibvs_csv_w.writerow([
+            't_s', 'frame', 'tag_detected',
+            'pan_deg', 'tilt_deg',
+            'eu_px', 'ev_px', 'eu_s_px', 'ev_s_px', 'err_px',
+            'dpan', 'dtilt', 'in_deadband',
+        ])
+        self._ibvs_rec_t0 = time.perf_counter()
+        _marker_logger.info("ibvs_recording_start frames_dir=%s csv=%s",
+                            self._ibvs_rec_dir, csv_path)
+
+    def _close_ibvs_recording(self):
+        if self._ibvs_csv_f is not None:
+            self._ibvs_csv_f.flush()
+            self._ibvs_csv_f.close()
+            self._ibvs_csv_f = None
+            self._ibvs_csv_w = None
+            _marker_logger.info("ibvs_recording_stop frames=%d dir=%s",
+                                self._ibvs_rec_frame_count, self._ibvs_rec_dir)
+        self._ibvs_rec_dir         = None
+        self._ibvs_rec_frame_count = 0
+        self._ibvs_rec_t0          = None
+        self._ibvs_saved_files     = []
 
     def stop(self):
         with self._state_lock:
@@ -212,11 +288,13 @@ class TagChaser:
             pass
 
         self._tf_pub.close_cycle()
+        self._close_ibvs_recording()
 
         if old_state == 'chasing':
             _marker_logger.info("chase_stop cycle=%d reason=toggle_off", self._cycle)
 
-        self.broadcast({'type': 'chase_status', 'active': False, 'state': 'idle'})
+        self.broadcast({'type': 'chase_status', 'active': False, 'state': 'idle',
+                        'chase_mode': self._chase_mode})
 
     def process_frame(self, frame):
         """Called by server.py capture thread with each RGB frame."""
@@ -254,10 +332,60 @@ class TagChaser:
             pair_valid = (tag_a is not None and tag_b is not None
                           and self._validate_world_pair(tag_a, tag_b))
 
-        # IBVS mode selection — tag0 has priority; world scan only when both lost
+        # Servo-only modes: IBVS without motor control
+        if self._chase_mode in ('ibvs_test', 'manual_ibvs'):
+            self._ensure_ibvs_recording()
+            if self._chase_mode == 'manual_ibvs':
+                ibvs_target = next(
+                    (d.center for d in detections
+                     if d.decision_margin >= self._conf_threshold), None)
+            else:
+                ibvs_target = tag0.center if tag0 is not None else None
+            if ibvs_target is not None:
+                ibvs_data = self._run_ibvs(ibvs_target)
+            else:
+                self._handle_tag0_lost(t_now)
+                ibvs_data = None
+            self._ibvs_rec_frame_count += 1
+            # Save JPEG (throttled, rolling buffer)
+            if self._ibvs_rec_dir and self._ibvs_rec_frame_count % self._ibvs_save_every == 0:
+                fname = f"frame_{self._ibvs_rec_frame_count:06d}.jpg"
+                fpath = os.path.join(self._ibvs_rec_dir, fname)
+                ok, buf = cv2.imencode('.jpg', frame)
+                if ok:
+                    with open(fpath, 'wb') as fp:
+                        fp.write(buf.tobytes())
+                    self._ibvs_saved_files.append(fpath)
+                    if len(self._ibvs_saved_files) > self._ibvs_frame_cap:
+                        oldest = self._ibvs_saved_files.pop(0)
+                        try:
+                            os.remove(oldest)
+                        except OSError:
+                            pass
+            # Write CSV row
+            if self._ibvs_csv_w is not None:
+                t_rel = time.perf_counter() - self._ibvs_rec_t0
+                if ibvs_data is not None:
+                    self._ibvs_csv_w.writerow([
+                        f'{t_rel:.3f}', self._ibvs_rec_frame_count, 1,
+                        round(self._pan_angle, 2), round(self._tilt_angle, 2),
+                        ibvs_data['eu'], ibvs_data['ev'],
+                        ibvs_data['eu_s'], ibvs_data['ev_s'], ibvs_data['err_px'],
+                        ibvs_data['dpan'], ibvs_data['dtilt'], int(ibvs_data['in_deadband']),
+                    ])
+                else:
+                    self._ibvs_csv_w.writerow([
+                        f'{t_rel:.3f}', self._ibvs_rec_frame_count, 0,
+                        round(self._pan_angle, 2), round(self._tilt_angle, 2),
+                        '', '', '', '', '', '', '', '',
+                    ])
+            self._broadcast_ibvs_status(t_now)
+            return
+
+        # rat_chase + world_ibvs: IBVS + motor control
         if tag0 is not None:
             self._run_ibvs(tag0.center)
-        elif tag_a is None:
+        elif tag_a is None and self._chase_mode == 'world_ibvs':
             self._run_world_scan()
         else:
             self._handle_tag0_lost(t_now)
@@ -312,15 +440,16 @@ class TagChaser:
                             'scan_active': self._scan_active})
 
     def _do_chasing(self, t_now: float, tag0, tag_a, tag_b, pair_valid: bool):
-        # Track world-pair visibility changes
-        if pair_valid:
-            if not self._world_visible:
-                self._world_visible = True
-                _marker_logger.info("world_reacquired — TF gap closed")
-        else:
-            if self._world_visible:
-                self._world_visible = False
-                _marker_logger.info("world_lost — continuing chase, TF gap open")
+        # Track world-pair visibility changes (world_ibvs only)
+        if self._chase_mode == 'world_ibvs':
+            if pair_valid:
+                if not self._world_visible:
+                    self._world_visible = True
+                    _marker_logger.info("world_reacquired — TF gap closed")
+            else:
+                if self._world_visible:
+                    self._world_visible = False
+                    _marker_logger.info("world_lost — continuing chase, TF gap open")
 
         if self._t_last is None:
             self._t_last = t_now
@@ -330,19 +459,20 @@ class TagChaser:
         log_due   = (t_now - self._last_log_t)       >= _LOG_INTERVAL
         bcast_due = (t_now - self._last_broadcast_t) >= 0.1
 
-        # Publish TF data — include tag0 plus both world tags when present
-        detected_for_tf = [t for t in [tag0, tag_a, tag_b] if t is not None]
-        tag0_uv = tag0.center.tolist() if tag0 is not None else None
-        self._tf_pub.on_frame(
-            t_now, self._cycle, detected_for_tf, bcast_due,
-            pair_valid=pair_valid,
-            pan_angle_deg=self._pan_angle,
-            tilt_angle_deg=self._tilt_angle,
-            tag0_pixel_uv=tag0_uv,
-            ibvs_active=self._ibvs_active,
-            scan_active=self._scan_active,
-            car_centering_active=self._centering_active,
-        )
+        # Publish TF data (world_ibvs only)
+        if self._chase_mode == 'world_ibvs':
+            detected_for_tf = [t for t in [tag0, tag_a, tag_b] if t is not None]
+            tag0_uv = tag0.center.tolist() if tag0 is not None else None
+            self._tf_pub.on_frame(
+                t_now, self._cycle, detected_for_tf, bcast_due,
+                pair_valid=pair_valid,
+                pan_angle_deg=self._pan_angle,
+                tilt_angle_deg=self._tilt_angle,
+                tag0_pixel_uv=tag0_uv,
+                ibvs_active=self._ibvs_active,
+                scan_active=self._scan_active,
+                car_centering_active=self._centering_active,
+            )
 
         # Car centering — decimated, replaces PID when IBVS is active
         self._cc_frame_count += 1
@@ -350,7 +480,8 @@ class TagChaser:
             self._cc_frame_count = 0
             self._run_car_centering()
 
-        world_state = 'world_acquired' if self._world_visible else 'world_lost'
+        world_state = ('world_acquired' if self._world_visible else 'world_lost') \
+                      if self._chase_mode == 'world_ibvs' else 'n/a'
 
         if tag0 is not None:
             self._last_seen_time = t_now
@@ -445,8 +576,117 @@ class TagChaser:
     def set_ibvs_only(self, enabled: bool):
         self._ibvs_only = enabled
 
+    @property
+    def chase_mode(self) -> str:
+        return self._chase_mode
+
+    def set_chase_mode(self, mode: str):
+        VALID = {'world_ibvs', 'rat_chase', 'ibvs_test', 'manual_ibvs'}
+        if mode in VALID:
+            self._chase_mode = mode
+
+    def simulate_frame(self, frame) -> dict:
+        """Stateless: run detection + IBVS on one frame. Does not modify any state."""
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        detections = self.detector.detect(
+            gray,
+            estimate_tag_pose=True,
+            camera_params=[self._fx, self._fy, self._cx, self._cy],
+            tag_size=self.tag_size_m,
+        )
+
+        cx = self.cam_w / 2.0
+        cy = self.cam_h / 2.0
+
+        det_list = []
+        for d in detections:
+            if d.decision_margin < self._conf_threshold:
+                continue
+            eu = d.center[0] - cx
+            ev = d.center[1] - cy
+            det_list.append({
+                'tag_id':          d.tag_id,
+                'center':          [round(float(d.center[0]), 1), round(float(d.center[1]), 1)],
+                'corners':         [[round(float(c[0]), 1), round(float(c[1]), 1)] for c in d.corners],
+                'decision_margin': round(float(d.decision_margin), 1),
+                'eu':              round(float(eu), 1),
+                'ev':              round(float(ev), 1),
+                'err_px':          round(float(np.hypot(eu, ev)), 1),
+            })
+
+        tag0 = next((d for d in detections
+                     if d.tag_id == self._tag_id_chase
+                     and d.decision_margin >= self._conf_threshold), None)
+        ibvs_result = None
+        if tag0 is not None:
+            eu = tag0.center[0] - cx
+            ev = tag0.center[1] - cy
+            eu_s = self._ibvs_alpha * eu + (1.0 - self._ibvs_alpha) * self._eu_smooth
+            ev_s = self._ibvs_alpha * ev + (1.0 - self._ibvs_alpha) * self._ev_smooth
+            in_db = bool(abs(eu_s) <= self._ibvs_deadband and abs(ev_s) <= self._ibvs_deadband)
+            if not in_db:
+                tilt_sign = 1.0 if self._ibvs_tilt_invert else -1.0
+                dpan  = -self._ibvs_kp_pan  * eu_s
+                dtilt =  tilt_sign * self._ibvs_kp_tilt * ev_s
+            else:
+                dpan = dtilt = 0.0
+            dpan  = float(np.clip(dpan,  -self._pan_max_delta,  self._pan_max_delta))
+            dtilt = float(np.clip(dtilt, -self._tilt_max_delta, self._tilt_max_delta))
+            ibvs_result = {
+                'eu': round(float(eu), 1), 'ev': round(float(ev), 1),
+                'eu_s': round(float(eu_s), 1), 'ev_s': round(float(ev_s), 1),
+                'in_deadband': in_db,
+                'delta_pan':   round(float(dpan),  2),
+                'delta_tilt':  round(float(dtilt), 2),
+                'pan_start':   round(self._pan_angle,  1),
+                'tilt_start':  round(self._tilt_angle, 1),
+                'pan_cmd':     round(float(np.clip(self._pan_angle  + dpan,  self._pan_min,  self._pan_max)),  1),
+                'tilt_cmd':    round(float(np.clip(self._tilt_angle + dtilt, self._tilt_min, self._tilt_max)), 1),
+            }
+
+        ann = frame.copy()
+        cv2.line(ann, (int(cx) - 20, int(cy)), (int(cx) + 20, int(cy)), (200, 200, 200), 1)
+        cv2.line(ann, (int(cx), int(cy) - 20), (int(cx), int(cy) + 20), (200, 200, 200), 1)
+        for d in detections:
+            if d.decision_margin < self._conf_threshold:
+                continue
+            pts = np.array(d.corners, dtype=np.int32).reshape((-1, 1, 2))
+            col = (0, 255, 0) if d.tag_id == self._tag_id_chase else (255, 165, 0)
+            cv2.polylines(ann, [pts], isClosed=True, color=col, thickness=2)
+            tc = (int(d.center[0]), int(d.center[1]))
+            cv2.circle(ann, tc, 4, (0, 255, 255), -1)
+            cv2.line(ann, (int(cx), int(cy)), tc, (0, 80, 255), 1)
+            eu_lbl = d.center[0] - cx
+            ev_lbl = d.center[1] - cy
+            cv2.putText(ann, f"T{d.tag_id} eu={eu_lbl:+.0f} ev={ev_lbl:+.0f}",
+                        (tc[0] + 6, max(tc[1] - 6, 10)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.45, col, 1)
+        if ibvs_result:
+            label = ("DEADBAND" if ibvs_result['in_deadband']
+                     else f"dpan={ibvs_result['delta_pan']:+.2f}  dtilt={ibvs_result['delta_tilt']:+.2f}")
+            cv2.putText(ann, label, (8, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 1)
+
+        return {'detections': det_list, 'ibvs': ibvs_result, 'annotated_frame': ann}
+
+    def _broadcast_ibvs_status(self, t_now: float):
+        """Throttled status broadcast for servo-only modes."""
+        if t_now - self._last_broadcast_t < 0.1:
+            return
+        self._last_broadcast_t = t_now
+        self.broadcast({
+            'type': 'chase_status',
+            'active': True,
+            'state': 'ibvs_lock',
+            'chase_mode': self._chase_mode,
+            'pan_angle': round(self._pan_angle, 1),
+            'tilt_angle': round(self._tilt_angle, 1),
+            'ibvs_active': self._ibvs_active,
+            'scan_active': False,
+            'car_centering_active': False,
+        })
+
     def _run_ibvs(self, center_px):
-        """Track tag0: center it in the frame via pan/tilt servo commands."""
+        """Track tag: center it in the frame via pan/tilt servo commands."""
         cx = self.cam_w / 2.0
         cy = self.cam_h / 2.0
         eu = center_px[0] - cx
@@ -456,12 +696,18 @@ class TagChaser:
         self._eu_smooth = alpha * eu + (1.0 - alpha) * self._eu_smooth
         self._ev_smooth = alpha * ev + (1.0 - alpha) * self._ev_smooth
 
-        if (abs(self._eu_smooth) > self._ibvs_deadband
-                or abs(self._ev_smooth) > self._ibvs_deadband):
+        in_deadband = (abs(self._eu_smooth) <= self._ibvs_deadband
+                       and abs(self._ev_smooth) <= self._ibvs_deadband)
+
+        delta_pan = delta_tilt = 0.0
+        if not in_deadband:
+            tilt_sign  = 1.0 if self._ibvs_tilt_invert else -1.0
             delta_pan  = -self._ibvs_kp_pan  * self._eu_smooth
-            delta_tilt = -self._ibvs_kp_tilt * self._ev_smooth
-            new_pan  = float(np.clip(self._pan_angle  + delta_pan,  -90,  90))
-            new_tilt = float(np.clip(self._tilt_angle + delta_tilt, -35,  35))
+            delta_tilt =  tilt_sign * self._ibvs_kp_tilt * self._ev_smooth
+            delta_pan  = float(np.clip(delta_pan,  -self._pan_max_delta,  self._pan_max_delta))
+            delta_tilt = float(np.clip(delta_tilt, -self._tilt_max_delta, self._tilt_max_delta))
+            new_pan  = float(np.clip(self._pan_angle  + delta_pan,  self._pan_min,  self._pan_max))
+            new_tilt = float(np.clip(self._tilt_angle + delta_tilt, self._tilt_min, self._tilt_max))
             # Anti-windup: only apply if clamp didn't absorb the full delta
             if new_pan != self._pan_angle or new_tilt != self._tilt_angle:
                 self._pan_angle  = new_pan
@@ -469,12 +715,35 @@ class TagChaser:
                 try:
                     self.px.set_cam_pan_angle(self._pan_angle)
                     self.px.set_cam_tilt_angle(self._tilt_angle)
-                except Exception:
-                    pass
+                except Exception as exc:
+                    _marker_logger.warning("ibvs servo error: %s", exc)
+
+        self._ibvs_log_count += 1
+        if self._ibvs_log_count >= self._ibvs_log_every:
+            self._ibvs_log_count = 0
+            _marker_logger.debug(
+                "ibvs eu=%+.0f ev=%+.0f eu_s=%+.1f ev_s=%+.1f "
+                "dpan=%+.2f dtilt=%+.2f pan=%.1f tilt=%.1f err=%.0fpx%s",
+                eu, ev, self._eu_smooth, self._ev_smooth,
+                delta_pan, delta_tilt,
+                self._pan_angle, self._tilt_angle,
+                float(np.hypot(eu, ev)),
+                " DB" if in_deadband else "",
+            )
 
         self._ibvs_active  = True
         self._scan_active  = False
         self._tag0_lost_t  = None
+        return {
+            'eu':         round(eu, 1),
+            'ev':         round(ev, 1),
+            'eu_s':       round(self._eu_smooth, 1),
+            'ev_s':       round(self._ev_smooth, 1),
+            'err_px':     round(float(np.hypot(eu, ev)), 1),
+            'dpan':       round(delta_pan, 3),
+            'dtilt':      round(delta_tilt, 3),
+            'in_deadband': in_deadband,
+        }
 
     def _run_world_scan(self):
         """Raster sweep to re-acquire the world tag when not visible."""
@@ -501,18 +770,25 @@ class TagChaser:
         self._ibvs_active  = False
 
     def _handle_tag0_lost(self, t_now: float):
-        """World tag visible, tag0 not. Hold servos; return to neutral after timeout."""
+        """Hold servos when tag is not visible; reset to neutral after timeout."""
         if self._tag0_lost_t is None:
             self._tag0_lost_t = t_now
+            _marker_logger.debug("ibvs tag_lost timer start pan=%.1f tilt=%.1f",
+                                 self._pan_angle, self._tilt_angle)
         elif t_now - self._tag0_lost_t > self._ibvs_lost_timeout:
+            elapsed = t_now - self._tag0_lost_t
+            _marker_logger.info("ibvs servo_reset pan→0 tilt→0 lost=%.1fs", elapsed)
             try:
                 self.px.set_cam_pan_angle(0)
                 self.px.set_cam_tilt_angle(0)
-            except Exception:
-                pass
-            self._pan_angle  = 0.0
-            self._tilt_angle = 0.0
+            except Exception as exc:
+                _marker_logger.warning("ibvs servo error on reset: %s", exc)
+            self._pan_angle   = 0.0
+            self._tilt_angle  = 0.0
+            self._eu_smooth   = 0.0
+            self._ev_smooth   = 0.0
             self._ibvs_active = False
+            self._tag0_lost_t = None  # prevent re-firing every frame until tag reappears
         self._scan_active = False
 
     def _run_car_centering(self):
@@ -530,7 +806,7 @@ class TagChaser:
             self._centering_active = False
             return
 
-        steer = float(np.clip(self._cc_kp * pan, -30, 30))
+        steer = float(np.clip(self._cc_kp * pan, self._steer_min, self._steer_max))
         try:
             self.px.set_dir_servo_angle(int(round(steer)))
         except Exception:

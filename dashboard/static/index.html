@@ -92,6 +92,16 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <div class="key-label">Chase Mode</div>
+            <div class="mode-btn-row">
+                <button id="mode-rat-btn"    class="btn mode-sel active-mode">RAT CHASE</button>
+                <button id="mode-ibvs-btn"   class="btn mode-sel">IBVS TEST</button>
+                <button id="mode-manual-btn" class="btn mode-sel">MANUAL+IBVS</button>
+                <button id="mode-world-btn"  class="btn mode-sel">WORLD IBVS</button>
+            </div>
+        </div>
+
         <div class="control-group btn-group">
             <button id="chase-btn" class="btn">Tag Chase OFF</button>
             <button id="track-btn" class="btn">Manual Track OFF</button>
@@ -106,8 +116,32 @@
                 <span id="ibvs-badge" class="signal-badge signal-no">IBVS ○</span>
                 <span id="scan-badge" class="signal-badge signal-no">SCAN ○</span>
                 <span id="cc-badge"   class="signal-badge signal-no">CENTER ○</span>
-                <button id="ibvs-only-btn" class="btn" style="font-size:0.75rem;padding:4px 10px;">IBVS Only: OFF</button>
             </div>
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">Command Servo</div>
+            <div class="servo-cmd-row">
+                <select id="servo-cmd-select" class="servo-cmd-select">
+                    <option value="pan">Pan</option>
+                    <option value="tilt">Tilt</option>
+                    <option value="steer">Steer</option>
+                </select>
+                <input type="number" id="servo-cmd-angle" class="servo-cmd-angle"
+                       value="0" min="-90" max="90" step="1">
+                <button id="servo-cmd-send" class="btn servo-cmd-btn">Send</button>
+            </div>
+            <div id="servo-cmd-status" class="servo-cmd-status">--</div>
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">IBVS Debug</div>
+            <div style="display:flex;gap:6px;">
+                <button id="dbg-capture-btn"  class="btn">Capture</button>
+                <button id="dbg-simulate-btn" class="btn" disabled>Simulate</button>
+            </div>
+            <canvas id="debug-canvas" class="debug-canvas"></canvas>
+            <pre    id="debug-text"   class="debug-text"></pre>
         </div>
     </aside>
 </main>

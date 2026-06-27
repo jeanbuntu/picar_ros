@@ -1,0 +1,64 @@
+2026-06-27 16:22:25.112  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/pi_session_20260627_162225
+2026-06-27 16:22:25.520  INFO     Picarx initialized
+2026-06-27 16:22:25.635  INFO     TagChaser v3 initialized
+2026-06-27 16:22:25.724  INFO     ManualTracker initialized
+2026-06-27 16:22:26.733  INFO     Picamera2 started at 640x480
+2026-06-27 16:22:26.734  INFO     MJPEG stream at :9000
+2026-06-27 16:22:26.734  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-27 16:22:26.737  INFO     Sensor and capture loops started
+2026-06-27 16:22:26.737  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-27 16:22:26.752  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=126.5 ch1_mean=130.7 ch2_mean=128.4
+2026-06-27 16:22:27.716  INFO     WebSocket connected from 192.168.1.98
+2026-06-27 16:22:28.588  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:29.588  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:30.584  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:31.590  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:31.662  INFO     gimbal axis=pan angle=0
+2026-06-27 16:22:31.665  INFO     gimbal axis=tilt angle=0
+2026-06-27 16:22:31.736  INFO     WebSocket disconnected from 192.168.1.98
+2026-06-27 16:22:33.884  INFO     WebSocket connected from 192.168.1.98
+2026-06-27 16:22:34.778  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:34.894  INFO     set_chase_mode mode=ibvs_test
+2026-06-27 16:22:35.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:36.399  INFO     tag_chase start speed=75 mode=ibvs_test
+2026-06-27 16:22:36.409  DEBUG    capture->chaser active
+2026-06-27 16:22:36.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:37.778  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:38.776  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:39.778  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:40.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:41.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:42.779  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:43.779  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:44.776  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:45.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:46.776  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:47.780  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:48.776  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:49.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:50.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:51.779  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:52.779  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:53.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:54.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:55.776  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:56.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:57.780  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:58.778  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:22:59.779  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:00.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:01.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:02.778  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:03.779  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:04.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:05.788  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:06.432  DEBUG    capture->chaser active
+2026-06-27 16:23:06.777  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:07.227  INFO     tag_chase stop
+2026-06-27 16:23:07.778  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:08.778  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:09.796  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:10.780  DEBUG    heartbeat from 192.168.1.98
+2026-06-27 16:23:10.872  INFO     shutdown command from 192.168.1.98
+2026-06-27 16:23:10.874  INFO     Graceful shutdown initiated — stopping hardware
+2026-06-27 16:23:11.175  INFO     WebSocket disconnected from 192.168.1.98
