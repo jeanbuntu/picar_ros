@@ -327,6 +327,8 @@ async def websocket_endpoint(ws: WebSocket):
                         await asyncio.to_thread(px.backward, speed)
                     else:
                         await asyncio.to_thread(px.stop)
+                    if chaser and chaser.is_running() and is_manual_ibvs:
+                        await asyncio.to_thread(chaser.set_drive_direction, direction)
 
                 elif cmd == "steer":
                     is_manual_ibvs = (chaser and chaser.is_running()
@@ -336,6 +338,8 @@ async def websocket_endpoint(ws: WebSocket):
                     angle = max(-30, min(30, int(msg.get("angle", 0))))
                     _logger.info("steer angle=%d", angle)
                     await asyncio.to_thread(px.set_dir_servo_angle, angle)
+                    if chaser and chaser.is_running() and is_manual_ibvs:
+                        await asyncio.to_thread(chaser.update_steer_ff, float(angle))
 
                 elif cmd == "gimbal":
                     if chaser and chaser.is_running():
@@ -644,6 +648,32 @@ def main():
 
     for d in (PHOTO_DIR, VIDEO_DIR, LOG_DIR):
         os.makedirs(d, exist_ok=True)
+
+    def _sync_shutdown(signum, frame):
+        _logger.info("Signal %d received — releasing hardware", signum)
+        # Only touch hardware if it wasn't already cleaned up by _graceful_shutdown
+        try:
+            if chaser and chaser.is_running():
+                chaser.stop()
+            if tracker and tracker.is_running():
+                tracker.stop()
+            px.stop()
+            px.set_dir_servo_angle(0)
+            px.set_cam_pan_angle(0)
+            px.set_cam_tilt_angle(0)
+        except Exception as e:
+            _logger.error("Shutdown hardware error: %s", e)
+        try:
+            _picam2.stop()
+        except Exception:
+            pass
+        # Restore default handler and re-raise so uvicorn exits cleanly
+        # (avoids sys.exit() corrupting the terminal while the event loop is live)
+        signal.signal(signum, signal.SIG_DFL)
+        os.kill(os.getpid(), signum)
+
+    signal.signal(signal.SIGTERM, _sync_shutdown)
+    signal.signal(signal.SIGINT,  _sync_shutdown)
 
     threading.Thread(target=_sensor_loop,  daemon=True).start()
     threading.Thread(target=_capture_loop, daemon=True).start()

@@ -138,6 +138,13 @@ class TagChaser:
         self._ibvs_tilt_invert  = bool(ibvs_cfg.get('tilt_invert', False))
         self._ibvs_log_every    = int(ibvs_cfg.get('log_every_n_frames', 5))
         self._ibvs_log_count    = 0
+        self._pan_steer_ff_gain  = float(ibvs_cfg.get('pan_steer_ff_gain',   0.0))
+        self._steer_ff_alpha     = float(ibvs_cfg.get('steer_ff_ewma_alpha',  0.4))
+        self._ff_inhibit_px      = float(ibvs_cfg.get('ff_inhibit_px',       15.0))
+        self._ff_ramp_px         = float(ibvs_cfg.get('ff_ramp_px',          20.0))
+        self._steer_ff_commanded = 0.0
+        self._steer_ff_smooth    = 0.0
+        self._ff_drive_sign      = 1
 
         # IBVS test recording (frames + CSV) — created lazily on first ibvs_test frame
         self._ibvs_rec_dir         = None
@@ -207,6 +214,12 @@ class TagChaser:
         with self._state_lock:
             return self._state != 'idle'
 
+    def set_drive_direction(self, direction: str):
+        self._ff_drive_sign = -1 if direction == 'backward' else 1
+
+    def update_steer_ff(self, steer_deg: float):
+        self._steer_ff_commanded = float(steer_deg)
+
     def start(self, speed: int = 30):
         with self._state_lock:
             if self._state != 'idle':
@@ -253,7 +266,7 @@ class TagChaser:
         't_s', 'frame', 'tag_detected', 'state',
         'pan_deg', 'tilt_deg',
         'eu_px', 'ev_px', 'eu_s_px', 'ev_s_px', 'err_px',
-        'dpan', 'dtilt', 'in_deadband',
+        'dpan', 'dtilt', 'steer_ff', 'in_deadband',
         'clamped_pan', 'clamped_tilt', 'servo_sent',
         'tag_conf', 'lost_t',
     ]
@@ -299,6 +312,7 @@ class TagChaser:
                     'err_px':       '',
                     'dpan':         '',
                     'dtilt':        '',
+                    'steer_ff':     '',
                     'in_deadband':  self._ibvs_total_deadband,
                     'clamped_pan':  '',
                     'clamped_tilt': '',
@@ -459,6 +473,7 @@ class TagChaser:
                         'err_px':       ibvs_data['err_px'],
                         'dpan':         ibvs_data['dpan'],
                         'dtilt':        ibvs_data['dtilt'],
+                        'steer_ff':     ibvs_data['steer_ff'],
                         'in_deadband':  int(ibvs_data['in_deadband']),
                         'clamped_pan':  ibvs_data['clamped_pan'],
                         'clamped_tilt': ibvs_data['clamped_tilt'],
@@ -481,6 +496,7 @@ class TagChaser:
                         'err_px':       '',
                         'dpan':         '',
                         'dtilt':        '',
+                        'steer_ff':     '',
                         'in_deadband':  '',
                         'clamped_pan':  '',
                         'clamped_tilt': '',
@@ -733,6 +749,7 @@ class TagChaser:
             eu_s = self._ibvs_alpha * eu + (1.0 - self._ibvs_alpha) * self._eu_smooth
             ev_s = self._ibvs_alpha * ev + (1.0 - self._ibvs_alpha) * self._ev_smooth
             in_db = bool(abs(eu_s) <= self._ibvs_deadband and abs(ev_s) <= self._ibvs_deadband)
+            dpan = dtilt = sim_steer_ff = 0.0
             if not in_db:
                 tilt_sign  = 1.0 if self._ibvs_tilt_invert else -1.0
                 err_s = float(np.hypot(eu_s, ev_s))
@@ -742,8 +759,12 @@ class TagChaser:
                     lazy_scale = 1.0
                 dpan  =  lazy_scale * self._ibvs_kp_pan  * eu_s
                 dtilt =  lazy_scale * tilt_sign * self._ibvs_kp_tilt * ev_s
-            else:
-                dpan = dtilt = 0.0
+                if self._pan_steer_ff_gain != 0.0 and self._steer_ff_smooth != 0.0:
+                    ff_gate = max(0.0, min(1.0,
+                        (abs(eu_s) - self._ff_inhibit_px) / max(1.0, self._ff_ramp_px)))
+                    sim_steer_ff = (-self._pan_steer_ff_gain
+                                    * self._steer_ff_smooth * self._ff_drive_sign * ff_gate)
+                    dpan += sim_steer_ff
             dpan  = float(np.clip(dpan,  -self._pan_max_delta,  self._pan_max_delta))
             dtilt = float(np.clip(dtilt, -self._tilt_max_delta, self._tilt_max_delta))
             ibvs_result = {
@@ -752,6 +773,7 @@ class TagChaser:
                 'in_deadband': in_db,
                 'delta_pan':   round(float(dpan),  2),
                 'delta_tilt':  round(float(dtilt), 2),
+                'steer_ff':    round(float(sim_steer_ff), 3),
                 'pan_start':   round(self._pan_angle,  1),
                 'tilt_start':  round(self._tilt_angle, 1),
                 'pan_cmd':     round(float(np.clip(self._pan_angle  + dpan,  self._pan_min,  self._pan_max)),  1),
@@ -813,7 +835,11 @@ class TagChaser:
         in_deadband = (abs(self._eu_smooth) <= self._ibvs_deadband
                        and abs(self._ev_smooth) <= self._ibvs_deadband)
 
-        delta_pan = delta_tilt = 0.0
+        # Steer ff EWMA runs every frame so _steer_ff_smooth decays when steer returns to 0
+        self._steer_ff_smooth = (self._steer_ff_alpha * self._steer_ff_commanded
+                                 + (1 - self._steer_ff_alpha) * self._steer_ff_smooth)
+
+        delta_pan = delta_tilt = steer_ff_delta = 0.0
         clamped_pan = clamped_tilt = False
         servo_sent  = False
         if not in_deadband:
@@ -825,6 +851,12 @@ class TagChaser:
                 lazy_scale = 1.0
             delta_pan  =  lazy_scale * self._ibvs_kp_pan  * self._eu_smooth
             delta_tilt =  lazy_scale * tilt_sign * self._ibvs_kp_tilt * self._ev_smooth
+            if self._pan_steer_ff_gain != 0.0 and self._steer_ff_smooth != 0.0:
+                ff_gate = max(0.0, min(1.0,
+                    (abs(self._eu_smooth) - self._ff_inhibit_px) / max(1.0, self._ff_ramp_px)))
+                steer_ff_delta = (-self._pan_steer_ff_gain
+                                   * self._steer_ff_smooth * self._ff_drive_sign * ff_gate)
+                delta_pan += steer_ff_delta
             delta_pan  = float(np.clip(delta_pan,  -self._pan_max_delta,  self._pan_max_delta))
             delta_tilt = float(np.clip(delta_tilt, -self._tilt_max_delta, self._tilt_max_delta))
             unclamped_pan  = self._pan_angle  + delta_pan
@@ -871,6 +903,7 @@ class TagChaser:
             'err_px':       round(float(np.hypot(eu, ev)), 1),
             'dpan':         round(delta_pan, 3),
             'dtilt':        round(delta_tilt, 3),
+            'steer_ff':     round(steer_ff_delta, 3),
             'in_deadband':  in_deadband,
             'clamped_pan':  int(clamped_pan),
             'clamped_tilt': int(clamped_tilt),
@@ -935,10 +968,12 @@ class TagChaser:
                 self.px.set_dir_servo_angle(0)
             except Exception:
                 pass
+            self._steer_ff_commanded = 0.0
             self._centering_active = False
             return
 
         steer = float(np.clip(self._cc_kp * pan, self._steer_min, self._steer_max))
+        self._steer_ff_commanded = steer
         try:
             self.px.set_dir_servo_angle(int(round(steer)))
         except Exception:

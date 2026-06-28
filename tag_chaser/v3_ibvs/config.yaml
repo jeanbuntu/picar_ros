@@ -41,6 +41,10 @@ ibvs:
   ibvs_only: false          # true = run IBVS but skip car centering (Layer 1 tuning)
   tilt_invert: false         # set_cam_tilt_angle(+X) = looks UP on this hardware (confirmed by log analysis)
   log_every_n_frames: 2     # IBVS debug log at ~6Hz (30fps / 5)
+  pan_steer_ff_gain:   0.0  # deg pan / deg steer; 0 = disabled. Start at 0, tune to 0.3–0.6
+  steer_ff_ewma_alpha: 0.4  # EWMA smoothing for binary steer; lower = slower ramp/decay
+  ff_inhibit_px:      15.0  # eu below this px → ff disabled (stuck-car / straight-line protection)
+  ff_ramp_px:         20.0  # eu range over which ff scales 0→full above inhibit threshold
 
 world_scan:
   scan_speed_deg_per_frame: 3.0   # degrees moved per camera frame

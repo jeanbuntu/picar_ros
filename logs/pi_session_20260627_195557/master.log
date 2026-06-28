@@ -1,0 +1,211 @@
+2026-06-27 19:55:57.938  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/pi_session_20260627_195557
+2026-06-27 19:55:58.339  INFO     Picarx initialized
+2026-06-27 19:55:58.446  INFO     TagChaser v3 initialized
+2026-06-27 19:55:58.536  INFO     ManualTracker initialized
+2026-06-27 19:55:59.366  INFO     Picamera2 started at 640x480
+2026-06-27 19:55:59.367  INFO     MJPEG stream at :9000
+2026-06-27 19:55:59.368  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-27 19:55:59.369  INFO     Sensor and capture loops started
+2026-06-27 19:55:59.369  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-27 19:55:59.382  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=45.9 ch1_mean=47.0 ch2_mean=38.0
+2026-06-27 19:56:01.107  INFO     WebSocket connected from 192.168.1.157
+2026-06-27 19:56:01.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:02.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:02.562  INFO     set_chase_mode mode=ibvs_test
+2026-06-27 19:56:03.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:04.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:04.909  INFO     tag_chase start speed=75 mode=ibvs_test
+2026-06-27 19:56:04.921  DEBUG    capture->chaser active
+2026-06-27 19:56:05.465  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:06.465  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:07.460  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:08.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:09.461  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:10.469  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:11.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:12.465  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:13.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:14.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:15.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:16.469  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:17.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:18.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:19.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:20.461  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:21.460  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:22.466  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:23.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:24.461  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:25.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:26.460  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:27.471  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:28.465  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:29.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:30.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:31.463  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:32.460  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:33.464  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:34.466  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:34.931  DEBUG    capture->chaser active
+2026-06-27 19:56:35.460  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:36.465  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:37.460  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:38.460  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:38.525  INFO     WebSocket disconnected from 192.168.1.157
+2026-06-27 19:56:53.082  INFO     WebSocket connected from 192.168.1.157
+2026-06-27 19:56:54.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:55.073  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:56.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:57.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:58.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:56:59.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:00.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:01.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:02.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:03.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:04.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:04.944  DEBUG    capture->chaser active
+2026-06-27 19:57:05.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:06.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:07.073  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:08.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:09.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:10.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:11.082  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:12.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:13.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:14.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:15.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:16.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:17.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:18.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:19.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:20.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:21.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:22.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:23.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:24.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:25.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:26.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:27.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:28.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:29.074  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:30.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:31.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:32.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:33.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:34.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:34.957  DEBUG    capture->chaser active
+2026-06-27 19:57:35.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:36.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:37.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:38.090  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:39.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:40.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:41.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:42.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:43.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:44.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:45.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:46.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:47.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:48.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:49.082  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:50.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:51.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:52.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:53.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:54.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:55.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:56.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:57.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:58.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:57:59.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:00.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:01.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:02.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:03.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:04.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:04.999  DEBUG    capture->chaser active
+2026-06-27 19:58:05.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:06.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:07.089  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:08.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:09.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:10.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:11.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:12.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:13.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:14.089  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:15.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:16.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:17.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:18.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:19.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:20.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:21.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:22.081  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:23.099  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:24.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:25.089  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:26.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:27.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:28.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:29.087  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:30.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:31.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:32.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:33.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:34.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:35.009  DEBUG    capture->chaser active
+2026-06-27 19:58:35.081  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:36.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:37.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:38.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:39.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:40.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:41.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:42.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:43.083  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:44.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:45.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:46.111  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:47.086  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:48.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:49.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:50.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:51.088  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:52.075  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:53.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:54.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:55.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:56.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:57.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:58.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:58:59.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:00.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:01.079  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:02.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:03.082  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:04.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:05.052  DEBUG    capture->chaser active
+2026-06-27 19:59:05.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:06.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:07.078  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:08.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:09.082  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:10.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:11.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:12.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:13.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:13.576  INFO     tag_chase stop
+2026-06-27 19:59:14.076  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:15.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:16.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:16.420  INFO     tag_chase stop
+2026-06-27 19:59:17.093  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:17.881  INFO     shutdown command from 192.168.1.157
+2026-06-27 19:59:17.882  INFO     Graceful shutdown initiated — stopping hardware
+2026-06-27 19:59:18.077  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 19:59:18.176  INFO     WebSocket disconnected from 192.168.1.157
+2026-06-27 19:59:18.275  INFO     Signal 15 received — releasing hardware and exiting

@@ -1,0 +1,63 @@
+2026-06-27 20:03:30.625  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/pi_session_20260627_200330
+2026-06-27 20:03:31.024  INFO     Picarx initialized
+2026-06-27 20:03:31.131  INFO     TagChaser v3 initialized
+2026-06-27 20:03:31.220  INFO     ManualTracker initialized
+2026-06-27 20:03:32.050  INFO     Picamera2 started at 640x480
+2026-06-27 20:03:32.051  INFO     MJPEG stream at :9000
+2026-06-27 20:03:32.051  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-27 20:03:32.052  INFO     Sensor and capture loops started
+2026-06-27 20:03:32.053  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-27 20:03:32.066  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=38.3 ch1_mean=47.3 ch2_mean=45.3
+2026-06-27 20:03:32.880  INFO     WebSocket connected from 192.168.1.157
+2026-06-27 20:03:33.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:34.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:35.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:36.083  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:37.083  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:38.083  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:39.083  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:40.086  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:41.089  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:42.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:43.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:44.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:45.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:46.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:47.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:48.086  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:49.087  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:50.138  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:51.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:52.338  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:53.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:54.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:55.089  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:56.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:57.089  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:04:02.893  WARNING  Watchdog fired — no heartbeat for 5.0s, stopping motors
+2026-06-27 20:04:42.892  INFO     WebSocket disconnected from 192.168.1.157
+2026-06-27 20:18:46.638  INFO     WebSocket connected from 192.168.1.151
+2026-06-27 20:18:47.631  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:48.630  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:49.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:50.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:51.630  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:52.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:53.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:54.628  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:55.630  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:56.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:57.568  INFO     drive direction=stop speed=0
+2026-06-27 20:18:57.576  INFO     steer angle=0
+2026-06-27 20:18:57.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:58.629  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:18:59.628  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:00.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:01.626  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:02.630  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:03.633  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:04.627  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:05.628  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:06.632  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:07.631  DEBUG    heartbeat from 192.168.1.151
+2026-06-27 20:19:08.627  DEBUG  

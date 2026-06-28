@@ -1,0 +1,33 @@
+2026-06-27 20:03:03.538  INFO     Server starting | session=/home/jvpicar/picar_ros/logs/pi_session_20260627_200303
+2026-06-27 20:03:03.938  INFO     Picarx initialized
+2026-06-27 20:03:04.044  INFO     TagChaser v3 initialized
+2026-06-27 20:03:04.134  INFO     ManualTracker initialized
+2026-06-27 20:03:04.959  INFO     Picamera2 started at 640x480
+2026-06-27 20:03:04.960  INFO     MJPEG stream at :9000
+2026-06-27 20:03:04.960  INFO     Camera stream at http://0.0.0.0:9000
+2026-06-27 20:03:04.962  INFO     Sensor and capture loops started
+2026-06-27 20:03:04.962  INFO     Dashboard listening at http://0.0.0.0:8000
+2026-06-27 20:03:04.975  INFO     frame_diag shape=(480, 640, 3) dtype=uint8 ch0_mean=38.3 ch1_mean=47.4 ch2_mean=45.7
+2026-06-27 20:03:06.040  INFO     WebSocket connected from 192.168.1.157
+2026-06-27 20:03:06.084  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:07.082  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:08.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:09.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:10.085  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:11.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:12.087  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:13.086  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:13.958  INFO     drive direction=stop speed=0
+2026-06-27 20:03:13.966  INFO     steer angle=0
+2026-06-27 20:03:14.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:15.083  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:16.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:17.083  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:18.082  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:18.133  INFO     drive direction=stop speed=0
+2026-06-27 20:03:18.141  INFO     steer angle=0
+2026-06-27 20:03:19.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:20.081  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:21.080  DEBUG    heartbeat from 192.168.1.157
+2026-06-27 20:03:21.843  INFO     WebSocket disconnected from 192.168.1.157
+2026-06-27 20:03:21.944  INFO     Signal 2 received — releasing hardware

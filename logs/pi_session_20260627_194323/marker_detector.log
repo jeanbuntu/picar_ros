@@ -1,0 +1,391 @@
+2026-06-27 19:43:36.312 [INFO ] [marker_detector] chase_toggle_on cycle=0 mode=ibvs_test
+2026-06-27 19:43:36.420 [INFO ] [marker_detector] ibvs_recording_start frames_dir=/home/jvpicar/picar_ros/logs/pi_session_20260627_194323/ibvs_frames_194336 csv=/home/jvpicar/picar_ros/logs/pi_session_20260627_194323/ibvs_log_194336.csv
+2026-06-27 19:43:36.487 [DEBUG] [marker_detector] ibvs eu=-110 ev=+2 eu_s=-105.2 ev_s=+1.9 dpan=-2.00 dtilt=-0.10 pan=-4.0 tilt=-0.2 err=110px
+2026-06-27 19:43:36.591 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-6.0 tilt=-0.3
+2026-06-27 19:43:36.645 [DEBUG] [marker_detector] ibvs eu=-76 ev=+3 eu_s=-82.2 ev_s=+2.4 dpan=-2.00 dtilt=-0.12 pan=-8.0 tilt=-0.4 err=76px
+2026-06-27 19:43:36.743 [DEBUG] [marker_detector] ibvs eu=-50 ev=+3 eu_s=-51.4 ev_s=+3.0 dpan=-2.00 dtilt=-0.15 pan=-12.0 tilt=-0.7 err=50px
+2026-06-27 19:43:36.792 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-12.0 tilt=-0.7
+2026-06-27 19:43:36.891 [DEBUG] [marker_detector] ibvs eu=+7 ev=+4 eu_s=+2.1 ev_s=+4.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:36.990 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.4 ev_s=+4.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.085 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.181 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.279 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.381 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.480 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.6 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.578 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.675 [DEBUG] [marker_detector] ibvs eu=+8 ev=+5 eu_s=+7.7 ev_s=+4.5 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.770 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.869 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:37.966 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.8 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.065 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.164 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.261 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.358 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.454 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.551 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.655 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.756 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.860 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:38.956 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.054 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.153 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.250 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.7 ev_s=+4.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.348 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.8 ev_s=+4.4 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.447 [DEBUG] [marker_detector] ibvs eu=+8 ev=+5 eu_s=+7.9 ev_s=+4.6 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.547 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.8 ev_s=+4.2 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.645 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.8 ev_s=+4.2 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.748 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.8 ev_s=+4.2 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.845 [DEBUG] [marker_detector] ibvs eu=+7 ev=+5 eu_s=+7.4 ev_s=+5.1 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:39.945 [DEBUG] [marker_detector] ibvs eu=+7 ev=+5 eu_s=+7.3 ev_s=+4.6 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:40.040 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+8.0 ev_s=+4.1 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:40.140 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.6 ev_s=+4.5 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:40.237 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.5 ev_s=+3.9 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:40.335 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.5 ev_s=+3.7 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:40.431 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.5 ev_s=+3.7 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:40.530 [DEBUG] [marker_detector] ibvs eu=+7 ev=+4 eu_s=+7.5 ev_s=+3.7 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:40.629 [DEBUG] [marker_detector] ibvs eu=+7 ev=+3 eu_s=+6.9 ev_s=+3.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:40.728 [DEBUG] [marker_detector] ibvs eu=+7 ev=+4 eu_s=+6.5 ev_s=+4.2 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:40.824 [DEBUG] [marker_detector] ibvs eu=+7 ev=+4 eu_s=+7.0 ev_s=+4.1 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:40.921 [DEBUG] [marker_detector] ibvs eu=+7 ev=+5 eu_s=+7.3 ev_s=+4.9 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:41.019 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.9 ev_s=+4.2 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:41.114 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+7.8 ev_s=+4.0 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:41.220 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+8.2 ev_s=+3.6 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:41.319 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+8.2 ev_s=+4.0 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:41.424 [DEBUG] [marker_detector] ibvs eu=+6 ev=+4 eu_s=+6.6 ev_s=+3.9 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=7px DB
+2026-06-27 19:43:41.524 [DEBUG] [marker_detector] ibvs eu=+9 ev=+4 eu_s=+8.3 ev_s=+4.0 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:41.623 [DEBUG] [marker_detector] ibvs eu=+8 ev=+4 eu_s=+8.1 ev_s=+4.3 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=9px DB
+2026-06-27 19:43:41.724 [DEBUG] [marker_detector] ibvs eu=+8 ev=+3 eu_s=+7.9 ev_s=+2.7 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:41.823 [DEBUG] [marker_detector] ibvs eu=+6 ev=+4 eu_s=+6.1 ev_s=+3.6 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=7px DB
+2026-06-27 19:43:41.921 [DEBUG] [marker_detector] ibvs eu=+5 ev=+6 eu_s=+5.5 ev_s=+5.9 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=8px DB
+2026-06-27 19:43:42.019 [DEBUG] [marker_detector] ibvs eu=+10 ev=-7 eu_s=+9.3 ev_s=-4.5 dpan=+0.00 dtilt=+0.00 pan=-12.4 tilt=-0.8 err=12px DB
+2026-06-27 19:43:42.117 [DEBUG] [marker_detector] ibvs eu=+20 ev=-32 eu_s=+18.7 ev_s=-28.7 dpan=+0.93 dtilt=+1.44 pan=-11.1 tilt=1.1 err=38px
+2026-06-27 19:43:42.219 [DEBUG] [marker_detector] ibvs eu=+22 ev=-47 eu_s=+22.3 ev_s=-44.2 dpan=+1.12 dtilt=+2.00 pan=-8.9 tilt=4.7 err=52px
+2026-06-27 19:43:42.319 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-8.0 tilt=6.4
+2026-06-27 19:43:42.371 [DEBUG] [marker_detector] ibvs eu=-13 ev=+41 eu_s=-6.8 ev_s=+26.3 dpan=-0.29 dtilt=-1.12 pan=-8.3 tilt=5.3 err=43px
+2026-06-27 19:43:42.467 [DEBUG] [marker_detector] ibvs eu=-43 ev=+70 eu_s=-41.2 ev_s=+68.2 dpan=-2.00 dtilt=-2.00 pan=-11.9 tilt=1.3 err=83px
+2026-06-27 19:43:42.568 [DEBUG] [marker_detector] ibvs eu=-28 ev=+48 eu_s=-30.4 ev_s=+51.7 dpan=-1.52 dtilt=-2.00 pan=-15.4 tilt=-2.7 err=55px
+2026-06-27 19:43:42.615 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-15.4 tilt=-2.7
+2026-06-27 19:43:42.802 [DEBUG] [marker_detector] ibvs eu=+15 ev=-5 eu_s=+13.0 ev_s=-3.6 dpan=+0.11 dtilt=+0.03 pan=-15.3 tilt=-2.7 err=16px
+2026-06-27 19:43:42.911 [DEBUG] [marker_detector] ibvs eu=+15 ev=-0 eu_s=+15.1 ev_s=+0.0 dpan=+0.19 dtilt=-0.00 pan=-14.9 tilt=-2.7 err=15px
+2026-06-27 19:43:43.011 [DEBUG] [marker_detector] ibvs eu=+18 ev=-4 eu_s=+17.6 ev_s=-4.0 dpan=+0.36 dtilt=+0.08 pan=-14.3 tilt=-2.6 err=19px
+2026-06-27 19:43:43.115 [DEBUG] [marker_detector] ibvs eu=+23 ev=-2 eu_s=+22.4 ev_s=-2.7 dpan=+0.70 dtilt=+0.08 pan=-13.0 tilt=-2.3 err=23px
+2026-06-27 19:43:43.212 [DEBUG] [marker_detector] ibvs eu=+18 ev=-11 eu_s=+18.5 ev_s=-9.3 dpan=+0.49 dtilt=+0.25 pan=-11.9 tilt=-2.0 err=21px
+2026-06-27 19:43:43.311 [DEBUG] [marker_detector] ibvs eu=+17 ev=-24 eu_s=+17.0 ev_s=-22.0 dpan=+0.76 dtilt=+0.98 pan=-10.6 tilt=-0.5 err=29px
+2026-06-27 19:43:43.409 [DEBUG] [marker_detector] ibvs eu=+6 ev=-33 eu_s=+6.8 ev_s=-32.7 dpan=+0.34 dtilt=+1.63 pan=-9.7 tilt=2.7 err=34px
+2026-06-27 19:43:43.502 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-10.0 tilt=3.9
+2026-06-27 19:43:43.553 [DEBUG] [marker_detector] ibvs eu=-16 ev=-18 eu_s=-13.4 ev_s=-20.3 dpan=-0.48 dtilt=+0.73 pan=-10.4 tilt=4.6 err=24px
+2026-06-27 19:43:43.655 [DEBUG] [marker_detector] ibvs eu=-2 ev=-13 eu_s=-4.4 ev_s=-12.1 dpan=-0.03 dtilt=+0.09 pan=-10.6 tilt=4.8 err=13px
+2026-06-27 19:43:43.752 [DEBUG] [marker_detector] ibvs eu=-7 ev=+7 eu_s=-6.1 ev_s=+4.7 dpan=+0.00 dtilt=+0.00 pan=-10.6 tilt=4.8 err=10px DB
+2026-06-27 19:43:43.851 [DEBUG] [marker_detector] ibvs eu=-14 ev=+22 eu_s=-13.6 ev_s=+19.7 dpan=-0.47 dtilt=-0.69 pan=-11.2 tilt=4.0 err=26px
+2026-06-27 19:43:43.952 [DEBUG] [marker_detector] ibvs eu=-14 ev=+26 eu_s=-14.0 ev_s=+25.7 dpan=-0.67 dtilt=-1.24 pan=-12.5 tilt=1.8 err=30px
+2026-06-27 19:43:44.053 [DEBUG] [marker_detector] ibvs eu=-14 ev=+23 eu_s=-14.3 ev_s=+24.8 dpan=-0.67 dtilt=-1.16 pan=-13.9 tilt=-0.8 err=27px
+2026-06-27 19:43:44.151 [DEBUG] [marker_detector] ibvs eu=-2 ev=+14 eu_s=-4.0 ev_s=+14.4 dpan=-0.05 dtilt=-0.18 pan=-14.2 tilt=-1.4 err=14px
+2026-06-27 19:43:44.247 [DEBUG] [marker_detector] ibvs eu=+10 ev=-16 eu_s=+7.4 ev_s=-13.8 dpan=+0.10 dtilt=+0.20 pan=-14.1 tilt=-1.3 err=19px
+2026-06-27 19:43:44.347 [DEBUG] [marker_detector] ibvs eu=+12 ev=-21 eu_s=+11.5 ev_s=-20.8 dpan=+0.40 dtilt=+0.72 pan=-13.4 tilt=0.0 err=24px
+2026-06-27 19:43:44.449 [DEBUG] [marker_detector] ibvs eu=+1 ev=-21 eu_s=+2.6 ev_s=-21.4 dpan=+0.08 dtilt=+0.62 pan=-13.0 tilt=1.5 err=21px
+2026-06-27 19:43:44.550 [DEBUG] [marker_detector] ibvs eu=-12 ev=+8 eu_s=-10.2 ev_s=+2.7 dpan=-0.01 dtilt=-0.00 pan=-13.0 tilt=1.9 err=15px
+2026-06-27 19:43:44.652 [DEBUG] [marker_detector] ibvs eu=-21 ev=+31 eu_s=-19.5 ev_s=+29.1 dpan=-0.97 dtilt=-1.46 pan=-14.5 tilt=-0.3 err=38px
+2026-06-27 19:43:44.757 [DEBUG] [marker_detector] ibvs eu=-16 ev=+41 eu_s=-17.0 ev_s=+39.6 dpan=-0.85 dtilt=-1.98 pan=-16.4 tilt=-4.0 err=44px
+2026-06-27 19:43:44.852 [DEBUG] [marker_detector] ibvs eu=-4 ev=+29 eu_s=-6.0 ev_s=+31.3 dpan=-0.30 dtilt=-1.56 pan=-17.4 tilt=-7.6 err=29px
+2026-06-27 19:43:44.951 [DEBUG] [marker_detector] ibvs eu=+11 ev=-8 eu_s=+8.6 ev_s=-3.5 dpan=+0.00 dtilt=+0.00 pan=-17.4 tilt=-7.7 err=14px DB
+2026-06-27 19:43:45.052 [DEBUG] [marker_detector] ibvs eu=+19 ev=-14 eu_s=+17.8 ev_s=-13.3 dpan=+0.54 dtilt=+0.41 pan=-16.6 tilt=-7.1 err=23px
+2026-06-27 19:43:45.155 [DEBUG] [marker_detector] ibvs eu=+17 ev=-15 eu_s=+17.2 ev_s=-14.8 dpan=+0.55 dtilt=+0.47 pan=-15.5 tilt=-6.2 err=23px
+2026-06-27 19:43:45.255 [DEBUG] [marker_detector] ibvs eu=+11 ev=-5 eu_s=+12.0 ev_s=-6.9 dpan=+0.12 dtilt=+0.07 pan=-14.9 tilt=-5.8 err=12px
+2026-06-27 19:43:45.352 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-14.9 tilt=-5.8
+2026-06-27 19:43:45.399 [DEBUG] [marker_detector] ibvs eu=+7 ev=-20 eu_s=+7.6 ev_s=-16.0 dpan=+0.15 dtilt=+0.31 pan=-14.8 tilt=-5.5 err=21px
+2026-06-27 19:43:45.498 [DEBUG] [marker_detector] ibvs eu=+19 ev=-22 eu_s=+17.7 ev_s=-20.8 dpan=+0.77 dtilt=+0.90 pan=-13.6 tilt=-4.1 err=29px
+2026-06-27 19:43:45.602 [DEBUG] [marker_detector] ibvs eu=+15 ev=-29 eu_s=+16.6 ev_s=-28.2 dpan=+0.83 dtilt=+1.41 pan=-11.6 tilt=-1.4 err=32px
+2026-06-27 19:43:45.701 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-11.0 tilt=0.1
+2026-06-27 19:43:45.752 [DEBUG] [marker_detector] ibvs eu=-11 ev=+4 eu_s=-6.2 ev_s=-2.5 dpan=+0.00 dtilt=+0.00 pan=-11.0 tilt=0.1 err=11px DB
+2026-06-27 19:43:45.857 [DEBUG] [marker_detector] ibvs eu=-17 ev=+10 eu_s=-16.3 ev_s=+8.7 dpan=-0.34 dtilt=-0.18 pan=-11.6 tilt=-0.2 err=19px
+2026-06-27 19:43:45.957 [DEBUG] [marker_detector] ibvs eu=-17 ev=+11 eu_s=-17.1 ev_s=+10.6 dpan=-0.43 dtilt=-0.27 pan=-12.4 tilt=-0.7 err=20px
+2026-06-27 19:43:46.058 [DEBUG] [marker_detector] ibvs eu=-15 ev=+11 eu_s=-15.6 ev_s=+10.9 dpan=-0.35 dtilt=-0.25 pan=-13.2 tilt=-1.3 err=19px
+2026-06-27 19:43:46.158 [DEBUG] [marker_detector] ibvs eu=-11 ev=+11 eu_s=-11.3 ev_s=+10.9 dpan=-0.16 dtilt=-0.15 pan=-13.5 tilt=-1.6 err=15px
+2026-06-27 19:43:46.256 [DEBUG] [marker_detector] ibvs eu=-1 ev=+2 eu_s=-3.0 ev_s=+3.0 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=3px DB
+2026-06-27 19:43:46.354 [DEBUG] [marker_detector] ibvs eu=+0 ev=+2 eu_s=+0.3 ev_s=+2.3 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=2px DB
+2026-06-27 19:43:46.454 [DEBUG] [marker_detector] ibvs eu=+1 ev=+2 eu_s=+0.5 ev_s=+2.2 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=2px DB
+2026-06-27 19:43:46.554 [DEBUG] [marker_detector] ibvs eu=+1 ev=+2 eu_s=+0.5 ev_s=+2.3 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=2px DB
+2026-06-27 19:43:46.650 [DEBUG] [marker_detector] ibvs eu=+0 ev=+2 eu_s=+0.5 ev_s=+2.2 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=2px DB
+2026-06-27 19:43:46.750 [DEBUG] [marker_detector] ibvs eu=+1 ev=+2 eu_s=+0.6 ev_s=+2.2 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=2px DB
+2026-06-27 19:43:46.854 [DEBUG] [marker_detector] ibvs eu=+1 ev=+2 eu_s=+0.6 ev_s=+2.2 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=2px DB
+2026-06-27 19:43:46.953 [DEBUG] [marker_detector] ibvs eu=+1 ev=+2 eu_s=+0.5 ev_s=+2.2 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=2px DB
+2026-06-27 19:43:47.052 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+1.1 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.154 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.252 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.3 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.351 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.449 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.545 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.645 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.3 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.752 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.851 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:47.954 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.3 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.051 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.151 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.251 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.348 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.448 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.553 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.651 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.755 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.3 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.856 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:48.964 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.069 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.169 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.266 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.369 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.468 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.6 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.567 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+0.7 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.667 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.4 ev_s=+1.0 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:49.766 [DEBUG] [marker_detector] ibvs eu=-0 ev=-0 eu_s=-0.1 ev_s=+0.0 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=0px DB
+2026-06-27 19:43:49.862 [DEBUG] [marker_detector] ibvs eu=+0 ev=+0 eu_s=+0.1 ev_s=+0.1 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=0px DB
+2026-06-27 19:43:49.963 [DEBUG] [marker_detector] ibvs eu=+1 ev=-0 eu_s=+0.4 ev_s=-0.0 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:50.068 [DEBUG] [marker_detector] ibvs eu=+0 ev=+0 eu_s=+0.5 ev_s=+0.2 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=0px DB
+2026-06-27 19:43:50.166 [DEBUG] [marker_detector] ibvs eu=+0 ev=+1 eu_s=+0.2 ev_s=+1.0 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:50.270 [DEBUG] [marker_detector] ibvs eu=+0 ev=+0 eu_s=+0.3 ev_s=+0.2 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:50.371 [DEBUG] [marker_detector] ibvs eu=-0 ev=+1 eu_s=-0.1 ev_s=+0.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=1px DB
+2026-06-27 19:43:50.469 [DEBUG] [marker_detector] ibvs eu=+4 ev=+5 eu_s=+3.3 ev_s=+4.5 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=6px DB
+2026-06-27 19:43:50.564 [DEBUG] [marker_detector] ibvs eu=-5 ev=+5 eu_s=-4.6 ev_s=+4.8 dpan=+0.00 dtilt=+0.00 pan=-13.6 tilt=-1.6 err=7px DB
+2026-06-27 19:43:50.668 [DEBUG] [marker_detector] ibvs eu=-43 ev=+12 eu_s=-38.8 ev_s=+12.4 dpan=-1.94 dtilt=-0.62 pan=-16.3 tilt=-2.7 err=45px
+2026-06-27 19:43:50.765 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-18.3 tilt=-3.4
+2026-06-27 19:43:50.864 [DEBUG] [marker_detector] ibvs eu=+72 ev=-19 eu_s=+49.0 ev_s=-12.4 dpan=+2.00 dtilt=+0.62 pan=-16.3 tilt=-2.7 err=74px
+2026-06-27 19:43:50.965 [DEBUG] [marker_detector] ibvs eu=+60 ev=-34 eu_s=+61.9 ev_s=-31.8 dpan=+2.00 dtilt=+1.59 pan=-12.3 tilt=0.1 err=69px
+2026-06-27 19:43:51.009 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-12.3 tilt=0.1
+2026-06-27 19:43:51.119 [DEBUG] [marker_detector] ibvs eu=-31 ev=-28 eu_s=-25.3 ev_s=-28.6 dpan=-1.27 dtilt=+1.43 pan=-13.8 tilt=3.1 err=42px
+2026-06-27 19:43:51.224 [DEBUG] [marker_detector] ibvs eu=-10 ev=+2 eu_s=-12.9 ev_s=-3.9 dpan=-0.11 dtilt=+0.03 pan=-15.1 tilt=4.5 err=10px
+2026-06-27 19:43:51.330 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-15.5 tilt=4.1
+2026-06-27 19:43:51.384 [DEBUG] [marker_detector] ibvs eu=-41 ev=+43 eu_s=-35.6 ev_s=+37.1 dpan=-1.78 dtilt=-1.86 pan=-17.3 tilt=2.3 err=59px
+2026-06-27 19:43:51.495 [DEBUG] [marker_detector] ibvs eu=-40 ev=+52 eu_s=-39.9 ev_s=+50.7 dpan=-2.00 dtilt=-2.00 pan=-21.3 tilt=-1.7 err=65px
+2026-06-27 19:43:51.611 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-21.9 tilt=-3.2
+2026-06-27 19:43:51.666 [DEBUG] [marker_detector] ibvs eu=-1 ev=+1 eu_s=-3.2 ev_s=+6.4 dpan=+0.00 dtilt=+0.00 pan=-21.9 tilt=-3.2 err=1px DB
+2026-06-27 19:43:51.766 [DEBUG] [marker_detector] ibvs eu=+4 ev=-16 eu_s=+4.0 ev_s=-14.9 dpan=+0.06 dtilt=+0.20 pan=-21.9 tilt=-3.0 err=17px
+2026-06-27 19:43:51.865 [DEBUG] [marker_detector] ibvs eu=-5 ev=-21 eu_s=-4.5 ev_s=-20.7 dpan=-0.12 dtilt=+0.58 pan=-22.0 tilt=-2.0 err=22px
+2026-06-27 19:43:52.025 [DEBUG] [marker_detector] ibvs eu=-22 ev=-13 eu_s=-19.9 ev_s=-15.3 dpan=-0.75 dtilt=+0.58 pan=-23.2 tilt=-0.6 err=26px
+2026-06-27 19:43:52.127 [DEBUG] [marker_detector] ibvs eu=-37 ev=-18 eu_s=-35.9 ev_s=-18.1 dpan=-1.79 dtilt=+0.91 pan=-26.5 tilt=1.2 err=41px
+2026-06-27 19:43:52.229 [DEBUG] [marker_detector] ibvs eu=-33 ev=+2 eu_s=-33.2 ev_s=-0.5 dpan=-1.66 dtilt=+0.02 pan=-29.9 tilt=1.7 err=33px
+2026-06-27 19:43:52.333 [DEBUG] [marker_detector] ibvs eu=-6 ev=+24 eu_s=-9.5 ev_s=+22.6 dpan=-0.34 dtilt=-0.82 pan=-31.3 tilt=0.2 err=25px
+2026-06-27 19:43:52.483 [DEBUG] [marker_detector] ibvs eu=+12 ev=+31 eu_s=+11.3 ev_s=+30.6 dpan=+0.57 dtilt=-1.53 pan=-30.4 tilt=-2.9 err=33px
+2026-06-27 19:43:52.533 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-30.4 tilt=-2.9
+2026-06-27 19:43:52.635 [DEBUG] [marker_detector] ibvs eu=+25 ev=+3 eu_s=+24.7 ev_s=+5.1 dpan=+0.94 dtilt=-0.19 pan=-28.5 tilt=-3.7 err=25px
+2026-06-27 19:43:52.768 [DEBUG] [marker_detector] ibvs eu=+31 ev=-12 eu_s=+30.8 ev_s=-9.5 dpan=+1.54 dtilt=+0.48 pan=-25.4 tilt=-3.3 err=33px
+2026-06-27 19:43:52.873 [DEBUG] [marker_detector] ibvs eu=+8 ev=-21 eu_s=+11.0 ev_s=-20.1 dpan=+0.36 dtilt=+0.65 pan=-23.9 tilt=-1.9 err=23px
+2026-06-27 19:43:53.029 [DEBUG] [marker_detector] ibvs eu=-24 ev=-26 eu_s=-20.1 ev_s=-25.5 dpan=-1.01 dtilt=+1.28 pan=-25.0 tilt=0.3 err=35px
+2026-06-27 19:43:53.134 [DEBUG] [marker_detector] ibvs eu=-30 ev=-6 eu_s=-29.4 ev_s=-7.0 dpan=-1.47 dtilt=+0.35 pan=-27.8 tilt=1.1 err=31px
+2026-06-27 19:43:53.260 [DEBUG] [marker_detector] ibvs eu=-17 ev=+12 eu_s=-19.1 ev_s=+9.3 dpan=-0.54 dtilt=-0.26 pan=-29.7 tilt=0.9 err=20px
+2026-06-27 19:43:53.376 [DEBUG] [marker_detector] ibvs eu=+17 ev=+17 eu_s=+13.0 ev_s=+16.2 dpan=+0.35 dtilt=-0.44 pan=-29.4 tilt=0.3 err=24px
+2026-06-27 19:43:53.489 [DEBUG] [marker_detector] ibvs eu=+18 ev=+18 eu_s=+17.4 ev_s=+17.5 dpan=+0.64 dtilt=-0.64 pan=-28.2 tilt=-0.9 err=25px
+2026-06-27 19:43:53.596 [DEBUG] [marker_detector] ibvs eu=+18 ev=+13 eu_s=+17.8 ev_s=+14.8 dpan=+0.58 dtilt=-0.48 pan=-27.0 tilt=-2.2 err=22px
+2026-06-27 19:43:53.709 [DEBUG] [marker_detector] ibvs eu=+10 ev=-3 eu_s=+11.9 ev_s=-0.8 dpan=+0.06 dtilt=+0.00 pan=-26.3 tilt=-2.4 err=10px
+2026-06-27 19:43:53.815 [DEBUG] [marker_detector] ibvs eu=+10 ev=-2 eu_s=+9.8 ev_s=-2.1 dpan=+0.00 dtilt=+0.00 pan=-26.3 tilt=-2.4 err=10px DB
+2026-06-27 19:43:53.930 [DEBUG] [marker_detector] ibvs eu=+23 ev=+2 eu_s=+21.4 ev_s=+0.7 dpan=+0.61 dtilt=-0.02 pan=-25.6 tilt=-2.3 err=23px
+2026-06-27 19:43:54.077 [DEBUG] [marker_detector] ibvs eu=+32 ev=+32 eu_s=+30.9 ev_s=+26.3 dpan=+1.55 dtilt=-1.32 pan=-23.1 tilt=-3.8 err=46px
+2026-06-27 19:43:54.175 [DEBUG] [marker_detector] ibvs eu=+21 ev=+49 eu_s=+23.8 ev_s=+47.0 dpan=+1.19 dtilt=-2.00 pan=-20.2 tilt=-7.7 err=54px
+2026-06-27 19:43:54.228 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-20.2 tilt=-7.7
+2026-06-27 19:43:54.421 [DEBUG] [marker_detector] ibvs eu=-58 ev=+26 eu_s=-55.5 ev_s=+25.3 dpan=-2.00 dtilt=-1.26 pan=-24.2 tilt=-10.1 err=63px
+2026-06-27 19:43:54.575 [DEBUG] [marker_detector] ibvs eu=-61 ev=+15 eu_s=-61.2 ev_s=+17.4 dpan=-2.00 dtilt=-0.87 pan=-28.2 tilt=-12.4 err=63px
+2026-06-27 19:43:54.687 [DEBUG] [marker_detector] ibvs eu=-31 ev=-26 eu_s=-31.5 ev_s=-23.6 dpan=-1.58 dtilt=+1.18 pan=-31.5 tilt=-10.4 err=40px
+2026-06-27 19:43:54.815 [DEBUG] [marker_detector] ibvs eu=-4 ev=-21 eu_s=-6.8 ev_s=-22.3 dpan=-0.23 dtilt=+0.74 pan=-32.6 tilt=-8.3 err=22px
+2026-06-27 19:43:54.931 [DEBUG] [marker_detector] ibvs eu=+18 ev=-5 eu_s=+14.3 ev_s=-6.3 dpan=+0.20 dtilt=+0.09 pan=-32.4 tilt=-8.1 err=18px
+2026-06-27 19:43:55.051 [DEBUG] [marker_detector] ibvs eu=+20 ev=-5 eu_s=+20.4 ev_s=-5.2 dpan=+0.56 dtilt=+0.14 pan=-31.3 tilt=-7.8 err=21px
+2026-06-27 19:43:55.205 [DEBUG] [marker_detector] ibvs eu=+18 ev=+15 eu_s=+18.6 ev_s=+13.1 dpan=+0.59 dtilt=-0.42 pan=-30.2 tilt=-8.4 err=24px
+2026-06-27 19:43:55.329 [DEBUG] [marker_detector] ibvs eu=+5 ev=+15 eu_s=+7.5 ev_s=+15.2 dpan=+0.13 dtilt=-0.27 pan=-29.5 tilt=-9.2 err=16px
+2026-06-27 19:43:55.470 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-29.4 tilt=-9.4
+2026-06-27 19:43:55.522 [DEBUG] [marker_detector] ibvs eu=-10 ev=+2 eu_s=-7.2 ev_s=+5.0 dpan=+0.00 dtilt=+0.00 pan=-29.4 tilt=-9.4 err=10px DB
+2026-06-27 19:43:55.660 [DEBUG] [marker_detector] ibvs eu=-12 ev=+3 eu_s=-11.7 ev_s=+2.6 dpan=-0.06 dtilt=-0.01 pan=-29.5 tilt=-9.4 err=12px
+2026-06-27 19:43:55.768 [DEBUG] [marker_detector] ibvs eu=-14 ev=+1 eu_s=-13.8 ev_s=+1.7 dpan=-0.14 dtilt=-0.02 pan=-29.8 tilt=-9.5 err=14px
+2026-06-27 19:43:55.891 [DEBUG] [marker_detector] ibvs eu=-12 ev=-3 eu_s=-12.2 ev_s=-1.8 dpan=-0.07 dtilt=+0.01 pan=-29.9 tilt=-9.5 err=12px
+2026-06-27 19:43:56.035 [DEBUG] [marker_detector] ibvs eu=-5 ev=-10 eu_s=-6.1 ev_s=-8.4 dpan=+0.00 dtilt=+0.00 pan=-30.0 tilt=-9.5 err=11px DB
+2026-06-27 19:43:56.139 [DEBUG] [marker_detector] ibvs eu=-9 ev=-9 eu_s=-8.7 ev_s=-9.7 dpan=+0.00 dtilt=+0.00 pan=-30.0 tilt=-9.4 err=13px DB
+2026-06-27 19:43:56.296 [DEBUG] [marker_detector] ibvs eu=-3 ev=-10 eu_s=-4.3 ev_s=-10.3 dpan=-0.01 dtilt=+0.03 pan=-30.1 tilt=-9.2 err=11px
+2026-06-27 19:43:56.402 [DEBUG] [marker_detector] ibvs eu=-2 ev=-10 eu_s=-2.3 ev_s=-10.7 dpan=-0.01 dtilt=+0.03 pan=-30.2 tilt=-9.0 err=10px
+2026-06-27 19:43:56.540 [DEBUG] [marker_detector] ibvs eu=-4 ev=-10 eu_s=-3.8 ev_s=-10.2 dpan=-0.01 dtilt=+0.02 pan=-30.2 tilt=-9.0 err=11px
+2026-06-27 19:43:56.649 [DEBUG] [marker_detector] ibvs eu=-10 ev=-12 eu_s=-9.5 ev_s=-11.4 dpan=-0.12 dtilt=+0.14 pan=-30.3 tilt=-8.8 err=15px
+2026-06-27 19:43:56.768 [DEBUG] [marker_detector] ibvs eu=-18 ev=-17 eu_s=-17.3 ev_s=-16.9 dpan=-0.61 dtilt=+0.60 pan=-31.3 tilt=-7.8 err=25px
+2026-06-27 19:43:56.878 [DEBUG] [marker_detector] ibvs eu=-32 ev=-17 eu_s=-30.4 ev_s=-17.2 dpan=-1.52 dtilt=+0.86 pan=-34.0 tilt=-6.0 err=36px
+2026-06-27 19:43:57.021 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-35.1 tilt=-5.7
+2026-06-27 19:43:57.073 [DEBUG] [marker_detector] ibvs eu=+6 ev=-3 eu_s=-0.4 ev_s=-3.8 dpan=+0.00 dtilt=+0.00 pan=-35.1 tilt=-5.7 err=7px DB
+2026-06-27 19:43:57.175 [DEBUG] [marker_detector] ibvs eu=+7 ev=-2 eu_s=+7.0 ev_s=-2.0 dpan=+0.00 dtilt=+0.00 pan=-35.1 tilt=-5.7 err=7px DB
+2026-06-27 19:43:57.272 [DEBUG] [marker_detector] ibvs eu=-6 ev=-1 eu_s=-3.8 ev_s=-1.9 dpan=+0.00 dtilt=+0.00 pan=-35.1 tilt=-5.7 err=6px DB
+2026-06-27 19:43:57.376 [DEBUG] [marker_detector] ibvs eu=-15 ev=-5 eu_s=-14.0 ev_s=-4.7 dpan=-0.17 dtilt=+0.06 pan=-35.2 tilt=-5.7 err=16px
+2026-06-27 19:43:57.534 [DEBUG] [marker_detector] ibvs eu=-39 ev=+4 eu_s=-34.8 ev_s=+2.9 dpan=-1.74 dtilt=-0.14 pan=-37.4 tilt=-5.8 err=39px
+2026-06-27 19:43:57.631 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-39.4 tilt=-6.2
+2026-06-27 19:43:57.680 [DEBUG] [marker_detector] ibvs eu=-58 ev=-5 eu_s=-56.0 ev_s=-2.8 dpan=-2.00 dtilt=+0.14 pan=-41.4 tilt=-6.0 err=58px
+2026-06-27 19:43:57.750 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-41.4 tilt=-6.0
+2026-06-27 19:43:57.872 [DEBUG] [marker_detector] ibvs eu=-58 ev=-17 eu_s=-56.8 ev_s=-17.1 dpan=-2.00 dtilt=+0.86 pan=-45.4 tilt=-4.3 err=61px
+2026-06-27 19:43:57.986 [DEBUG] [marker_detector] ibvs eu=-62 ev=-21 eu_s=-62.3 ev_s=-20.5 dpan=-2.00 dtilt=+1.02 pan=-49.4 tilt=-2.5 err=65px
+2026-06-27 19:43:58.087 [DEBUG] [marker_detector] ibvs eu=-36 ev=-10 eu_s=-36.0 ev_s=-10.2 dpan=-1.80 dtilt=+0.51 pan=-53.0 tilt=-1.4 err=37px
+2026-06-27 19:43:58.187 [DEBUG] [marker_detector] ibvs eu=-9 ev=-1 eu_s=-11.3 ev_s=-0.9 dpan=-0.04 dtilt=+0.00 pan=-53.6 tilt=-1.4 err=9px
+2026-06-27 19:43:58.294 [DEBUG] [marker_detector] ibvs eu=+16 ev=-4 eu_s=+14.4 ev_s=-3.9 dpan=+0.18 dtilt=+0.05 pan=-53.5 tilt=-1.3 err=16px
+2026-06-27 19:43:58.392 [DEBUG] [marker_detector] ibvs eu=+12 ev=-2 eu_s=+13.0 ev_s=-2.0 dpan=+0.10 dtilt=+0.02 pan=-53.1 tilt=-1.3 err=12px
+2026-06-27 19:43:58.491 [DEBUG] [marker_detector] ibvs eu=+11 ev=-11 eu_s=+11.0 ev_s=-10.0 dpan=+0.13 dtilt=+0.12 pan=-53.0 tilt=-1.2 err=16px
+2026-06-27 19:43:58.594 [DEBUG] [marker_detector] ibvs eu=+16 ev=-16 eu_s=+15.6 ev_s=-15.6 dpan=+0.47 dtilt=+0.47 pan=-52.1 tilt=-0.3 err=22px
+2026-06-27 19:43:58.694 [DEBUG] [marker_detector] ibvs eu=+11 ev=-21 eu_s=+11.7 ev_s=-20.6 dpan=+0.40 dtilt=+0.70 pan=-51.3 tilt=0.9 err=24px
+2026-06-27 19:43:58.796 [DEBUG] [marker_detector] ibvs eu=+14 ev=-5 eu_s=+13.9 ev_s=-7.2 dpan=+0.20 dtilt=+0.10 pan=-50.7 tilt=1.5 err=15px
+2026-06-27 19:43:58.903 [DEBUG] [marker_detector] ibvs eu=+1 ev=+8 eu_s=+3.0 ev_s=+5.8 dpan=+0.00 dtilt=+0.00 pan=-50.7 tilt=1.5 err=8px DB
+2026-06-27 19:43:58.999 [DEBUG] [marker_detector] ibvs eu=+2 ev=+10 eu_s=+2.1 ev_s=+9.2 dpan=+0.00 dtilt=+0.00 pan=-50.7 tilt=1.5 err=10px DB
+2026-06-27 19:43:59.096 [DEBUG] [marker_detector] ibvs eu=+3 ev=+7 eu_s=+2.9 ev_s=+7.6 dpan=+0.00 dtilt=+0.00 pan=-50.7 tilt=1.5 err=8px DB
+2026-06-27 19:43:59.192 [DEBUG] [marker_detector] ibvs eu=+4 ev=+4 eu_s=+4.2 ev_s=+4.9 dpan=+0.00 dtilt=+0.00 pan=-50.7 tilt=1.5 err=6px DB
+2026-06-27 19:43:59.292 [DEBUG] [marker_detector] ibvs eu=+6 ev=+9 eu_s=+6.2 ev_s=+8.3 dpan=+0.00 dtilt=+0.00 pan=-50.7 tilt=1.5 err=11px DB
+2026-06-27 19:43:59.393 [DEBUG] [marker_detector] ibvs eu=+20 ev=+16 eu_s=+18.3 ev_s=+14.7 dpan=+0.62 dtilt=-0.50 pan=-49.9 tilt=0.8 err=25px
+2026-06-27 19:43:59.493 [DEBUG] [marker_detector] ibvs eu=+34 ev=+14 eu_s=+32.5 ev_s=+14.3 dpan=+1.63 dtilt=-0.72 pan=-46.9 tilt=-0.6 err=37px
+2026-06-27 19:43:59.618 [DEBUG] [marker_detector] ibvs eu=+34 ev=-14 eu_s=+33.5 ev_s=-9.9 dpan=+1.67 dtilt=+0.49 pan=-43.7 tilt=-0.5 err=37px
+2026-06-27 19:43:59.718 [DEBUG] [marker_detector] ibvs eu=+25 ev=-25 eu_s=+26.7 ev_s=-23.2 dpan=+1.34 dtilt=+1.16 pan=-40.7 tilt=1.5 err=35px
+2026-06-27 19:43:59.843 [DEBUG] [marker_detector] ibvs eu=-16 ev=-32 eu_s=-11.4 ev_s=-31.3 dpan=-0.57 dtilt=+1.56 pan=-41.0 tilt=4.4 err=36px
+2026-06-27 19:43:59.944 [DEBUG] [marker_detector] ibvs eu=-17 ev=-53 eu_s=-16.5 ev_s=-51.2 dpan=-0.83 dtilt=+2.00 pan=-42.6 tilt=8.4 err=56px
+2026-06-27 19:44:00.043 [DEBUG] [marker_detector] ibvs eu=-14 ev=-38 eu_s=-13.9 ev_s=-40.7 dpan=-0.70 dtilt=+2.00 pan=-44.0 tilt=12.4 err=40px
+2026-06-27 19:44:00.110 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-44.0 tilt=12.4
+2026-06-27 19:44:00.265 [DEBUG] [marker_detector] ibvs eu=-3 ev=+37 eu_s=-2.7 ev_s=+33.7 dpan=-0.14 dtilt=-1.68 pan=-44.2 tilt=10.0 err=37px
+2026-06-27 19:44:00.373 [DEBUG] [marker_detector] ibvs eu=-8 ev=+43 eu_s=-7.9 ev_s=+42.7 dpan=-0.39 dtilt=-2.00 pan=-45.0 tilt=6.0 err=44px
+2026-06-27 19:44:00.494 [DEBUG] [marker_detector] ibvs eu=-9 ev=-0 eu_s=-8.2 ev_s=+7.1 dpan=+0.00 dtilt=+0.00 pan=-45.3 tilt=4.2 err=9px DB
+2026-06-27 19:44:00.590 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-45.3 tilt=4.2
+2026-06-27 19:44:00.663 [DEBUG] [marker_detector] ibvs eu=-1 ev=-28 eu_s=-3.0 ev_s=-24.4 dpan=-0.11 dtilt=+0.89 pan=-45.4 tilt=5.1 err=28px
+2026-06-27 19:44:00.777 [DEBUG] [marker_detector] ibvs eu=+0 ev=-19 eu_s=+0.5 ev_s=-18.8 dpan=+0.01 dtilt=+0.42 pan=-45.3 tilt=6.0 err=19px
+2026-06-27 19:44:00.880 [DEBUG] [marker_detector] ibvs eu=+4 ev=-12 eu_s=+3.5 ev_s=-12.7 dpan=+0.03 dtilt=+0.10 pan=-45.3 tilt=6.3 err=13px
+2026-06-27 19:44:01.012 [DEBUG] [marker_detector] ibvs eu=+4 ev=-8 eu_s=+4.0 ev_s=-8.3 dpan=+0.00 dtilt=+0.00 pan=-45.3 tilt=6.4 err=9px DB
+2026-06-27 19:44:01.107 [DEBUG] [marker_detector] ibvs eu=+1 ev=+0 eu_s=+1.0 ev_s=-0.6 dpan=+0.00 dtilt=+0.00 pan=-45.3 tilt=6.4 err=1px DB
+2026-06-27 19:44:01.234 [DEBUG] [marker_detector] ibvs eu=-2 ev=+2 eu_s=-1.4 ev_s=+1.3 dpan=+0.00 dtilt=+0.00 pan=-45.3 tilt=6.4 err=3px DB
+2026-06-27 19:44:01.335 [DEBUG] [marker_detector] ibvs eu=-2 ev=+2 eu_s=-1.6 ev_s=+1.5 dpan=+0.00 dtilt=+0.00 pan=-45.3 tilt=6.4 err=3px DB
+2026-06-27 19:44:01.433 [DEBUG] [marker_detector] ibvs eu=+2 ev=+4 eu_s=+1.1 ev_s=+4.0 dpan=+0.00 dtilt=+0.00 pan=-45.3 tilt=6.4 err=5px DB
+2026-06-27 19:44:01.562 [DEBUG] [marker_detector] ibvs eu=+4 ev=+4 eu_s=+3.8 ev_s=+3.7 dpan=+0.00 dtilt=+0.00 pan=-45.3 tilt=6.4 err=5px DB
+2026-06-27 19:44:01.662 [DEBUG] [marker_detector] ibvs eu=+14 ev=+7 eu_s=+12.8 ev_s=+6.0 dpan=+0.13 dtilt=-0.06 pan=-45.2 tilt=6.3 err=16px
+2026-06-27 19:44:01.795 [DEBUG] [marker_detector] ibvs eu=+32 ev=+28 eu_s=+29.8 ev_s=+25.6 dpan=+1.49 dtilt=-1.28 pan=-42.7 tilt=4.3 err=42px
+2026-06-27 19:44:01.890 [DEBUG] [marker_detector] ibvs eu=+60 ev=+74 eu_s=+58.7 ev_s=+71.9 dpan=+2.00 dtilt=-2.00 pan=-38.7 tilt=0.3 err=95px
+2026-06-27 19:44:01.986 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-36.7 tilt=-1.7
+2026-06-27 19:44:02.072 [DEBUG] [marker_detector] ibvs eu=+26 ev=+9 eu_s=+31.1 ev_s=+17.5 dpan=+1.56 dtilt=-0.87 pan=-35.2 tilt=-2.6 err=28px
+2026-06-27 19:44:02.170 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-34.9 tilt=-2.9
+2026-06-27 19:44:02.219 [DEBUG] [marker_detector] ibvs eu=-19 ev=+12 eu_s=-12.5 ev_s=+12.5 dpan=-0.24 dtilt=-0.24 pan=-35.1 tilt=-3.1 err=23px
+2026-06-27 19:44:02.352 [DEBUG] [marker_detector] ibvs eu=-7 ev=-16 eu_s=-7.8 ev_s=-13.4 dpan=-0.11 dtilt=+0.19 pan=-35.3 tilt=-2.9 err=17px
+2026-06-27 19:44:02.454 [DEBUG] [marker_detector] ibvs eu=-9 ev=-24 eu_s=-8.3 ev_s=-23.7 dpan=-0.31 dtilt=+0.90 pan=-35.8 tilt=-1.1 err=25px
+2026-06-27 19:44:02.576 [DEBUG] [marker_detector] ibvs eu=-19 ev=-16 eu_s=-18.7 ev_s=-16.4 dpan=-0.70 dtilt=+0.61 pan=-37.1 tilt=0.1 err=25px
+2026-06-27 19:44:02.722 [DEBUG] [marker_detector] ibvs eu=-5 ev=-10 eu_s=-5.7 ev_s=-11.5 dpan=-0.04 dtilt=+0.08 pan=-37.4 tilt=0.6 err=11px
+2026-06-27 19:44:02.819 [DEBUG] [marker_detector] ibvs eu=+10 ev=+12 eu_s=+9.5 ev_s=+9.0 dpan=+0.00 dtilt=+0.00 pan=-37.4 tilt=0.6 err=16px DB
+2026-06-27 19:44:02.923 [DEBUG] [marker_detector] ibvs eu=+4 ev=+31 eu_s=+4.4 ev_s=+29.6 dpan=+0.22 dtilt=-1.47 pan=-36.9 tilt=-1.7 err=32px
+2026-06-27 19:44:03.026 [DEBUG] [marker_detector] ibvs eu=+14 ev=+36 eu_s=+12.9 ev_s=+36.3 dpan=+0.65 dtilt=-1.82 pan=-35.8 tilt=-5.3 err=39px
+2026-06-27 19:44:03.120 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-34.9 tilt=-6.3
+2026-06-27 19:44:03.168 [DEBUG] [marker_detector] ibvs eu=+26 ev=-27 eu_s=+24.6 ev_s=-17.2 dpan=+1.23 dtilt=+0.86 pan=-33.7 tilt=-5.4 err=37px
+2026-06-27 19:44:03.211 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-33.7 tilt=-5.4
+2026-06-27 19:44:03.309 [DEBUG] [marker_detector] ibvs eu=+4 ev=-31 eu_s=+5.4 ev_s=-31.0 dpan=+0.27 dtilt=+1.55 pan=-32.8 tilt=-2.4 err=32px
+2026-06-27 19:44:03.405 [DEBUG] [marker_detector] ibvs eu=-8 ev=-27 eu_s=-6.3 ev_s=-28.6 dpan=-0.30 dtilt=+1.38 pan=-33.1 tilt=0.6 err=29px
+2026-06-27 19:44:03.453 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-33.1 tilt=0.6
+2026-06-27 19:44:03.560 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-33.3 tilt=0.5
+2026-06-27 19:44:03.608 [DEBUG] [marker_detector] ibvs eu=-22 ev=+39 eu_s=-20.4 ev_s=+32.3 dpan=-1.02 dtilt=-1.61 pan=-34.3 tilt=-1.1 err=44px
+2026-06-27 19:44:03.716 [DEBUG] [marker_detector] ibvs eu=-15 ev=+45 eu_s=-16.0 ev_s=+43.9 dpan=-0.80 dtilt=-2.00 pan=-36.2 tilt=-5.0 err=48px
+2026-06-27 19:44:03.775 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-36.2 tilt=-5.0
+2026-06-27 19:44:03.879 [DEBUG] [marker_detector] ibvs eu=+10 ev=+11 eu_s=+7.9 ev_s=+14.9 dpan=+0.14 dtilt=-0.26 pan=-36.2 tilt=-6.8 err=15px
+2026-06-27 19:44:04.030 [DEBUG] [marker_detector] ibvs eu=+27 ev=-23 eu_s=+24.6 ev_s=-17.6 dpan=+1.23 dtilt=+0.88 pan=-34.8 tilt=-6.0 err=36px
+2026-06-27 19:44:04.129 [DEBUG] [marker_detector] ibvs eu=+33 ev=-41 eu_s=+32.1 ev_s=-40.0 dpan=+1.61 dtilt=+2.00 pan=-31.7 tilt=-2.3 err=53px
+2026-06-27 19:44:04.224 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-30.0 tilt=-0.3
+2026-06-27 19:44:05.482 [DEBUG] [marker_detector] ibvs eu=+28 ev=-191 eu_s=+28.7 ev_s=-161.5 dpan=+1.43 dtilt=+2.00 pan=-28.6 tilt=1.7 err=193px
+2026-06-27 19:44:05.623 [DEBUG] [marker_detector] ibvs eu=+29 ev=-190 eu_s=+28.8 ev_s=-188.5 dpan=+1.44 dtilt=+2.00 pan=-25.7 tilt=5.7 err=192px
+2026-06-27 19:44:05.675 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-25.7 tilt=5.7
+2026-06-27 19:44:05.773 [DEBUG] [marker_detector] ibvs eu=-9 ev=-108 eu_s=-5.4 ev_s=-116.3 dpan=-0.27 dtilt=+2.00 pan=-25.5 tilt=9.7 err=108px
+2026-06-27 19:44:05.816 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-25.5 tilt=9.7
+2026-06-27 19:44:05.967 [DEBUG] [marker_detector] ibvs eu=-26 ev=-23 eu_s=-24.2 ev_s=-29.4 dpan=-1.21 dtilt=+1.47 pan=-27.6 tilt=13.2 err=34px
+2026-06-27 19:44:06.070 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-28.7 tilt=14.6
+2026-06-27 19:44:06.136 [DEBUG] [marker_detector] ibvs eu=-14 ev=+11 eu_s=-15.5 ev_s=+3.1 dpan=-0.23 dtilt=-0.04 pan=-29.0 tilt=14.5 err=18px
+2026-06-27 19:44:06.264 [DEBUG] [marker_detector] ibvs eu=-1 ev=+26 eu_s=-2.4 ev_s=+25.2 dpan=-0.09 dtilt=-0.97 pan=-29.4 tilt=12.7 err=26px
+2026-06-27 19:44:06.369 [DEBUG] [marker_detector] ibvs eu=-1 ev=+22 eu_s=-1.5 ev_s=+22.4 dpan=-0.05 dtilt=-0.70 pan=-29.5 tilt=11.2 err=22px
+2026-06-27 19:44:06.435 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-29.5 tilt=11.2
+2026-06-27 19:44:06.542 [DEBUG] [marker_detector] ibvs eu=+13 ev=-7 eu_s=+10.9 ev_s=-5.6 dpan=+0.06 dtilt=+0.03 pan=-29.5 tilt=11.2 err=15px
+2026-06-27 19:44:06.645 [DEBUG] [marker_detector] ibvs eu=+12 ev=-17 eu_s=+11.4 ev_s=-16.0 dpan=+0.28 dtilt=+0.39 pan=-29.0 tilt=11.7 err=21px
+2026-06-27 19:44:06.799 [DEBUG] [marker_detector] ibvs eu=+26 ev=-50 eu_s=+23.4 ev_s=-45.7 dpan=+1.17 dtilt=+2.00 pan=-27.1 tilt=15.2 err=56px
+2026-06-27 19:44:06.905 [DEBUG] [marker_detector] ibvs eu=+15 ev=-44 eu_s=+16.9 ev_s=-45.3 dpan=+0.84 dtilt=+2.00 pan=-25.1 tilt=19.2 err=47px
+2026-06-27 19:44:07.048 [DEBUG] [marker_detector] ibvs eu=-10 ev=-24 eu_s=-8.1 ev_s=-25.4 dpan=-0.34 dtilt=+1.05 pan=-25.4 tilt=21.7 err=27px
+2026-06-27 19:44:07.156 [DEBUG] [marker_detector] ibvs eu=-22 ev=-34 eu_s=-21.2 ev_s=-32.8 dpan=-1.06 dtilt=+1.64 pan=-27.4 tilt=24.6 err=41px
+2026-06-27 19:44:07.205 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-27.4 tilt=24.6
+2026-06-27 19:44:07.337 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-28.1 tilt=26.6
+2026-06-27 19:44:07.383 [DEBUG] [marker_detector] ibvs eu=+9 ev=-123 eu_s=+4.4 ev_s=-111.2 dpan=+0.22 dtilt=+2.00 pan=-27.9 tilt=28.6 err=123px
+2026-06-27 19:44:07.505 [DEBUG] [marker_detector] ibvs eu=+7 ev=-106 eu_s=+6.8 ev_s=-106.9 dpan=+0.34 dtilt=+2.00 pan=-27.2 tilt=32.6 err=106px
+2026-06-27 19:44:07.596 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-27.2 tilt=32.6
+2026-06-27 19:44:07.702 [DEBUG] [marker_detector] ibvs eu=-4 ev=-50 eu_s=-3.3 ev_s=-52.3 dpan=-0.17 dtilt=+2.00 pan=-27.3 tilt=35.0 err=51px CLAMP_TILT
+2026-06-27 19:44:07.836 [DEBUG] [marker_detector] ibvs eu=-10 ev=-41 eu_s=-9.5 ev_s=-43.4 dpan=-0.47 dtilt=+2.00 pan=-28.1 tilt=35.0 err=43px CLAMP_TILT
+2026-06-27 19:44:07.940 [DEBUG] [marker_detector] ibvs eu=-8 ev=-52 eu_s=-8.3 ev_s=-51.4 dpan=-0.42 dtilt=+2.00 pan=-28.9 tilt=35.0 err=53px CLAMP_TILT
+2026-06-27 19:44:08.050 [DEBUG] [marker_detector] ibvs eu=-9 ev=-50 eu_s=-8.7 ev_s=-50.4 dpan=-0.44 dtilt=+2.00 pan=-29.8 tilt=35.0 err=51px CLAMP_TILT
+2026-06-27 19:44:08.158 [DEBUG] [marker_detector] ibvs eu=+0 ev=-49 eu_s=-0.5 ev_s=-48.9 dpan=-0.03 dtilt=+2.00 pan=-30.0 tilt=35.0 err=49px CLAMP_TILT
+2026-06-27 19:44:08.264 [DEBUG] [marker_detector] ibvs eu=+0 ev=-61 eu_s=-0.0 ev_s=-59.2 dpan=-0.00 dtilt=+2.00 pan=-30.1 tilt=35.0 err=61px CLAMP_TILT
+2026-06-27 19:44:08.367 [DEBUG] [marker_detector] ibvs eu=-1 ev=-73 eu_s=-1.0 ev_s=-71.5 dpan=-0.05 dtilt=+2.00 pan=-30.2 tilt=35.0 err=73px CLAMP_TILT
+2026-06-27 19:44:08.471 [DEBUG] [marker_detector] ibvs eu=-2 ev=-73 eu_s=-1.8 ev_s=-73.2 dpan=-0.09 dtilt=+2.00 pan=-30.3 tilt=35.0 err=74px CLAMP_TILT
+2026-06-27 19:44:08.574 [DEBUG] [marker_detector] ibvs eu=-0 ev=-75 eu_s=-0.7 ev_s=-75.0 dpan=-0.03 dtilt=+2.00 pan=-30.4 tilt=35.0 err=75px CLAMP_TILT
+2026-06-27 19:44:08.695 [DEBUG] [marker_detector] ibvs eu=-4 ev=-76 eu_s=-2.8 ev_s=-76.1 dpan=-0.14 dtilt=+2.00 pan=-30.5 tilt=35.0 err=76px CLAMP_TILT
+2026-06-27 19:44:08.832 [DEBUG] [marker_detector] ibvs eu=-1 ev=-71 eu_s=-1.5 ev_s=-72.5 dpan=-0.07 dtilt=+2.00 pan=-30.8 tilt=35.0 err=71px CLAMP_TILT
+2026-06-27 19:44:08.936 [DEBUG] [marker_detector] ibvs eu=+4 ev=-67 eu_s=+2.9 ev_s=-68.2 dpan=+0.14 dtilt=+2.00 pan=-30.6 tilt=35.0 err=67px CLAMP_TILT
+2026-06-27 19:44:09.075 [DEBUG] [marker_detector] ibvs eu=+3 ev=-60 eu_s=+3.4 ev_s=-61.3 dpan=+0.17 dtilt=+2.00 pan=-30.3 tilt=35.0 err=60px CLAMP_TILT
+2026-06-27 19:44:09.183 [DEBUG] [marker_detector] ibvs eu=+5 ev=-51 eu_s=+4.5 ev_s=-52.2 dpan=+0.22 dtilt=+2.00 pan=-29.8 tilt=35.0 err=51px CLAMP_TILT
+2026-06-27 19:44:09.347 [DEBUG] [marker_detector] ibvs eu=+5 ev=-45 eu_s=+4.3 ev_s=-45.4 dpan=+0.22 dtilt=+2.00 pan=-29.5 tilt=35.0 err=45px CLAMP_TILT
+2026-06-27 19:44:09.453 [DEBUG] [marker_detector] ibvs eu=+5 ev=-26 eu_s=+4.9 ev_s=-27.6 dpan=+0.22 dtilt=+1.25 pan=-28.9 tilt=35.0 err=27px CLAMP_TILT
+2026-06-27 19:44:09.499 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-28.9 tilt=35.0
+2026-06-27 19:44:09.606 [DEBUG] [marker_detector] ibvs eu=+11 ev=-66 eu_s=+9.6 ev_s=-63.9 dpan=+0.48 dtilt=+2.00 pan=-28.3 tilt=35.0 err=67px CLAMP_TILT
+2026-06-27 19:44:09.708 [DEBUG] [marker_detector] ibvs eu=+11 ev=-38 eu_s=+11.9 ev_s=-40.2 dpan=+0.60 dtilt=+2.00 pan=-27.0 tilt=35.0 err=39px CLAMP_TILT
+2026-06-27 19:44:09.844 [DEBUG] [marker_detector] ibvs eu=+8 ev=-7 eu_s=+8.3 ev_s=-11.2 dpan=+0.08 dtilt=+0.11 pan=-26.5 tilt=35.0 err=11px CLAMP_TILT
+2026-06-27 19:44:09.895 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-26.5 tilt=35.0
+2026-06-27 19:44:11.838 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-28.5 tilt=33.0
+2026-06-27 19:44:11.928 [DEBUG] [marker_detector] ibvs eu=-55 ev=+136 eu_s=-54.0 ev_s=+136.4 dpan=-2.00 dtilt=-2.00 pan=-30.5 tilt=31.0 err=146px
+2026-06-27 19:44:12.028 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-32.5 tilt=29.0
+2026-06-27 19:44:12.083 [DEBUG] [marker_detector] ibvs eu=-19 ev=+79 eu_s=-23.8 ev_s=+83.7 dpan=-1.19 dtilt=-2.00 pan=-33.7 tilt=27.0 err=81px
+2026-06-27 19:44:12.220 [DEBUG] [marker_detector] ibvs eu=-4 ev=+66 eu_s=-4.8 ev_s=+66.5 dpan=-0.24 dtilt=-2.00 pan=-34.3 tilt=23.0 err=66px
+2026-06-27 19:44:12.267 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-34.3 tilt=23.0
+2026-06-27 19:44:12.373 [DEBUG] [marker_detector] ibvs eu=+17 ev=+17 eu_s=+16.3 ev_s=+20.6 dpan=+0.66 dtilt=-0.84 pan=-33.0 tilt=20.3 err=24px
+2026-06-27 19:44:12.529 [DEBUG] [marker_detector] ibvs eu=+15 ev=+1 eu_s=+15.7 ev_s=+5.9 dpan=+0.27 dtilt=-0.10 pan=-31.7 tilt=19.0 err=15px
+2026-06-27 19:44:12.634 [DEBUG] [marker_detector] ibvs eu=+5 ev=-2 eu_s=+7.2 ev_s=-1.4 dpan=+0.00 dtilt=+0.00 pan=-31.5 tilt=19.0 err=6px DB
+2026-06-27 19:44:12.768 [DEBUG] [marker_detector] ibvs eu=+0 ev=+3 eu_s=+1.2 ev_s=+2.0 dpan=+0.00 dtilt=+0.00 pan=-31.5 tilt=19.0 err=3px DB
+2026-06-27 19:44:12.873 [DEBUG] [marker_detector] ibvs eu=-6 ev=+15 eu_s=-6.3 ev_s=+13.9 dpan=-0.08 dtilt=-0.18 pan=-31.6 tilt=18.7 err=16px
+2026-06-27 19:44:12.922 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-31.6 tilt=18.7
+2026-06-27 19:44:14.303 [DEBUG] [marker_detector] ibvs eu=+0 ev=+4 eu_s=-0.2 ev_s=+5.7 dpan=+0.00 dtilt=+0.00 pan=-31.6 tilt=18.7 err=4px DB
+2026-06-27 19:44:14.439 [DEBUG] [marker_detector] ibvs eu=+1 ev=+0 eu_s=+0.8 ev_s=+0.4 dpan=+0.00 dtilt=+0.00 pan=-31.6 tilt=18.7 err=1px DB
+2026-06-27 19:44:14.542 [DEBUG] [marker_detector] ibvs eu=-1 ev=+1 eu_s=-1.4 ev_s=+1.0 dpan=+0.00 dtilt=+0.00 pan=-31.6 tilt=18.7 err=2px DB
+2026-06-27 19:44:14.671 [DEBUG] [marker_detector] ibvs eu=-3 ev=+11 eu_s=-2.9 ev_s=+9.5 dpan=+0.00 dtilt=+0.00 pan=-31.6 tilt=18.7 err=12px DB
+2026-06-27 19:44:14.780 [DEBUG] [marker_detector] ibvs eu=-3 ev=+24 eu_s=-2.8 ev_s=+23.1 dpan=-0.09 dtilt=-0.76 pan=-31.8 tilt=17.5 err=24px
+2026-06-27 19:44:14.899 [DEBUG] [marker_detector] ibvs eu=+2 ev=+29 eu_s=+1.6 ev_s=+28.0 dpan=+0.07 dtilt=-1.26 pan=-31.7 tilt=15.3 err=29px
+2026-06-27 19:44:15.048 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-31.7 tilt=15.2
+2026-06-27 19:44:15.104 [DEBUG] [marker_detector] ibvs eu=+5 ev=-19 eu_s=+4.5 ev_s=-13.0 dpan=+0.04 dtilt=+0.12 pan=-31.7 tilt=15.3 err=20px
+2026-06-27 19:44:15.260 [DEBUG] [marker_detector] ibvs eu=+5 ev=-22 eu_s=+4.7 ev_s=-21.6 dpan=+0.14 dtilt=+0.66 pan=-31.4 tilt=16.5 err=23px
+2026-06-27 19:44:15.365 [DEBUG] [marker_detector] ibvs eu=+2 ev=-17 eu_s=+2.5 ev_s=-17.5 dpan=+0.05 dtilt=+0.33 pan=-31.3 tilt=17.3 err=17px
+2026-06-27 19:44:15.487 [DEBUG] [marker_detector] ibvs eu=+2 ev=-3 eu_s=+1.8 ev_s=-4.6 dpan=+0.00 dtilt=+0.00 pan=-31.3 tilt=17.3 err=3px DB
+2026-06-27 19:44:15.608 [DEBUG] [marker_detector] ibvs eu=+3 ev=+3 eu_s=+1.9 ev_s=+2.3 dpan=+0.00 dtilt=+0.00 pan=-31.3 tilt=17.3 err=4px DB
+2026-06-27 19:44:15.712 [DEBUG] [marker_detector] ibvs eu=+1 ev=+29 eu_s=+1.3 ev_s=+26.5 dpan=+0.05 dtilt=-1.10 pan=-31.2 tilt=16.0 err=29px
+2026-06-27 19:44:15.811 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-31.2 tilt=16.0
+2026-06-27 19:44:16.102 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-30.2 tilt=14.0
+2026-06-27 19:44:16.199 [DEBUG] [marker_detector] ibvs eu=-6 ev=+175 eu_s=-0.5 ev_s=+163.7 dpan=-0.03 dtilt=-2.00 pan=-30.2 tilt=12.0 err=175px
+2026-06-27 19:44:16.331 [DEBUG] [marker_detector] ibvs eu=-13 ev=+171 eu_s=-11.4 ev_s=+171.3 dpan=-0.57 dtilt=-2.00 pan=-31.1 tilt=8.0 err=171px
+2026-06-27 19:44:16.441 [DEBUG] [marker_detector] ibvs eu=-21 ev=+130 eu_s=-19.6 ev_s=+134.9 dpan=-0.98 dtilt=-2.00 pan=-32.8 tilt=4.0 err=132px
+2026-06-27 19:44:16.543 [DEBUG] [marker_detector] ibvs eu=-18 ev=+92 eu_s=-19.5 ev_s=+96.3 dpan=-0.98 dtilt=-2.00 pan=-35.1 tilt=-0.0 err=94px
+2026-06-27 19:44:16.670 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-35.6 tilt=-2.0
+2026-06-27 19:44:16.773 [DEBUG] [marker_detector] ibvs eu=+20 ev=+20 eu_s=+13.8 ev_s=+32.0 dpan=+0.69 dtilt=-1.60 pan=-34.9 tilt=-3.6 err=28px
+2026-06-27 19:44:16.925 [DEBUG] [marker_detector] ibvs eu=+17 ev=+26 eu_s=+16.5 ev_s=+26.2 dpan=+0.82 dtilt=-1.31 pan=-33.3 tilt=-6.2 err=31px
+2026-06-27 19:44:17.028 [DEBUG] [marker_detector] ibvs eu=+18 ev=+9 eu_s=+18.1 ev_s=+9.1 dpan=+0.46 dtilt=-0.23 pan=-32.3 tilt=-6.7 err=20px
+2026-06-27 19:44:17.076 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-32.3 tilt=-6.7
+2026-06-27 19:44:17.217 [DEBUG] [marker_detector] ibvs eu=+0 ev=-6 eu_s=+1.0 ev_s=-4.8 dpan=+0.00 dtilt=+0.00 pan=-32.3 tilt=-6.7 err=6px DB
+2026-06-27 19:44:17.315 [DEBUG] [marker_detector] ibvs eu=-1 ev=-6 eu_s=-0.5 ev_s=-5.9 dpan=+0.00 dtilt=+0.00 pan=-32.3 tilt=-6.7 err=6px DB
+2026-06-27 19:44:17.436 [DEBUG] [marker_detector] ibvs eu=+0 ev=-6 eu_s=+0.2 ev_s=-6.2 dpan=+0.00 dtilt=+0.00 pan=-32.3 tilt=-6.7 err=6px DB
+2026-06-27 19:44:17.549 [DEBUG] [marker_detector] ibvs eu=-2 ev=-6 eu_s=-2.0 ev_s=-6.3 dpan=+0.00 dtilt=+0.00 pan=-32.3 tilt=-6.7 err=7px DB
+2026-06-27 19:44:17.650 [DEBUG] [marker_detector] ibvs eu=-4 ev=-8 eu_s=-3.8 ev_s=-7.3 dpan=+0.00 dtilt=+0.00 pan=-32.3 tilt=-6.7 err=9px DB
+2026-06-27 19:44:17.784 [DEBUG] [marker_detector] ibvs eu=-4 ev=-31 eu_s=-4.5 ev_s=-28.1 dpan=-0.21 dtilt=+1.29 pan=-32.6 tilt=-5.2 err=31px
+2026-06-27 19:44:17.836 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-32.6 tilt=-5.2
+2026-06-27 19:44:19.494 [DEBUG] [marker_detector] ibvs eu=+41 ev=-103 eu_s=+39.1 ev_s=-101.7 dpan=+1.96 dtilt=+2.00 pan=-29.1 tilt=-1.2 err=111px
+2026-06-27 19:44:19.601 [DEBUG] [marker_detector] ibvs eu=+28 ev=-91 eu_s=+31.2 ev_s=-93.2 dpan=+1.56 dtilt=+2.00 pan=-25.6 tilt=2.8 err=95px
+2026-06-27 19:44:19.654 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-25.6 tilt=2.8
+2026-06-27 19:44:19.810 [DEBUG] [marker_detector] ibvs eu=-35 ev=-19 eu_s=-32.2 ev_s=-21.7 dpan=-1.61 dtilt=+1.09 pan=-28.2 tilt=5.6 err=40px
+2026-06-27 19:44:19.944 [DEBUG] [marker_detector] ibvs eu=-31 ev=-19 eu_s=-31.6 ev_s=-21.1 dpan=-1.58 dtilt=+1.06 pan=-31.5 tilt=8.1 err=37px
+2026-06-27 19:44:19.989 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-31.5 tilt=8.1
+2026-06-27 19:44:20.092 [DEBUG] [marker_detector] ibvs eu=+3 ev=+8 eu_s=+0.2 ev_s=+6.9 dpan=+0.00 dtilt=+0.00 pan=-31.5 tilt=8.1 err=9px DB
+2026-06-27 19:44:20.248 [DEBUG] [marker_detector] ibvs eu=+8 ev=+2 eu_s=+7.9 ev_s=+2.8 dpan=+0.00 dtilt=+0.00 pan=-31.5 tilt=8.1 err=8px DB
+2026-06-27 19:44:20.353 [DEBUG] [marker_detector] ibvs eu=+9 ev=-1 eu_s=+8.2 ev_s=-0.2 dpan=+0.00 dtilt=+0.00 pan=-31.5 tilt=8.1 err=9px DB
+2026-06-27 19:44:20.490 [DEBUG] [marker_detector] ibvs eu=+9 ev=-1 eu_s=+8.9 ev_s=-0.9 dpan=+0.00 dtilt=+0.00 pan=-31.5 tilt=8.1 err=9px DB
+2026-06-27 19:44:20.593 [DEBUG] [marker_detector] ibvs eu=+11 ev=+1 eu_s=+10.3 ev_s=-0.0 dpan=+0.01 dtilt=+0.00 pan=-31.5 tilt=8.1 err=11px
+2026-06-27 19:44:20.728 [DEBUG] [marker_detector] ibvs eu=+2 ev=+14 eu_s=+3.7 ev_s=+12.1 dpan=+0.02 dtilt=-0.08 pan=-31.5 tilt=8.0 err=14px
+2026-06-27 19:44:20.778 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-31.5 tilt=8.0
+2026-06-27 19:44:21.000 [DEBUG] [marker_detector] ibvs eu=-3 ev=-105 eu_s=-2.6 ev_s=-100.3 dpan=-0.13 dtilt=+2.00 pan=-31.5 tilt=12.0 err=105px
+2026-06-27 19:44:21.105 [DEBUG] [marker_detector] ibvs eu=-8 ev=-117 eu_s=-8.2 ev_s=-115.9 dpan=-0.41 dtilt=+2.00 pan=-32.4 tilt=16.0 err=117px
+2026-06-27 19:44:21.209 [DEBUG] [marker_detector] ibvs eu=-8 ev=-73 eu_s=-7.5 ev_s=-77.5 dpan=-0.37 dtilt=+2.00 pan=-33.1 tilt=20.0 err=74px
+2026-06-27 19:44:21.367 [DEBUG] [marker_detector] ibvs eu=+1 ev=+3 eu_s=-0.2 ev_s=-7.9 dpan=+0.00 dtilt=+0.00 pan=-33.2 tilt=22.0 err=3px DB
+2026-06-27 19:44:21.473 [DEBUG] [marker_detector] ibvs eu=+1 ev=+12 eu_s=+0.8 ev_s=+9.9 dpan=+0.00 dtilt=+0.00 pan=-33.2 tilt=22.0 err=12px DB
+2026-06-27 19:44:21.611 [DEBUG] [marker_detector] ibvs eu=+2 ev=+14 eu_s=+2.0 ev_s=+14.0 dpan=+0.02 dtilt=-0.15 pan=-33.2 tilt=21.7 err=14px
+2026-06-27 19:44:21.716 [DEBUG] [marker_detector] ibvs eu=+4 ev=+8 eu_s=+3.4 ev_s=+7.4 dpan=+0.00 dtilt=+0.00 pan=-33.2 tilt=21.7 err=9px DB
+2026-06-27 19:44:21.881 [DEBUG] [marker_detector] ibvs eu=+1 ev=+8 eu_s=+1.3 ev_s=+7.9 dpan=+0.00 dtilt=+0.00 pan=-33.2 tilt=21.7 err=8px DB
+2026-06-27 19:44:21.982 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-33.2 tilt=21.7
+2026-06-27 19:44:22.272 [DEBUG] [marker_detector] ibvs eu=+36 ev=+182 eu_s=+29.5 ev_s=+146.7 dpan=+1.48 dtilt=-2.00 pan=-31.7 tilt=19.7 err=185px
+2026-06-27 19:44:22.317 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=-31.7 tilt=19.7
+2026-06-27 19:44:27.353 [INFO ] [marker_detector] ibvs servo_reset pan→0 tilt→0 lost=5.0s
+2026-06-27 19:44:27.399 [DEBUG] [marker_detector] ibvs tag_lost timer start pan=0.0 tilt=0.0
+2026-06-27 19:44:29.058 [INFO ] [marker_detector] ibvs_recording_stop frames=979 detections=666 deadband=278 max_eu=109.6 max_ev=190.7 final_pan=0.00 final_tilt=0.00 dir=/home/jvpicar/picar_ros/logs/pi_session_20260627_194323/ibvs_frames_194336
+2026-06-27 19:44:29.059 [INFO ] [marker_detector] chase_stop cycle=0 reason=toggle_off
+2026-06-27 19:44:29.075 [INFO ] [marker_detector] ibvs_recording_start frames_dir=/home/jvpicar/picar_ros/logs/pi_session_20260627_194323/ibvs_frames_194429 csv=/home/jvpicar/picar_ros/logs/pi_session_20260627_194323/ibvs_log_194429.csv
