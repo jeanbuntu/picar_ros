@@ -132,6 +132,7 @@ class TagChaser:
         self._ibvs_kp_tilt      = float(ibvs_cfg.get('kp_tilt', 0.05))
         self._ibvs_alpha        = float(ibvs_cfg.get('ewma_alpha', 0.3))
         self._ibvs_deadband     = float(ibvs_cfg.get('deadband_px', 10))
+        self._ibvs_lazyband     = float(ibvs_cfg.get('lazyband_outer_px', 0.0))
         self._ibvs_lost_timeout = float(ibvs_cfg.get('tag_lost_timeout_s', 1.0))
         self._ibvs_only         = bool(ibvs_cfg.get('ibvs_only', False))
         self._ibvs_tilt_invert  = bool(ibvs_cfg.get('tilt_invert', False))
@@ -182,6 +183,12 @@ class TagChaser:
         self._scan_tilt_idx     = 0
         self._cc_frame_count    = 0
         self._chase_mode        = 'rat_chase'
+
+        # Summary tracking for _close_ibvs_recording
+        self._ibvs_total_detections  = 0
+        self._ibvs_total_deadband    = 0
+        self._ibvs_max_eu            = 0.0
+        self._ibvs_max_ev            = 0.0
 
         # Set up marker_detector logger (StreamHandler — file handler added lazily)
         if not _marker_logger.handlers:
@@ -241,6 +248,16 @@ class TagChaser:
                             'state': 'chasing', 'chase_mode': self._chase_mode})
         _marker_logger.info("chase_toggle_on cycle=%d mode=%s", self._cycle, self._chase_mode)
 
+    # Column order for the IBVS CSV — must match both writerow calls and the summary row
+    _IBVS_FIELDNAMES = [
+        't_s', 'frame', 'tag_detected', 'state',
+        'pan_deg', 'tilt_deg',
+        'eu_px', 'ev_px', 'eu_s_px', 'ev_s_px', 'err_px',
+        'dpan', 'dtilt', 'in_deadband',
+        'clamped_pan', 'clamped_tilt', 'servo_sent',
+        'tag_conf', 'lost_t',
+    ]
+
     def _ensure_ibvs_recording(self):
         """Lazily create the ibvs_frames_* folder and ibvs_log_*.csv for this run."""
         if self._ibvs_rec_dir is not None:
@@ -250,25 +267,59 @@ class TagChaser:
         os.makedirs(self._ibvs_rec_dir, exist_ok=True)
         csv_path = os.path.join(self._session_dir, f"ibvs_log_{ts}.csv")
         self._ibvs_csv_f = open(csv_path, 'w', newline='')
-        self._ibvs_csv_w = csv.writer(self._ibvs_csv_f)
-        self._ibvs_csv_w.writerow([
-            't_s', 'frame', 'tag_detected',
-            'pan_deg', 'tilt_deg',
-            'eu_px', 'ev_px', 'eu_s_px', 'ev_s_px', 'err_px',
-            'dpan', 'dtilt', 'in_deadband',
-        ])
+        self._ibvs_csv_w = csv.DictWriter(self._ibvs_csv_f,
+                                          fieldnames=self._IBVS_FIELDNAMES,
+                                          extrasaction='ignore')
+        self._ibvs_csv_w.writeheader()
         self._ibvs_rec_t0 = time.perf_counter()
+        # Reset summary accumulators
+        self._ibvs_total_detections = 0
+        self._ibvs_total_deadband   = 0
+        self._ibvs_max_eu           = 0.0
+        self._ibvs_max_ev           = 0.0
         _marker_logger.info("ibvs_recording_start frames_dir=%s csv=%s",
                             self._ibvs_rec_dir, csv_path)
 
     def _close_ibvs_recording(self):
         if self._ibvs_csv_f is not None:
+            if self._ibvs_csv_w is not None and self._ibvs_rec_frame_count > 0:
+                # Write summary sentinel row — all numeric summary fields go in 't_s';
+                # use a distinguishable marker in 't_s' and a dedicated comment layout.
+                self._ibvs_csv_w.writerow({
+                    't_s':          'SUMMARY',
+                    'frame':        self._ibvs_rec_frame_count,
+                    'tag_detected': self._ibvs_total_detections,
+                    'state':        'end',
+                    'pan_deg':      round(self._pan_angle, 2),
+                    'tilt_deg':     round(self._tilt_angle, 2),
+                    'eu_px':        round(self._ibvs_max_eu, 1),
+                    'ev_px':        round(self._ibvs_max_ev, 1),
+                    'eu_s_px':      '',
+                    'ev_s_px':      '',
+                    'err_px':       '',
+                    'dpan':         '',
+                    'dtilt':        '',
+                    'in_deadband':  self._ibvs_total_deadband,
+                    'clamped_pan':  '',
+                    'clamped_tilt': '',
+                    'servo_sent':   '',
+                    'tag_conf':     '',
+                    'lost_t':       '',
+                })
             self._ibvs_csv_f.flush()
             self._ibvs_csv_f.close()
             self._ibvs_csv_f = None
             self._ibvs_csv_w = None
-            _marker_logger.info("ibvs_recording_stop frames=%d dir=%s",
-                                self._ibvs_rec_frame_count, self._ibvs_rec_dir)
+            _marker_logger.info(
+                "ibvs_recording_stop frames=%d detections=%d deadband=%d "
+                "max_eu=%.1f max_ev=%.1f final_pan=%.2f final_tilt=%.2f dir=%s",
+                self._ibvs_rec_frame_count,
+                self._ibvs_total_detections,
+                self._ibvs_total_deadband,
+                self._ibvs_max_eu, self._ibvs_max_ev,
+                self._pan_angle, self._tilt_angle,
+                self._ibvs_rec_dir,
+            )
         self._ibvs_rec_dir         = None
         self._ibvs_rec_frame_count = 0
         self._ibvs_rec_t0          = None
@@ -335,17 +386,39 @@ class TagChaser:
         # Servo-only modes: IBVS without motor control
         if self._chase_mode in ('ibvs_test', 'manual_ibvs'):
             self._ensure_ibvs_recording()
+            # Resolve target detection and its confidence
             if self._chase_mode == 'manual_ibvs':
-                ibvs_target = next(
-                    (d.center for d in detections
+                ibvs_det = next(
+                    (d for d in detections
                      if d.decision_margin >= self._conf_threshold), None)
             else:
-                ibvs_target = tag0.center if tag0 is not None else None
+                ibvs_det = tag0
+            ibvs_target = ibvs_det.center if ibvs_det is not None else None
+            tag_conf_val = round(float(ibvs_det.decision_margin), 1) if ibvs_det is not None else ''
+
             if ibvs_target is not None:
                 ibvs_data = self._run_ibvs(ibvs_target)
             else:
                 self._handle_tag0_lost(t_now)
                 ibvs_data = None
+
+            # Seconds since last detection (tag-lost countdown progress)
+            lost_t_val = ''
+            if ibvs_data is None and self._tag0_lost_t is not None:
+                lost_t_val = round(t_now - self._tag0_lost_t, 2)
+
+            # Current chaser state label for the CSV
+            with self._state_lock:
+                _raw_state = self._state
+            if ibvs_data is not None and ibvs_data['in_deadband']:
+                csv_state = 'deadband'
+            elif ibvs_data is not None:
+                csv_state = 'ibvs_active'
+            elif self._tag0_lost_t is not None:
+                csv_state = 'tag_lost_countdown'
+            else:
+                csv_state = _raw_state
+
             self._ibvs_rec_frame_count += 1
             # Save JPEG (throttled, rolling buffer)
             if self._ibvs_rec_dir and self._ibvs_rec_frame_count % self._ibvs_save_every == 0:
@@ -366,19 +439,55 @@ class TagChaser:
             if self._ibvs_csv_w is not None:
                 t_rel = time.perf_counter() - self._ibvs_rec_t0
                 if ibvs_data is not None:
-                    self._ibvs_csv_w.writerow([
-                        f'{t_rel:.3f}', self._ibvs_rec_frame_count, 1,
-                        round(self._pan_angle, 2), round(self._tilt_angle, 2),
-                        ibvs_data['eu'], ibvs_data['ev'],
-                        ibvs_data['eu_s'], ibvs_data['ev_s'], ibvs_data['err_px'],
-                        ibvs_data['dpan'], ibvs_data['dtilt'], int(ibvs_data['in_deadband']),
-                    ])
+                    # Update summary accumulators
+                    self._ibvs_total_detections += 1
+                    if ibvs_data['in_deadband']:
+                        self._ibvs_total_deadband += 1
+                    self._ibvs_max_eu = max(self._ibvs_max_eu, abs(ibvs_data['eu']))
+                    self._ibvs_max_ev = max(self._ibvs_max_ev, abs(ibvs_data['ev']))
+                    self._ibvs_csv_w.writerow({
+                        't_s':          f'{t_rel:.3f}',
+                        'frame':        self._ibvs_rec_frame_count,
+                        'tag_detected': 1,
+                        'state':        csv_state,
+                        'pan_deg':      round(self._pan_angle, 2),
+                        'tilt_deg':     round(self._tilt_angle, 2),
+                        'eu_px':        ibvs_data['eu'],
+                        'ev_px':        ibvs_data['ev'],
+                        'eu_s_px':      ibvs_data['eu_s'],
+                        'ev_s_px':      ibvs_data['ev_s'],
+                        'err_px':       ibvs_data['err_px'],
+                        'dpan':         ibvs_data['dpan'],
+                        'dtilt':        ibvs_data['dtilt'],
+                        'in_deadband':  int(ibvs_data['in_deadband']),
+                        'clamped_pan':  ibvs_data['clamped_pan'],
+                        'clamped_tilt': ibvs_data['clamped_tilt'],
+                        'servo_sent':   ibvs_data['servo_sent'],
+                        'tag_conf':     tag_conf_val,
+                        'lost_t':       '',
+                    })
                 else:
-                    self._ibvs_csv_w.writerow([
-                        f'{t_rel:.3f}', self._ibvs_rec_frame_count, 0,
-                        round(self._pan_angle, 2), round(self._tilt_angle, 2),
-                        '', '', '', '', '', '', '', '',
-                    ])
+                    self._ibvs_csv_w.writerow({
+                        't_s':          f'{t_rel:.3f}',
+                        'frame':        self._ibvs_rec_frame_count,
+                        'tag_detected': 0,
+                        'state':        csv_state,
+                        'pan_deg':      round(self._pan_angle, 2),
+                        'tilt_deg':     round(self._tilt_angle, 2),
+                        'eu_px':        '',
+                        'ev_px':        '',
+                        'eu_s_px':      '',
+                        'ev_s_px':      '',
+                        'err_px':       '',
+                        'dpan':         '',
+                        'dtilt':        '',
+                        'in_deadband':  '',
+                        'clamped_pan':  '',
+                        'clamped_tilt': '',
+                        'servo_sent':   '',
+                        'tag_conf':     tag_conf_val,
+                        'lost_t':       lost_t_val,
+                    })
             self._broadcast_ibvs_status(t_now)
             return
 
@@ -625,9 +734,14 @@ class TagChaser:
             ev_s = self._ibvs_alpha * ev + (1.0 - self._ibvs_alpha) * self._ev_smooth
             in_db = bool(abs(eu_s) <= self._ibvs_deadband and abs(ev_s) <= self._ibvs_deadband)
             if not in_db:
-                tilt_sign = 1.0 if self._ibvs_tilt_invert else -1.0
-                dpan  = -self._ibvs_kp_pan  * eu_s
-                dtilt =  tilt_sign * self._ibvs_kp_tilt * ev_s
+                tilt_sign  = 1.0 if self._ibvs_tilt_invert else -1.0
+                err_s = float(np.hypot(eu_s, ev_s))
+                if self._ibvs_lazyband > self._ibvs_deadband and err_s < self._ibvs_lazyband:
+                    lazy_scale = (err_s - self._ibvs_deadband) / (self._ibvs_lazyband - self._ibvs_deadband)
+                else:
+                    lazy_scale = 1.0
+                dpan  =  lazy_scale * self._ibvs_kp_pan  * eu_s
+                dtilt =  lazy_scale * tilt_sign * self._ibvs_kp_tilt * ev_s
             else:
                 dpan = dtilt = 0.0
             dpan  = float(np.clip(dpan,  -self._pan_max_delta,  self._pan_max_delta))
@@ -700,18 +814,30 @@ class TagChaser:
                        and abs(self._ev_smooth) <= self._ibvs_deadband)
 
         delta_pan = delta_tilt = 0.0
+        clamped_pan = clamped_tilt = False
+        servo_sent  = False
         if not in_deadband:
             tilt_sign  = 1.0 if self._ibvs_tilt_invert else -1.0
-            delta_pan  = -self._ibvs_kp_pan  * self._eu_smooth
-            delta_tilt =  tilt_sign * self._ibvs_kp_tilt * self._ev_smooth
+            err_smooth = float(np.hypot(self._eu_smooth, self._ev_smooth))
+            if self._ibvs_lazyband > self._ibvs_deadband and err_smooth < self._ibvs_lazyband:
+                lazy_scale = (err_smooth - self._ibvs_deadband) / (self._ibvs_lazyband - self._ibvs_deadband)
+            else:
+                lazy_scale = 1.0
+            delta_pan  =  lazy_scale * self._ibvs_kp_pan  * self._eu_smooth
+            delta_tilt =  lazy_scale * tilt_sign * self._ibvs_kp_tilt * self._ev_smooth
             delta_pan  = float(np.clip(delta_pan,  -self._pan_max_delta,  self._pan_max_delta))
             delta_tilt = float(np.clip(delta_tilt, -self._tilt_max_delta, self._tilt_max_delta))
-            new_pan  = float(np.clip(self._pan_angle  + delta_pan,  self._pan_min,  self._pan_max))
-            new_tilt = float(np.clip(self._tilt_angle + delta_tilt, self._tilt_min, self._tilt_max))
+            unclamped_pan  = self._pan_angle  + delta_pan
+            unclamped_tilt = self._tilt_angle + delta_tilt
+            new_pan  = float(np.clip(unclamped_pan,  self._pan_min,  self._pan_max))
+            new_tilt = float(np.clip(unclamped_tilt, self._tilt_min, self._tilt_max))
+            clamped_pan  = (new_pan  != unclamped_pan)
+            clamped_tilt = (new_tilt != unclamped_tilt)
             # Anti-windup: only apply if clamp didn't absorb the full delta
             if new_pan != self._pan_angle or new_tilt != self._tilt_angle:
                 self._pan_angle  = new_pan
                 self._tilt_angle = new_tilt
+                servo_sent = True
                 try:
                     self.px.set_cam_pan_angle(self._pan_angle)
                     self.px.set_cam_tilt_angle(self._tilt_angle)
@@ -723,26 +849,32 @@ class TagChaser:
             self._ibvs_log_count = 0
             _marker_logger.debug(
                 "ibvs eu=%+.0f ev=%+.0f eu_s=%+.1f ev_s=%+.1f "
-                "dpan=%+.2f dtilt=%+.2f pan=%.1f tilt=%.1f err=%.0fpx%s",
+                "dpan=%+.2f dtilt=%+.2f pan=%.1f tilt=%.1f err=%.0fpx%s%s%s%s",
                 eu, ev, self._eu_smooth, self._ev_smooth,
                 delta_pan, delta_tilt,
                 self._pan_angle, self._tilt_angle,
                 float(np.hypot(eu, ev)),
                 " DB" if in_deadband else "",
+                " CLAMP_PAN" if clamped_pan else "",
+                " CLAMP_TILT" if clamped_tilt else "",
+                "" if servo_sent or in_deadband else " NO_SEND",
             )
 
         self._ibvs_active  = True
         self._scan_active  = False
         self._tag0_lost_t  = None
         return {
-            'eu':         round(eu, 1),
-            'ev':         round(ev, 1),
-            'eu_s':       round(self._eu_smooth, 1),
-            'ev_s':       round(self._ev_smooth, 1),
-            'err_px':     round(float(np.hypot(eu, ev)), 1),
-            'dpan':       round(delta_pan, 3),
-            'dtilt':      round(delta_tilt, 3),
-            'in_deadband': in_deadband,
+            'eu':           round(eu, 1),
+            'ev':           round(ev, 1),
+            'eu_s':         round(self._eu_smooth, 1),
+            'ev_s':         round(self._ev_smooth, 1),
+            'err_px':       round(float(np.hypot(eu, ev)), 1),
+            'dpan':         round(delta_pan, 3),
+            'dtilt':        round(delta_tilt, 3),
+            'in_deadband':  in_deadband,
+            'clamped_pan':  int(clamped_pan),
+            'clamped_tilt': int(clamped_tilt),
+            'servo_sent':   int(servo_sent),
         }
 
     def _run_world_scan(self):

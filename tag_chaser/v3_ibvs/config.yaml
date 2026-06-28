@@ -34,11 +34,12 @@ camera:
 ibvs:
   kp_pan: 0.05              # deg/px; tune up until oscillation then halve
   kp_tilt: 0.05             # deg/px
-  ewma_alpha: 1.0        # smoothing; higher = more responsive, more noisy
+  ewma_alpha: 0.8     # smoothing; higher = more responsive, more noisy
   deadband_px: 10           # pixel radius around center where no correction applied
+  lazyband_outer_px: 30    # outer edge of soft zone; kp scales 0→full from deadband→this radius (0 = disabled)
   tag_lost_timeout_s: 5.0   # seconds before servos return to neutral after tag0 lost
   ibvs_only: false          # true = run IBVS but skip car centering (Layer 1 tuning)
-  tilt_invert: true          # set_cam_tilt_angle(+X) = looks DOWN on this hardware
+  tilt_invert: false         # set_cam_tilt_angle(+X) = looks UP on this hardware (confirmed by log analysis)
   log_every_n_frames: 2     # IBVS debug log at ~6Hz (30fps / 5)
 
 world_scan:

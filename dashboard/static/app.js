@@ -188,7 +188,7 @@ function sendServoCommand() {
         send({ cmd: 'steer', angle });
         if (gaugeSteer) gaugeSteer.update(angle);
     } else {
-        send({ cmd: 'cam_servo', axis: servo, angle });
+        send({ cmd: 'gimbal', axis: servo, angle });
         if (servo === 'pan'  && gaugePan)  gaugePan.update(angle);
         if (servo === 'tilt' && gaugeTilt) gaugeTilt.update(angle);
     }
