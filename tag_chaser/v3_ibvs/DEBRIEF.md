@@ -1,3 +1,109 @@
+# Tag Chaser v3 — IBVS: Debrief
+
+---
+
+## v3 IBVS Development — Session 2026-06-27/28
+
+### Objective
+
+Build image-based visual servoing (IBVS) on top of the v2 tag-chase foundation. The goal was a system where pan/tilt tracks tag0 using pixel error feedback, the car can physically drive toward the tag, and the Ubuntu RViz stack visualizes the car's trajectory in real time from tag0 alone — no tag pair required.
+
+---
+
+### Architecture
+
+Four operational modes in `tag_chaser/v3_ibvs/chaser.py`:
+
+| Mode | Description |
+|---|---|
+| `ibvs_test` | IBVS pan/tilt only, no motor drive, no TF. Used for servo tuning. |
+| `manual_ibvs` | IBVS pan/tilt + manual WASD drive from dashboard. |
+| `rat_chase` | IBVS pan/tilt + autonomous car centering + forward drive. Tag0 only. |
+| `world_ibvs` | Full v2+ behavior: tag pair world frame + countdown + TF chase. |
+
+Ubuntu side: `src/tf_bridge/tf_bridge/tf_bridge.py` connects to the Pi WebSocket, computes world-frame transforms, and publishes TF + RViz markers. A new `ibvs_anchor_mode` (ROS2 param, default true) uses tag0 as a stationary world anchor — no tag2/tag3 pair needed for the car to appear and move in RViz.
+
+---
+
+### What Works (Confirmed)
+
+**IBVS core** — pan/tilt servo control via pixel error feedback. `eu = tag_x − cx`, `ev = tag_y − cy`. Smoothed with EWMA (`ewma_alpha: 0.8`). Deadband (10px) and lazy band (30px) prevent hunting. Step capped at `pan_max_delta_deg: 2` / `tilt_max_delta_deg: 2` per frame. Confirmed working in `ibvs_test` and `manual_ibvs` modes. Steer feed-forward from pan angle implemented (`pan_steer_ff_gain`, currently 0.0).
+
+**ibvs_anchor_mode world frame** — first tag0 detection seeds `T_world_anchor = T_world_camera_0 @ T_camera_tag0`. Every subsequent frame: `T_world_camera = T_world_anchor @ inv(T_camera_tag0)`. FK chain (`pan_z_m`, `tilt_z_m`, `cam_z_m`) derives `car_base` pose from camera pose. Publishes `world → car_base` TF live, enabling the full URDF to track in RViz.
+
+**EWMA smoothing on TF** — `ibvs_pos_smooth_alpha` (default 0.3) applied to published `car_base` position. Separate from the pair-path alpha. Configurable at runtime via `ros2 param set /tf_bridge ibvs_pos_smooth_alpha <value>`.
+
+**RViz visualization** — robot model renders with correct URDF (pan/tilt joints, chassis, wheels). Car trajectory (`/trajectory/car`) and tag0 trajectory (`/trajectory/tag0`) publish as LINE_STRIP MarkerArrays per cycle. World origin sphere published on `ibvs_anchor_mode` init with Transient Local QoS so late-subscribing RViz sees it.
+
+**Joint state timer** — 10 Hz timer in tf_bridge publishes zero joint states from node startup, so `robot_state_publisher` can resolve the full TF chain before Pi connects.
+
+**Tag0 loss + scan re-acquisition** — `_handle_tag0_lost` holds for `tag0_search_hold_s` then runs raster scan. On reacquisition, IBVS resumes immediately.
+
+**Frame saving** — configurable via `save_frames: false` in `config.yaml`. Defaults off; disk was being hammered during IBVS testing.
+
+**Trajectory visualizer** — `trajviz.py` at repo root: reads PLY files output by tf_bridge, produces interactive Plotly HTML (`trajviz_out.html`) with red→yellow→green gradient, cubic spline overlay (k=3), and two sliders (spline order k=2..10, smoothing s=none..heavy). Best session: `car_cycle_0_003542.ply` — 454 points over ~73 seconds of hand-carried movement.
+
+---
+
+### Bugs Found and Fixed
+
+**Bug 1 — TF never broadcast in ibvs_test/manual_ibvs**
+`tf_pub.on_frame()` was only called inside `_do_chasing()`, which is only reached from the `rat_chase`/`world_ibvs` path. The `ibvs_test`/`manual_ibvs` branch exits with `return` before `_do_chasing` is invoked. Pi was detecting tag0 correctly but zero `tag_detections` messages reached tf_bridge. Fix: added `tf_pub.on_frame()` call directly in the ibvs_test/manual_ibvs block before the `return`.
+
+**Bug 2 — Z filter blocking all ibvs_anchor frames (two rounds)**
+Round 1: original filter checked `car_base_pos[2] < camera_height − tol` (≈ 0.055m). Car base is on the floor at Z≈0; this condition always fired. Fix: changed to check `cam_z = T_world_camera[2,3]` (camera height in world). Round 2: `camera_height=0.075m`, `tol=0.020m`, threshold=0.055m. Valid cam_z readings clustered 0.000–0.054m — just below threshold. Every valid frame still rejected. User physically lifts the car during testing so Z filtering is inappropriate. Fix: made configurable via `ibvs_z_filter` ROS2 param (default false). Threshold changed to `-camera_height_tol` so only gross PnP flips (cam_z < −0.020m) are rejected when enabled.
+
+**Bug 3 — Velocity gate blocking all hand-carried movement**
+`max_position_jump_m = 0.10m` (10cm) is designed for the pair-based path where the car drives autonomously. When physically carrying the car, every step exceeds 10cm. Result: `flip_skips=62` in an 11-second cycle, only 2 trajectory points recorded. `_pos_smooth` never updated → `world → car_base` TF stale → PiCar display red, TF Warn in RViz. Fix: added `ibvs_max_jump_m` param (default 1.0m) used exclusively in the ibvs_anchor path.
+
+**Bug 4 — World Origin display always red in RViz**
+`/marker/world` publisher used default Volatile QoS. Published once on ibvs_anchor init; RViz missed it if subscribed later. Fix: publisher changed to Transient Local (`QoSProfile(depth=1, durability=TRANSIENT_LOCAL, reliability=RELIABLE)`). RViz subscriber durability updated to match in `rviz/picar_trajectory.rviz`.
+
+**Bug 5 — URDF wheels rendering as vertical posts**
+Wheel visual `rpy="1.5708 0 0"` rotates the cylinder axis to +Y (down in camera convention) = vertical in world. Wheels appeared as upright cylinders. Fix: changed to `rpy="0 1.5708 0"` for all four wheels, rotating cylinder axis to +X (lateral), giving sideways discs.
+
+**Bug 6 — joint_states never published before Pi connects**
+`_publish_joint_states` was only called inside `_process_frame`, which requires WebSocket data. `robot_state_publisher` had no TF for pan_link/tilt_link until first frame arrived. Fix: added 10 Hz timer (`_js_timer_cb`) that publishes zero joint states immediately on node init.
+
+---
+
+### Current Parameter Defaults
+
+| Parameter | Default | Notes |
+|---|---|---|
+| `ibvs_anchor_mode` | `true` | set in `launch_tf_bridge.sh` |
+| `ibvs_z_filter` | `false` | enable only when car stays on floor |
+| `ibvs_pos_smooth_alpha` | `0.3` | EWMA on published car_base position |
+| `ibvs_max_jump_m` | `1.0` | velocity gate for ibvs_anchor path |
+| `pan_max_delta_deg` | `2` | max pan step per frame |
+| `tilt_max_delta_deg` | `2` | max tilt step per frame |
+| `kp_pan` / `kp_tilt` | `0.05` | IBVS proportional gains |
+| `ewma_alpha` | `0.8` | pixel error smoothing |
+| `deadband_px` | `10` | no correction within this radius |
+| `save_frames` | `false` | JPEG buffer to disk |
+| `car_centering_speed` | `20` | PWM for rat_chase forward drive |
+| `stop_distance_cm` | `20` | rat_chase stop threshold |
+
+---
+
+### rat_chase Status
+
+Logic fully implemented. IBVS (pan/tilt) and tag0 detection confirmed working. Car centering (`_run_car_centering`: pan angle → steering + `px.forward(car_centering_speed)`) and PID fallback are coded but **not yet tested** — ibvs_test and manual_ibvs both return before `_do_chasing` is reached. First supervised run recommended: clear floor, car pointing at tag from ~1m, stop at kill switch.
+
+---
+
+### Session Log
+
+| Date | Mode | Notes |
+|---|---|---|
+| 2026-06-27 | ibvs_test | First IBVS runs. TF broadcast bug discovered — zero messages from Pi despite tag detection. |
+| 2026-06-27 | ibvs_test | Z filter bug (round 1 + round 2) — all frames rejected. Made configurable, defaulted off. |
+| 2026-06-27 | ibvs_test | After Z fix: world frame generating, car appears in RViz. Velocity gate bug discovered (flip_skips=62, 2 pts/cycle). |
+| 2026-06-27 | ibvs_test | After velocity gate fix (`ibvs_max_jump_m=1.0m`): first clean tracking session. |
+| 2026-06-28 | ibvs_test | `car_cycle_0_003542.ply` — 454 points, 73s, hand-carried. Best trajectory to date. Visualized with trajviz.py. |
+
+---
+
 # Tag Chaser v2 — World TF: Debrief
 
 ## Status
