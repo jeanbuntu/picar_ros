@@ -140,7 +140,7 @@
   <!-- Front left wheel -->
   <link name="front_left_wheel">
     <visual>
-      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
       <geometry>
         <cylinder length="0.03" radius="0.033"/>
       </geometry>
@@ -156,7 +156,7 @@
   <!-- Front right wheel -->
   <link name="front_right_wheel">
     <visual>
-      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
       <geometry>
         <cylinder length="0.03" radius="0.033"/>
       </geometry>
@@ -172,7 +172,7 @@
   <!-- Rear left wheel -->
   <link name="rear_left_wheel">
     <visual>
-      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
       <geometry>
         <cylinder length="0.03" radius="0.033"/>
       </geometry>
@@ -188,7 +188,7 @@
   <!-- Rear right wheel -->
   <link name="rear_right_wheel">
     <visual>
-      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
       <geometry>
         <cylinder length="0.03" radius="0.033"/>
       </geometry>

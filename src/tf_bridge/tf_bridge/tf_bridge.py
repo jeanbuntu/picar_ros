@@ -33,6 +33,7 @@ import rclpy
 from geometry_msgs.msg import Point, TransformStamped
 from rclpy.executors import MultiThreadedExecutor
 from rclpy.node import Node
+from rclpy.qos import QoSProfile, DurabilityPolicy, ReliabilityPolicy
 from scipy.spatial.transform import Rotation
 from std_msgs.msg import ColorRGBA
 from std_srvs.srv import Empty
@@ -81,6 +82,10 @@ class TfBridgeNode(Node):
         self.declare_parameter('pan_z_m',  0.060)   # height of pan servo above car_base (-Y)
         self.declare_parameter('tilt_z_m', 0.020)   # height of tilt servo above pan_link (-Y)
         self.declare_parameter('cam_z_m',  0.015)   # height of camera above tilt_link (-Y)
+        self.declare_parameter('ibvs_anchor_mode',       False)  # use tag0 as world anchor (IBVS-only tracking)
+        self.declare_parameter('ibvs_z_filter',          False)  # enable cam-Z PnP-flip filter in ibvs_anchor path
+        self.declare_parameter('ibvs_pos_smooth_alpha',  0.3)  # EWMA alpha for car_base position in ibvs_anchor path
+        self.declare_parameter('ibvs_max_jump_m',        1.0)    # velocity gate for ibvs_anchor path (large: car may be hand-carried)
 
         self._ws_url           = self.get_parameter('pi_ws_url').value
         self._conf_threshold   = self.get_parameter('confidence_threshold').value
@@ -93,9 +98,13 @@ class TfBridgeNode(Node):
         self._world_near_zero  = self.get_parameter('world_near_zero_tol_m').value
         self._max_jump_m       = self.get_parameter('max_position_jump_m').value
         self._pos_smooth_alpha = self.get_parameter('position_smooth_alpha').value
-        self._pan_z_m          = self.get_parameter('pan_z_m').value
-        self._tilt_z_m         = self.get_parameter('tilt_z_m').value
-        self._cam_z_m          = self.get_parameter('cam_z_m').value
+        self._pan_z_m           = self.get_parameter('pan_z_m').value
+        self._tilt_z_m          = self.get_parameter('tilt_z_m').value
+        self._cam_z_m           = self.get_parameter('cam_z_m').value
+        self._ibvs_anchor_mode       = self.get_parameter('ibvs_anchor_mode').value
+        self._ibvs_z_filter          = self.get_parameter('ibvs_z_filter').value
+        self._ibvs_pos_smooth_alpha  = self.get_parameter('ibvs_pos_smooth_alpha').value
+        self._ibvs_max_jump_m        = self.get_parameter('ibvs_max_jump_m').value
 
         self._tf_broadcaster        = TransformBroadcaster(self)
         self._static_tf_broadcaster = StaticTransformBroadcaster(self)
@@ -105,7 +114,9 @@ class TfBridgeNode(Node):
         self._tag2_raw_pub   = self.create_publisher(MarkerArray, '/trajectory/tag2_raw',      10)
         self._tag3_raw_pub   = self.create_publisher(MarkerArray, '/trajectory/tag3_raw',      10)
         self._pair_filt_pub  = self.create_publisher(MarkerArray, '/trajectory/pair_filtered', 10)
-        self._world_pub      = self.create_publisher(Marker,      '/marker/world',             1)
+        _latched_qos = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL,
+                                  reliability=ReliabilityPolicy.RELIABLE)
+        self._world_pub      = self.create_publisher(Marker, '/marker/world', _latched_qos)
         self._js_pub         = self.create_publisher(JointState,  '/joint_states',             10)
 
         self.create_service(Empty, '/reset_markers', self._reset_markers_cb)
@@ -155,6 +166,12 @@ class TfBridgeNode(Node):
         self._z_skip_count:    int = 0
 
         self._first_detection = True
+
+        # Last known joint angles — published at startup so robot_state_publisher
+        # has transforms before the Pi connects and sends tag data.
+        self._last_pan_deg  = 0.0
+        self._last_tilt_deg = 0.0
+        self.create_timer(0.1, self._js_timer_cb)   # 10 Hz heartbeat
 
         self._pylog.info("tf_bridge started | session=%s", self._session_dir)
         self._pylog.info("camera_height=%.3fm±%.3fm  world_tags=[%d,%d]  x_offset=%.3fm  offset_tol=%.3fm  nz_tol=%.3fm",
@@ -218,9 +235,11 @@ class TfBridgeNode(Node):
         if cycle != self._current_cycle:
             self._on_cycle_start(cycle)
 
-        # When pair is not valid: still record raw individual tag positions
-        # using the last known camera TF, then bail out.
+        # When pair is not valid: try ibvs_anchor_mode (tag0-based), otherwise hold last TF.
         if not pair_valid:
+            if self._ibvs_anchor_mode and tag0 is not None:
+                self._process_ibvs_anchor_frame(tag0, cycle, ts, pan_angle_deg, tilt_angle_deg)
+                return
             if not self._waiting_logged:
                 self._pylog.info("waiting_for_valid_pair: world not yet initialized or pair failed")
                 self._waiting_logged = True
@@ -347,6 +366,82 @@ class TfBridgeNode(Node):
         self._append_world_record(ts, cycle, self._pos_smooth.tolist(),
                                   tag0_world_pos.tolist() if tag0_world_pos is not None else None,
                                   pos_a.tolist(), pos_b.tolist())
+
+    def _process_ibvs_anchor_frame(self, tag0: dict, cycle: int, ts: float,
+                                    pan_deg: float, tilt_deg: float):
+        """Track camera position using tag0 as world anchor (IBVS-only mode).
+
+        On first call: establishes world frame with camera at floor level and
+        tag0 as the fixed anchor. Subsequent calls compute T_world_camera from
+        tag0's current pose, tracking car movement relative to session start.
+        """
+        t0 = np.array(tag0['pose_t'], dtype=np.float64).reshape(3)
+        R0 = np.array(tag0['pose_R'], dtype=np.float64)
+        T_camera_tag0 = self._build_4x4(R0, t0)
+
+        if not self._world_initialized:
+            R_CW = np.array([[1, 0, 0], [0, 0, 1], [0, -1, 0]], dtype=np.float64)
+            T_world_camera_0 = self._build_4x4(R_CW, np.array([0.0, 0.0, self._camera_height]))
+            self._T_world_anchor = T_world_camera_0 @ T_camera_tag0
+            self._world_initialized = True
+            self._pos_smooth = None
+            anchor_pos  = self._T_world_anchor[:3, 3]
+            anchor_quat = Rotation.from_matrix(self._T_world_anchor[:3, :3]).as_quat()
+            self._publish_static_tf('world', 'world_anchor', anchor_pos, anchor_quat)
+            self._pylog.info(
+                "ibvs_world_init tag0-anchor camera_height=%.3fm anchor=[%.3f, %.3f, %.3f]",
+                self._camera_height, *anchor_pos)
+
+        T_world_camera = self._T_world_anchor @ np.linalg.inv(T_camera_tag0)
+
+        if np.linalg.det(T_world_camera[:3, :3]) <= 0:
+            self._pylog.warning("ibvs_anchor: degenerate rotation skipped")
+            return
+
+        self._T_world_camera_last = T_world_camera
+
+        T_car_base_camera = self._fk_car_base_to_camera(math.radians(pan_deg), math.radians(tilt_deg))
+        T_world_car_base  = T_world_camera @ np.linalg.inv(T_car_base_camera)
+        car_base_pos  = T_world_car_base[:3, 3]
+        car_base_quat = Rotation.from_matrix(T_world_car_base[:3, :3]).as_quat()
+
+        if self._ibvs_z_filter:
+            cam_z = T_world_camera[2, 3]
+            if cam_z < -self._camera_height_tol:
+                self._z_skip_count += 1
+                self._pylog.debug("ibvs_anchor z_skip cam_z=%.3f threshold=%.3f",
+                                  cam_z, -self._camera_height_tol)
+                self._publish_marker_arrays()
+                return
+
+        # Velocity gate — use ibvs_max_jump_m (default 1.0m) since car may be hand-carried
+        if self._pos_smooth is not None:
+            if np.linalg.norm(car_base_pos - self._pos_smooth) > self._ibvs_max_jump_m:
+                self._flip_skip_count += 1
+                self._publish_marker_arrays()
+                return
+
+        if self._pos_smooth is None:
+            self._pos_smooth = car_base_pos.copy()
+        else:
+            a = self._ibvs_pos_smooth_alpha
+            self._pos_smooth = a * car_base_pos + (1.0 - a) * self._pos_smooth
+
+        self._publish_tf('world', 'car_base', self._pos_smooth, car_base_quat)
+
+        T_world_tag0 = T_world_camera @ T_camera_tag0
+        tag0_pos  = T_world_tag0[:3, 3]
+        tag0_quat = Rotation.from_matrix(T_world_tag0[:3, :3]).as_quat()
+        self._publish_tf('world', 'tag0', tag0_pos, tag0_quat)
+
+        if not self._world_marker_published:
+            self._publish_world_marker()
+            self._world_marker_published = True
+            self._pylog.info("world_origin_published cycle=%d", cycle)
+
+        self._append_point(self._car_markers,  cycle, self._pos_smooth)
+        self._append_point(self._tag0_markers, cycle, tag0_pos)
+        self._publish_marker_arrays()
 
     def _record_raw_tags(self, tag_a, tag_b, cycle: int):
         """Append raw world-frame positions for individually detected tags using
@@ -582,7 +677,12 @@ class TfBridgeNode(Node):
         T_tilt_rot = self._build_4x4(R_tilt, [0.0, -self._cam_z_m, 0.0])
         return T_to_pan @ T_pan_rot @ T_tilt_rot
 
+    def _js_timer_cb(self):
+        self._publish_joint_states(self._last_pan_deg, self._last_tilt_deg)
+
     def _publish_joint_states(self, pan_deg: float, tilt_deg: float):
+        self._last_pan_deg  = pan_deg
+        self._last_tilt_deg = tilt_deg
         js = JointState()
         js.header.stamp = self.get_clock().now().to_msg()
         js.name     = ['pan_joint', 'tilt_joint']

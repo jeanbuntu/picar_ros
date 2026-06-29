@@ -46,7 +46,8 @@ class TfPublisher:
                  bcast_due: bool, pair_valid: bool = False,
                  pan_angle_deg: float = 0.0, tilt_angle_deg: float = 0.0,
                  tag0_pixel_uv=None, ibvs_active: bool = False,
-                 scan_active: bool = False, car_centering_active: bool = False) -> None:
+                 scan_active: bool = False, car_centering_active: bool = False,
+                 chase_mode: str = 'unknown') -> None:
         """
         detected_tags: list of pupil_apriltags Detection objects (already confidence-filtered).
         pair_valid: True when both world tags satisfy the geometric consistency check.
@@ -75,6 +76,7 @@ class TfPublisher:
             record = {
                 'ts': round(ts, 6),
                 'pair_valid': pair_valid,
+                'chase_mode': chase_mode,
                 'pan_angle_deg': round(pan_angle_deg, 2),
                 'tilt_angle_deg': round(tilt_angle_deg, 2),
                 'tag0_pixel_uv': tag0_pixel_uv,
@@ -95,6 +97,7 @@ class TfPublisher:
                 'ts': round(ts, 6),
                 'cycle': cycle,
                 'pair_valid': pair_valid,
+                'chase_mode': chase_mode,
                 'pan_angle_deg': round(pan_angle_deg, 2),
                 'tilt_angle_deg': round(tilt_angle_deg, 2),
                 'tags': tag_records,

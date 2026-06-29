@@ -133,8 +133,9 @@ class TagChaser:
         self._ibvs_alpha        = float(ibvs_cfg.get('ewma_alpha', 0.3))
         self._ibvs_deadband     = float(ibvs_cfg.get('deadband_px', 10))
         self._ibvs_lazyband     = float(ibvs_cfg.get('lazyband_outer_px', 0.0))
-        self._ibvs_lost_timeout = float(ibvs_cfg.get('tag_lost_timeout_s', 1.0))
-        self._ibvs_only         = bool(ibvs_cfg.get('ibvs_only', False))
+        self._ibvs_lost_timeout   = float(ibvs_cfg.get('tag_lost_timeout_s', 1.0))
+        self._tag0_search_hold_s  = float(ibvs_cfg.get('tag0_search_hold_s', 0.5))
+        self._ibvs_only           = bool(ibvs_cfg.get('ibvs_only', False))
         self._ibvs_tilt_invert  = bool(ibvs_cfg.get('tilt_invert', False))
         self._ibvs_log_every    = int(ibvs_cfg.get('log_every_n_frames', 5))
         self._ibvs_log_count    = 0
@@ -152,6 +153,7 @@ class TagChaser:
         self._ibvs_csv_w           = None
         self._ibvs_rec_frame_count = 0
         self._ibvs_rec_t0          = None
+        self._ibvs_save_frames     = bool(ibvs_cfg.get('save_frames', True))
         self._ibvs_save_every      = 2     # save 1 JPEG per 2 frames (~15 Hz at 30fps)
         self._ibvs_frame_cap       = 2000  # rolling buffer — delete oldest past this
         self._ibvs_saved_files     = []    # ordered list of saved JPEG paths
@@ -434,8 +436,8 @@ class TagChaser:
                 csv_state = _raw_state
 
             self._ibvs_rec_frame_count += 1
-            # Save JPEG (throttled, rolling buffer)
-            if self._ibvs_rec_dir and self._ibvs_rec_frame_count % self._ibvs_save_every == 0:
+            # Save JPEG (throttled, rolling buffer) — skipped when save_frames: false
+            if self._ibvs_save_frames and self._ibvs_rec_dir and self._ibvs_rec_frame_count % self._ibvs_save_every == 0:
                 fname = f"frame_{self._ibvs_rec_frame_count:06d}.jpg"
                 fpath = os.path.join(self._ibvs_rec_dir, fname)
                 ok, buf = cv2.imencode('.jpg', frame)
@@ -504,6 +506,20 @@ class TagChaser:
                         'tag_conf':     tag_conf_val,
                         'lost_t':       lost_t_val,
                     })
+            bcast_due = (t_now - self._last_broadcast_t) >= 0.1
+            detected_for_tf = [t for t in [tag0, tag_a, tag_b] if t is not None]
+            tag0_uv = tag0.center.tolist() if tag0 is not None else None
+            self._tf_pub.on_frame(
+                t_now, self._cycle, detected_for_tf, bcast_due,
+                pair_valid=False,
+                pan_angle_deg=self._pan_angle,
+                tilt_angle_deg=self._tilt_angle,
+                tag0_pixel_uv=tag0_uv,
+                ibvs_active=self._ibvs_active,
+                scan_active=self._scan_active,
+                car_centering_active=False,
+                chase_mode=self._chase_mode,
+            )
             self._broadcast_ibvs_status(t_now)
             return
 
@@ -584,20 +600,20 @@ class TagChaser:
         log_due   = (t_now - self._last_log_t)       >= _LOG_INTERVAL
         bcast_due = (t_now - self._last_broadcast_t) >= 0.1
 
-        # Publish TF data (world_ibvs only)
-        if self._chase_mode == 'world_ibvs':
-            detected_for_tf = [t for t in [tag0, tag_a, tag_b] if t is not None]
-            tag0_uv = tag0.center.tolist() if tag0 is not None else None
-            self._tf_pub.on_frame(
-                t_now, self._cycle, detected_for_tf, bcast_due,
-                pair_valid=pair_valid,
-                pan_angle_deg=self._pan_angle,
-                tilt_angle_deg=self._tilt_angle,
-                tag0_pixel_uv=tag0_uv,
-                ibvs_active=self._ibvs_active,
-                scan_active=self._scan_active,
-                car_centering_active=self._centering_active,
-            )
+        # Publish TF data for all active modes (ibvs_test/manual_ibvs send only tag0)
+        detected_for_tf = [t for t in [tag0, tag_a, tag_b] if t is not None]
+        tag0_uv = tag0.center.tolist() if tag0 is not None else None
+        self._tf_pub.on_frame(
+            t_now, self._cycle, detected_for_tf, bcast_due,
+            pair_valid=pair_valid,
+            pan_angle_deg=self._pan_angle,
+            tilt_angle_deg=self._tilt_angle,
+            tag0_pixel_uv=tag0_uv,
+            ibvs_active=self._ibvs_active,
+            scan_active=self._scan_active,
+            car_centering_active=self._centering_active,
+            chase_mode=self._chase_mode,
+        )
 
         # Car centering — decimated, replaces PID when IBVS is active
         self._cc_frame_count += 1
@@ -935,13 +951,17 @@ class TagChaser:
         self._ibvs_active  = False
 
     def _handle_tag0_lost(self, t_now: float):
-        """Hold servos when tag is not visible; reset to neutral after timeout."""
+        """Hold briefly, then raster-scan to reacquire tag0; hard reset after full timeout."""
         if self._tag0_lost_t is None:
             self._tag0_lost_t = t_now
             _marker_logger.debug("ibvs tag_lost timer start pan=%.1f tilt=%.1f",
                                  self._pan_angle, self._tilt_angle)
-        elif t_now - self._tag0_lost_t > self._ibvs_lost_timeout:
-            elapsed = t_now - self._tag0_lost_t
+            self._scan_active = False
+            return
+
+        elapsed = t_now - self._tag0_lost_t
+
+        if elapsed > self._ibvs_lost_timeout:
             _marker_logger.info("ibvs servo_reset pan→0 tilt→0 lost=%.1fs", elapsed)
             try:
                 self.px.set_cam_pan_angle(0)
@@ -953,7 +973,18 @@ class TagChaser:
             self._eu_smooth   = 0.0
             self._ev_smooth   = 0.0
             self._ibvs_active = False
-            self._tag0_lost_t = None  # prevent re-firing every frame until tag reappears
+            self._tag0_lost_t = None
+            self._scan_active = False
+            return
+
+        if elapsed > self._tag0_search_hold_s:
+            # Brief hold expired — start raster scan to find tag0
+            if not self._scan_active:
+                _marker_logger.info("ibvs tag0_scan start lost=%.2fs", elapsed)
+            self._run_world_scan()
+            return
+
+        # Still in initial hold window
         self._scan_active = False
 
     def _run_car_centering(self):
