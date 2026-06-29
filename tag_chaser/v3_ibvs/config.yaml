@@ -1,0 +1,71 @@
+pid:
+  kp: 15.0
+  ki: 0.5
+  kd: 2.0
+
+detector:
+  nthreads: 2
+  quad_decimate: 1.0
+  quad_sigma: 0.0
+  refine_edges: 1
+  decode_sharpening: 0.25
+
+chase:
+  stop_distance_cm: 20.0
+  steer_limit_deg: 20
+  tag_lost_timeout_s: 2.0
+  tag_id_chase: 0
+  tag_id_world_a: 2
+  tag_id_world_b: 3
+  world_offset_m: 0.065
+  world_offset_tol_m: 0.020
+  world_near_zero_tol_m: 0.025
+  countdown_s: 3
+  world_search_timeout_s: 15
+  confidence_threshold: 20.0
+  single_tag_world_mode: true   # true = world_a (tag 2) only; skips world_b and pair validation
+
+camera:
+  width: 640
+  height: 480
+  tag_size_m: 0.2
+  calibration_file: "../../camera_cal_marker/camera_calibration_pi.yaml"
+
+ibvs:
+  kp_pan: 0.05              # deg/px; tune up until oscillation then halve
+  kp_tilt: 0.05             # deg/px
+  ewma_alpha: 0.8     # smoothing; higher = more responsive, more noisy
+  deadband_px: 10           # pixel radius around center where no correction applied
+  lazyband_outer_px: 30    # outer edge of soft zone; kp scales 0→full from deadband→this radius (0 = disabled)
+  tag_lost_timeout_s: 5.0   # seconds before servos return to neutral after tag0 lost
+  tag0_search_hold_s: 0.5  # hold position this long before starting raster search
+  ibvs_only: false          # true = run IBVS but skip car centering (Layer 1 tuning)
+  tilt_invert: false         # set_cam_tilt_angle(+X) = looks UP on this hardware (confirmed by log analysis)
+  log_every_n_frames: 2     # IBVS debug log at ~6Hz (30fps / 5)
+  save_frames: false         # set true to save rolling JPEG buffer to session dir (disk-heavy)
+  pan_steer_ff_gain:   0.0  # deg pan / deg steer; 0 = disabled. Start at 0, tune to 0.3–0.6
+  steer_ff_ewma_alpha: 0.4  # EWMA smoothing for binary steer; lower = slower ramp/decay
+  ff_inhibit_px:      15.0  # eu below this px → ff disabled (stuck-car / straight-line protection)
+  ff_ramp_px:         20.0  # eu range over which ff scales 0→full above inhibit threshold
+
+world_scan:
+  scan_speed_deg_per_frame: 3.0   # degrees moved per camera frame
+  pan_range_deg: 60.0             # pan sweeps ±60 degrees
+  tilt_levels_deg: [-10, 0, 10]   # tilt positions for raster rows
+
+car_centering:
+  kp_car: 0.5                      # steer_deg / pan_deg
+  pan_deadband_deg: 8.0            # pan within this range → no steering
+  car_centering_speed: 50         # PWM forward speed (0-100)
+  tilt_elevation_threshold_deg: 30 # above this tilt, stop driving forward
+  decimation_n: 3                  # run car centering every Nth camera frame
+
+servo_limits:
+  pan_min_deg:       -90
+  pan_max_deg:        90
+  tilt_min_deg:      -35
+  tilt_max_deg:       35
+  steer_min_deg:     -20
+  steer_max_deg:      20
+  pan_max_delta_deg:   5 # max pan change per frame; caps IBVS step regardless of error
+  tilt_max_delta_deg:  5 # max tilt change per frame

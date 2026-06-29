@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<!--
+  picar_tracking.urdf  (V3)
+  URDF for live RViz visualization.  Root frame is 'car_base', published by
+  tf_bridge as 'world -> car_base'.  Pan and tilt are revolute joints; their
+  positions come from /joint_states published by tf_bridge each frame.
+
+  Coordinate convention (all frames, including car_base):
+    +X = image right
+    +Y = image down  (OpenCV / pupil-apriltags camera convention)
+    +Z = optical axis (forward, toward tags)
+
+  Physical kinematic chain (parent -> child):
+    car_base (chassis level)
+      -> pan_joint  (revolute, Y-axis, yaw / pan)    height ~6 cm above chassis
+      -> tilt_joint (revolute, X-axis, pitch / tilt)  height ~2 cm above pan
+      -> camera     (fixed, camera optical frame)      height ~1.5 cm above tilt
+
+  Joint offsets are approximate.  Each is marked with TUNE and should be
+  verified against physical measurements and/or compared with RViz after a
+  live-pan test (car_base world position should remain stable as servos move).
+-->
+<robot name="picar_tracking">
+
+  <material name="picar_white">
+    <color rgba="0.9 0.9 0.9 1.0"/>
+  </material>
+  <material name="picar_black">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+  <material name="picar_gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+  <material name="picar_blue">
+    <color rgba="0.2 0.4 0.85 0.85"/>
+  </material>
+
+  <!-- ROOT: car body frame — published by tf_bridge as 'world -> car_base'. -->
+  <!-- No visual here; chassis box is a separate child link.                 -->
+  <link name="car_base"/>
+
+  <!-- Pan servo link — visualised as a small horizontal cylinder -->
+  <link name="pan_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder length="0.05" radius="0.008"/>
+      </geometry>
+      <material name="picar_gray"/>
+    </visual>
+  </link>
+  <!--
+    TUNE: pan servo is approximately 6 cm above car_base (-Y = up in camera
+    convention).  Adjust xyz y-value after visual inspection in RViz.
+  -->
+  <joint name="pan_joint" type="revolute">
+    <parent link="car_base"/>
+    <child link="pan_link"/>
+    <origin xyz="0.0 -0.060 0.0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-1.5708" upper="1.5708" effort="1.0" velocity="1.0"/>
+  </joint>
+
+  <!-- Tilt servo link — visualised as a small vertical cylinder -->
+  <link name="tilt_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.03" radius="0.008"/>
+      </geometry>
+      <material name="picar_gray"/>
+    </visual>
+  </link>
+  <!-- TUNE: tilt servo is approximately 2 cm above pan_link. -->
+  <joint name="tilt_joint" type="revolute">
+    <parent link="pan_link"/>
+    <child link="tilt_link"/>
+    <origin xyz="0.0 -0.020 0.0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-0.6109" upper="0.6109" effort="1.0" velocity="1.0"/>
+  </joint>
+
+  <!-- Camera optical frame — matches tf_bridge 'camera' TF convention.      -->
+  <!-- Small blue box at the camera lens position.                            -->
+  <link name="camera">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.025 0.025 0.02"/>
+      </geometry>
+      <material name="picar_blue"/>
+    </visual>
+  </link>
+  <!-- TUNE: camera lens is approximately 1.5 cm above tilt_link. -->
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="tilt_link"/>
+    <child link="camera"/>
+    <origin xyz="0.0 -0.015 0.0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Camera pan/tilt mount column — purely visual, child of camera. -->
+  <link name="camera_mount">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.07 0.03"/>
+      </geometry>
+      <material name="picar_gray"/>
+    </visual>
+  </link>
+  <joint name="camera_to_mount" type="fixed">
+    <parent link="camera"/>
+    <child link="camera_mount"/>
+    <!-- column is below (+Y=down) and slightly behind (-Z) the camera lens -->
+    <origin xyz="0.0 0.045 -0.01" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Car chassis — 14 cm wide, 4 cm tall, 20 cm long (camera convention). -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.14 0.04 0.20"/>
+      </geometry>
+      <material name="picar_white"/>
+    </visual>
+  </link>
+  <!--
+    TUNE: chassis centre is 5 cm behind car_base along the optical axis (-Z
+    offset).  The Y offset keeps chassis box at approximately car_base height
+    (no vertical offset since car_base is defined at chassis-top level).
+    Adjust after visual inspection in RViz.
+  -->
+  <joint name="car_base_to_chassis" type="fixed">
+    <parent link="car_base"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 -0.05" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front left wheel -->
+  <link name="front_left_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder length="0.03" radius="0.033"/>
+      </geometry>
+      <material name="picar_black"/>
+    </visual>
+  </link>
+  <joint name="chassis_to_fl_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_left_wheel"/>
+    <origin xyz="-0.07 0.02 0.07" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Front right wheel -->
+  <link name="front_right_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder length="0.03" radius="0.033"/>
+      </geometry>
+      <material name="picar_black"/>
+    </visual>
+  </link>
+  <joint name="chassis_to_fr_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_right_wheel"/>
+    <origin xyz="0.07 0.02 0.07" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear left wheel -->
+  <link name="rear_left_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder length="0.03" radius="0.033"/>
+      </geometry>
+      <material name="picar_black"/>
+    </visual>
+  </link>
+  <joint name="chassis_to_rl_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_left_wheel"/>
+    <origin xyz="-0.07 0.02 -0.07" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rear right wheel -->
+  <link name="rear_right_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+      <geometry>
+        <cylinder length="0.03" radius="0.033"/>
+      </geometry>
+      <material name="picar_black"/>
+    </visual>
+  </link>
+  <joint name="chassis_to_rr_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_right_wheel"/>
+    <origin xyz="0.07 0.02 -0.07" rpy="0 0 0"/>
+  </joint>
+
+</robot>

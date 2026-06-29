@@ -27,6 +27,13 @@ let _battWarnShown = false;
 // Tag chase state
 let chaseActive = false;
 
+// Chase mode selector
+let selectedMode = 'rat_chase';
+let MODE_MAP = {};
+
+// Manual track state
+let trackActive = false;
+
 // Motor display state
 const motorState = { leftPct: 0, rightPct: 0, dir: 'stop' };
 
@@ -49,6 +56,12 @@ let tPhotoBtn, tDetectBtn, tModeBtn, tSessionBtn;
 
 // Chase DOM refs
 let chaseBtn, tChaseBtn, chaseStatusbar, chaseCanvas, chaseCtx;
+
+// Track DOM refs
+let trackBtn, tTrackBtn, trackStatusbar;
+
+// Debug capture DOM refs
+let dbgCaptureBtn, dbgSimulateBtn, dbgCanvas, dbgText;
 
 // Servo gauges
 let gaugeSteer = null, gaugePan = null, gaugeTilt = null;
@@ -91,6 +104,45 @@ function connect() {
             updateChaseStatus(msg);
         } else if (msg.type === 'chase_detection') {
             drawTagOverlay(msg);
+        } else if (msg.type === 'track_status') {
+            updateTrackStatus(msg);
+        } else if (msg.type === 'debug_capture_ok') {
+            if (!dbgCanvas) return;
+            dbgCanvas.style.display = 'block';
+            dbgCanvas.width  = msg.width;
+            dbgCanvas.height = msg.height;
+            const img = new Image();
+            img.onload = () => dbgCanvas.getContext('2d').drawImage(img, 0, 0);
+            img.src = 'data:image/jpeg;base64,' + msg.jpeg_b64;
+            if (dbgSimulateBtn) dbgSimulateBtn.disabled = false;
+            if (dbgText) {
+                dbgText.style.display = 'block';
+                dbgText.textContent = msg.filename ? `Saved: ${msg.filename}` : '';
+            }
+        } else if (msg.type === 'debug_result') {
+            if (!dbgCanvas) return;
+            dbgCanvas.style.display = 'block';
+            const img = new Image();
+            img.onload = () => {
+                dbgCanvas.width  = img.naturalWidth;
+                dbgCanvas.height = img.naturalHeight;
+                dbgCanvas.getContext('2d').drawImage(img, 0, 0);
+            };
+            img.src = 'data:image/jpeg;base64,' + msg.jpeg_b64;
+            const dets = (msg.detections || []).map(d =>
+                `  Tag${d.tag_id}  center=(${d.center})  margin=${d.decision_margin}  eu=${d.eu >= 0 ? '+' : ''}${d.eu}  ev=${d.ev >= 0 ? '+' : ''}${d.ev}  err=${d.err_px}px`
+            ).join('\n') || '  none';
+            const iv = msg.ibvs;
+            const ibvsStr = iv
+                ? `  eu=${iv.eu >= 0 ? '+' : ''}${iv.eu}  ev=${iv.ev >= 0 ? '+' : ''}${iv.ev}  eu_s=${iv.eu_s >= 0 ? '+' : ''}${iv.eu_s}  ev_s=${iv.ev_s >= 0 ? '+' : ''}${iv.ev_s}\n` +
+                  `  pan: ${iv.pan_start}° → ${iv.pan_cmd}°  (Δ${iv.delta_pan >= 0 ? '+' : ''}${iv.delta_pan})\n` +
+                  `  tilt: ${iv.tilt_start}° → ${iv.tilt_cmd}°  (Δ${iv.delta_tilt >= 0 ? '+' : ''}${iv.delta_tilt})\n` +
+                  `  ${iv.in_deadband ? '✓ IN DEADBAND (no move)' : '⚡ ACTIVE'}`
+                : '  tag0 not detected';
+            if (dbgText) {
+                dbgText.style.display = 'block';
+                dbgText.textContent = `Detections (${(msg.detections || []).length}):\n${dets}\n\nIBVS Simulation (tag0):\n${ibvsStr}`;
+            }
         }
     };
 
@@ -108,6 +160,53 @@ function connect() {
 function send(obj) {
     if (ws && ws.readyState === WebSocket.OPEN) {
         ws.send(JSON.stringify(obj));
+    }
+}
+
+// ── Command Servo panel ────────────────────────────────────────────────────
+
+const SERVO_LIMITS = {
+    pan:   { min: -90, max:  90 },
+    tilt:  { min: -35, max:  35 },
+    steer: { min: -20, max:  20 },
+};
+
+function sendServoCommand() {
+    const select     = document.getElementById('servo-cmd-select');
+    const angleInput = document.getElementById('servo-cmd-angle');
+    const statusEl   = document.getElementById('servo-cmd-status');
+    if (!select || !angleInput || !statusEl) return;
+
+    const servo  = select.value;                         // 'pan' | 'tilt' | 'steer'
+    const limits = SERVO_LIMITS[servo];
+    let   angle  = parseInt(angleInput.value, 10);
+    if (isNaN(angle)) angle = 0;
+    angle = Math.max(limits.min, Math.min(limits.max, angle));
+    angleInput.value = angle;
+
+    if (servo === 'steer') {
+        send({ cmd: 'steer', angle });
+        if (gaugeSteer) gaugeSteer.update(angle);
+    } else {
+        send({ cmd: 'gimbal', axis: servo, angle });
+        if (servo === 'pan'  && gaugePan)  gaugePan.update(angle);
+        if (servo === 'tilt' && gaugeTilt) gaugeTilt.update(angle);
+    }
+
+    const label = servo.charAt(0).toUpperCase() + servo.slice(1);
+    statusEl.textContent = `${label} → ${angle >= 0 ? '+' : ''}${angle}°`;
+}
+
+function updateServoCmdLimits() {
+    const select     = document.getElementById('servo-cmd-select');
+    const angleInput = document.getElementById('servo-cmd-angle');
+    if (!select || !angleInput) return;
+    const limits = SERVO_LIMITS[select.value];
+    angleInput.min = limits.min;
+    angleInput.max = limits.max;
+    let cur = parseInt(angleInput.value, 10);
+    if (!isNaN(cur)) {
+        angleInput.value = Math.max(limits.min, Math.min(limits.max, cur));
     }
 }
 
@@ -324,7 +423,7 @@ function toggleDetect() {
 
 function toggleChase() {
     const action = chaseActive ? 'stop' : 'start';
-    send({ cmd: 'tag_chase', action, speed: getSpeed() });
+    send({ cmd: 'tag_chase', action, speed: getSpeed(), mode: selectedMode });
 }
 
 function updateChaseStatus(msg) {
@@ -338,28 +437,136 @@ function updateChaseStatus(msg) {
     if (chaseBtn)   { chaseBtn.textContent = label;   chaseBtn.classList.toggle('btn-chase-active', on); }
     if (tChaseBtn)  { tChaseBtn.textContent = on ? 'Chase ON' : 'Chase';
                       tChaseBtn.classList.toggle('btn-chase-active', on); }
+    if (trackBtn)  trackBtn.disabled  = on;
+    if (tTrackBtn) tTrackBtn.disabled = on;
+
+    // Sync mode selector highlight
+    if (msg.chase_mode && MODE_MAP[msg.chase_mode]) {
+        selectedMode = msg.chase_mode;
+        Object.values(MODE_MAP).forEach(b => { if (b) b.classList.remove('active-mode'); });
+        MODE_MAP[msg.chase_mode].classList.add('active-mode');
+    }
 
     if (!chaseStatusbar) return;
     if (!on) {
         chaseStatusbar.classList.remove('chase-bar-visible');
         chaseStatusbar.textContent = '';
+        if (msg.state === 'world_not_found') {
+            showWorldNotFoundPopup();
+        }
         return;
     }
     chaseStatusbar.classList.add('chase-bar-visible');
     const state = msg.state || 'idle';
+    const worldLost = msg.world === 'world_lost';
     let text = '';
-    if (state === 'starting') {
-        text = `Starting… ${msg.countdown}`;
+    if (state === 'world_search') {
+        text = `Searching for world tag… ${msg.countdown != null ? msg.countdown : ''}s`;
+        chaseStatusbar.style.background = '';
+    } else if (state === 'starting') {
+        text = `World found — Starting ${msg.countdown}`;
+        chaseStatusbar.style.background = '';
     } else if (state === 'chasing') {
-        text = msg.distance_cm != null ? `Chasing — ${msg.distance_cm} cm` : 'Chasing';
+        if (worldLost) {
+            text = 'Chasing — world lost';
+            chaseStatusbar.style.background = '#92400e';
+        } else if (msg.world === 'n/a') {
+            text = msg.distance_cm != null ? `Rat Chase — ${msg.distance_cm} cm` : 'Rat Chase';
+            chaseStatusbar.style.background = '';
+        } else {
+            text = msg.distance_cm != null ? `Chasing — ${msg.distance_cm} cm` : 'Chasing';
+            chaseStatusbar.style.background = '';
+        }
     } else if (state === 'stopping') {
         text = msg.distance_cm != null ? `Stopping — ${msg.distance_cm} cm` : 'Stopping';
+        chaseStatusbar.style.background = '';
     } else if (state === 'searching') {
-        text = 'Searching…';
+        text = worldLost ? 'Searching… world lost' : 'Searching…';
+        chaseStatusbar.style.background = worldLost ? '#92400e' : '';
+    } else if (state === 'ibvs_lock') {
+        const modeLabel = { ibvs_test: 'IBVS Test', manual_ibvs: 'Manual+IBVS' }[msg.chase_mode] || 'IBVS';
+        text = modeLabel + (msg.ibvs_active ? ' — locked' : ' — searching');
+        chaseStatusbar.style.background = msg.ibvs_active ? '' : '#92400e';
     } else {
         text = state.charAt(0).toUpperCase() + state.slice(1);
+        chaseStatusbar.style.background = '';
     }
     chaseStatusbar.textContent = text;
+    if (msg.steer_angle != null && gaugeSteer) gaugeSteer.update(msg.steer_angle);
+    if (msg.pan_angle   != null && gaugePan)   gaugePan.update(msg.pan_angle);
+
+    // IBVS status badges
+    const ibvsEl  = document.getElementById('ibvs-badge');
+    const scanEl  = document.getElementById('scan-badge');
+    const ccEl    = document.getElementById('cc-badge');
+    if (ibvsEl) {
+        ibvsEl.textContent = msg.ibvs_active  ? 'IBVS ●' : 'IBVS ○';
+        ibvsEl.className   = 'signal-badge ' + (msg.ibvs_active  ? 'signal-ok' : 'signal-no');
+    }
+    if (scanEl) {
+        scanEl.textContent = msg.scan_active  ? 'SCAN ●' : 'SCAN ○';
+        scanEl.className   = 'signal-badge ' + (msg.scan_active  ? 'signal-warn' : 'signal-no');
+    }
+    if (ccEl) {
+        ccEl.textContent   = msg.car_centering_active ? 'CENTER ●' : 'CENTER ○';
+        ccEl.className     = 'signal-badge ' + (msg.car_centering_active ? 'signal-ok' : 'signal-no');
+    }
+}
+
+function showWorldNotFoundPopup() {
+    if (document.getElementById('world-popup')) return;
+    const overlay = document.createElement('div');
+    overlay.id = 'world-popup';
+    overlay.innerHTML =
+        '<div class="world-popup-box">' +
+        '<p>World tag not found after 15 seconds.<br>How would you like to proceed?</p>' +
+        '<div class="world-popup-btns">' +
+        '<button id="popup-v1">Switch to v1</button>' +
+        '<button id="popup-cancel">Cancel tag chase</button>' +
+        '</div></div>';
+    document.body.appendChild(overlay);
+    document.getElementById('popup-v1').onclick = () => {
+        send({ cmd: 'tag_chase', action: 'switch_to_v1', speed: getSpeed() });
+        overlay.remove();
+    };
+    document.getElementById('popup-cancel').onclick = () => {
+        send({ cmd: 'tag_chase', action: 'cancel' });
+        overlay.remove();
+    };
+}
+
+function toggleTrack() {
+    const action = trackActive ? 'stop' : 'start';
+    send({ cmd: 'manual_track', action });
+}
+
+function updateTrackStatus(msg) {
+    trackActive = msg.active;
+    const on = msg.active;
+    const label = on ? 'Manual Track ON' : 'Manual Track OFF';
+    if (trackBtn)  { trackBtn.textContent = label;  trackBtn.classList.toggle('btn-track-active', on); }
+    if (tTrackBtn) { tTrackBtn.textContent = on ? 'Track ON' : 'Track';
+                     tTrackBtn.classList.toggle('btn-track-active', on); }
+
+    // Grey out chase button while tracking and vice versa
+    if (chaseBtn)  chaseBtn.disabled  = on;
+    if (tChaseBtn) tChaseBtn.disabled = on;
+
+    if (!trackStatusbar) return;
+    if (!on) {
+        trackStatusbar.classList.remove('track-bar-visible');
+        trackStatusbar.textContent = '';
+        return;
+    }
+    trackStatusbar.classList.add('track-bar-visible');
+    const world = msg.world || 'searching';
+    if (world === 'acquired') {
+        trackStatusbar.textContent = `Manual Track — world acquired${msg.cycle != null ? ' · cycle ' + msg.cycle : ''}`;
+        trackStatusbar.style.background = '';
+    } else {
+        trackStatusbar.textContent = 'Manual Track — searching for world tag…';
+        trackStatusbar.style.background = '#155e75';
+    }
 }
 
 function drawTagOverlay(msg) {
@@ -750,6 +957,15 @@ window.addEventListener('DOMContentLoaded', () => {
     chaseCanvas    = document.getElementById('chase-overlay');
     chaseCtx       = chaseCanvas ? chaseCanvas.getContext('2d') : null;
 
+    trackBtn       = document.getElementById('track-btn');
+    tTrackBtn      = document.getElementById('t-track-btn');
+    trackStatusbar = document.getElementById('track-statusbar');
+
+    dbgCaptureBtn  = document.getElementById('dbg-capture-btn');
+    dbgSimulateBtn = document.getElementById('dbg-simulate-btn');
+    dbgCanvas      = document.getElementById('debug-canvas');
+    dbgText        = document.getElementById('debug-text');
+
     document.getElementById('cam-feed').src = VIDEO_SRC;
 
     speedSlider.addEventListener('input', () => {
@@ -765,12 +981,33 @@ window.addEventListener('DOMContentLoaded', () => {
         if (tSessionBtn) tSessionBtn.disabled = true;
     });
 
+    // Chase mode selector
+    MODE_MAP = {
+        'rat_chase':   document.getElementById('mode-rat-btn'),
+        'ibvs_test':   document.getElementById('mode-ibvs-btn'),
+        'manual_ibvs': document.getElementById('mode-manual-btn'),
+        'world_ibvs':  document.getElementById('mode-world-btn'),
+    };
+    Object.entries(MODE_MAP).forEach(([mode, btn]) => {
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+            selectedMode = mode;
+            Object.values(MODE_MAP).forEach(b => { if (b) b.classList.remove('active-mode'); });
+            btn.classList.add('active-mode');
+            send({ cmd: 'set_chase_mode', mode });
+        });
+    });
+
     if (killBtn)     killBtn.addEventListener('click', doKill);
     if (tPhotoBtn)   tPhotoBtn.addEventListener('click', () => send({ cmd: 'photo' }));
     if (tDetectBtn)  tDetectBtn.addEventListener('click', toggleDetect);
     if (tModeBtn)    tModeBtn.addEventListener('click', toggleMode);
     if (chaseBtn)    chaseBtn.addEventListener('click', toggleChase);
     if (tChaseBtn)   tChaseBtn.addEventListener('click', toggleChase);
+    if (trackBtn)    trackBtn.addEventListener('click', toggleTrack);
+    if (tTrackBtn)   tTrackBtn.addEventListener('click', toggleTrack);
+    if (dbgCaptureBtn)  dbgCaptureBtn.addEventListener('click',  () => send({ cmd: 'debug_capture' }));
+    if (dbgSimulateBtn) dbgSimulateBtn.addEventListener('click', () => send({ cmd: 'debug_simulate' }));
     if (tSessionBtn) tSessionBtn.addEventListener('click', () => {
         send({ cmd: 'shutdown' });
         sessionBtn.disabled = true;
@@ -780,6 +1017,23 @@ window.addEventListener('DOMContentLoaded', () => {
     gaugeSteer = makeGauge('gauge-steer', -30,  30, '#4f8ef7');
     gaugePan   = makeGauge('gauge-pan',   -90,  90, '#a78bfa');
     gaugeTilt  = makeGauge('gauge-tilt',  -35,  65, '#22c55e');
+
+    // Command Servo panel wiring
+    const servoCmdSelect = document.getElementById('servo-cmd-select');
+    const servoCmdSend   = document.getElementById('servo-cmd-send');
+    const servoCmdAngle  = document.getElementById('servo-cmd-angle');
+    if (servoCmdSelect) {
+        updateServoCmdLimits();
+        servoCmdSelect.addEventListener('change', updateServoCmdLimits);
+    }
+    if (servoCmdSend) {
+        servoCmdSend.addEventListener('click', sendServoCommand);
+    }
+    if (servoCmdAngle) {
+        servoCmdAngle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); sendServoCommand(); }
+        });
+    }
 
     setupJoysticks();
 

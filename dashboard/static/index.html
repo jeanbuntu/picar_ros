@@ -9,6 +9,7 @@
 <body>
 
 <div id="chase-statusbar"></div>
+<div id="track-statusbar"></div>
 
 <header>
     <h1>PiCar-X Dashboard</h1>
@@ -91,11 +92,56 @@
             </div>
         </div>
 
+        <div class="control-group">
+            <div class="key-label">Chase Mode</div>
+            <div class="mode-btn-row">
+                <button id="mode-rat-btn"    class="btn mode-sel active-mode">RAT CHASE</button>
+                <button id="mode-ibvs-btn"   class="btn mode-sel">IBVS TEST</button>
+                <button id="mode-manual-btn" class="btn mode-sel">MANUAL+IBVS</button>
+                <button id="mode-world-btn"  class="btn mode-sel">WORLD IBVS</button>
+            </div>
+        </div>
+
         <div class="control-group btn-group">
             <button id="chase-btn" class="btn">Tag Chase OFF</button>
+            <button id="track-btn" class="btn">Manual Track OFF</button>
             <button id="photo-btn" class="btn">Take Photo</button>
             <button id="rec-btn" class="btn">Record Video</button>
             <button id="session-btn" class="btn">Stop Session</button>
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">IBVS Status</div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <span id="ibvs-badge" class="signal-badge signal-no">IBVS ○</span>
+                <span id="scan-badge" class="signal-badge signal-no">SCAN ○</span>
+                <span id="cc-badge"   class="signal-badge signal-no">CENTER ○</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">Command Servo</div>
+            <div class="servo-cmd-row">
+                <select id="servo-cmd-select" class="servo-cmd-select">
+                    <option value="pan">Pan</option>
+                    <option value="tilt">Tilt</option>
+                    <option value="steer">Steer</option>
+                </select>
+                <input type="number" id="servo-cmd-angle" class="servo-cmd-angle"
+                       value="0" min="-90" max="90" step="1">
+                <button id="servo-cmd-send" class="btn servo-cmd-btn">Send</button>
+            </div>
+            <div id="servo-cmd-status" class="servo-cmd-status">--</div>
+        </div>
+
+        <div class="control-group">
+            <div class="key-label">IBVS Debug</div>
+            <div style="display:flex;gap:6px;">
+                <button id="dbg-capture-btn"  class="btn">Capture</button>
+                <button id="dbg-simulate-btn" class="btn" disabled>Simulate</button>
+            </div>
+            <canvas id="debug-canvas" class="debug-canvas"></canvas>
+            <pre    id="debug-text"   class="debug-text"></pre>
         </div>
     </aside>
 </main>
@@ -118,6 +164,7 @@
 <div class="touch-actions">
     <button id="t-photo-btn"   class="btn t-btn">Photo</button>
     <button id="t-chase-btn"   class="btn t-btn">Chase</button>
+    <button id="t-track-btn"   class="btn t-btn">Track</button>
     <button id="t-mode-btn"    class="btn t-btn">Gentle</button>
     <button id="t-session-btn" class="btn t-btn">Stop</button>
 </div>
