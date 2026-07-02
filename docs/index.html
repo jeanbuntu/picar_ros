@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>picar_ros — Autonomous AprilTag Chasing on a PiCar-X</title>
+  <meta name="description" content="picar_ros: a Sunfounder PiCar-X built into a progressively more capable AprilTag-chasing robot, from pixel-space PID to image-based visual servoing with ROS2 trajectory visualization.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1 publication-title">picar_ros</h1>
+      <h2 class="subtitle is-4">Autonomous AprilTag chasing on a Sunfounder PiCar-X, from pixel-space PID to image-based visual servoing</h2>
+
+      <div class="author-block">
+        Jeano
+        <br>
+        <a href="https://github.com/jeanbuntu" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>&nbsp;@jeanbuntu
+        </a>
+      </div>
+
+      <div class="buttons is-centered mt-4">
+        <a class="button is-dark is-rounded" href="https://github.com/jeanbuntu/picar_ros" target="_blank" rel="noopener">
+          <span class="icon"><i class="fab fa-github"></i></span>
+          <span>Repository</span>
+        </a>
+        <a class="button is-rounded" href="https://github.com/jeanbuntu/picar_ros/blob/main/tag_chaser/v1_camera_lock/DEBRIEF.md" target="_blank" rel="noopener">
+          <span>v1 Debrief</span>
+        </a>
+        <a class="button is-rounded" href="https://github.com/jeanbuntu/picar_ros/blob/test/v2_world_tf/tag_chaser/v2_world_tf/DEBRIEF.md" target="_blank" rel="noopener">
+          <span>v2 Debrief</span>
+        </a>
+        <a class="button is-rounded" href="https://github.com/jeanbuntu/picar_ros/blob/test/v3_ibvs/tag_chaser/v3_ibvs/DEBRIEF.md" target="_blank" rel="noopener">
+          <span>v3 Debrief</span>
+        </a>
+      </div>
+
+      <!-- PLACEHOLDER MEDIA SLOT: hero teaser — replace with photo/video of the PiCar-X chasing an AprilTag -->
+      <div class="placeholder-media" role="img" aria-label="Media placeholder: hero teaser">
+        <span class="placeholder-media__label">Photo / video coming soon: the PiCar-X chasing an AprilTag</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="quick-nav">
+  <div class="container is-max-desktop">
+    <div class="tabs is-centered is-toggle is-toggle-rounded">
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#v1">v1</a></li>
+        <li><a href="#v2">v2</a></li>
+        <li><a href="#tag-size-experiment">Tag-Size Experiment</a></li>
+        <li><a href="#v3">v3</a></li>
+        <li><a href="#trajectory">Trajectory</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="overview" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Overview</h2>
+    <div class="content is-medium">
+      <p>
+        picar_ros is a hobby robotics project built on a Sunfounder PiCar-X. The goal was to progressively
+        build an autonomous AprilTag chasing system, starting from simple pixel-space control and working
+        toward full image-based visual servoing with ROS2 trajectory visualization. Three versions were
+        developed over June 2026, each on its own branch: pixel-space PID control, a world-frame TF system
+        with live RViz2 trajectory recording, and image-based visual servoing (IBVS) with a single-tag world
+        anchor.
+      </p>
+      <p>
+        The car itself is a Raspberry Pi 4 with a Pi Camera Module 3 on a pan/tilt gimbal, front steering,
+        and rear drive motors. It talks over WebSocket to an Ubuntu machine running ROS2 Humble, which
+        handles TF publishing, trajectory recording, and RViz2 visualization. AprilTag36h11 detection
+        (via <code>pupil-apriltags</code>) drives every version's control loop.
+      </p>
+    </div>
+
+    <h3 class="title is-4">System overview</h3>
+    <div class="pipeline">
+      <div class="pipeline-box">Pi Camera</div>
+      <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="pipeline-box">AprilTag Detection</div>
+      <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="pipeline-box">Controller (PID / IBVS)</div>
+      <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="pipeline-box">Servos / Motors</div>
+    </div>
+    <div class="pipeline">
+      <div class="pipeline-box">Pi (WebSocket)</div>
+      <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="pipeline-box">Ubuntu tf_bridge (ROS2)</div>
+      <div class="pipeline-arrow"><i class="fas fa-arrow-right"></i></div>
+      <div class="pipeline-box">RViz2</div>
+    </div>
+    <p class="has-text-centered has-text-grey is-size-7">Added in v2 and carried into v3.</p>
+  </div>
+</section>
+
+<section id="v1" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">v1 — Camera Lock <span class="tag is-light ml-2">branch: main</span></h2>
+    <div class="content is-medium">
+      <p>
+        <strong>Goal:</strong> get the car to autonomously detect AprilTag ID 0 and drive toward it using a
+        PID controller on horizontal pixel error. No world frame, no gimbal movement, camera fixed.
+      </p>
+      <p>
+        A tag chase mode was integrated into the browser dashboard. The operator clicks a toggle, a
+        3-second countdown runs, then the car steers toward the tag's horizontal center and drives forward
+        at a fixed speed, stopping once the tag is within a configurable distance threshold. The entire
+        camera pipeline was taken over from scratch: a FastAPI server owns the single Picamera2 instance
+        for the full session, serves an MJPEG stream, and passes frames to the chaser on each tick.
+      </p>
+
+      <table class="table is-fullwidth is-striped is-narrow">
+        <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>kp</td><td>15.0</td></tr>
+          <tr><td>ki</td><td>0.5</td></tr>
+          <tr><td>kd</td><td>2.0</td></tr>
+          <tr><td>Steer limit</td><td>±20°</td></tr>
+          <tr><td>Stop distance</td><td>10 cm</td></tr>
+          <tr><td>Tag family / ID</td><td>AprilTag36h11, ID 0</td></tr>
+          <tr><td>Tag size</td><td>5 cm</td></tr>
+        </tbody>
+      </table>
+
+      <h4 class="title is-5">Notable bugs fixed</h4>
+      <ul>
+        <li><strong>Vilib/Picamera2 incompatibility</strong> — Vilib used a Picamera2 internal API removed in a later release; fixed by dropping Vilib and having the server own Picamera2 directly.</li>
+        <li><strong>WebSocket concurrent-send corruption</strong> — multiple tasks calling <code>ws.send_json()</code> interleaved and silently dropped clients, leaving the chase toggle stuck active. Fixed with one <code>asyncio.Queue</code> per connection drained by a single serial sender task.</li>
+        <li><strong>Camera color inversion</strong> — <code>capture_array()</code> returned RGB regardless of the configured format name; fixed by using RGB888 directly with no color conversion.</li>
+        <li><strong>Tag ID mismatch</strong> — physical tag was ID 0, config said ID 1.</li>
+        <li><strong>Broadcast flood killing the sender</strong> — 30fps per-frame broadcasts triggered transient WebSocket exceptions that silently killed the sender task; throttled to 10fps and made the sender resilient to individual send errors.</li>
+      </ul>
+
+      <p class="has-text-grey">
+        <strong>Limitations carried into v2:</strong> gimbal locked at 0°, fixed forward speed regardless of
+        distance, no latching stop, no world-frame trajectory recording.
+      </p>
+    </div>
+
+    <!-- PLACEHOLDER MEDIA SLOT: v1 dashboard/chase screenshot — replace with a screenshot of the browser dashboard mid-chase -->
+    <div class="placeholder-media" role="img" aria-label="Media placeholder: v1 dashboard screenshot">
+      <span class="placeholder-media__label">Screenshot coming soon: the dashboard mid-chase</span>
+    </div>
+  </div>
+</section>
+
+<section id="v2" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">v2 — World TF <span class="tag is-light ml-2">branch: test/v2_world_tf</span></h2>
+    <div class="content is-medium">
+      <p>
+        <strong>Goal:</strong> establish a fixed world coordinate frame using a pair of AprilTags mounted to
+        a wall, record the car's trajectory in that frame, and visualize it live in RViz2.
+      </p>
+      <p>
+        Tags 2 and 3, mounted to the wall roughly 7cm apart, act as a dual-tag world anchor. The system
+        searches for both simultaneously and validates geometric consistency (0.025m tolerance per axis)
+        before locking in the world frame: <code>idle → world_search (15s timeout) → countdown → chasing</code>.
+        The chase target itself remains tag 0. A new <code>tf_bridge</code> ROS2 node on the Ubuntu side
+        subscribes to the Pi's WebSocket feed, computes <code>world → camera</code> TF, and publishes
+        trajectory <code>LINE_STRIP</code> MarkerArrays plus per-cycle PLY point clouds. A
+        <code>picar_description</code> ROS2 package with a URDF (pan/tilt gimbal, body, four wheels) was
+        added so the car renders correctly in RViz2 via <code>robot_state_publisher</code>.
+      </p>
+      <p>
+        <strong>Jitter finding:</strong> trajectory plots showed sharp zig-zags even with the car
+        stationary. The root cause is AprilTag PnP pose ambiguity — a planar tag has two valid pose
+        solutions, and the solver alternates between them frame to frame, producing roughly ±15cm of
+        Y-axis noise while stationary.
+      </p>
+
+      <h4 class="title is-5">Notable bugs fixed</h4>
+      <ul>
+        <li><strong>Manual Track did nothing</strong> — a variable was missing from a <code>global</code> declaration.</li>
+        <li><strong>Motors froze mid-drive with steering stuck</strong> — a per-connection watchdog timer became orphaned on browser reconnect; promoted to a module-level global and made the watchdog re-center steering on freeze.</li>
+        <li><strong>Double-shutdown traceback on Ctrl-C</strong> — <code>rclpy.shutdown()</code> was called twice; wrapped in try/except.</li>
+      </ul>
+    </div>
+
+    <!-- PLACEHOLDER MEDIA SLOT: v2 RViz trajectory screenshot — replace with an RViz2 screenshot showing the recorded trajectory -->
+    <div class="placeholder-media" role="img" aria-label="Media placeholder: v2 RViz trajectory screenshot">
+      <span class="placeholder-media__label">Screenshot coming soon: RViz2 trajectory recording</span>
+    </div>
+  </div>
+</section>
+
+<section id="tag-size-experiment" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Tag-Size Noise Experiment</h2>
+    <div class="content is-medium">
+      <p>
+        Hypothesis: larger printed tags reduce PnP pose ambiguity by giving the corner detector more pixels
+        to work with. Four sessions were recorded on 2026-06-23 with a stationary camera, varying tag size
+        and lighting, and measuring the standard deviation of the estimated position on each axis.
+      </p>
+
+      <table class="table is-fullwidth is-striped">
+        <thead>
+          <tr><th>Condition</th><th>σX</th><th>σY</th><th>σZ (depth)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>5cm, lights off</td><td>3.4 cm</td><td>0.5 cm</td><td>4.5 cm</td></tr>
+          <tr><td>5cm, lights on</td><td>5.1 cm</td><td>1.7 cm</td><td>3.7 cm</td></tr>
+          <tr class="has-text-weight-bold"><td>20cm, lights on</td><td>2.7 cm</td><td>0.4 cm</td><td>1.4 cm</td></tr>
+          <tr><td>20cm, lights off</td><td>2.1 cm</td><td>1.0 cm</td><td>1.7 cm</td></tr>
+        </tbody>
+      </table>
+
+      <div class="bar-chart">
+        <div class="bar-row">
+          <span class="bar-row__label">5cm, lights off</span>
+          <div class="bar-row__track"><div class="bar-row__fill" style="width: 90%;">4.5 cm</div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-row__label">5cm, lights on</span>
+          <div class="bar-row__track"><div class="bar-row__fill" style="width: 74%;">3.7 cm</div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-row__label">20cm, lights on</span>
+          <div class="bar-row__track"><div class="bar-row__fill is-best" style="width: 28%;">1.4 cm</div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-row__label">20cm, lights off</span>
+          <div class="bar-row__track"><div class="bar-row__fill is-best" style="width: 34%;">1.7 cm</div></div>
+        </div>
+      </div>
+      <p class="has-text-grey is-size-7">Bar width proportional to σZ (depth noise), the axis most affected by PnP pose flips.</p>
+
+      <p>
+        <strong>Conclusion:</strong> tag size is the dominant factor. The 20cm tag reduces depth noise
+        roughly 3x versus the 5cm tag. For 5cm tags, ambient lighting creates glare that degrades corner
+        localization; for 20cm tags, lighting is a secondary concern.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="v3" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">v3 — IBVS <span class="tag is-light ml-2">branch: test/v3_ibvs</span></h2>
+    <div class="content is-medium">
+      <p>
+        <strong>Goal:</strong> add image-based visual servoing (IBVS) so the pan/tilt gimbal actively
+        tracks the tag in pixel space, and drop the wall-mounted tag pair in favor of using tag 0 alone as
+        a world anchor.
+      </p>
+      <p>
+        Pan/tilt servo control is driven directly by pixel error: <code>eu = tag_x - cx</code>,
+        <code>ev = tag_y - cy</code>, smoothed with an EWMA (α = 0.8). A 10px deadband and 30px lazy band
+        prevent hunting, and each axis is capped at 2°/frame. The first tag 0 detection seeds a world
+        anchor transform; every subsequent frame derives the camera's world pose by chaining through that
+        anchor and the current camera-to-tag transform.
+      </p>
+
+      <table class="table is-fullwidth is-striped is-narrow">
+        <thead><tr><th>Mode</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>ibvs_test</code></td><td>IBVS pan/tilt only, no drive, no TF — for servo tuning.</td></tr>
+          <tr><td><code>manual_ibvs</code></td><td>IBVS pan/tilt + manual WASD drive from the dashboard.</td></tr>
+          <tr><td><code>rat_chase</code></td><td>IBVS pan/tilt + autonomous car centering + forward drive. Tag 0 only.</td></tr>
+          <tr><td><code>world_ibvs</code></td><td>Full v2-style behavior: dual-tag world frame + countdown + TF chase.</td></tr>
+        </tbody>
+      </table>
+
+      <h4 class="title is-5">Notable bugs fixed</h4>
+      <ul>
+        <li><strong>TF never broadcast in test modes</strong> — the TF publish call only ran inside the autonomous-chase branch, so <code>ibvs_test</code> and <code>manual_ibvs</code> never reached it despite detecting tags correctly.</li>
+        <li><strong>A Z-filter that rejected every valid frame</strong> — two rounds of a bad threshold check meant valid camera-height readings were rejected outright; made the filter configurable and defaulted it off.</li>
+        <li><strong>A velocity gate that rejected all hand-carried movement</strong> — a 10cm/frame gate tuned for autonomous driving discarded nearly every step when the car was carried by hand for testing; added a separate, looser jump threshold for the anchor-mode path.</li>
+      </ul>
+      <p>
+        <a href="https://github.com/jeanbuntu/picar_ros/blob/test/v3_ibvs/tag_chaser/v3_ibvs/DEBRIEF.md" target="_blank" rel="noopener">See the full debrief</a> for the remaining bugs (a stuck-red RViz marker from Volatile QoS, wheels rendering as vertical posts from a URDF rotation error, and joint states not publishing before the Pi connects).
+      </p>
+
+      <p class="has-text-grey">
+        <strong>Current status:</strong> IBVS pan/tilt tracking and the single-tag world frame are confirmed
+        working. <code>rat_chase</code> autonomous drive is fully implemented but not yet tested on the floor.
+      </p>
+    </div>
+
+    <!-- PLACEHOLDER MEDIA SLOT: v3 gimbal tracking — replace with a photo/gif of the gimbal tracking a tag, or a combined RViz+URDF screenshot -->
+    <div class="placeholder-media" role="img" aria-label="Media placeholder: v3 gimbal tracking">
+      <span class="placeholder-media__label">Photo / gif coming soon: gimbal tracking a tag via IBVS</span>
+    </div>
+  </div>
+</section>
+
+<section id="trajectory" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Trajectory Visualization</h2>
+    <div class="content is-medium">
+      <p>
+        <code>trajviz.py</code> reads the PLY point clouds written by <code>tf_bridge</code> and produces an
+        interactive Plotly visualization with a red → yellow → green time gradient and a cubic spline
+        overlay. The session below is the best capture so far: 454 points over 73 seconds of hand-carried
+        movement in <code>ibvs_anchor</code> mode.
+      </p>
+      <!-- Regenerate this embed by re-running `python3 trajviz.py` at the repo root and copying the
+           resulting trajviz_out.html into docs/assets/media/trajviz_out.html -->
+      <div class="trajviz-frame-wrap">
+        <iframe id="trajviz-iframe" data-src="assets/media/trajviz_out.html" loading="lazy" title="Interactive trajectory visualization"></iframe>
+      </div>
+      <p class="has-text-centered mt-3">
+        <a href="assets/media/trajviz_out.html" target="_blank" rel="noopener">Open the interactive viewer full-screen &rarr;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Environment / Stack</h2>
+    <div class="columns">
+      <div class="column">
+        <h4 class="title is-5">Pi side</h4>
+        <table class="table is-fullwidth is-striped is-narrow">
+          <tbody>
+            <tr><td>Board</td><td>Raspberry Pi 4</td></tr>
+            <tr><td>OS</td><td>Raspberry Pi OS (bookworm)</td></tr>
+            <tr><td>Python</td><td>3.13</td></tr>
+            <tr><td>Camera</td><td>Pi Camera Module 3, Picamera2 0.3.36, RGB888</td></tr>
+            <tr><td>Detection</td><td>pupil-apriltags, tag36h11 family</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="column">
+        <h4 class="title is-5">Ubuntu side</h4>
+        <table class="table is-fullwidth is-striped is-narrow">
+          <tbody>
+            <tr><td>OS</td><td>Ubuntu 22.04</td></tr>
+            <tr><td>ROS2</td><td>Humble</td></tr>
+            <tr><td>Python</td><td>3.10</td></tr>
+            <tr><td>Nodes</td><td><code>tf_bridge</code>, <code>picar_description</code></td></tr>
+            <tr><td>Visualization</td><td>RViz2, Plotly</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="content is-medium">
+      The Pi and Ubuntu machine talk over a WebSocket connection carrying AprilTag detections; a FastAPI +
+      WebSocket dashboard on the Pi handles manual control and mode switching for all three versions.
+    </p>
+  </div>
+</section>
+
+<section id="reference" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Reference this project</h2>
+    <div class="content is-medium">
+      <div class="reference-box">
+repo: https://github.com/jeanbuntu/picar_ros<br>
+branches: main (v1) · test/v2_world_tf (v2) · test/v3_ibvs (v3)
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      This website is licensed under a
+      <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+    <p>
+      The source code for this page borrows from the <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>
+      project page template, by way of the <a href="https://flow-reversal-steering.github.io/" target="_blank" rel="noopener">Flow Reversal Steering</a> project page.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
